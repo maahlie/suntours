@@ -1,0 +1,94 @@
+html{
+   width:100%;
+   height:100%;
+}
+body{
+   overflow-x: hidden;
+}
+
+/* background en lettertype voor alle paginas */
+#bodyIndex,#bodyZonvakantie,#bodyWintersport,#bodyGastenPagina{
+   background-image: url("../images/background.png");
+
+   background-attachment: fixed;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: 90% 100%;   
+   
+   
+ font-size: 1.5em;
+   font-family: Times;
+}
+
+#bodyContacPagina{
+ background-image: url("../images/background.png");
+
+ background-attachment: fixed;
+ background-position: top;
+ background-repeat: no-repeat;
+ background-size: 90% 85%;
+
+ font-size: 1.5em;
+ font-family: Times;
+}
+
+#bodyAuto{
+ background-image: url("../images/background.png");
+
+ background-attachment: fixed;
+ background-position: top;
+ background-repeat: no-repeat;
+ background-size: 90% 65%;
+
+ font-size: 1.5em;
+ font-family: Times;
+}
+
+/*start home page eerste section*/
+.top-block-section{
+   background-color: #3498db;
+   color: white;
+}
+
+/* einde eerste section */
+
+/* section 2 index */
+#indexSection2{
+   text-align: center;
+   /* color: white; */
+}
+
+.indexPics{
+   width: 200px;
+}
+/* einde section 2 */
+
+/* complete footer */
+ footer {
+    color: darkgray;
+    float: left;
+    width: 100%;
+ }
+
+ .topFooter{
+    background: rgb(53,58,64);
+    padding-top: 1.2em;
+    padding-bottom: 0.6em;
+ }
+
+ .bottomFooter{
+    background-color: #3498db;
+    text-align: center;
+    color: black;
+ }
+ .footer img{
+    position:absolute;
+    right:0%;
+
+ }
+ .topfooter .row img{
+   position:absolute;
+   right:0%;
+
+}
+ /* einde footer */
