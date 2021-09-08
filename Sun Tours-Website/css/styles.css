@@ -92,3 +92,59 @@ body{
 
 }
  /* einde footer */
+ .wrapper {
+   display: flex;
+   align-items: row;
+   flex-direction: row;
+   justify-content: center;
+   width: 100%;
+   min-height: 100%;
+   padding: 20px;
+ }
+
+ #registreerForm {
+   margin:5%; 
+}
+
+ #inlogForm {
+   margin:5%;
+   height: fit-content;
+ }
+
+ label {
+    font-size: 1.2em;
+ }
+
+ .formContent {
+   -webkit-border-radius: 10px 10px 10px 10px;
+   border-radius: 10px 10px 10px 10px;
+   background: #fff;
+   padding: 30px;
+   width: 90%;
+   max-width: 450px;
+   position: relative;
+   padding: 0px;
+   text-align: center;
+   border:solid black;
+   background-color:#3498db;
+   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+ }
+ h2.actief {
+   color: #0d0d0d;
+   border-bottom: 2px solid black;
+   padding-bottom: 1.5%;
+ }
+
+ #icon {
+   width:30%;
+ }
+
+ .sendKnop {
+    margin-bottom:3%;
+ }
+#loginpage{
+margin-left:0%;
+}
+/* #registreerpage{
+   margin-right:0%;
+} */
