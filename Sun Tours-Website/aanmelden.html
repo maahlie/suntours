@@ -10,6 +10,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="Javascript/registreer.js"></script>
+  
   <style>
   </style>
 </head>
@@ -44,7 +46,7 @@
     <div class="c-form__progress"></div>
     <div class="wrapper Val">
 
-      <div id="formContent">
+      <div class="formContent" id="inlogForm">
         <h2 class="actief"> Inloggen </h2>
 
         <div class="fadeIn first">
@@ -52,31 +54,37 @@
       " />
         </div>
         <form method="POST" id="loginpage" action="../brawlbots/inlog_check.php">
-          <input type="text" id="login" name="usern" placeholder="login">
-          <input type="password" id="wachtwoord" name="passwd" placeholder="wachtwoord"
-            minlength="8"><br><br>
-          <input type="submit" value="Log In" id="loginKnop">
+          <label>Gebruikersnaam</label><br>
+          <input type="text" id="login" name="usern" placeholder="login"><br><br>
+          <label>Wachtwoord</label><br>
+          <input type="password" id="wachtwoord" name="passwd" placeholder="wachtwoord" minlength="8"><br><br>
+          <input type="submit" value="Log In" id="loginKnop" class="sendKnop">
         </form>
       </div>
-    </div>
-
-    <div class="c-form__progress"></div>
-    <div class="wrapper Val">
-
-      <div id="formContent">
-        <h2 class="actief"> Inloggen </h2>
+      <!-- <div class="c-form__progress"></div> -->
+      <div class="formContent" id="registreerForm">
+        <h2 class="actief"> Registreren </h2>
 
         <div class="fadeIn first">
           <img src="images/SunLogo.png" id="icon" alt="Profiel
       " />
         </div>
         <form method="POST" id="registreerpage" action="../brawlbots/inlog_check.php">
-          <input type="text" id="registratie" name="usern" placeholder="login">
-          <input type="password" id="wachtwoord2" name="passwd" placeholder="wachtwoord"
-            minlength="8"><br><br>
-            <input type="password" id="wachtwoord3" name="passwd" placeholder="wachtwoord"
-            minlength="8"><br><br>
-          <input type="submit" value="Log In" id="registratieknop">
+          <label>E-mail</label><br>
+          <input type="email" id="email" name="email" placeholder="email@email.com" minlength="8"><br><br>
+          <label>Telefoonnummer</label><br>
+          <input type="number" id="phonenumber" name="phonenumber" placeholder="0123456789" minlength="8"><br><br>
+          <label>Voornaam</label><br>
+          <input type="text" id="Vnaam" name="Vnaam" placeholder="Voornaam"><br><br>
+          <label>Achternaam</label><br>
+          <input type="text" id="Anaam" name="Anaam" placeholder="Achternaam"><br><br>
+          <label>Gebruikersnaam</label><br>
+          <input type="text" id="registratie" name="usern" placeholder="Gebruikersnaam"><br><br>
+          <label>Wachtwoord</label><br>
+          <input type="password" id="wachtwoord2" name="passwd" placeholder="Wachtwoord" minlength="8"><br><br>
+          <label>Bevestig wachtwoord</label><br>
+          <input type="password" id="wachtwoord3" name="passwd" placeholder="Bevestig wachtwoord" minlength="8"><br><br>
+          <input type="submit" value="Registreer" id="registratieknop" class="sendKnop" onclick="registreer()">
         </form>
       </div>
     </div>

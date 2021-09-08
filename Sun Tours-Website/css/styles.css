@@ -102,7 +102,20 @@ body{
    padding: 20px;
  }
 
- #formContent {
+ #registreerForm {
+   margin:5%; 
+}
+
+ #inlogForm {
+   margin:5%;
+   height: fit-content;
+ }
+
+ label {
+    font-size: 1.2em;
+ }
+
+ .formContent {
    -webkit-border-radius: 10px 10px 10px 10px;
    border-radius: 10px 10px 10px 10px;
    background: #fff;
@@ -126,12 +139,12 @@ body{
    width:30%;
  }
 
- #loginKnop {
+ .sendKnop {
     margin-bottom:3%;
  }
 #loginpage{
 margin-left:0%;
 }
-#registreerpage{
+/* #registreerpage{
    margin-right:0%;
-}
+} */
