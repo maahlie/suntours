@@ -297,3 +297,33 @@ display:flex;
 background-color:red;
 color:white;
 }
+.assortiment_footer{
+   position:absolute;
+   margin-top:40%;
+}
+.assortiment_front_page{
+   width:20%;
+   height:40%;
+   background-color:#F1F1F1;
+   position:absolute;
+
+}
+.spanje{
+background-color: green;
+}
+
+
+
+
+/* .egypte{
+   margin-left:1000%;
+}
+.turkije{
+   margin-left:1000%;
+}
+.turkije2{
+   margin-left:1000%;
+}
+.frankrijk{
+   margin-left:1000%;
+} */
