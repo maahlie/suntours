@@ -109,7 +109,19 @@ body{
  #inlogForm {
    margin:5%;
    height: fit-content;
+}
+
+input[type=text]:focus, textarea:hover {
+   outline: none;
+   box-shadow: 0 0 5px rgb(0, 0, 0);
  }
+
+#registratieKnop a:hover {
+   opacity: 0.7;
+   filter: alpha(opacity=40);
+   font-size: 3.2rem;
+   background-image: linear-gradient(to bottom, hsl(0,80%,50%), #bada55);
+}
 
  label {
     font-size: 1.2em;
@@ -146,5 +158,5 @@ body{
 margin-left:0%;
 }
 /* #registreerpage{
-   margin-right:0%;
+   margin-right:0%; 3498db
 } */

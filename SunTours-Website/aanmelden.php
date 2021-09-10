@@ -1,3 +1,38 @@
+<?php
+
+session_start();
+        if(!isset($_SESSION['showMsg'])){
+          $_SESSION['showMsg']=false;
+        }
+
+        if(!isset($_SESSION['showMsgEmail'])){
+          $_SESSION['showMsgEmail']=false;
+        }
+
+        if($_SESSION['showMsg']==true){
+
+          $message="wachtwoorden matchen niet!";
+
+          echo "<script type='text/javascript'>alert('$message');</script>";
+
+          $_SESSION['showMsg']=false;
+
+        }
+
+        if($_SESSION['showMsgEmail']==true){
+
+          $message="Er is al een account geregistreerd met dit e-mail adres reeeeee!";
+
+          echo "<script type='text/javascript'>alert('$message');</script>";
+
+          $_SESSION['showMsgEmail']=false;
+
+        }
+        
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,9 +90,9 @@
         </div>
         <form method="POST" id="loginpage" action="../brawlbots/inlog_check.php">
           <label>Gebruikersnaam</label><br>
-          <input type="text" id="login" name="usern" placeholder="login"><br><br>
+          <input type="text" id="usernLogIn" name="usern" placeholder="login" class="loginFocus"><br><br>
           <label>Wachtwoord</label><br>
-          <input type="password" id="wachtwoord" name="passwd" placeholder="wachtwoord" minlength="8"><br><br>
+          <input type="password" id="wachtwoordLogIn" name="passwd" class="loginFocus" placeholder="wachtwoord" minlength="8"><br><br>
           <input type="submit" value="Log In" id="loginKnop" class="sendKnop">
         </form>
       </div>
@@ -66,33 +101,31 @@
         <h2 class="actief"> Registreren </h2>
 
         <div class="fadeIn first">
-          <img src="images/SunLogo.png" id="icon" alt="Profiel
-      " />
+          <img src="images/SunLogo.png" id="icon" alt="Profiel" />
         </div>
-        <form method="POST" id="registreerpage" action="../brawlbots/inlog_check.php">
+        <form method="POST" id="registreerpage" action="php/registreer.php">
           <label>E-mail</label><br>
-          <input type="email" id="email" name="email" placeholder="email@email.com" minlength="8"><br><br>
+          <input type="email" id="email" name="email" placeholder="email@email.com" required><br><br>
           <label>Telefoonnummer</label><br>
-          <input type="number" id="phonenumber" name="phonenumber" placeholder="0123456789" minlength="8"><br><br>
+          <input type="text" id="phonenum" name="phonenumber" placeholder="0123456789" required><br><br>
           <label>Voornaam</label><br>
-          <input type="text" id="Vnaam" name="Vnaam" placeholder="Voornaam"><br><br>
+          <input type="text" id="Vnaam" name="Vnaam" placeholder="Voornaam" required><br><br>
           <label>Achternaam</label><br>
-          <input type="text" id="Anaam" name="Anaam" placeholder="Achternaam"><br><br>
+          <input type="text" id="Anaam" name="Anaam" placeholder="Achternaam" required><br><br>
           <label>Gebruikersnaam</label><br>
-          <input type="text" id="registratie" name="usern" placeholder="Gebruikersnaam"><br><br>
+          <input type="text" id="usern" name="usern" placeholder="Gebruikersnaam" required><br><br>
           <label>Wachtwoord</label><br>
-          <input type="password" id="wachtwoord2" name="passwd" placeholder="Wachtwoord" minlength="8"><br><br>
+          <input type="password" id="passwd2" name="passwd2" placeholder="Wachtwoord" required><br><br>
           <label>Bevestig wachtwoord</label><br>
-          <input type="password" id="wachtwoord3" name="passwd" placeholder="Bevestig wachtwoord" minlength="8"><br><br>
-          <input type="submit" value="Registreer" id="registratieknop" class="sendKnop" onclick="registreer()">
+          <input type="password" id="passwd3" name="passwd3" placeholder="Bevestig wachtwoord" required><br><br>
+          <input type="submit" value="Registreer" id="registratieknop" class="sendKnop">
         </form>
       </div>
     </div>
   </main>
 
-
 </body>
-
+<!-- action="php/registreer.php" -->
 <!-- footer is ook onderverdeeld in een top footer en voor de copyright een bottom footer -->
 <footer>
   <!-- start topfooter -->
