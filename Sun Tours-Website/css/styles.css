@@ -8,7 +8,7 @@ body{
 
 /* background en lettertype voor alle paginas */
 #bodyIndex,#bodyZonvakantie,#bodyWintersport,#bodyGastenPagina{
-   background-image: url("../images/background.png");
+   background-image: url("../images/background_image.png");
 
    background-attachment: fixed;
    background-position: center;
@@ -148,3 +148,152 @@ margin-left:0%;
 /* #registreerpage{
    margin-right:0%;
 } */
+
+
+.accordion_one .panel-group {
+   border: 1px solid #f1f1f1;
+   margin-top: 100px
+}
+
+a:link {
+   text-decoration: none
+}
+
+.accordion_one .panel {
+   background-color: transparent;
+   box-shadow: none;
+   border-bottom: 0px solid transparent;
+   border-radius: 0;
+   margin: 0
+}
+
+.accordion_one .panel-default {
+   border: 0
+}
+
+.accordion-wrap .panel-heading {
+   padding: 0px;
+   border-radius: 0px
+}
+
+h4 {
+   font-size: 18px;
+   line-height: 24px
+}
+
+.accordion_one .panel .panel-heading a.collapsed {
+   color: #999999;
+   display: block;
+   padding: 12px 30px;
+   border-top: 0px
+}
+
+.accordion_one .panel .panel-heading a {
+   display: block;
+   padding: 12px 30px;
+   background: #fff;
+   color: #313131;
+   border-bottom: 1px solid #f1f1f1
+}
+
+.accordion-wrap .panel .panel-heading a {
+   font-size: 14px
+}
+
+.accordion_one .panel-group .panel-heading+.panel-collapse>.panel-body {
+   border-top: 0;
+   padding-top: 0;
+   padding: 25px 30px 30px 35px;
+   background: #fff;
+   color: #999999
+}
+
+.img-accordion {
+   width: 81px;
+   float: left;
+   margin-right: 15px;
+   display: block
+}
+
+.accordion_one .panel .panel-heading a.collapsed:after {
+   content: "\2b";
+   color: #999999;
+   background: #f1f1f1
+}
+
+.accordion_one .panel .panel-heading a:after,
+.accordion_one .panel .panel-heading a.collapsed:after {
+  
+   font-size: 15px;
+   width: 36px;
+   line-height: 48px;
+   text-align: center;
+   background: #F1F1F1;
+   float: left;
+   margin-left: -31px;
+   margin-top: -12px;
+   margin-right: 15px
+}
+
+.accordion_one .panel .panel-heading a:after {
+   content: "\2212"
+}
+
+.accordion_one .panel .panel-heading a:after,
+.accordion_one .panel .panel-heading a.collapsed:after {
+   
+   font-size: 15px;
+   width: 36px;
+   height: 48px;
+   line-height: 48px;
+   text-align: center;
+   background: #F1F1F1;
+   float: left;
+   margin-left: -31px;
+   margin-top: -12px;
+   margin-right: 15px
+}
+
+h7.faq
+{
+ color:black;
+ font-size: 30px;
+ text-align: center;
+ margin-left: 700px;
+}
+
+.header2{
+width:100%;
+height:30%;
+background-color: rgb(197,213,225);
+display:flex;
+}
+.header2 h1{
+   margin:0 auto;
+   font-size: 4em;
+   color:white;
+}
+.form{
+   width:10%;
+   height:10%;
+   background-color:green;
+   position:relative;
+}
+.info{
+   height:40%;
+   background-color: rgb(197,213,225);
+   width:20%;
+   position:absolute;
+   margin-right:-35%;
+}
+.contact_toptext{
+   text-align: center;
+   margin-left:-66%;
+}
+#contact{
+   margin-left:-50%;
+}
+#contact_button{
+background-color:red;
+color:white;
+}
