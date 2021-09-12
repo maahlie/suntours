@@ -308,22 +308,16 @@ color:white;
    position:absolute;
 
 }
-.spanje{
-background-color: green;
-}
 
 
+input[type=text]:focus, textarea:hover {
+   outline: none;
+   box-shadow: 0 0 5px rgb(0, 0, 0);
+ }
 
-
-/* .egypte{
-   margin-left:1000%;
+#registratieKnop a:hover {
+   opacity: 0.7;
+   filter: alpha(opacity=40);
+   font-size: 3.2rem;
+   background-image: linear-gradient(to bottom, hsl(0,80%,50%), #bada55);
 }
-.turkije{
-   margin-left:1000%;
-}
-.turkije2{
-   margin-left:1000%;
-}
-.frankrijk{
-   margin-left:1000%;
-} */
