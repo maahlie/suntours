@@ -299,7 +299,7 @@ color:white;
 }
 .assortiment_footer{
    position:absolute;
-   margin-top:40%;
+   margin-top:0%;
 }
 .assortiment_front_page{
    width:20%;
@@ -309,11 +309,10 @@ color:white;
 
 }
 
-
 input[type=text]:focus, textarea:hover {
    outline: none;
    box-shadow: 0 0 5px rgb(0, 0, 0);
- }
+}
 
 #registratieKnop a:hover {
    opacity: 0.7;
@@ -321,3 +320,37 @@ input[type=text]:focus, textarea:hover {
    font-size: 3.2rem;
    background-image: linear-gradient(to bottom, hsl(0,80%,50%), #bada55);
 }
+
+.assortiment-first-image
+{
+   float:left;
+   position: relative;
+   width: 40%;
+   padding-bottom : 25%; /* = width for a 1:1 aspect ratio */
+   margin:1.66%;
+   background-position:center center;
+   background-repeat:no-repeat;
+   background-size:cover; 
+}
+.assortiment-first-text
+{
+   float:left;
+   position: relative;
+   width: 40%;
+   padding-bottom : 25%; 
+   margin:1.66%;
+   background-position:center center;
+   background-repeat:no-repeat;
+   background-size:cover; 
+   background-color:#F1F1F1;
+   font-size:100%;
+   
+}
+@media only screen and (max-width: 700px) {
+
+   body .assortiment-first-text { 
+      font-size: 0.5em; 
+   }
+
+}
+.img_1-1{background-image:url('../images/Spanje.png');}
