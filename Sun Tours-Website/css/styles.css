@@ -1,51 +1,55 @@
-html{
-   width:100%;
-   height:100%;
+html {
+   width: 100%;
+   height: 100%;
 }
-body{
+
+body {
    overflow-x: hidden;
 }
 
 /* background en lettertype voor alle paginas */
-#bodyIndex,#bodyZonvakantie,#bodyWintersport,#bodyGastenPagina{
+#bodyIndex,
+#bodyZonvakantie,
+#bodyWintersport,
+#bodyGastenPagina {
    background-image: url("../images/background_image.png");
 
    background-attachment: fixed;
    background-position: center;
    background-repeat: no-repeat;
-   background-size: 90% 100%;   
-   
-   
- font-size: 1.5em;
+   background-size: 90% 100%;
+
+
+   font-size: 1.5em;
    font-family: Times;
 }
 
-#bodyContacPagina{
- background-image: url("../images/background.png");
+#bodyContacPagina {
+   background-image: url("../images/background.png");
 
- background-attachment: fixed;
- background-position: top;
- background-repeat: no-repeat;
- background-size: 90% 85%;
+   background-attachment: fixed;
+   background-position: top;
+   background-repeat: no-repeat;
+   background-size: 90% 85%;
 
- font-size: 1.5em;
- font-family: Times;
+   font-size: 1.5em;
+   font-family: Times;
 }
 
-#bodyAuto{
- background-image: url("../images/background.png");
+#bodyAuto {
+   background-image: url("../images/background.png");
 
- background-attachment: fixed;
- background-position: top;
- background-repeat: no-repeat;
- background-size: 90% 65%;
+   background-attachment: fixed;
+   background-position: top;
+   background-repeat: no-repeat;
+   background-size: 90% 65%;
 
- font-size: 1.5em;
- font-family: Times;
+   font-size: 1.5em;
+   font-family: Times;
 }
 
 /*start home page eerste section*/
-.top-block-section{
+.top-block-section {
    background-color: #3498db;
    color: white;
 }
@@ -53,46 +57,50 @@ body{
 /* einde eerste section */
 
 /* section 2 index */
-#indexSection2{
+#indexSection2 {
    text-align: center;
    /* color: white; */
 }
 
-.indexPics{
+.indexPics {
    width: 200px;
 }
+
 /* einde section 2 */
 
 /* complete footer */
- footer {
-    color: darkgray;
-    float: left;
-    width: 100%;
- }
+footer {
+   color: darkgray;
+   float: left;
+   width: 100%;
+}
 
- .topFooter{
-    background: rgb(53,58,64);
-    padding-top: 1.2em;
-    padding-bottom: 0.6em;
- }
+.topFooter {
+   background: rgb(53, 58, 64);
+   padding-top: 1.2em;
+   padding-bottom: 0.6em;
+}
 
- .bottomFooter{
-    background-color: #3498db;
-    text-align: center;
-    color: black;
- }
- .footer img{
-    position:absolute;
-    right:0%;
+.bottomFooter {
+   background-color: #3498db;
+   text-align: center;
+   color: black;
+}
 
- }
- .topfooter .row img{
-   position:absolute;
-   right:0%;
+.footer img {
+   position: absolute;
+   right: 0%;
 
 }
- /* einde footer */
- .wrapper {
+
+.topfooter .row img {
+   position: absolute;
+   right: 0%;
+
+}
+
+/* einde footer */
+.wrapper {
    display: flex;
    align-items: row;
    flex-direction: row;
@@ -100,22 +108,22 @@ body{
    width: 100%;
    min-height: 100%;
    padding: 20px;
- }
-
- #registreerForm {
-   margin:5%; 
 }
 
- #inlogForm {
-   margin:5%;
+#registreerForm {
+   margin: 5%;
+}
+
+#inlogForm {
+   margin: 5%;
    height: fit-content;
- }
+}
 
- label {
-    font-size: 1.2em;
- }
+label {
+   font-size: 1.2em;
+}
 
- .formContent {
+.formContent {
    -webkit-border-radius: 10px 10px 10px 10px;
    border-radius: 10px 10px 10px 10px;
    background: #fff;
@@ -125,26 +133,29 @@ body{
    position: relative;
    padding: 0px;
    text-align: center;
-   border:solid black;
-   background-color:#3498db;
+   border: solid black;
+   background-color: #3498db;
    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
- }
- h2.actief {
+}
+
+h2.actief {
    color: #0d0d0d;
    border-bottom: 2px solid black;
    padding-bottom: 1.5%;
- }
-
- #icon {
-   width:30%;
- }
-
- .sendKnop {
-    margin-bottom:3%;
- }
-#loginpage{
-margin-left:0%;
 }
+
+#icon {
+   width: 30%;
+}
+
+.sendKnop {
+   margin-bottom: 3%;
+}
+
+#loginpage {
+   margin-left: 0%;
+}
+
 /* #registreerpage{
    margin-right:0%;
 } */
@@ -223,7 +234,7 @@ h4 {
 
 .accordion_one .panel .panel-heading a:after,
 .accordion_one .panel .panel-heading a.collapsed:after {
-  
+
    font-size: 15px;
    width: 36px;
    line-height: 48px;
@@ -241,7 +252,7 @@ h4 {
 
 .accordion_one .panel .panel-heading a:after,
 .accordion_one .panel .panel-heading a.collapsed:after {
-   
+
    font-size: 15px;
    width: 36px;
    height: 48px;
@@ -254,72 +265,82 @@ h4 {
    margin-right: 15px
 }
 
-h7.faq
-{
- color:black;
- font-size: 30px;
- text-align: center;
- margin-left: 700px;
-}
-
-.header2{
-width:100%;
-height:30%;
-background-color: rgb(197,213,225);
-display:flex;
-}
-.header2 h1{
-   margin:0 auto;
-   font-size: 4em;
-   color:white;
-}
-.form{
-   width:10%;
-   height:10%;
-   background-color:green;
-   position:relative;
-}
-.info{
-   height:40%;
-   background-color: rgb(197,213,225);
-   width:20%;
-   position:absolute;
-   margin-right:-35%;
-}
-.contact_toptext{
+h7.faq {
+   color: black;
+   font-size: 30px;
    text-align: center;
-   margin-left:-66%;
+   margin-left: 700px;
 }
-#contact{
-   margin-left:-50%;
+
+.header2 {
+   width: 100%;
+   height: 30%;
+   background-color: rgb(197, 213, 225);
+   display: flex;
 }
-#contact_button{
-background-color:red;
-color:white;
+
+.header2 h1 {
+   margin: 0 auto;
+   font-size: 4em;
+   color: white;
 }
-.assortiment_footer{
-   position:absolute;
-   margin-top:40%;
+
+.form {
+   width: 10%;
+   height: 10%;
+   background-color: green;
+   position: relative;
 }
-.assortiment_front_page{
-   width:20%;
-   height:40%;
-   background-color:#F1F1F1;
-   position:absolute;
+
+.info {
+   height: 40%;
+   background-color: rgb(197, 213, 225);
+   width: 20%;
+   position: absolute;
+   margin-right: -35%;
+}
+
+.contact_toptext {
+   text-align: center;
+   margin-left: -66%;
+}
+
+#contact {
+   margin-left: -50%;
+}
+
+#contact_button {
+   background-color: red;
+   color: white;
+}
+
+.assortiment_footer {
+   position: absolute;
+   margin-top: 40%;
+}
+
+.assortiment_front_page {
+   width: 20%;
+   height: 40%;
+   background-color: #F1F1F1;
+   position: absolute;
 
 }
 
-input[type=text]:focus, textarea:hover {
+input[type=text]:focus,
+textarea:hover {
    outline: none;
    box-shadow: 0 0 5px rgb(0, 0, 0);
 }
 
-input[type=password]:focus, textarea:hover {
+input[type=password]:focus,
+textarea:hover {
    outline: none;
    box-shadow: 0 0 5px rgb(0, 0, 0);
 }
 
-input[type=email]:focus, textarea:hover {
+input[type=email]:focus,
+textarea:hover {
    outline: none;
    box-shadow: 0 0 5px rgb(0, 0, 0);
 }
@@ -328,5 +349,11 @@ input[type=email]:focus, textarea:hover {
    opacity: 0.7;
    filter: alpha(opacity=40);
    font-size: 3.2rem;
-   background-image: linear-gradient(to bottom, hsl(0,80%,50%), #bada55);
+   background-image: linear-gradient(to bottom, hsl(0, 80%, 50%), #bada55);
+}
+
+.Reviewheader {
+   text-align: center;
+
+
 }
