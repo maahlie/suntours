@@ -313,10 +313,9 @@ h7.faq {
    background-color: red;
    color: white;
 }
-
-.assortiment_footer {
-   position: absolute;
-   margin-top: 40%;
+.assortiment_footer{
+   position:absolute;
+   margin-top:0%;
 }
 
 .assortiment_front_page {
@@ -352,8 +351,63 @@ textarea:hover {
    background-image: linear-gradient(to bottom, hsl(0, 80%, 50%), #bada55);
 }
 
-.Reviewheader {
-   text-align: center;
+.assortiment-first-image
+{
+   float:left;
+   position: relative;
+   width: 40%;
+   padding-bottom : 25%; /* = width for a 1:1 aspect ratio */
+   margin:1.66%;
+   background-position:center center;
+   background-repeat:no-repeat;
+   background-size:cover; 
+}
+.assortiment-first-text
+{
+   float:left;
+   position: relative;
+   width: 40%;
+   padding-bottom : 3.5%; 
+   margin:1.66%;
+   background-position:center center;
+   background-repeat:no-repeat;
+   background-size:cover; 
+   background-color:#F1F1F1;
+   font-size:100%;
+   margin-left: 10%;
+   
+}
 
+.assortiment-second-text
+{
+   float:left;
+   position: relative;
+   width: 40%;
+   padding-bottom : 3.5%; 
+   margin:1.66%;
+   background-position:center center;
+   background-repeat:no-repeat;
+   background-size:cover; 
+   background-color:#F1F1F1;
+   font-size:100%;
+   padding-right: 5%;
+   
+}
+
+@media only screen and (max-width: 800px) {
+
+   body .assortiment-first-text { 
+      font-size: 0.4em;
+      
+   }
+   body .assortiment-second-text { 
+      font-size: 0.4em;
+      
+   }
 
 }
+
+.img_1-1{background-image:url('../images/Spanje.png');}
+
+.img_1-2{background-image:url('../images/spanje2.jpg');
+margin-left: 10%;}
