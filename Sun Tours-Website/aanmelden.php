@@ -70,11 +70,14 @@ session_start();
         </li>
   
         <li class="nav-item">
-          <a class="nav-link" href="aanmelden.html">Aanmelden</a>
+          <a class="nav-link" href="aanmelden.php">Aanmelden</a>
         </li> 
         <li class="nav-item">
           <a class="nav-link" href="FAQ.html">FAQ</a>
         </li> 
+        <li class="nav-item">
+                    <a class="nav-link" href="Review.html">Review</a>
+                </li>
       </ul>
     </div>  
   </nav>
