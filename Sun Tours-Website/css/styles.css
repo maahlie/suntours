@@ -351,6 +351,16 @@ textarea:hover {
    background-image: linear-gradient(to bottom, hsl(0, 80%, 50%), #bada55);
 }
 
+
+.reviewheader
+{
+  text-align: center;
+}
+.review-form
+{
+   width:40%;
+   margin-left:40%;
+}
 .assortiment-first-image
 {
    float:left;
