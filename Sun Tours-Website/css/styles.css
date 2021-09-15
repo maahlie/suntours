@@ -314,6 +314,16 @@ input[type=text]:focus, textarea:hover {
    box-shadow: 0 0 5px rgb(0, 0, 0);
 }
 
+input[type=password]:focus, textarea:hover {
+   outline: none;
+   box-shadow: 0 0 5px rgb(0, 0, 0);
+}
+
+input[type=email]:focus, textarea:hover {
+   outline: none;
+   box-shadow: 0 0 5px rgb(0, 0, 0);
+}
+
 #registratieKnop a:hover {
    opacity: 0.7;
    filter: alpha(opacity=40);
