@@ -1,36 +1,37 @@
 <?php
 
-session_start();
-        if(!isset($_SESSION['showMsg'])){
-          $_SESSION['showMsg']=false;
-        }
+// include 'dbClass.php';
+// include 'user.php';
+// // include 'registreer.php';
 
-        if(!isset($_SESSION['showMsgEmail'])){
-          $_SESSION['showMsgEmail']=false;
-        }
+// session_start();
 
-        if($_SESSION['showMsg']==true){
+// if(isset($_SESSION['user'])){
+//   $user = $_SESSION['user'];
+// } else {
+//   $_SESSION['user'] = new User();
+//   $user = $_SESSION['user'];
+// }
 
-          $message="wachtwoorden matchen niet!";
+//         if($user->showMsg==true){
+//           echo  'here';
+//           $message="wachtwoorden matchen niet!";
 
-          echo "<script type='text/javascript'>alert('$message');</script>";
+//           echo "<script type='text/javascript'>alert('$message');</script>";
 
-          $_SESSION['showMsg']=false;
+//           $user->showMsg=false;
+//         }
 
-        }
+//         if($user->showMsgEmail==true){
 
-        if($_SESSION['showMsgEmail']==true){
+//           $message="Er is al een account geregistreerd met dit e-mail adres reeeeee!";
 
-          $message="Er is al een account geregistreerd met dit e-mail adres reeeeee!";
+//           echo "<script type='text/javascript'>alert('$message');</script>";
 
-          echo "<script type='text/javascript'>alert('$message');</script>";
-
-          $_SESSION['showMsgEmail']=false;
-
-        }
-        
-
+//           $user->showMsgEmail=false;
+//         }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,21 +40,20 @@ session_start();
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/styles.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <link rel="stylesheet" href="../css/styles.css">
+  <script src="../node_modules/jquery/dist/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="Javascript/registreer.js"></script>
-  
-  <style>
-  </style>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+  <script src="../Javascript/registreer.js"></script>
+
+
 </head>
 
 <body>
 
 
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <a href="index.html"><img class="img-fluid" src="images/SunLogo.png" alt="x" style="width: 60px;"></a>
+    <a href="../index.html"><img class="img-fluid" src="../images/SunLogo.png" alt="x" style="width: 60px;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -87,7 +87,7 @@ session_start();
         <h2 class="actief"> Inloggen </h2>
 
         <div class="fadeIn first">
-          <img src="images/SunLogo.png" id="icon" alt="Profiel
+          <img src="../images/SunLogo.png" id="icon" alt="Profiel
       " />
         </div>
         <form method="POST" id="loginpage" action="../Sun Tours-Website/php/inlog_check.php">
@@ -103,25 +103,29 @@ session_start();
         <h2 class="actief"> Registreren </h2>
 
         <div class="fadeIn first">
-          <img src="images/SunLogo.png" id="icon" alt="Profiel
+          <img src="../images/SunLogo.png" id="icon" alt="Profiel
       " />
         </div>
-        <form method="POST" id="registreerpage" action="../Sun Tours-Website/php/registreer.php">
+        <form method="POST" id="registreerpage" action="ajaxHandler.php">
           <label>E-mail</label><br>
           <input type="email" id="email" name="email" placeholder="email@email.com" minlength="8"><br><br>
           <label>Telefoonnummer</label><br>
-          <input type="number" id="phonenumber" name="phonenumber" placeholder="0123456789" minlength="8"><br><br>
+          <input type="text" id="phonenumber" name="phonenumber" placeholder="0123456789" minlength="10"><br><br>
           <label>Voornaam</label><br>
-          <input type="text" id="Vnaam" name="Vnaam" placeholder="Voornaam"><br><br>
+          <input type="text" id="firstName" name="firstName" placeholder="Voornaam"><br><br>
           <label>Achternaam</label><br>
-          <input type="text" id="Anaam" name="Anaam" placeholder="Achternaam"><br><br>
+          <input type="text" id="surName" name="surName" placeholder="Achternaam"><br><br>
           <label>Gebruikersnaam</label><br>
-          <input type="text" id="registratie" name="usern" placeholder="Gebruikersnaam"><br><br>
+          <input type="text" id="usern" name="usern" placeholder="Gebruikersnaam"><br><br>
+          <label>Adres (straatnaam + nummer)</label><br>
+          <input type="text" id="address" name="address" placeholder="Adres"><br><br>
+          <label>Postcode</label><br>
+          <input type="text" id="postalCode" name="postalCode" placeholder="Postcode"><br><br>
           <label>Wachtwoord</label><br>
-          <input type="password" id="wachtwoord2" name="passwd" placeholder="Wachtwoord" minlength="8"><br><br>
+          <input type="password" id="passwd2" name="passwd2" placeholder="Wachtwoord"><br><br>
           <label>Bevestig wachtwoord</label><br>
-          <input type="password" id="wachtwoord3" name="passwd" placeholder="Bevestig wachtwoord" minlength="8"><br><br>
-          <input type="submit" value="Registreer" id="registratieknop" class="sendKnop" onclick="registreer()">
+          <input type="password" id="passwd3" name="passwd3" placeholder="Bevestig wachtwoord"><br><br>
+          <input type="submit" value="Registreer" id="registratieknop" class="sendKnop">
         </form>
       </div>
     </div>
@@ -143,10 +147,10 @@ session_start();
       </div>
       <div class="col-3 mx-3 mt-3">
         <div class="row mx-1">
-          <a href=""><img class="img-fluid" src="images/facebook.png" alt="x" style="width: 60px;"></a>
-          <a href=""><img class="img-fluid" src="images/twitter.png" alt="x" style="width: 60px;"></a>
+          <a href=""><img class="img-fluid" src="../images/facebook.png" alt="x" style="width: 60px;"></a>
+          <a href=""><img class="img-fluid" src="../images/twitter.png" alt="x" style="width: 60px;"></a>
           <div class="mt-1 mx-1">
-            <a href=""><img class="img-fluid" src="images/youtube.png" alt="x" style="width: 53px;"></a>
+            <a href=""><img class="img-fluid" src="../images/youtube.png" alt="x" style="width: 53px;"></a>
           </div>
         </div>
       </div>
