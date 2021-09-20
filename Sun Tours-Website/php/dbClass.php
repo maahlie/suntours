@@ -33,6 +33,20 @@ class SqlCommands {
         return $result;
     }
 
+    public function selectWithWhere($column, $column2) {
+        $sql = "SELECT username, passwrd FROM users WHERE username = ? AND passwrd = ?;";
+        $stmt = $this->pdo->prepare($sql);
+        $params = [$column, $column2];
+        $stmt->execute($params);
+
+        if ($stmt) {
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);      
+        }
+
+        return $result;
+    }
+
 
 
 }

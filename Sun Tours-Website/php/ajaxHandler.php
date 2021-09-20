@@ -32,6 +32,19 @@ if (isset($_POST['email']) && isset($_POST['phonenumber']) && isset($_POST['firs
     exit("Registreren is gelukt.");
 }
 
+if (isset($_POST['usernLogin']) && isset($_POST['passwdLogin'])){
+
+    $usernameLogin = $_POST['usernLogin'];
+    $passwdLogin = $_POST['passwdLogin'];
+    
+    $userClass->login(
+        $usernameLogin,
+        $passwdLogin
+    );
+
+    exit("u bent ingelogd.");
+}
+
 
 exit("Deze actie is niet bij ons bekend (404)"); //Foutafhandelig
 ?>

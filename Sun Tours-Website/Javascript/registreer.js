@@ -1,26 +1,3 @@
-// $("#registreerpage").submit(function(e) {
-
-//     e.preventDefault(); // avoid to execute the actual submit of the form.
-
-//     var form = $(this);
-//     var url = form.attr('action');
-
-//     $.ajax({
-//            type: "POST",
-//            url: url,
-//            data: form.serialize(), // serializes the form's elements.
-//             }).done(function(response) {
-//                 alert(response);
-//                 //$('#title').html(response);
-//             }).fail(function( jqXHR, textstatus){
-//                 alert(response, textstatus);
-//             });
-//          });
-
-
-//$('#title').html('nieuwe titel');
-
-
 $('document').ready(function () {
     $("#registreerpage").validate({
         rules:
@@ -31,7 +8,7 @@ $('document').ready(function () {
             },
             passwd2: {
                 required: true,
-                minlength: 8,
+                minlength: 1,
                 maxlength: 15
             },
             passwd3: {
@@ -57,20 +34,8 @@ $('document').ready(function () {
             }
         },
 
-        errorPlacement: function(error, element) {
-            if (element.attr("name") == "passwd2") {
-                // an example
-                error.insertAfter($("#passwd2"));
-       
-            } else {
-       
-                // the default error placement for the rest of the elements in form
-                error.insertAfter(element);
-            }
-          },
-
     submitHandler: function() { 
-        $("#registreerpage").submit(function (e) {
+         $("#registreerpage").submit(function (e) {
 
                 e.preventDefault(); // avoid to execute the actual submit of the form.
 
@@ -91,12 +56,43 @@ $('document').ready(function () {
     })
 });
 
+$('document').ready(function () {
+    $("#loginPage").validate({
+        rules:
+        {
+            usern: {
+                required: true,
+            },
+            passwd: {
+                required: true,
+            },
+        },
+        messages:
+        {
+            usern: "geef username",
+            passwd: {
+                required: "geef wachtwoord",
+            },
+        },
 
-// function submitForm() {  
-//     var data = $("#register-form").serialize();    
-//     $.ajax({    
-//     type : 'POST',
-//     url  : 'register.php',
-//     data : data,
+    submitHandler: function() { 
+         $("#loginPage").submit(function (e) {
 
-// { action: "register", email: "email", phoneNum: "phonenumber", firstName: "firstName", surName: "surName", userName: "usern", address: "address", postalCode: "postalCode", passwd1: "passwd2", passwd2: "passwd3"}
+                e.preventDefault(); // avoid to execute the actual submit of the form.
+
+                var form = $(this);
+                var url = form.attr('action');
+
+                $.ajax({
+                    url: url,
+                    method: "POST",
+                    data: form.serialize(),
+                }).done(function (response) {
+                    alert(response);
+                }).fail(function (jqXHR, textstatus) {
+                    alert(response, textstatus);
+                })
+            })
+        }
+    })
+});

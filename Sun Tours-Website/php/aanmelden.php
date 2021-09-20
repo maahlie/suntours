@@ -1,37 +1,3 @@
-<?php
-
-// include 'dbClass.php';
-// include 'user.php';
-// // include 'registreer.php';
-
-// session_start();
-
-// if(isset($_SESSION['user'])){
-//   $user = $_SESSION['user'];
-// } else {
-//   $_SESSION['user'] = new User();
-//   $user = $_SESSION['user'];
-// }
-
-//         if($user->showMsg==true){
-//           echo  'here';
-//           $message="wachtwoorden matchen niet!";
-
-//           echo "<script type='text/javascript'>alert('$message');</script>";
-
-//           $user->showMsg=false;
-//         }
-
-//         if($user->showMsgEmail==true){
-
-//           $message="Er is al een account geregistreerd met dit e-mail adres reeeeee!";
-
-//           echo "<script type='text/javascript'>alert('$message');</script>";
-
-//           $user->showMsgEmail=false;
-//         }
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,13 +11,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
   <script src="../Javascript/registreer.js"></script>
-
-
 </head>
 
 <body>
-
-
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a href="../index.html"><img class="img-fluid" src="../images/SunLogo.png" alt="x" style="width: 60px;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -90,11 +52,11 @@
           <img src="../images/SunLogo.png" id="icon" alt="Profiel
       " />
         </div>
-        <form method="POST" id="loginpage" action="../Sun Tours-Website/php/inlog_check.php">
+        <form method="POST" id="loginPage" action="ajaxHandler.php">
           <label>Gebruikersnaam</label><br>
-          <input type="text" id="login" name="usern" placeholder="login"><br><br>
+          <input type="text" id="usernLogin" name="usern" placeholder="login"><br><br>
           <label>Wachtwoord</label><br>
-          <input type="password" id="wachtwoord" name="passwd" placeholder="wachtwoord" minlength="8"><br><br>
+          <input type="password" id="passwdLogin" name="passwd" placeholder="wachtwoord" minlength="1"><br><br>
           <input type="submit" value="Log In" id="loginKnop" class="sendKnop">
         </form>
       </div>
@@ -103,8 +65,7 @@
         <h2 class="actief"> Registreren </h2>
 
         <div class="fadeIn first">
-          <img src="../images/SunLogo.png" id="icon" alt="Profiel
-      " />
+          <img src="../images/SunLogo.png" id="icon" alt="Profiel" />
         </div>
         <form method="POST" id="registreerpage" action="ajaxHandler.php">
           <label>E-mail</label><br>
