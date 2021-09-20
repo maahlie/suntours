@@ -19,7 +19,7 @@ class User {
                         if($email == $result[$i][0]){
                             $text = "email bestaat al!";
                             exit($text);
-                        }
+                        } 
                     }
             }
 
