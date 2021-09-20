@@ -54,9 +54,9 @@
         </div>
         <form method="POST" id="loginPage" action="ajaxHandler.php">
           <label>Gebruikersnaam</label><br>
-          <input type="text" id="usernLogin" name="usern" placeholder="login"><br><br>
+          <input type="text" id="usernLogin" name="usernLogin" placeholder="login"><br><br>
           <label>Wachtwoord</label><br>
-          <input type="password" id="passwdLogin" name="passwd" placeholder="wachtwoord" minlength="1"><br><br>
+          <input type="password" id="passwdLogin" name="passwdLogin" placeholder="wachtwoord" minlength="1"><br><br>
           <input type="submit" value="Log In" id="loginKnop" class="sendKnop">
         </form>
       </div>

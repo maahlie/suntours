@@ -54,9 +54,8 @@ $('document').ready(function () {
             })
         }
     })
-});
-
-$('document').ready(function () {
+    
+    
     $("#loginPage").validate({
         rules:
         {
@@ -96,3 +95,4 @@ $('document').ready(function () {
         }
     })
 });
+

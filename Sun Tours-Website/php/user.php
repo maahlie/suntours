@@ -59,8 +59,8 @@ class User {
             }
 
             public function login($username, $passwrd){
-                $this->SqlCommands->connectDB();
 
+                $this->SqlCommands->connectDB();
 
                 $sql = "SELECT username, passwrd FROM users WHERE username = ? AND passwrd = ?;";
                 $stmt = $this->SqlCommands->pdo->prepare($sql);
@@ -69,12 +69,12 @@ class User {
                     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
                     if ($username == $result['username'] && $passwrd == $result['passwrd']){
-                        session_start();
+                        // session_start();
                         $_SESSION['loggedIn']=true;
                         $_SESSION['username']=$result["username"];
                     }
-
             }
+            
         
 }
 ?>

@@ -2,6 +2,8 @@
 
 include 'user.php';
 include 'dbClass.php';
+$userClass = new User(); //functie afhandelen
+session_start();
 
 if (isset($_POST['email']) && isset($_POST['phonenumber']) && isset($_POST['firstName'])
 && isset($_POST['surName']) && isset($_POST['usern']) && isset($_POST['passwd2']) && isset($_POST['passwd3'])){
@@ -14,10 +16,9 @@ if (isset($_POST['email']) && isset($_POST['phonenumber']) && isset($_POST['firs
  $usern = $_POST['usern']; 
  $address = $_POST['address']; 
  $postalCode = $_POST['postalCode']; 
- $passwd = $_POST['passwd2']; 
+ $passwd = $_POST['passwd2'];
  $passwd2 = $_POST['passwd3'];
 
-    $userClass = new User(); //functie afhandelen
     $userClass->enterReg(
         $email, 
         $phonenumber, 
@@ -34,17 +35,39 @@ if (isset($_POST['email']) && isset($_POST['phonenumber']) && isset($_POST['firs
 
 if (isset($_POST['usernLogin']) && isset($_POST['passwdLogin'])){
 
-    $usernameLogin = $_POST['usernLogin'];
-    $passwdLogin = $_POST['passwdLogin'];
+        if(isset($_SESSION['loggedIn'])){
+            $counter;
+            $counter++;
+            
+            if($counter == 1){
+                exit('U bent al ingelogd, ' . $_SESSION['username']);
+            }
+            else if($counter > 1){
+                exit($counter);   
+            } 
+            else {
+        
+                $usernameLogin = $_POST['usernLogin'];
+                $passwdLogin = $_POST['passwdLogin'];
+            
+                $userClass->login(
+                    $usernameLogin,
+                    $passwdLogin
+                );
+            
+                if(isset($_SESSION['loggedIn'])){
+                    exit("U bent ingelogd, welkom " . $_SESSION['username']);
+                }
+                else{
+                    exit("Gebruikersnaam of wachtwoord klopt niet.");
+                }
+        
+            }
     
-    $userClass->login(
-        $usernameLogin,
-        $passwdLogin
-    );
-
-    exit("u bent ingelogd.");
+    
+    
+    exit("Deze actie is niet bij ons bekend (404)"); //Foutafhandelig
+    }
 }
-
-
-exit("Deze actie is niet bij ons bekend (404)"); //Foutafhandelig
+    
 ?>
