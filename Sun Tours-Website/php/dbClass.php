@@ -13,7 +13,7 @@ class SqlCommands {
         $this->password = 'root';
         $this->pdo = new PDO($this->dbConnAddress, $this->name, $this->password); //login op db
 
-    }
+    } 
 
     public function connectDB()
     {

@@ -12,7 +12,7 @@
   <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
   <script src="../Javascript/registreer.js"></script>
 </head>
-
+  
 <body>
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a href="../index.html"><img class="img-fluid" src="../images/SunLogo.png" alt="x" style="width: 60px;"></a>

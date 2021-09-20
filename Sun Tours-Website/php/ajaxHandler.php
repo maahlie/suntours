@@ -11,7 +11,7 @@ if (isset($_POST['email']) && isset($_POST['phonenumber']) && isset($_POST['firs
 
  $email = $_POST['email']; 
  $phonenumber = $_POST['phonenumber']; 
- $firstName = $_POST['firstName']; 
+ $firstName = $_POST['firstName'];  
  $surName = $_POST['surName']; 
  $usern = $_POST['usern']; 
  $address = $_POST['address']; 
