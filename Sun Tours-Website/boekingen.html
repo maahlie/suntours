@@ -9,7 +9,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="./Javascript/url-search.js"></script>
 </head>
 <body>          
 
@@ -25,9 +26,6 @@
       <li class="nav-item">
         <a class="nav-link" href="assortiment.html">Assortiment</a>
       </li>    
-      <li class="nav-item">
-        <a class="nav-link" href="boekingen.html">Boekingen</a>
-      </li>
       <li class="nav-item">
         <a class="nav-link" href="contact.html">Contact</a>
       </li>
@@ -45,15 +43,39 @@
   </div>  
 </nav>
 
-<main>
-  
+<main class="boekingen">
+
+  <h2 class = "contact_toptext">Boeken</h2><br>
+  <div class="c-form__progress"></div>
+  <div class="wrapper Val">
+      <form method="POST" id="contact">
+        <label>Vertrek Datum en tijd:</label><br>
+        <input type="datetime-local" id="vertrek-datum" name="VertrekDatum"><Br><Br>
+        <label>Terugreis datum en tijd:</label><br>
+        <input type="datetime-local" id="terugreis-datum" name="TerugreisDatum"><Br><br>
+            <label>Aantal volwassenen (18 jaar of ouder):</label><br>
+            <input type="number" id="aantal_volwassenen" name="AantalVolwassenen"><Br><Br>
+              <label>Aantal kinderen:</label><br>
+              <input type="number" id="aantal_kinderen" name="AantalKinderen"><Br><Br>
+                <label>Vervoer:</label><br>
+              <input type="radio" id="vervoer" name="vervoer" onclick = "show_vervoer()">ja
+                <input type="radio" id="geen_vervoer" name="vervoer" onclick = "hide_vervoer()">nee<Br><Br>
+                  <div id="vervoer_div">
+
+
+                  </div>
+        <input type="submit" value="Volgende" id="contact_button" class="sendKnop">
+      </form>
+      <div class="Cards">
+        <div id="selected">
+        </div>
 </main>
 
 
 </body>
 
  <!-- footer is ook onderverdeeld in een top footer en voor de copyright een bottom footer -->
- <footer>
+ <footer id="footer2">
     <!-- start topfooter -->
     <div class="topFooter">
       <div class="row">

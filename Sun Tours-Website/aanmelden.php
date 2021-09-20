@@ -63,9 +63,6 @@ session_start();
           <a class="nav-link" href="assortiment.html">Assortiment</a>
         </li>    
         <li class="nav-item">
-          <a class="nav-link" href="boekingen.html">Boekingen</a>
-        </li>
-        <li class="nav-item">
           <a class="nav-link" href="contact.html">Contact</a>
         </li>
   

@@ -440,3 +440,31 @@ margin-left: 10%;}
 .img_3-1{background-image:url('../images/turkije2.png');}
 
 .img_3-2{background-image:url('../images/turkije3-2.jpg')};
+.selection_show{
+   width:100%;
+}
+@media only screen and (min-width: 800px) {
+
+   .selection_show .col-md-4{
+      width:25%;
+   }
+
+}
+
+#footer2{
+   position:absolute;
+   margin-top:100%;
+}
+
+.Cards {
+   height: 45%;
+   background-color: rgb(197, 213, 225);
+   width: 20%;
+   position: absolute;
+   margin-right: -35%;
+}
+
+
+.card_header{
+text-align: center;
+}
