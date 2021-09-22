@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Sun Tours</title>
   <meta charset="utf-8">
@@ -9,80 +10,118 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="./Javascript/url-search.js"></script>
 </head>
-<body>          
+
+<body>
 
 
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <a href="index.html"><img class="img-fluid" src="images/SunLogo.png" alt="x"
-        style="width: 60px;"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="assortiment.html">Assortiment</a>
-      </li>    
-      <li class="nav-item">
-        <a class="nav-link" href="boekingen.html">Boekingen</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="contact.html">Contact</a>
-      </li>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a href="index.html"><img class="img-fluid" src="images/SunLogo.png" alt="x" style="width: 60px;"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="assortiment.html">Assortiment</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html">Contact</a>
+        </li>
 
-      <li class="nav-item">
-        <a class="nav-link" href="aanmelden.php">Aanmelden</a>
-      </li> 
-      <li class="nav-item">
-        <a class="nav-link" href="FAQ.html">FAQ</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Review.html">Review</a>
-      </li> 
-    </ul>
-  </div>  
-</nav>
+        <li class="nav-item">
+          <a class="nav-link" href="aanmelden.php">Aanmelden</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="FAQ.html">FAQ</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="Review.html">Review</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
 
-<main>
-  
-</main>
+  <main class="boekingen">
+
+    <div class="header2">
+      <h1>Boekingen</h1><br>
+    </div>
+    <h2 class="contact_toptext">Boeken</h2><br>
+    <div class="c-form__progress"></div>
+    <div class="wrapper Val">
+      <form method="POST" id="contact">
+        <label>Vertrek Datum:</label><br>
+        <input type="date" id="vertrek-datum" name="VertrekDatum"><Br><Br>
+        <label>Terugreis datum:</label><br>
+        <input type="date" id="terugreis-datum" name="TerugreisDatum"><Br><br>
+        <label>Aantal volwassenen (18 jaar of ouder):</label><br>
+        <input type="number" id="aantal_volwassenen" name="AantalVolwassenen"><Br><Br>
+        <label>Aantal kinderen:</label><br>
+        <input type="number" id="aantal_kinderen" name="AantalKinderen"><Br><Br>
+        <label>Vliegen:</label><br>
+        <input type="radio" id="vervoer" name="vervoer" onclick="show_vervoer()">ja
+        <input type="radio" id="geen_vervoer" name="vervoer" onclick="hide_vervoer()">nee<Br><Br>
+        <div id="vliegen_div">
+
+        </div>
+        <div id="autoVerhuur">
+          <label>AutoVerhuur:</label><br>
+          <input type="radio" id="show_autoverhuur1" name="autoverhuur" onclick="show_autoverhuur()">ja
+          <input type="radio" id="hide_autoverhuur1" name="autoverhuur" onclick="hide_autoverhuur()">nee<Br><Br>
+        </div>
+        <div id="autos">
+          <label>Merk:</label><br>
+          <select id="auto" onchange="getselectedvalue()">
+            <option value="keuze" disabled selected>-</option>
+            <option value="Nissan">Nissan</option>
+            <option value="Opel">Opel</option>
+            <option value="Ford">Ford</option>
+            <option value="Volkswagen">Volkswagen</option>
+          </select><label id="auto_prijs"></label>
+          <br><br><br>
+        </div>
+        <input type="submit" value="Volgende" id="contact_button" class="sendKnop">
+      </form>
+      <div class="Cards">
+        <div id="selected">
+        </div>
+  </main>
 
 
 </body>
 
- <!-- footer is ook onderverdeeld in een top footer en voor de copyright een bottom footer -->
- <footer>
-    <!-- start topfooter -->
-    <div class="topFooter">
-      <div class="row">
-        <div class="col-5 mx-4 mb-1">
-          <a>Suntours</a></br>
-          <a>Bredeweg 235, 6042 GE Roermond</a></br>
-          <a>06-13022010</a></br>
-          <a>088 2365148</a></br>
-        </div>
-        <div class="col-3 mx-3 mt-3">
-          <div class="row mx-1">
-            <a href=""><img class="img-fluid" src="images/facebook.png" alt="x"
-              style="width: 60px;"></a>
-              <a href=""><img class="img-fluid" src="images/twitter.png" alt="x"
-                style="width: 60px;"></a>
-        <div class="mt-1 mx-1">      
-            <a href=""><img class="img-fluid" src="images/youtube.png" alt="x"
-              style="width: 53px;"></a>
+<!-- footer is ook onderverdeeld in een top footer en voor de copyright een bottom footer -->
+<footer id="footer2">
+  <!-- start topfooter -->
+  <div class="topFooter">
+    <div class="row">
+      <div class="col-5 mx-4 mb-1">
+        <a>Suntours</a></br>
+        <a>Bredeweg 235, 6042 GE Roermond</a></br>
+        <a>06-13022010</a></br>
+        <a>088 2365148</a></br>
+      </div>
+      <div class="col-3 mx-3 mt-3">
+        <div class="row mx-1">
+          <a href=""><img class="img-fluid" src="images/facebook.png" alt="x" style="width: 60px;"></a>
+          <a href=""><img class="img-fluid" src="images/twitter.png" alt="x" style="width: 60px;"></a>
+          <div class="mt-1 mx-1">
+            <a href=""><img class="img-fluid" src="images/youtube.png" alt="x" style="width: 53px;"></a>
           </div>
-        </div>
         </div>
       </div>
     </div>
-    <!-- einde topfooter -->
+  </div>
+  <!-- einde topfooter -->
 
-    <!-- start bottom footer -->
-    <div class="bottomFooter">
-      copyright &copy; 2021 <i>Ontworpen door: Thomas-Thomas-Stef-Lucas</i>
-    </div>
-    <!-- bottom footer -->
-  </footer>
+  <!-- start bottom footer -->
+  <div class="bottomFooter">
+    copyright &copy; 2021 <i>Ontworpen door: Thomas-Thomas-Stef-Lucas</i>
+  </div>
+  <!-- bottom footer -->
+</footer>
+
 </html>
