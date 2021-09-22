@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sun Tours</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <a href="index.html"><img class="img-fluid" src="images/SunLogo.png" alt="x" style="width: 60px;"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="assortiment.html">Assortiment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="aanmelden.php">Aanmelden</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="FAQ.html">FAQ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Review.html">Review</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="Reviewheader">
+        <h1>Review</h1>
+    </div>
+    <main>
+
+        <form>
+            <div class="review-form">
+                
+                    <label>U moet ingelogd zijn om een review te kunnen schrijven</label><br>
+                    <label for="Holiday">Welke vakantie wilt u reviewen:</label><br>
+                    <select name="holidays" class="select" id="holidays">
+                        <option value="Spanje">Hotel Best Tenerife-Spanje </option>
+                        <option value="-Egypte">Hotel Hilton Marsa Resort -Egypte</option>
+                        <option value="–Turkije">Hotel Pine Bay Holiday Resort –Turkije</option>
+                        <option value="Turkije2">Hotel Gold City -Turkije</option>
+                        <option value="Frankrijk">Disneyland® Paris </option>
+
+                    </select>
+
+                    <br>
+                    <br>
+                    <label for="Waardering">Geef de vakantie een cijfer:</label><br>
+                    <select name="waarderingen" class="select" id="waarderingen">
+                        <option value="1">1 </option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5 </option>
+
+                    </select>
+                    <br><br>
+                    <label for="titel">Onderwerp:</label><br>
+                    <input type="text" class="input" id="titel" name="titel"><br>
+                    <br>
+               
+                <label for="voordelen">voordelen:</label>
+                <br>
+
+                <textarea id="voordelen" class="textarea" name="voordelen" rows="4" cols="50">
+
+                          </textarea>
+                <br>
+                <br>
+                <label for="nadelen">nadelen:</label>
+                <br>
+                <textarea id="nadelen" class="textarea" name="nadelen" rows="4" cols="50">
+
+
+                        </textarea>
+                <br>
+                <label for="titel">Review:</label><br>
+                <textarea id="review" class="textarea" name="review" rows="4" cols="50">
+
+
+                        </textarea>
+                <br>
+                <br>
+                <label>Zou u deze website aanbevelen?</label>
+                <br>
+                <form>
+                    <input type="radio" id="html" name="fav_language" value="HTML">
+                    <label for="html">Ja</label><br>
+                    <input type="radio" id="css" name="fav_language" value="CSS">
+                    <label for="css">Nee</label><br>
+                    <br>
+                    <input type="submit" class="buttonReview" value="Verzenden">
+                </form>
+            </div>
+            </div>
+        </form>
+
+
+    </main>
+</body>
+<!-- footer is ook onderverdeeld in een top footer en voor de copyright een bottom footer -->
+<footer>
+    <!-- start topfooter -->
+    <div class="topFooter">
+        <div class="row">
+            <div class="col-5 mx-4 mb-1">
+                <a>Suntours</a></br>
+                <a>Bredeweg 235, 6042 GE Roermond</a></br>
+                <a>06-13022010</a></br>
+                <a>088 2365148</a></br>
+            </div>
+            <div class="col-3 mx-3 mt-3">
+                <div class="row mx-1">
+                    <a href=""><img class="img-fluid" src="images/facebook.png" alt="x" style="width: 60px;"></a>
+                    <a href=""><img class="img-fluid" src="images/twitter.png" alt="x" style="width: 60px;"></a>
+                    <div class="mt-1 mx-1">
+                        <a href=""><img class="img-fluid" src="images/youtube.png" alt="x" style="width: 53px;"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- einde topfooter -->
+
+    <!-- start bottom footer -->
+    <div class="bottomFooter">
+        copyright &copy; 2021 <i>Ontworpen door: Thomas-Thomas-Stef-Lucas</i>
+    </div>
+    <!-- bottom footer -->
+</footer>
+
+</html>
