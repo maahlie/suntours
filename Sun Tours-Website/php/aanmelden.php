@@ -52,7 +52,7 @@
           <img src="../images/SunLogo.png" id="icon" alt="Profiel
       " />
         </div>
-        <form method="POST" id="loginPage" action="ajaxHandler.php">
+        <form method="POST" id="loginPage">
           <label>Gebruikersnaam</label><br>
           <input type="text" id="usernLogin" name="usernLogin" placeholder="login"><br><br>
           <label>Wachtwoord</label><br>
@@ -67,7 +67,7 @@
         <div class="fadeIn first">
           <img src="../images/SunLogo.png" id="icon" alt="Profiel" />
         </div>
-        <form method="POST" id="registreerpage" action="ajaxHandler.php">
+        <form method="POST" id="registreerpage" >
           <label>E-mail</label><br>
           <input type="email" id="email" name="email" placeholder="email@email.com" minlength="8"><br><br>
           <label>Telefoonnummer</label><br>

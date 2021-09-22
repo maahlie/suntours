@@ -74,7 +74,6 @@ class User {
                         $_SESSION['username']=$result["username"];
                     }
             }
-            
         
-}
+}           
 ?>

@@ -1,3 +1,5 @@
+
+var counter = 0;
 $('document').ready(function () {
     $("#registreerpage").validate({
         rules:
@@ -34,28 +36,28 @@ $('document').ready(function () {
             }
         },
 
-    submitHandler: function() { 
-        $("#registreerpage").submit(function (e) {
+        submitHandler: function () {
+            //$("#registreerpage").submit(function (e) {
 
-                e.preventDefault(); // avoid to execute the actual submit of the form.
+            //e.preventDefault(); // avoid to execute the actual submit of the form.
 
-                var form = $(this);
-                var url = form.attr('action');
+            var form = $("#registreerpage");
+            var sData = form.serialize();
+            //var url = form.attr('action');
 
-                $.ajax({
-                    url: url,
-                    method: "POST",
-                    data: form.serialize(),
-                }).done(function (response) {
-                    alert(response);
-                }).fail(function (jqXHR, textstatus) {
-                    alert(response, textstatus);
-                })
+            $.ajax({
+                url: '../php/ajaxHandler.php',
+                method: "POST",
+                data: sData,
+            }).done(function (response) {
+                alert(response);
+            }).fail(function (jqXHR, textstatus) {
+                alert(response, textstatus);
             })
         }
     })
-    
-    
+
+
     $("#loginPage").validate({
         rules:
         {
@@ -74,24 +76,32 @@ $('document').ready(function () {
             },
         },
 
-    submitHandler: function() { 
-         $("#loginPage").submit(function (e) {
+        submitHandler: function () {
+            // $("#loginPage").submit(function (e)  {
+            // alert('#loginPage');
+            //e.preventDefault(); // avoid to execute the actual submit of the form.
+            var form = $('#loginPage');
+            var sData = form.serialize();
 
-                e.preventDefault(); // avoid to execute the actual submit of the form.
+            // var formdata = $('#loginpage').serialize();
+            // $.post('/ajaxHandler', formdata, function (response) {
+            //     console.log(response)
+            // });
+            //var url = form.attr('action');
+            // var data = new FormData();
+            // data.append('usernLogin', 'usernLogin');
+            // data.append('passwdLogin', 'passwdLogin');
 
-                var form = $(this);
-                var url = form.attr('action');
-
-                $.ajax({
-                    url: url,
-                    method: "POST",
-                    data: form.serialize(),
-                }).done(function (response) {
-                    alert(response);
-                }).fail(function (jqXHR, textstatus) {
-                    alert(response, textstatus);
-                })
+            $.ajax({
+                url: '../php/ajaxHandler.php',
+                method: "POST",
+                data: sData,
+            }).done(function (response) {
+                alert(response);
+            }).fail(function (jqXHR, textstatus) {
+                alert(response, textstatus);
             })
+            //})
         }
     })
 });
