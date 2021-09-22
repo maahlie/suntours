@@ -38,11 +38,13 @@ function show_autoverhuur(){
 function hide_autoverhuur(){
   document.getElementById("autos").innerHTML='';
 }
-function test(){
-  var e = document.getElementById("auto");
-  var value = e.options[e.selectedIndex].value;
+function getselectedvalue(){
+ 
+  var selectedvalue = document.getElementById("auto");
+  var value = selectedvalue.options[selectedvalue.selectedIndex].value;
   console.log(value);
-  document.getElementById("auto_prijs").innerHTML='€234';
+  document.getElementById("auto_prijs").innerHTML='123';
+  
 }
 
 

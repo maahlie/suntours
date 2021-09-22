@@ -313,9 +313,10 @@ h7.faq {
    background-color: red;
    color: white;
 }
-.assortiment_footer{
-   position:absolute;
-   margin-top:0%;
+
+.assortiment_footer {
+   position: absolute;
+   margin-top: 0%;
 }
 
 .assortiment_front_page {
@@ -352,108 +353,174 @@ textarea:hover {
 }
 
 
-.reviewheader
-{
-  text-align: center;
+.Reviewheader {
+   text-align: center;
+
 }
-.review-form
-{
-   width:40%;
-   margin-left:40%;
-}
-.assortiment-first-image
-{
-   float:left;
-   position: relative;
+
+.review-form {
    width: 40%;
-   padding-bottom : 25%; /* = width for a 1:1 aspect ratio */
-   margin:1.66%;
-   background-position:center center;
-   background-repeat:no-repeat;
-   background-size:cover; 
+   margin-left: 40%;
+   padding-left: 5%;
+   box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.06);
 }
-.assortiment-first-text
-{
-   float:left;
-   position: relative;
-   width: 40%;
-   padding-bottom : 3.5%; 
-   margin:1.66%;
-   background-position:center center;
-   background-repeat:no-repeat;
-   background-size:cover; 
-   background-color:#F1F1F1;
-   font-size:100%;
-   margin-left: 10%;
+
+.input {
+   box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+   border-radius: 10px;
+   font-family: Verdana, Geneva, Tahoma, sans-serif
    
 }
 
-.assortiment-second-text
-{
-   float:left;
+.textarea {
+   width: 100%;
+   resize: vertical;
+   padding: 15px;
+   border-radius: 15px;
+   border: 0;
+   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+   height: 150px;
+
+}
+
+.selection_show {
+   width: 100%;
+   padding: 10px;
+   border-radius: 10px;
+}
+
+.buttonReview {
+
+
+   appearance: none;
+   -webkit-appearance: none;
+   padding: 10px;
+   border: none;
+   background-color: #3F51B5;
+   color: #fff;
+   font-weight: 600;
+   border-radius: 5px;
+   width: 100%;
+   margin-bottom: 5%;
+}
+
+.assortiment-first-image {
+   float: left;
    position: relative;
    width: 40%;
-   padding-bottom : 3.5%; 
-   margin:1.66%;
-   background-position:center center;
-   background-repeat:no-repeat;
-   background-size:cover; 
-   background-color:#F1F1F1;
-   font-size:100%;
+   padding-bottom: 25%;
+   /* = width for a 1:1 aspect ratio */
+   margin: 1.66%;
+   background-position: center center;
+   background-repeat: no-repeat;
+   background-size: cover;
+}
+
+.assortiment-first-text {
+   float: left;
+   position: relative;
+   width: 40%;
+   padding-bottom: 3.5%;
+   margin: 1.66%;
+   background-position: center center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-color: #F1F1F1;
+   font-size: 100%;
+   margin-left: 10%;
+
+}
+
+.assortiment-second-text {
+   float: left;
+   position: relative;
+   width: 40%;
+   padding-bottom: 3.5%;
+   margin: 1.66%;
+   background-position: center center;
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-color: #F1F1F1;
+   font-size: 100%;
    padding-right: 5%;
-   
+
 }
 
 @media only screen and (max-width: 800px) {
 
-   body .assortiment-first-text { 
+   body .assortiment-first-text {
       font-size: 0.4em;
-      
+
    }
-   body .assortiment-second-text { 
+
+   body .assortiment-second-text {
       font-size: 0.4em;
-      
+
    }
 
 }
 
-.img_1-1{background-image:url('../images/Spanje.png');}
-
-.img_1-2{background-image:url('../images/spanje2.jpg');
-margin-left: 10%;}
-
-.img_4-1{background-image:url('../images/egypte.png');}
-
-.img_4-2{background-image:url('../images/egypte2.jpg');
-margin-left: 10%;}
-
-.img_5-1{background-image:url('../images/frankrijk.png');}
-
-.img_5-2{background-image:url('../images/egypte2.jpg');
-margin-left: 10%;}
-
-.img_2-1{background-image:url('../images/turkije.png');}
-
-.img_2-2{background-image:url('../images/turkije1-2.jpg');
-margin-left: 10%;}
-
-.img_3-1{background-image:url('../images/turkije2.png');}
-
-.img_3-2{background-image:url('../images/turkije3-2.jpg')};
-.selection_show{
-   width:100%;
+.img_1-1 {
+   background-image: url('../images/Spanje.png');
 }
+
+.img_1-2 {
+   background-image: url('../images/spanje2.jpg');
+   margin-left: 10%;
+}
+
+.img_4-1 {
+   background-image: url('../images/egypte.png');
+}
+
+.img_4-2 {
+   background-image: url('../images/egypte2.jpg');
+   margin-left: 10%;
+}
+
+.img_5-1 {
+   background-image: url('../images/frankrijk.png');
+}
+
+.img_5-2 {
+   background-image: url('../images/egypte2.jpg');
+   margin-left: 10%;
+}
+
+.img_2-1 {
+   background-image: url('../images/turkije.png');
+}
+
+.img_2-2 {
+   background-image: url('../images/turkije1-2.jpg');
+   margin-left: 10%;
+}
+
+.img_3-1 {
+   background-image: url('../images/turkije2.png');
+}
+
+.img_3-2 {
+   background-image: url('../images/turkije3-2.jpg')
+}
+
+;
+
+.selection_show {
+   width: 100%;
+}
+
 @media only screen and (min-width: 800px) {
 
-   .selection_show .col-md-4{
-      width:25%;
+   .selection_show .col-md-4 {
+      width: 25%;
    }
 
 }
 
-#footer2{
-   position:absolute;
-   margin-top:100%;
+#footer2 {
+   position: absolute;
+   margin-top: 100%;
 }
 
 .Cards {
@@ -465,6 +532,6 @@ margin-left: 10%;}
 }
 
 
-.card_header{
-text-align: center;
+.card_header {
+   text-align: center;
 }
