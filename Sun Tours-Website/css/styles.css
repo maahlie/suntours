@@ -531,7 +531,14 @@ textarea:hover {
    margin-right: -35%;
 }
 
-
 .card_header {
    text-align: center;
+}
+#autos #auto_prijs{
+   background-color: rgb(197, 213, 225);
+}
+
+#autos {
+   
+   width:50%;
 }

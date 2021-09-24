@@ -1,4 +1,8 @@
+
 countrys = ['Spanje','Turkije1','Turkije2','Egypte','Frankrijk'];
+auto_merken = ['Nissan', 'Opel', 'Ford', 'Volkswagen'];
+auto_prijzen = ['45', '69', '36', '84'];
+vlieg_reizen = ['KLM','' ]
 html_scripts = [
   '<div class = "card_header"><b>Hotel Best Tenerife-Spanje</b></div>Vertrek/terug reis datum en tijd opties: <Br>2-11-2021 - 9.45<Br>10-11-2021 - 10.45<Br><Br>16-11-2021 - 8.30<Br>24-11-2021 - 9-30<Br><Br>7-12-2021 - 9.45<Br>15-12-2021 - 11.00<Br><Br><div class="btn-group"><a href="./assortiment.html">Verander Selectie</a></div></div></div></div>',
   '<div class = "card_header"><b>Hotel Gold City -Turkije</b></div>Vertrek/terug reis datum en tijd opties: <Br>2-11-2021 - 10.45<br>10-11-2021 - 20.00<br><br>16-11-2021 - 9.45<br>24-11-2021 - 15.30<br><br>7-12-2021 - 19.00<br>15-12-2021 - 11.00<br><br><div class="btn-group"><a href="./assortiment.html">Verander Selectie</a></div></div></div></div>',
@@ -27,27 +31,39 @@ $(document).ready(function () {
 });
 
 function show_vervoer(){
-  document.getElementById("vliegen_div").innerHTML='<label>vliegmaatschapij:</label><br> <select name="airlines" id="airlines"> <option value="keuze" disabled selected>-</option> <option value="KLM">KLM</option> <option value="Air spain">Air spain</option> <option value="Ryan air">Ryan air</option> <option value="Iberia">Iberia</option> </select><Br><Br> <label>vertrek vliegveld:</label><br> <select name="Vertrek_vliegveld" id="Vertrek_vliegveld"> <option value="keuze" disabled selected>-</option> <option value="KLM">Schiphol</option> <option value="Air spain">Eindhoven</option> <option value="Ryan air">Groningen-Eelde</option> <option value="Iberia">Rotterdam-The Hague</option> </select><Br><Br><label>Vlucht tijden:</label><br> <label>Heenreis:</label> <select name="Vertrek_tijd" id="Vertrek_tijd"> <option value="keuze" disabled selected>-</option> <option value="8.' + html_script_vliegen[country];
+  document.getElementById("vliegen_div").innerHTML='<label>vliegmaatschapij:</label><br> <select name="airlines" id="airlines"> <option value="keuze" disabled selected>-</option> <option value="KLM">KLM <option value="Ryan air">Ryan air</option> <option value="Iberia">Iberia</option> </select><Br><Br> <label>vertrek vliegveld:</label><br> <select name="Vertrek_vliegveld" id="Vertrek_vliegveld"> <option value="keuze" disabled selected>-</option> <option value="KLM">Schiphol</option> <option value="Air spain">Eindhoven</option> <option value="Ryan air">Groningen-Eelde</option> <option value="Iberia">Rotterdam-The Hague</option> </select><Br><Br><label>Vlucht tijden:</label><br> <label>Heenreis:</label> <select name="Vertrek_tijd" id="Vertrek_tijd"> <option value="keuze" disabled selected>-</option> <option value="8.' + html_script_vliegen[country];
 }
 function hide_vervoer(){
   document.getElementById("vliegen_div").innerHTML='';
 }
 function show_autoverhuur(){
-  document.getElementById("autos").innerHTML='test';
+  //document.getElementById("autos").innerHTML=html_script_autos;
+  document.getElementById("autos").style.display = "block";
 }
 function hide_autoverhuur(){
-  document.getElementById("autos").innerHTML='';
+  //document.getElementById("autos").innerHTML='';
+  document.getElementById("autos").style.display = "none";
 }
-function getselectedvalue(){
- 
-  var selectedvalue = document.getElementById("auto");
-  var value = selectedvalue.options[selectedvalue.selectedIndex].value;
+
+function calculate_car_price(){
+  var selectedValue = document.getElementById("auto");
+  var rental_time = document.getElementById('rental_time_chooser_id').value
+  var value = selectedValue.options[selectedValue.selectedIndex].value;
   console.log(value);
-  document.getElementById("auto_prijs").innerHTML='123';
-  
+  console.log(rental_time);
+  for (i=0; i< auto_merken.length; i++)
+  {
+    if (value == auto_merken[i])
+    {
+      if (rental_time <= 8 && rental_time > 0)
+      {
+        document.getElementById("auto_prijs").innerHTML='Prijs: €' + auto_prijzen[i]*rental_time;
+      }else{
+        document.getElementById("auto_prijs").innerHTML='Prijs: -';
+      }
+    }
+  }
 }
-
-
 
 
 
