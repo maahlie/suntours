@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -14,9 +15,7 @@
   <script type="text/javascript" src="./Javascript/url-search.js"></script>
 </head>
 
-<body>
-
-
+<body onload="hide_autoverhuur()">
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a href="index.html"><img class="img-fluid" src="images/SunLogo.png" alt="x" style="width: 60px;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -70,27 +69,36 @@
         <div id="autoVerhuur">
           <label>AutoVerhuur:</label><br>
           <input type="radio" id="show_autoverhuur1" name="autoverhuur" onclick="show_autoverhuur()">ja
-          <input type="radio" id="hide_autoverhuur1" name="autoverhuur" onclick="hide_autoverhuur()">nee<Br><Br>
+          <input type="radio" id="hide_autoverhuur2" name="autoverhuur" onclick="hide_autoverhuur()">nee<Br><Br>
         </div>
+        
         <div id="autos">
-          <label>Merk:</label><br>
-          <select id="auto" onchange="getselectedvalue()">
-            <option value="keuze" disabled selected>-</option>
-            <option value="Nissan">Nissan</option>
-            <option value="Opel">Opel</option>
-            <option value="Ford">Ford</option>
-            <option value="Volkswagen">Volkswagen</option>
-          </select><label id="auto_prijs"></label>
-          <br><br><br>
+            <label>Merk:</label><br>
+            <select id="auto" onchange="calculate_car_price()">
+              <option value="keuze" disabled selected>-</option>
+              <option value="Nissan">Nissan</option>
+              <option value="Opel">Opel</option>
+              <option value="Ford">Ford</option>
+              <option value="Volkswagen">Volkswagen</option>
+            </select>
+            <br><br><label>Aantal dagen:</label><br>
+            <input id="rental_time_chooser_id" type=number max=8 min=1 onchange="calculate_car_price()"></input>
+            <label id="auto_prijs"></label>
+            <br><br><br>
         </div>
+
+        <div id="bus_deals">
+          <label>Bus Deals</label><br>
+          <input type="radio" id="show_bus_deals1" name="busverhuur" onclick="show_bus_deals()">ja
+          <input type="radio" id="show_bus_deals2" name="busverhuur" onclick="show_bus_deals()">nee<Br><Br>
+        </div>
+
         <input type="submit" value="Volgende" id="contact_button" class="sendKnop">
       </form>
       <div class="Cards">
         <div id="selected">
         </div>
   </main>
-
-
 </body>
 
 <!-- footer is ook onderverdeeld in een top footer en voor de copyright een bottom footer -->
