@@ -45,12 +45,14 @@
     <div class="Reviewheader">
         <h1>Review</h1>
     </div>
-    <main>
+    <div class="reviewHeaderList">
 
-        <form>
-            <div class="review-form">
-                
-                    <label>U moet ingelogd zijn om een review te kunnen schrijven</label><br>
+        <main>
+
+            <form>
+                <div class="review-form">
+
+                    <b> U moet ingelogd zijn om een review te kunnen schrijven.</b><br><br>
                     <label for="Holiday">Welke vakantie wilt u reviewen:</label><br>
                     <select name="holidays" class="select" id="holidays">
                         <option value="Spanje">Hotel Best Tenerife-Spanje </option>
@@ -76,42 +78,42 @@
                     <label for="titel">Onderwerp:</label><br>
                     <input type="text" class="input" id="titel" name="titel"><br>
                     <br>
-               
-                <label for="voordelen">voordelen:</label>
-                <br>
 
-                <textarea id="voordelen" class="textarea" name="voordelen" rows="4" cols="50">
+                    <label for="voordelen">voordelen:</label>
+                    <br>
+
+                    <textarea id="voordelen" class="textarea" name="voordelen" rows="4" cols="50">
 
                           </textarea>
-                <br>
-                <br>
-                <label for="nadelen">nadelen:</label>
-                <br>
-                <textarea id="nadelen" class="textarea" name="nadelen" rows="4" cols="50">
-
-
-                        </textarea>
-                <br>
-                <label for="titel">Review:</label><br>
-                <textarea id="review" class="textarea" name="review" rows="4" cols="50">
-
-
-                        </textarea>
-                <br>
-                <br>
-                <label>Zou u deze website aanbevelen?</label>
-                <br>
-                <form>
-                    <input type="radio" id="html" name="fav_language" value="HTML">
-                    <label for="html">Ja</label><br>
-                    <input type="radio" id="css" name="fav_language" value="CSS">
-                    <label for="css">Nee</label><br>
                     <br>
-                    <input type="submit" class="buttonReview" value="Verzenden">
-                </form>
-            </div>
-            </div>
-        </form>
+                    <br>
+                    <label for="nadelen">nadelen:</label>
+                    <br>
+                    <textarea id="nadelen" class="textarea" name="nadelen" rows="4" cols="50">
+
+
+                        </textarea>
+                    <br>
+                    <label for="titel">Review:</label><br>
+                    <textarea id="review" class="textarea" name="review" rows="4" cols="50">
+
+
+                        </textarea>
+                    <br>
+                    <br>
+                    <label>Zou u deze website aanbevelen?</label>
+                    <br>
+                    <form>
+                        <input type="radio" id="keuze" name="keuze" value="ja">
+                        <label for="ja">Ja</label><br>
+                        <input type="radio" id="keuze2" name="keuze2" value="nee">
+                        <label for="nee">Nee</label><br>
+                        <br>
+                        <input type="submit" class="buttonReview" value="Verzenden">
+                    </form>
+                </div>
+    </div>
+    </form>
 
 
     </main>
