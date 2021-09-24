@@ -55,7 +55,8 @@ class User {
                    if ($stmt) {
                        $params = [$username, $email, $passwd2, $phoneNumber, $firstName, $surName, $address, $postalCode];
                        $stmt->execute($params);
-                    }
+                       $this->confMail($email);
+                    }                   
             }
 
             public function login($username, $passwrd){
@@ -73,6 +74,11 @@ class User {
                         $_SESSION['loggedIn']=true;
                         $_SESSION['username']=$result["username"];
                     }
+            }
+
+            public function confMail($email)
+            {
+                
             }
         
 }           
