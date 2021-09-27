@@ -4,13 +4,18 @@ class SqlCommands {
     private $dbConnAddress;
     private $name;
     private $password;
+    private $port;
     public $pdo;
+
 
     public function __construct()
     {
-        $this->dbConnAddress = 'mysql:host=localhost;dbname=suntours';
-        $this->name = 'suntoursroot';
-        $this->password = 'root';
+        //$this->dbConnAddress = 'mysql:host=localhost;dbname=suntours';
+        $this->dbConnAddress = 'mysql:sql11.freemysqlhosting.net;dbname=sql11439693';
+        //$this->name = 'suntoursroot';
+        $this->name = 'sql11439693';
+        //$this->password = 'root';
+        $this->password = 'G7Gpwc79fj';
         $this->pdo = new PDO($this->dbConnAddress, $this->name, $this->password); //login op db
 
     } 

@@ -10,7 +10,7 @@ $('document').ready(function () {
             },
             passwd2: {
                 required: true,
-                minlength: 1,
+                minlength: 4,
                 maxlength: 15
             },
             passwd3: {
@@ -27,7 +27,7 @@ $('document').ready(function () {
             usern: "please enter username",
             passwd2: {
                 required: "please provide a password",
-                minlength: "password at least have 8 characters"
+                minlength: "wachtwoord moet minimaal 8 karakters lang zijn."
             },
             email: "please enter a valid email address",
             passwd3: {
