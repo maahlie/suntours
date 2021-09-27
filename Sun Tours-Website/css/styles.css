@@ -272,8 +272,7 @@ h7.faq {
    margin-left: 700px;
 }
 
-#faqFooterFix
-{
+#faqFooterFix {
    margin-top: 5%;
 }
 
@@ -296,18 +295,10 @@ h7.faq {
    background-color: green;
    position: relative;
 
-  
+
 }
 
-.info {
-   
-   height: min-content;
-   background-color: rgb(197, 213, 225);
-   width: 20%;
-   position: relative;
-   margin-left: -60%;
-   
-}
+
 
 .contact_toptext {
    text-align: center;
@@ -324,8 +315,7 @@ h7.faq {
    color: white;
 }
 
-.contactArea
-{
+.contactArea {
    width: 80%;
    resize: vertical;
    padding: 15px;
@@ -333,18 +323,17 @@ h7.faq {
    border: 0;
    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
    height: 150px;
+   resize: none;
 }
 
-.contactInput
-{
+.contactInput {
    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
    border-radius: 10px;
    font-family: Verdana, Geneva, Tahoma, sans-serif;
    width: 80%;
 }
 
-.buttonContact
-{
+.buttonContact {
    appearance: none;
    -webkit-appearance: none;
    padding: 10px;
@@ -396,14 +385,13 @@ textarea:hover {
 }
 
 
-.Reviewheader 
-{
+.Reviewheader {
    margin-left: 15%;
 
 }
 
 .review-form {
-   
+
    width: 40%;
    margin-left: 0%;
    padding-left: 5%;
@@ -425,12 +413,11 @@ textarea:hover {
    border: 0;
    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
    height: 150px;
-
+   resize: none;
 }
 
-.select
-{
-   width:50%;
+.select {
+   width: 50%;
 }
 
 .selection_show {
@@ -506,7 +493,7 @@ textarea:hover {
 
    body .assortiment-first-text {
       font-size: 0.4em;
-      
+
    }
 
    body .assortiment-second-text {
@@ -542,20 +529,31 @@ textarea:hover {
 
 .img_4-1 {
    background-image: url('../images/egypte.png');
+   width: 80%;
+   height: 96%;
+   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
 }
 
 .img_4-2 {
    background-image: url('../images/egypte2.jpg');
-   margin-left: 10%;
+
+   width: 50%;
+   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
 }
 
 .img_5-1 {
    background-image: url('../images/frankrijk.png');
+   width: 80%;
+   height: 96%;
+   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
 }
 
 .img_5-2 {
    background-image: url('../images/egypte2.jpg');
-   margin-left: 10%;
+   width: 40%;
+   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.06);
+   margin-left: 5%;
+
 }
 
 .img_2-1 {
@@ -604,22 +602,61 @@ textarea:hover {
    margin-top: 0%;
 }
 
+
+
 .Cards {
-   height: 45%;
    background-color: rgb(197, 213, 225);
    width: 20%;
    position: absolute;
-   margin-right: -35%;
+   margin-left: 60%;
+   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+   ;
+   height: min-content;
 }
+
+@media only screen and (max-width: 800px) {
+   .Cards {
+      width: 30%;
+      font-size: 0.5em;
+   }
+}
+
 
 .card_header {
    text-align: center;
 }
-#autos #auto_prijs{
+
+#autos #auto_prijs {
    background-color: rgb(197, 213, 225);
 }
 
 #autos {
-   
-   width:50%;
+   width: 50%;
+}
+
+.jumbotron {
+   background-image: url("../images/header_background.jpg");
+   background-attachment: fixed;
+   background-position: top;
+   background-repeat: no-repeat;
+
+}
+
+.info {
+
+   height: min-content;
+   background-color: rgb(197, 213, 225);
+   width: 30%;
+   position: relative;
+   margin-left: -60%;
+   font-size: 0, 5em;
+
+}
+
+@media only screen and (min-width: 800px) {
+   .info {
+      font-size: 0, 5em;
+   }
+
+
 }
