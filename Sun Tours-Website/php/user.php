@@ -1,4 +1,5 @@
 <?php
+
 class User {
 
     public $SqlCommands;
@@ -35,6 +36,12 @@ class User {
                             exit($text);
                         }
                     }
+            }
+
+            private function confMail($email)
+            {
+                $mail = new Mail("test hallo hallo", "testhslfmhk", $email);
+                $mail->email();
             }
 
             public function enterReg($email, $phoneNumber, $firstName, $surName, $username, $address, $postalCode, $passwd2, $passwd3){
@@ -74,11 +81,6 @@ class User {
                         $_SESSION['loggedIn']=true;
                         $_SESSION['username']=$result["username"];
                     }
-            }
-
-            public function confMail($email)
-            {
-                
             }
         
 }           
