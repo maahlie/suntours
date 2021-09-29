@@ -2,6 +2,7 @@
 
 include 'user.php';
 include 'dbClass.php';
+include 'mail.php';
 $userClass = new User(); //functie afhandelen
 session_start();
 if (
