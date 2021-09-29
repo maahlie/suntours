@@ -67,8 +67,8 @@
                                 <div class="group"> <label for="user" class="label">Voornaam</label><input type="text" id="firstName" name="firstName" placeholder="Voornaam" class="input"></div>
                                 <div class="group"> <label for="user" class="label">Achternaam</label><input type="text" id="surName" name="surName" placeholder="Achternaam" class="input"></div>
 
-                                <div class="group"> <label for="user" class="label">Voornaam</label><input type="text" id="address" name="address" placeholder="Adres" class="input"></div>
-                                <div class="group"> <label for="user" class="label">Achternaam</label><input type="text" id="postalCode" name="postalCode" placeholder="Postcode" class="input"></div>
+                                <div class="group"> <label for="user" class="label">Adres</label><input type="text" id="address" name="address" placeholder="Adres" class="input"></div>
+                                <div class="group"> <label for="user" class="label">PostCode</label><input type="text" id="postalCode" name="postalCode" placeholder="Postcode" class="input"></div>
 
                                 <div class="group"> <label for="user" class="label">Telefoonnummer</label><input type="text" id="phonenumber" name="phonenumber" placeholder="0123456789" minlength="10" class="input"></div>
                                 <div class="group"> <label for="pass" class="label">Wachtwoord</label> <input type="password" id="passwd2" name="passwd2" placeholder="Wachtwoord" class="input"> </div>
