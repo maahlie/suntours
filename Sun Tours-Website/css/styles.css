@@ -602,8 +602,6 @@ textarea:hover {
    margin-top: 0%;
 }
 
-
-
 .Cards {
    background-color: rgb(197, 213, 225);
    width: 20%;
@@ -660,3 +658,18 @@ textarea:hover {
 
 
 }
+.assortiment body {
+   background-image: url("../images/background_image.png");
+   background-attachment: fixed;
+   background-position: top;
+   background-repeat: no-repeat;
+
+}
+.assortiment-first-text,.assortiment-second-text{
+   background-color: rgb(197, 213, 225, 0.5);
+}
+.jumbotron{
+   background-color:rgb(197, 213, 225, 0.5);
+}
+
+

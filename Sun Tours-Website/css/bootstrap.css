@@ -8,7 +8,7 @@ body .registreer {
 .login-box {
     width: 100%;
     margin: auto;
-    max-width: 525px;
+    max-width: 100%;
     height: 600px;
     position: relative;
     background-image: url('../images/registreer_background.jpg');
@@ -214,7 +214,7 @@ a {
 } */
 html,body
 {
-    background-image: url('../images/registreer_background.jpg');
+    background-image: url('../images/aanmeld_background.jpg');
     background-repeat: no-repeat;
     width: 100%;
     height: 100%;
