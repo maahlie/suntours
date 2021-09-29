@@ -1,4 +1,5 @@
 <?php
+
 class User {
 
     public $SqlCommands;
@@ -37,6 +38,12 @@ class User {
                     }
             }
 
+            private function confMail($email)
+            {
+                $mail = new Mail("test hallo hallo", "testhslfmhk", $email);
+                $mail->email();
+            }
+
             public function enterReg($email, $phoneNumber, $firstName, $surName, $username, $address, $postalCode, $passwd2, $passwd3){
         
                     $this->emailCheck($email);
@@ -55,7 +62,8 @@ class User {
                    if ($stmt) {
                        $params = [$username, $email, $passwd2, $phoneNumber, $firstName, $surName, $address, $postalCode];
                        $stmt->execute($params);
-                    }
+                       $this->confMail($email);
+                    }                   
             }
 
             public function login($username, $passwrd){
