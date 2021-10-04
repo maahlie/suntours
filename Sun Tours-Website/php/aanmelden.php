@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="registreer_html">
 
+
 <head>
   <title>Sun Tours</title>
   <meta charset="utf-8">
@@ -45,11 +46,13 @@
   </nav>
 
   <main>
+    
   <div class="card signup_v4 mb-30">
+  
     <div class="card-body">
         <ul class="nav nav-tabs " id="myTab" role="tablist">
             <li class="nav-item" role="presentation"> <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Login</a> </li>
-            <li class="nav-item" role="presentation"> <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a> </li>
+            <li class="nav-item" role="presentation"> <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="registreer" aria-selected="false">Registreer</a> </li>
         </ul>
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
@@ -70,10 +73,10 @@
                
             </div>
             <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
-                <h4 class="text-center mt-4 mb-4" style="text-transform: uppercase;">Registreer</h4>
+                <h4 style="text-transform: uppercase;">Registreer</h4>
                 <form id="registreerpage">
                     <div class="form-row">
-                        <div class="form-group col-md-12"><label for="user" class="label">Gebrukersnaam</label> <input type="text" class="form-control"  id="usern"  name="usern" placeholder="Gebruikersnaam" class="input"> </div>
+                        <div class="form-group col-md-12"><label for="user" class="label">Gebruikersnaam</label> <input type="text" class="form-control"  id="usern"  name="usern" placeholder="Gebruikersnaam" class="input"> </div>
                         <div class="form-group col-md-12"><label for="user" class="label">Voornaam</label><input type="text"  class="form-control" id="firstName" name="firstName" placeholder="Voornaam" class="input"></div>
                         <div class="form-group col-md-12"><label for="user" class="label">Achternaam</label><input type="text" class="form-control" id="surName" name="surName" placeholder="Achternaam" class="input"></div>
                        

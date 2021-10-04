@@ -103,3 +103,39 @@
 .signup_v4 .card-body .tab-content {
     padding: 0 1.25rem 1.75em
 }
+
+#usernLogin,#passwdLogin
+{
+    width: 25%;
+}
+
+
+
+#loginPage
+{
+    margin-left: 35%;
+}
+
+#aanmelden_footer
+{
+   margin-top: 8.4%;
+   position: fixed;
+   bottom: 0px;
+}
+
+#usern, #firstName,#surName,#postalCode,#phonenumber,#address,#passwd2,#passwd3,#email
+{
+   width: 30%;
+}
+
+#register 
+{
+    margin-left: 40%;
+    
+}
+
+#registratieknop
+{
+    margin-right: 85%;
+}
+
