@@ -8,11 +8,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styles.css">
+  <!-- <script src="node_modules/jquery/dist/jquery.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+  <script src="Javascript/ajax.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="./Javascript/url-search.js"></script> -->
+
+  <script src="node_modules/jquery/dist/jquery.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+  <script src="Javascript/ajax.js"></script>
   <script type="text/javascript" src="./Javascript/url-search.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+
 </head>
 
 <body onload="hide_autoverhuur()">
@@ -31,13 +44,18 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="../Sun Tours-Website/php/aanmelden.php">Aanmelden</a>
+          <a class="nav-link" href="aanmelden.html">Aanmelden</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="FAQ.html">FAQ</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="Review.html">Review</a>
+        </li>
+        <li class="nav-item" id='logout_li'>
+          <form method="POST" id="logoutForm"  >
+            <input type="submit" id="logout" name="logout" value="Logout" class="btn btn-sm btn-outline-secondary">
+          </form>
         </li>
       </ul>
     </div>
@@ -51,11 +69,27 @@
     <h2 class="contact_toptext">Boeken</h2><br>
     <div class="c-form__progress"></div>
     <div class="wrapper Val">
-      <form method="POST" id="contact">
-        <label>Vertrek Datum:</label><br>
+      <form method="POST" id="bookingForm">
+        <!-- <label>Vertrek Datum:</label><br>
         <input type="date" id="vertrek-datum" name="VertrekDatum"><Br><Br>
         <label>Terugreis datum:</label><br>
-        <input type="date" id="terugreis-datum" name="TerugreisDatum"><Br><br>
+        <input type="date" id="terugreis-datum" name="TerugreisDatum"><Br><br> -->
+          <label>Vertrek/terug reis datum en tijd opties:</label><br>
+          <select id="tijden" name="reistijden" class="break">
+            <option value="keuze" disabled selected>-</option>
+            <option value="1">
+              Heen: 2-11-2021 - 10.45
+            Terug: 10-11-2021 - 20.00
+            </option>
+            <option value="2">
+              Heen: 16-11-2021 - 9.45
+            Terug: 24-11-2021 - 15.30
+            </option>
+            <option value="3">
+              Heen: 7-12-2021 - 19.00
+            Terug: 15-12-2021 - 11.00
+            </option>
+          </select><br><br>
         <label>Aantal volwassenen (18 jaar of ouder):</label><br>
         <input type="number" id="aantal_volwassenen" name="AantalVolwassenen"><Br><Br>
         <label>Aantal kinderen:</label><br>
@@ -87,11 +121,13 @@
             <br><br><br>
         </div>
 
-        <div id="bus_deals">
+        <input type="text" id="packageID" name="packageID" hidden>
+
+        <!-- <div id="bus_deals">
           <label>Bus Deals</label><br>
           <input type="radio" id="show_bus_deals1" name="busverhuur" onclick="show_bus_deals()">ja
           <input type="radio" id="show_bus_deals2" name="busverhuur" onclick="show_bus_deals()">nee<Br><Br>
-        </div>
+        </div> -->
 
         <input type="submit" value="Volgende" id="contact_button" class="sendKnop">
       </form>

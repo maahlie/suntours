@@ -325,7 +325,7 @@ h7.faq {
    margin-left: -40%;
 }
 
-#contact {
+#bookingForm {
    margin-right: 60%;
    margin-left: 0%;
 }
@@ -717,4 +717,15 @@ textarea:hover {
 }
 
  
- 
+#logout_li{
+   margin-left:85%;
+   position:absolute
+}
+@media only screen and (max-width: 930px) {
+  
+   #logout_li{
+      margin-left:80%;
+      position:absolute
+   }
+
+} 

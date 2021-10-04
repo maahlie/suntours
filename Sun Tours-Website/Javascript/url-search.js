@@ -43,6 +43,9 @@ function show_autoverhuur(){
 function hide_autoverhuur(){
   //document.getElementById("autos").innerHTML='';
   document.getElementById("autos").style.display = "none";
+  var url = window.location.href;
+  var id  = url.substring(url.lastIndexOf('=') + 1);
+  document.getElementById("packageID").value = id;
 }
 
 function calculate_car_price(){

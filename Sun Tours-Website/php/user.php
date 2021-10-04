@@ -13,7 +13,7 @@ class User {
             private function emailCheck($email) {
                 //haalt de emails op
                 $this->SqlCommands->connectDB();
-                $result = $this->SqlCommands->selectAllFrom("email", "users");
+                $result = $this->SqlCommands->selectFrom("email", "users");
 
                 //checkt de emails tegen de ingevoerde email
                     for($i = 0; $i < count($result); $i++){
@@ -27,7 +27,7 @@ class User {
             private function usernCheck($username) {
                 //haalt de username op
                 $this->SqlCommands->connectDB();
-                $result = $this->SqlCommands->selectAllFrom("username", "users");
+                $result = $this->SqlCommands->selectFrom("username", "users");
 
                 //checkt de usernames tegen de ingevoerde username
                     for($i = 0; $i < count($result); $i++){
@@ -89,6 +89,14 @@ class User {
                 $completeBody = "Deze email is verzonden door email addres: " . $email . "<br/>" . "Naam: ". $contactName . "<br/>" . $mailBody;
                 $this->confMail($targetEmail,$completeBody,$mailSubject);
                 exit('Uw Bericht is succelvol verzonden en wordt zo snel mogenlijk in behandeling genomen.');
+            }
+
+            public function logout(){
+                
+                $_SESSION[] = array();
+
+                // destroy de sessie
+                session_destroy();
             }
         
 }           

@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function(){
             var sData = form.serialize();
 
             $.ajax({
-                url: '../php/ajaxHandler.php',
+                url: 'php/ajaxHandler.php',
                 method: "POST",
                 data: sData,
             }).done(function (response) {
@@ -77,7 +77,95 @@ document.addEventListener("DOMContentLoaded", function(){
             var sData = form.serialize();
 
             $.ajax({
-                url: '../php/ajaxHandler.php',
+                url: 'php/ajaxHandler.php',
+                method: "POST",
+                data: sData,
+            }).done(function (response) {
+                alert(response);
+            }).fail(function (jqXHR, textstatus) {
+                alert(response, textstatus);
+            })
+        }
+    })
+
+    $("#bookingForm").validate({
+        rules:
+        {
+            reistijden: {
+                required: true,
+            },
+            AantalVolwassenen: {
+                required: true,
+            },
+            AantalKinderen: {
+                required: true,
+            },
+            vervoer: {
+                required: true,
+            },
+            autoverhuur: {
+                required: true,
+            },
+        },
+        messages:
+        {
+            reistijden: {
+                required: "<span class='test'>Vul dit in a.u.b</span>",
+            },
+            AantalVolwassenen: {
+                required: "<span class='test'>Vul dit in a.u.b</span>",
+            },
+            AantalKinderen: {
+                required: "<span class='test'>Vul dit in a.u.b</span>",
+            },
+            vervoer: {
+                required: "<span class='test'>Vul dit in a.u.b</span>",
+            },
+            autoverhuur: {
+                required: "<span class='test'>Vul dit in a.u.b</span>",
+            },
+        },
+
+        submitHandler: function () {
+
+            var form = $('#bookingForm');
+            var sData = form.serialize();
+            console.log(sData);
+
+            $.ajax({
+                url: 'php/ajaxHandler.php',
+                method: "POST",
+                data: sData,
+            }).done(function (response) {
+                alert(response);
+            }).fail(function (jqXHR, textstatus) {
+                alert(response, textstatus);
+            })
+        }
+    })
+
+    $("#logoutForm").validate({
+        rules:
+        {
+            logout: {
+                required: true,
+            },
+        },
+        messages:
+        {
+            logout: {
+                required: "true",
+            },
+        },
+
+        submitHandler: function () {
+
+            var form = $('#logoutForm');
+            var sData = form.serialize();
+            console.log(sData);
+
+            $.ajax({
+                url: 'php/ajaxHandler.php',
                 method: "POST",
                 data: sData,
             }).done(function (response) {

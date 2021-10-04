@@ -26,13 +26,28 @@ class SqlCommands {
         $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     }
     
-    public function selectAllFrom($column, $table) {
+    public function selectFrom($column, $table) {
         $sql = "SELECT " . $column .  " FROM " . $table . ";";
         $stmt = $this->pdo->prepare($sql);
 
         if ($stmt) {
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_NUM);      
+        }
+
+        return $result;
+    }
+
+    public function selectFromWhere($column, $table, $where, $param) {
+        $sql = "SELECT " . $column .  " FROM " . $table . " WHERE " . $where . "= ?";
+        $stmt = $this->pdo->prepare($sql);
+        $params = [$param];
+        // var_dump($column, $table, $where, $param);
+        $stmt->execute($params);
+
+        if ($stmt) {
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);   
         }
 
         return $result;
