@@ -27,94 +27,103 @@
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" href="../assortiment.html">Assortiment</a>
-        </li>    
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="../contact.html">Contact</a>
         </li>
-  
+
         <li class="nav-item">
           <a class="nav-link" href="./aanmelden.php">Aanmelden</a>
-        </li> 
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="../FAQ.html">FAQ</a>
-        </li> 
+        </li>
         <li class="nav-item">
-                    <a class="nav-link" href="../Review.html">Review</a>
-                </li>
+          <a class="nav-link" href="../Review.html">Review</a>
+        </li>
       </ul>
-    </div>  
+    </div>
   </nav>
 
   <main>
-    
-  <div class="card signup_v4 mb-30">
-  
-    <div class="card-body">
+
+    <div class="card signup_v4 mb-30">
+
+      <div class="card-body">
         <ul class="nav nav-tabs " id="myTab" role="tablist">
-            <li class="nav-item" role="presentation"> <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Login</a> </li>
-            <li class="nav-item" role="presentation"> <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="registreer" aria-selected="false">Registreer</a> </li>
+          <li class="nav-item" role="presentation"> <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Login</a> </li>
+          <li class="nav-item" role="presentation"> <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="registreer" aria-selected="false">Registreer</a> </li>
         </ul>
         <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
-                <h4 class="text-center mt-4 mb-4" style="text-transform: uppercase;">Login</h4>
-                <form id="loginPage">
-                    <div class="form-row">
-                        <div class="form-group col-md-12"> <label for="user" class="label">Gebruikersnaam</label> <input type="text" id="usernLogin" name="usernLogin" placeholder="login" class="input" class="form-control"> </div>
-                        <div class="form-group col-md-12"> <label for="pass" class="label">Wachtwoord</label> <input type="password" id="passwdLogin" name="passwdLogin" placeholder="wachtwoord" minlength="1" class="input"> </div>
-                        <div class="form-group col-md-12">
-                            <div class="d-flex flex-wrap justify-content-between align-items-center">
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="foot"> <a href="#">Wachtwoord vergeten?</a> </div>
-                    <div class="mt-2 mb-3"> <button class="btn btn-primary full-width sendKnop button"  value="Log In" id="loginKnop" type="submit">Login</button> </div>
-                </form>
-               
-            </div>
-            <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
-                <h4 style="text-transform: uppercase;">Registreer</h4>
-                <form id="registreerpage">
-                    <div class="form-row">
-                        <div class="form-group col-md-12"><label for="user" class="label">Gebruikersnaam</label> <input type="text" class="form-control"  id="usern"  name="usern" placeholder="Gebruikersnaam" class="input"> </div>
-                        <div class="form-group col-md-12"><label for="user" class="label">Voornaam</label><input type="text"  class="form-control" id="firstName" name="firstName" placeholder="Voornaam" class="input"></div>
-                        <div class="form-group col-md-12"><label for="user" class="label">Achternaam</label><input type="text" class="form-control" id="surName" name="surName" placeholder="Achternaam" class="input"></div>
-                       
-                    </div>
-                    <div class="form-row">
-                    <div class="form-group col-md-12"><label for="user" class="label">PostCode</label><input type="text" class="form-control" id="postalCode" name="postalCode" placeholder="Postcode" class="input"></div>
-                    <div class="form-group col-md-12"><label for="user" class="label">Telefoonnummer</label><input type="text" class="form-control" id="phonenumber" name="phonenumber" placeholder="0123456789" minlength="10" class="input"></div>
-                        <div class="form-group col-md-12"> <label for="user" class="label">Adres</label><input type="text" class="form-control" id="address" name="address" placeholder="Adres" class="input"></div>
-                        <div class="form-group col-md-12"> <label for="pass" class="label">Wachtwoord</label> <input type="password"  class="form-control" id="passwd2" name="passwd2" placeholder="Wachtwoord" class="input"> </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-12">  <label for="pass" class="label">Herhaal wachtwoord</label> <input type="password" class="form-control" id="passwd3" name="passwd3" placeholder="Bevestig wachtwoord" class="input"> </div>
-                        <div class="form-group col-md-12"> <label for="pass" class="label">Email Address</label> <input type="email" class="form-control" id="email" name="email" placeholder="email@email.com" minlength="8" class="input"> </div>
-                              
-                    </div>
-                    <div class="form-group form-row mt-2">
-                        <div class="col-md-10 pt-1">
-                            <div class="form-check form-check-inline">   </div>
-                            <div class="form-check form-check-inline">  </div>
-                            <div class="form-check form-check-inline">  </div>
-                        </div>
-                    </div>
-                    <div class="form-group form-row">
-                    </div>
-                   
-                    <hr class="mt-3 mb-4">
-                    <div class="col-12">
-                        <div class="d-flex flex-wrap justify-content-between align-items-center">
-                            <div class="custom-checkbox d-block"> </div> <button class="btn btn-primary mt-3 mt-sm-0 sendKnop button" value="Registreer" id="registratieknop" type="submit">Registreer</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+          <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+            <h4 class="text-center mt-4 mb-4" style="text-transform: uppercase;">Login</h4>
+            <form id="loginPage">
+              <div class="form-row">
+                <div class="form-group col-md-12"> <label for="user" class="label">Gebruikersnaam</label> <input type="text" id="usernLogin" name="usernLogin" placeholder="login" class="input" class="form-control"> </div>
+                <div class="form-group col-md-12"> <label for="pass" class="label">Wachtwoord</label> <input type="password" id="passwdLogin" name="passwdLogin" placeholder="wachtwoord" minlength="1" class="input"> </div>
+                <div class="form-group col-md-12">
+                  <div class="d-flex flex-wrap justify-content-between align-items-center">
+
+                  </div>
+                </div>
+              </div>
+              <div class="foot"> <a href="#">Wachtwoord vergeten?</a> </div>
+              <div class="mt-2 mb-3"> <button class="btn btn-primary full-width sendKnop button" value="Log In" id="loginKnop" type="submit">Login</button> </div>
+            </form>
+
+          </div>
+          <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+            <h4 style="text-transform: uppercase;">Registreer</h4>
+            <form id="registreerpage">
+              <div class="form-row">
+                <div class="form-group col-md-12"><label for="user" class="label">Gebruikersnaam</label> <input type="text" class="form-control" id="usern" name="usern" placeholder="Gebruikersnaam" class="input"> </div>
+                <div class="form-group col-md-12"><label for="user" class="label">Voornaam</label><input type="text" class="form-control" id="firstName" name="firstName" placeholder="Voornaam" class="input"></div>
+                <div class="form-group col-md-12"><label for="user" class="label">Achternaam</label><input type="text" class="form-control" id="surName" name="surName" placeholder="Achternaam" class="input"></div>
+
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-12"><label for="user" class="label">PostCode</label><input type="text" class="form-control" id="postalCode" name="postalCode" placeholder="Postcode" class="input"></div>
+                <div class="form-group col-md-12"><label for="user" class="label">Telefoonnummer</label><input type="text" class="form-control" id="phonenumber" name="phonenumber" placeholder="0123456789" minlength="10" class="input"></div>
+                <div class="form-group col-md-12"> <label for="user" class="label">Adres</label><input type="text" class="form-control" id="address" name="address" placeholder="Adres" class="input"></div>
+                <div class="form-group col-md-12"> <label for="pass" class="label">Wachtwoord</label> <input type="password" class="form-control" id="passwd2" name="passwd2" placeholder="Wachtwoord" class="input"> </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-12"> <label for="pass" class="label">Herhaal wachtwoord</label> <input type="password" class="form-control" id="passwd3" name="passwd3" placeholder="Bevestig wachtwoord" class="input"> </div>
+                <div class="form-group col-md-12"> <label for="pass" class="label">Email Address</label> <input type="email" class="form-control" id="email" name="email" placeholder="email@email.com" minlength="8" class="input"> </div>
+
+              </div>
+              <div class="form-group form-row mt-2">
+                <div class="col-md-10 pt-1">
+                  <div class="form-check form-check-inline"> </div>
+                  <div class="form-check form-check-inline"> </div>
+                  <div class="form-check form-check-inline"> </div>
+                </div>
+              </div>
+              <div class="form-group form-row">
+              </div>
+
+              <hr class="mt-3 mb-4">
+              <div class="col-12">
+                <div class="d-flex flex-wrap justify-content-between align-items-center">
+                  <div class="custom-checkbox d-block"> </div> <button class="btn btn-primary mt-3 mt-sm-0 sendKnop button" value="Registreer" id="registratieknop" type="submit">Registreer</button>
+                </div>
+              </div>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+              <br>
+            </form>
+          </div>
         </div>
+      </div>
     </div>
-</div>
   </main>
 </body>
+<div class="Footerfix">
+
+</div>
 
 <footer id="aanmelden_footer">
   <div class="topFooter">
@@ -140,4 +149,5 @@
     copyright &copy; 2021 <i>Ontworpen door: Thomas-Thomas-Stef-Lucas</i>
   </div>
 </footer>
+
 </html>
