@@ -55,4 +55,14 @@ if (isset($_POST['usernLogin']) && isset($_POST['passwdLogin'])) {
         }
     }
 }
+
+if (isset($_POST['contact_naam']) && isset($_POST['contact_email']) && isset($_POST['contact_onderwerp']) && isset($_POST['contact_text'])) {
+    $email = $_POST['contact_email'];
+    $contactSubject = $_POST['contact_onderwerp'];
+    $contactBody = $_POST['contact_text'];
+    $contactName = $_POST['contact_naam'];
+
+    $userClass->contact($email,$contactBody,$contactSubject,$contactName);
+}
+
 exit("Deze actie is niet bij ons bekend (404)"); //Foutafhandelig

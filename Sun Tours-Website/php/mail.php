@@ -56,7 +56,7 @@ class Mail {
             $this->mail->Body    = $this->body;
             $this->mail->AltBody = strip_tags($this->body);
         
-            // $this->mail->send();
+            $this->mail->send();
 
             return;
     }
