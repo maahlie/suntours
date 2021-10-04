@@ -4,7 +4,7 @@ country_distanse_km = [1707,  3312, 3312, 3418, 818];
 auto_merken = ['Nissan', 'Opel', 'Ford', 'Volkswagen'];
 auto_prijzen = ['45', '69', '36', '84'];
 vlieg_reizen = ['KLM','Ryan air', 'Iberia' ];
-vlieg_prijzen = ['']
+vlieg_prijzen = [500,353,467]
 
 html_scripts = [
   '<div class = "card_header"><b>Hotel Best Tenerife-Spanje</b></div>Vertrek/terug reis datum en tijd opties: <Br>2-11-2021 - 9.45<Br>10-11-2021 - 10.45<Br><Br>16-11-2021 - 8.30<Br>24-11-2021 - 9-30<Br><Br>7-12-2021 - 9.45<Br>15-12-2021 - 11.00<Br><Br><div class="btn-group"><a href="./assortiment.html">Verander Selectie</a></div></div></div></div>',
@@ -34,7 +34,7 @@ $(document).ready(function () {
 });
 
 function show_vervoer(){
-  document.getElementById("vliegen_div").innerHTML='<label>vliegmaatschapij:</label><br> <select name="airlines" id="airlines"> <option value="keuze" disabled selected>-</option> <option value="KLM">KLM <option value="Ryan air">Ryan air</option> <option value="Iberia">Iberia</option> </select><Br><Br> <label>vertrek vliegveld:</label><br> <select name="Vertrek_vliegveld" id="Vertrek_vliegveld"> <option value="keuze" disabled selected>-</option> <option value="KLM">Schiphol</option> <option value="Air spain">Eindhoven</option> <option value="Ryan air">Groningen-Eelde</option> <option value="Iberia">Rotterdam-The Hague</option> </select><Br><Br><label>Vlucht tijden:</label><br> <label>Heenreis:</label> <select name="Vertrek_tijd" id="Vertrek_tijd"> <option value="keuze" disabled selected>-</option> <option value="8.' + html_script_vliegen[country];
+  document.getElementById("vliegen_div").innerHTML='<label>vliegmaatschapij:</label><br> <select name="airlines" id="airlines"  onchange="calculate_plane_price()"> <option value="keuze" disabled selected>-</option> <option value="KLM">KLM <option value="Ryan air">Ryan air</option> <option value="Iberia">Iberia</option> </select><Br><Br> <label>vertrek vliegveld:</label><br> <select name="Vertrek_vliegveld" id="Vertrek_vliegveld"> <option value="keuze" disabled selected>-</option> <option value="KLM">Schiphol</option> <option value="Air spain">Eindhoven</option> <option value="Ryan air">Groningen-Eelde</option> <option value="Iberia">Rotterdam-The Hague</option> </select><Br><Br><label>Vlucht tijden:</label><br> <label>Heenreis:</label> <select name="Vertrek_tijd" id="Vertrek_tijd"> <option value="keuze" disabled selected>-</option> <option value="8.' + html_script_vliegen[country];
 }
 function hide_vervoer(){
   document.getElementById("vliegen_div").innerHTML='';
@@ -66,6 +66,11 @@ function calculate_car_price(){
       }
     }
   }
+}
+function calculate_plane_price(){
+var selectedValue = document.getElementById("airlines").value;
+var value = selectedValue.options[selectedValue.selectedIndex].value;
+console.log(value);
 }
 
 
