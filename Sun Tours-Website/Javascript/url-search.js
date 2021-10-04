@@ -1,8 +1,11 @@
 
 countrys = ['Spanje','Turkije1','Turkije2','Egypte','Frankrijk'];
+country_distanse_km = [1707,  3312, 3312, 3418, 818];
 auto_merken = ['Nissan', 'Opel', 'Ford', 'Volkswagen'];
 auto_prijzen = ['45', '69', '36', '84'];
-vlieg_reizen = ['KLM','' ]
+vlieg_reizen = ['KLM','Ryan air', 'Iberia' ];
+vlieg_prijzen = ['']
+
 html_scripts = [
   '<div class = "card_header"><b>Hotel Best Tenerife-Spanje</b></div>Vertrek/terug reis datum en tijd opties: <Br>2-11-2021 - 9.45<Br>10-11-2021 - 10.45<Br><Br>16-11-2021 - 8.30<Br>24-11-2021 - 9-30<Br><Br>7-12-2021 - 9.45<Br>15-12-2021 - 11.00<Br><Br><div class="btn-group"><a href="./assortiment.html">Verander Selectie</a></div></div></div></div>',
   '<div class = "card_header"><b>Hotel Gold City -Turkije</b></div>Vertrek/terug reis datum en tijd opties: <Br>2-11-2021 - 10.45<br>10-11-2021 - 20.00<br><br>16-11-2021 - 9.45<br>24-11-2021 - 15.30<br><br>7-12-2021 - 19.00<br>15-12-2021 - 11.00<br><br><div class="btn-group"><a href="./assortiment.html">Verander Selectie</a></div></div></div></div>',
@@ -64,6 +67,7 @@ function calculate_car_price(){
     }
   }
 }
+
 
 
 
