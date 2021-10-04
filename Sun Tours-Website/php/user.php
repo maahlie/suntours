@@ -38,9 +38,9 @@ class User {
                     }
             }
 
-            private function confMail($email)
+            private function confMail($targetEmail,$mailBody,$mailSubject)
             {
-                $mail = new Mail("test hallo hallo", "testhslfmhk", $email);
+                $mail = new Mail($mailBody, $mailSubject, $targetEmail);
                 $mail->email();
             }
 
@@ -62,7 +62,7 @@ class User {
                    if ($stmt) {
                        $params = [$username, $email, $passwd2, $phoneNumber, $firstName, $surName, $address, $postalCode];
                        $stmt->execute($params);
-                       $this->confMail($email);
+                       //$this->confMail($email);
                     }                   
             }
 
@@ -81,6 +81,14 @@ class User {
                         $_SESSION['loggedIn']=true;
                         $_SESSION['username']=$result["username"];
                     }
+            }
+
+            public function contact($email,$mailBody,$mailSubject,$contactName)
+            {
+                $targetEmail = 'SunTours.devOps@hotmail.com';
+                $completeBody = "Deze email is verzonden door email addres: " . $email . "<br/>" . "Naam: ". $contactName . "<br/>" . $mailBody;
+                $this->confMail($targetEmail,$completeBody,$mailSubject);
+                exit('Uw Bericht is succelvol verzonden en wordt zo snel mogenlijk in behandeling genomen.');
             }
         
 }           
