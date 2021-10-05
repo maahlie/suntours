@@ -48,12 +48,6 @@ class User {
         
                     $this->emailCheck($email);
                     $this->usernCheck($username);
-                    //    $username = trim(htmlentities($username));
-                    //    $email = trim(htmlentities($email));
-                    //    $passwd2 = trim(htmlentities($passwd2));
-                    //    $firstName = trim(htmlentities($firstName));
-                    //    $surName = trim(htmlentities($_POST['surName']));
-                    //    $phoneNumber = trim(htmlentities($_POST['phonenumber']));
 
                    $sql = "INSERT INTO users (username, email, passwrd, phoneNumber, firstName, surName, address, postalCode) VALUES(?, ?, ?, ?, ?, ?, ?, ?)"; //query, vraagtekens worden gevuld bij de execute met $params
            
@@ -62,11 +56,11 @@ class User {
                    if ($stmt) {
                        $params = [$username, $email, $passwd2, $phoneNumber, $firstName, $surName, $address, $postalCode];
                        $stmt->execute($params);
-                       //$this->confMail($email);
+                       $this->confMail($email, "test", "test");
                     }                   
             }
 
-            public function login($username, $passwrd){
+            public function userPassCheck($username, $passwrd){
 
                 $this->SqlCommands->connectDB();
 
@@ -77,10 +71,22 @@ class User {
                     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
                     if ($username == $result['username'] && $passwrd == $result['passwrd']){
+                        $correct = true;
+                        return $correct;
+                    }else{
+                        $correct = false;
+                        return $correct;
+                    }
+            }
+
+            public function login($correct, $username){
+
+                if($correct == true){
                         // session_start();
                         $_SESSION['loggedIn']=true;
-                        $_SESSION['username']=$result["username"];
-                    }
+                        $_SESSION['username']=$username;
+                }
+
             }
 
             public function contact($email,$mailBody,$mailSubject,$contactName)
@@ -97,6 +103,18 @@ class User {
 
                 // destroy de sessie
                 session_destroy();
+            }
+
+            public function getActivation($username, $passwrd){
+                $this->SqlCommands->connectDB();
+
+                $sql = "SELECT activation FROM users WHERE username = ? AND passwrd = ?;";
+                $stmt = $this->SqlCommands->pdo->prepare($sql);
+                    $params = [$username, $passwrd];
+                    $stmt->execute($params);
+                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                return $result;
             }
         
 }           

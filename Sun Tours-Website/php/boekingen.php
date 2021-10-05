@@ -35,30 +35,6 @@ class Booking {
         return $userID;
     }
 
-    private function reistijden()
-    {
-        $this->commands = new SqlCommands();
-        $this->commands->connectDB();
-        $this->package = $this->commands->selectFromWhere("traveldates", "packages", "packageID", $this->id);
-
-        switch ($this->travelTimeChoice) {
-            case 1:
-                $this->datum_eind = "";
-                $this->datum_start = "";
-              break;
-            case 2:
-                $this->datum_eind = "";
-                $this->datum_start = "";
-              break;
-            case 3:
-                $this->datum_eind = "";
-                $this->datum_start = "";
-              break;
-            default:
-              exit("Geen tijd geselecteerd.");
-          }
-    }
-
     private function calcPackageCost(){
         $this->commands = new SqlCommands();
         $this->commands->connectDB();

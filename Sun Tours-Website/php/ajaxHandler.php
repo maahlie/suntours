@@ -6,6 +6,7 @@ include 'boekingen.php';
 include 'mail.php';
 $userClass = new User(); //functie afhandelen
 session_start();
+
 if (
     isset($_POST['email']) && isset($_POST['phonenumber']) && isset($_POST['firstName'])
     && isset($_POST['surName']) && isset($_POST['usern']) && isset($_POST['passwd2']) && isset($_POST['passwd3'])
@@ -33,6 +34,7 @@ if (
         $passwd,
         $passwd2
     );
+    
     exit("Registreren is gelukt.");
 }
 
@@ -45,22 +47,27 @@ if (isset($_POST['usernLogin']) && isset($_POST['passwdLogin'])) {
         $usernameLogin = $_POST['usernLogin'];
         $passwdLogin = $_POST['passwdLogin'];
 
-        $userClass->login($usernameLogin,$passwdLogin);
+        $active = $userClass->getActivation($usernameLogin, $passwdLogin);
 
-        if (isset($_SESSION['loggedIn'])) {
-            exit("U bent ingelogd, welkom " . $_SESSION['username']);
+        $correct = $userClass->userPassCheck($usernameLogin, $passwdLogin);
 
-        } else {
+        if($active["activation"] == 0 && $correct == 0){
             exit("Gebruikersnaam of wachtwoord klopt niet.");
-
+        }elseif($active["activation"] == 1){
+            $userClass->login($correct, $usernameLogin);
+            if(isset($_SESSION['loggedIn'])){
+                exit("U bent ingelogd, welkom " . $_SESSION['username']);
+            }
+        }else{
+            exit('Uw account is nog niet geactiveerd, voer a.u.b eerst de code in.');
         }
     }
 }
 
-if (isset($_POST['reistijden']) && isset($_POST['AantalVolwassenen']) && isset($_POST['AantalKinderen'])) {
+if (isset($_POST['reistijden']) && isset($_POST['AantalVolwassenen']) && isset($_POST['AantalKinderen']) && isset($_POST['packageID'])) {
     if(isset($_SESSION['loggedIn'])){
         if($_SESSION['loggedIn']==true){
-                    $booking = new Booking($_POST['AantalVolwassenen'], $_POST['AantalKinderen'], 'Turkije1', $_POST['reistijden']);
+                    $booking = new Booking($_POST['AantalVolwassenen'], $_POST['AantalKinderen'], $_POST['packageID'], $_POST['reistijden']);
                     $booking->confirmOrder();
                     exit("boeking niet succesvol!!11!");
         }
