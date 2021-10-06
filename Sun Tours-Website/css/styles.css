@@ -320,11 +320,9 @@ h7.faq {
    
 }
 
-#boekingen_pagina_html .contact_toptext {
-   margin-left: 5%;
-}
 .contact_toptext {
-   margin-left: 18.974358%;
+   text-align: center;
+   margin-left: -40%;
 }
 
 #bookingForm {
@@ -433,7 +431,6 @@ textarea:hover {
    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.06);
    background-color: rgba(216, 132, 5, 0.411);
    
-   
 }
 
 
@@ -487,6 +484,11 @@ textarea:hover {
    margin-bottom: 5%;
    margin-left: 	10%;
 }
+
+
+
+
+
 
 .assortiment-first-image {
    float: left;
@@ -650,6 +652,7 @@ textarea:hover {
    position: absolute;
    margin-left: 60%;
    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+   ;
    height: min-content;
 }
 
@@ -687,7 +690,7 @@ textarea:hover {
    background-color: rgb(197, 213, 225);
    width: 30%;
    position: relative;
-   margin-left: 0%;
+   margin-left: -60%;
    font-size: 0, 5em;
 
 }
@@ -713,40 +716,16 @@ textarea:hover {
    background-color:rgb(197, 213, 225, 0.5);
 }
 
-#boekingen_pagina_html #contact {
-   width:100%;
-   position:relative;
+ 
+#logout_li{
+   margin-left:85%;
+   position:absolute
 }
-#boekingen_pagina_html #tijden{
-   width:200px;
-}
-@media only screen and (max-width: 855px) {
-
-   #boekingen_pagina_html #contact label{
-   font-size: 0.7em;
+@media only screen and (max-width: 930px) {
+  
+   #logout_li{
+      margin-left:80%;
+      position:absolute
    }
-}
 
-#boekingen_pagina_html .boekingen_Background
-{
- background-image: url("../images/background_image.png");
-
-
-
- background-attachment: fixed;
- background-position: center;
- background-repeat: no-repeat;
- background-size: 100% 100%;
-}
-
-
-
-.assortiment .button{
-   border: 1px solid black;
-   margin: 0;
-   padding: 0px 0;
-   text-align: center;
-   border-radius: 10px;
-   color: #fff
-   
-}
+} 
