@@ -2,6 +2,7 @@
 
 include 'user.php';
 include 'dbClass.php';
+include 'boekingen.php';
 include 'mail.php';
 $userClass = new User(); //functie afhandelen
 session_start();
@@ -53,6 +54,29 @@ if (isset($_POST['usernLogin']) && isset($_POST['passwdLogin'])) {
             exit("Gebruikersnaam of wachtwoord klopt niet.");
 
         }
+    }
+}
+
+if (isset($_POST['reistijden']) && isset($_POST['AantalVolwassenen']) && isset($_POST['AantalKinderen'])) {
+    if(isset($_SESSION['loggedIn'])){
+        if($_SESSION['loggedIn']==true){
+                    $booking = new Booking($_POST['AantalVolwassenen'], $_POST['AantalKinderen'], 'Turkije1', $_POST['reistijden']);
+                    $booking->confirmOrder();
+                    exit("boeking niet succesvol!!11!");
+        }
+    }else{
+        exit('U bent nog niet ingelogd.');
+    }
+}
+
+if(isset($_POST['logout'])){
+    if(isset($_SESSION['loggedIn'])){
+        if($_SESSION['loggedIn']==true){
+                $userClass->logout();
+                exit("U bent uitgelogd.");
+        }
+    }else{
+        exit('U bent nog niet ingelogd.');
     }
 }
 
