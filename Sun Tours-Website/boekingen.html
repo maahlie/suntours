@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="en" id='boekingen_pagina_html'>
 
 <head>
   <title>Sun Tours</title>
@@ -15,7 +15,7 @@
   <script type="text/javascript" src="./Javascript/url-search.js"></script>
 </head>
 
-<body onload="hide_autoverhuur()">
+<body class="boekingen_Background" onload="hide_autoverhuur()">
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a href="index.html"><img class="img-fluid" src="images/SunLogo.png" alt="x" style="width: 60px;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -51,11 +51,25 @@
     <h2 class="contact_toptext">Boeken</h2><br>
     <div class="c-form__progress"></div>
     <div class="wrapper Val">
+
       <form method="POST" id="contact">
-        <label>Vertrek Datum:</label><br>
-        <input type="date" id="vertrek-datum" name="VertrekDatum"><Br><Br>
-        <label>Terugreis datum:</label><br>
-        <input type="date" id="terugreis-datum" name="TerugreisDatum"><Br><br>
+
+        <label>Vertrek/terug reis datum en tijd opties:</label><br>
+        <select id="tijden" name="reistijden" class="break">
+          <option value="keuze" disabled selected>-</option>
+          <option value="1">
+            Heen: 2-11-2021 - 10.45
+            Terug: 10-11-2021 - 20.00
+          </option>
+          <option value="2">
+            Heen: 16-11-2021 - 9.45
+            Terug: 24-11-2021 - 15.30
+          </option>
+          <option value="3">
+            Heen: 7-12-2021 - 19.00
+            Terug: 15-12-2021 - 11.00
+          </option>
+        </select><br><br>
         <label>Aantal volwassenen (18 jaar of ouder):</label><br>
         <input type="number" id="aantal_volwassenen" name="AantalVolwassenen"><Br><Br>
         <label>Aantal kinderen:</label><br>
@@ -71,20 +85,20 @@
           <input type="radio" id="show_autoverhuur1" name="autoverhuur" onclick="show_autoverhuur()">ja
           <input type="radio" id="hide_autoverhuur2" name="autoverhuur" onclick="hide_autoverhuur()">nee<Br><Br>
         </div>
-        
+
         <div id="autos">
-            <label>Merk:</label><br>
-            <select id="auto" onchange="calculate_car_price()">
-              <option value="keuze" disabled selected>-</option>
-              <option value="Nissan">Nissan</option>
-              <option value="Opel">Opel</option>
-              <option value="Ford">Ford</option>
-              <option value="Volkswagen">Volkswagen</option>
-            </select>
-            <br><br><label>Aantal dagen:</label><br>
-            <input id="rental_time_chooser_id" type=number max=8 min=1 onchange="calculate_car_price()"></input>
-            <label id="auto_prijs"></label>
-            <br><br><br>
+          <label>Merk:</label><br>
+          <select id="auto" onchange="calculate_car_price()">
+            <option value="keuze" disabled selected>-</option>
+            <option value="Nissan">Nissan</option>
+            <option value="Opel">Opel</option>
+            <option value="Ford">Ford</option>
+            <option value="Volkswagen">Volkswagen</option>
+          </select>
+          <br><br><label>Aantal dagen:</label><br>
+          <input id="rental_time_chooser_id" type=number max=8 min=1 onchange="calculate_car_price()"></input>
+          <label id="auto_prijs"></label>
+          <br><br><br>
         </div>
 
         <div id="bus_deals">
@@ -98,6 +112,8 @@
       <div class="Cards">
         <div id="selected">
         </div>
+      </div>
+    </div>
   </main>
 </body>
 
