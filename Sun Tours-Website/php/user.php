@@ -3,6 +3,7 @@
 class User {
 
     public $SqlCommands;
+    public $username;
 
     public function __construct()
     {
@@ -49,14 +50,15 @@ class User {
                     $this->emailCheck($email);
                     $this->usernCheck($username);
 
-                   $sql = "INSERT INTO users (username, email, passwrd, phoneNumber, firstName, surName, address, postalCode) VALUES(?, ?, ?, ?, ?, ?, ?, ?)"; //query, vraagtekens worden gevuld bij de execute met $params
+                   $sql = "INSERT INTO users (username, email, passwrd, phoneNumber, firstName, surName, address, postalCode, activation, activationCode) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; //query, vraagtekens worden gevuld bij de execute met $params
            
                    $stmt = $this->SqlCommands->pdo->prepare($sql);
                         
                    if ($stmt) {
-                       $params = [$username, $email, $passwd2, $phoneNumber, $firstName, $surName, $address, $postalCode];
+                        $pass = substr(md5(uniqid(mt_rand(), true)) , 0, 8);
+                       $params = [$username, $email, $passwd2, $phoneNumber, $firstName, $surName, $address, $postalCode, false, $pass];
                        $stmt->execute($params);
-                       $this->confMail($email, "test", "test");
+                       $this->confMail($email, "De code voor uw activatie is: $pass.", "Activatie Code Voor uw Sun Tours Account");
                     }                   
             }
 
@@ -85,8 +87,27 @@ class User {
                         // session_start();
                         $_SESSION['loggedIn']=true;
                         $_SESSION['username']=$username;
+                        $this->username = $_SESSION['username'];
                 }
+            }
 
+            public function loginActivate($correct, $email){
+
+                $this->SqlCommands->connectDB();
+
+                $sql = "SELECT username FROM users WHERE email = ?;";
+                $stmt = $this->SqlCommands->pdo->prepare($sql);
+                    $params = [$email];
+                    $stmt->execute($params);
+                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                $username = $result['username'];
+                if($correct == true){
+                        // session_start();
+                        $_SESSION['loggedIn']=true;
+                        $_SESSION['username']=$username;
+                        $this->username = $_SESSION['username'];
+                }
             }
 
             public function contact($email,$mailBody,$mailSubject,$contactName)
@@ -115,6 +136,28 @@ class User {
                     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 return $result;
+            }
+
+            public function activateUser($email, $actCode){
+                $this->SqlCommands->connectDB();
+
+                $sql = "SELECT activationCode FROM users WHERE email = ?;";
+                $stmt = $this->SqlCommands->pdo->prepare($sql);
+
+                    $params = [$email];
+                    $stmt->execute($params);
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                    var_dump($result);
+
+                    if($actCode == $result['activationCode']){
+                        $this->SqlCommands->connectDB();
+
+                        $sql = "UPDATE users SET activation = true WHERE email = ?;";
+                        $stmt = $this->SqlCommands->pdo->prepare($sql);
+                            $params = [$email];
+                            $stmt->execute($params);
+                    }
             }
         
 }           

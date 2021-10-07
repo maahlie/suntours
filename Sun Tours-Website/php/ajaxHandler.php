@@ -96,4 +96,16 @@ if (isset($_POST['contact_naam']) && isset($_POST['contact_email']) && isset($_P
     $userClass->contact($email,$contactBody,$contactSubject,$contactName);
 }
 
+if(isset($_POST['activateCode'])){
+    $email = $_POST['email'];
+    $actCode = $_POST['activateCode'];
+    $correct = 1;
+
+                $userClass->activateUser($actCode, $email);
+                $userClass->loginActivate($correct, $email);
+                exit("Uw account is geactiveerd en u bent ingelogd.");
+                
+}
+
+
 exit("Deze actie is niet bij ons bekend (404)"); //Foutafhandelig
