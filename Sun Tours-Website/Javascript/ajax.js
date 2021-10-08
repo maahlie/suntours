@@ -215,5 +215,49 @@ document.addEventListener("DOMContentLoaded", function(){
                 alert(response, textstatus);
             })
         }
+    })
+
+    $("#reviewForm").validate({
+        rules:
+        {
+            holidays: {
+                required: true,
+            },
+            Waardering: {
+                required: true,
+            },
+            titel: {
+                required: true,
+            },
+            review: {
+                required: true,
+            },
+            keuze: {
+                required: true,
+            },
+        },
+        messages:
+        {
+            holidays: "Gekozen vakantie is vereist",
+            Waardering:"Waardering is vereist",
+            titel: "Een onderwerp is vereist",
+            review: "Review is vereist",
+            keuze: "Keuze is vereist"
+        },
+
+        submitHandler: function () {
+            var form = $('#reviewForm');
+            var sData = form.serialize();
+
+            $.ajax({
+                url: '../php/ajaxHandler.php',
+                method: "POST",
+                data: sData,
+            }).done(function (response) {
+                alert(response);
+            }).fail(function (jqXHR, textstatus) {
+                alert(response, textstatus);
+            })
+        }
     });
 });

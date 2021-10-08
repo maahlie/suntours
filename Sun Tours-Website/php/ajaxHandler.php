@@ -90,4 +90,23 @@ if (isset($_POST['contact_naam']) && isset($_POST['contact_email']) && isset($_P
     $userClass->contact($email,$contactBody,$contactSubject,$contactName);
 }
 
+if (isset($_POST['holidays']) && isset($_POST['rating']) && isset($_POST['titel']) && isset($_POST['review']) && isset($_POST['keuze'])) {
+    $packageId = $_POST['holidays'];
+    $score = $_POST['rating'];
+    $reviewSubject = $_POST['titel'];
+    $review = $_POST['review'];
+    $reccomendation = $_POST['keuze'];
+    if (isset($_SESSION['username']))
+    {
+        $username = $_SESSION['username'];
+    }else{
+        $username = '-';
+    }
+    
+
+    $userClass->enterReview($packageId, $score, $reviewSubject, $review, $reccomendation, $username);
+
+    //$userClass->contact($email,$contactBody,$contactSubject,$contactName);
+}
+
 exit("Deze actie is niet bij ons bekend (404)"); //Foutafhandelig
