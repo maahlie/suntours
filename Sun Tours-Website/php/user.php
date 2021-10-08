@@ -88,39 +88,39 @@ class User {
                 $this->confMail($targetEmail,$completeBody,$mailSubject);
                 exit('Uw Bericht is succelvol verzonden en wordt zo snel mogenlijk in behandeling genomen.');
             }
-//enterReview maakt een niewe review aan in de database aan de hand van ingevoerde waardens
-public function enterReview($packageId, $score, $reviewSubject, $review, $reccomendation, $username)
-{
-    //controleerd of de gebruiker is ingelogd.
-    if (!isset($_SESSION['username'])){
-        exit('log in on een review achter te laten');
-    }
+            //enterReview maakt een niewe review aan in de database aan de hand van ingevoerde waardens
+            public function enterReview($packageId, $score, $reviewSubject, $review, $reccomendation, $username)
+            {
+                //controleerd of de gebruiker is ingelogd.
+                if (!isset($_SESSION['username'])){
+                    exit('log in on een review achter te laten');
+                }
 
-    $this->SqlCommands->connectDB();
+                $this->SqlCommands->connectDB();
 
-    // kijkt of een gebruiker al eens een review heeft geschreven.
-    $sql = 'SELECT username FROM `review` WHERE `username` = ?';
-    $stmt = $this->SqlCommands->pdo->prepare($sql);
-    $params = [$username];
-    $stmt->execute($params);
-    $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    if ($result){
-        exit('U kunt maar 1 review achter laten');
-    }
+                // kijkt of een gebruiker al eens een review heeft geschreven.
+                $sql = 'SELECT username FROM `review` WHERE `username` = ?';
+                $stmt = $this->SqlCommands->pdo->prepare($sql);
+                $params = [$username];
+                $stmt->execute($params);
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                if ($result){
+                    exit('U kunt maar 1 review achter laten');
+                }
 
-    //nieuwe revieuw wordt toe gevoegd aan de database
-    $sql = "INSERT INTO review (packageId, score, reviewSubject, review, reccomendation, username) VALUES(?, ?, ?, ?, ?, ?)";
-    $stmt = $this->SqlCommands->pdo->prepare($sql);
-            
-       if ($stmt) {
-           $params = [$packageId, $score, $reviewSubject, $review, $reccomendation, $username];
-           $stmt->execute($params);
-           //$this->confMail($email);
-        } 
+                //nieuwe revieuw wordt toe gevoegd aan de database
+                $sql = "INSERT INTO review (packageId, score, reviewSubject, review, reccomendation, username) VALUES(?, ?, ?, ?, ?, ?)";
+                $stmt = $this->SqlCommands->pdo->prepare($sql);
+                        
+                if ($stmt) {
+                    $params = [$packageId, $score, $reviewSubject, $review, $reccomendation, $username];
+                    $stmt->execute($params);
+                    //$this->confMail($email);
+                    } 
 
-    $this->showReview();
-    exit("Uw review is ingezonden, bedankt voor uw moeite.");
-}
+                $this->showReview();
+                exit("Uw review is ingezonden, bedankt voor uw moeite.");
+            }
 
 //showReview laat de laatste 12 reviews zien op de pagina van de website
 public function showReview()
