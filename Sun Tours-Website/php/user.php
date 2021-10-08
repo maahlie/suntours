@@ -3,11 +3,7 @@
 class User {
 
     public $SqlCommands;
-    public $reviewText;
-    public $reviewName;
-    public $reviewRating;
-    public $arrayReview;
-    public $reviewLength;
+
     public function __construct()
     {
         $this->SqlCommands = new SqlCommands();
@@ -50,6 +46,12 @@ class User {
 
             public function enterReg($email, $phoneNumber, $firstName, $surName, $username, $address, $postalCode, $passwd2, $passwd3){
         
+
+                $passwrd_new1 = $_POST['passwd2'];
+                $passwrd_new2 = $_POST['passwd3'];
+
+                $hash = password_hash($passwrd_new1, PASSWORD_DEFAULT);
+
                     $this->emailCheck($email);
                     $this->usernCheck($username);
 
@@ -58,7 +60,7 @@ class User {
                    $stmt = $this->SqlCommands->pdo->prepare($sql);
                         
                    if ($stmt) {
-                       $params = [$username, $email, $passwd2, $phoneNumber, $firstName, $surName, $address, $postalCode];
+                       $params = [$username, $email, $hash, $phoneNumber, $firstName, $surName, $address, $postalCode];
                        $stmt->execute($params);
                        //$this->confMail($email);
                     }                   
@@ -67,19 +69,25 @@ class User {
             public function login($username, $passwrd){
 
                 $this->SqlCommands->connectDB();
+                //$verify = password_verify($hashed, $passwdLogin);
 
-                $sql = "SELECT username, passwrd FROM users WHERE username = ? AND passwrd = ?;";
+                $sql = "SELECT username, passwrd FROM users WHERE username = ?;";
                 $stmt = $this->SqlCommands->pdo->prepare($sql);
-                    $params = [$username, $passwrd];
+                    $params = [$username];
                     $stmt->execute($params);
                     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                    if ($username == $result['username'] && $passwrd == $result['passwrd']){
-                        // session_start();
-                        $_SESSION['loggedIn']=true;
-                        $_SESSION['username']=$result["username"];
+                    $verify = password_verify($passwrd, $result['passwrd']);
+                    
+                    if($username == $result['username'] && $verify == true) {
+                            // session_start();
+                            $_SESSION['loggedIn']=true;
+                            $_SESSION['username']=$result["username"];
+                        } else {
+                            $_SESSION = [];
+                            session_destroy();
+                        }
                     }
-            }
 
             public function contact($email,$mailBody,$mailSubject,$contactName)
             {
