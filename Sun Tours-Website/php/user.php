@@ -50,7 +50,7 @@ class User {
                     $this->emailCheck($email);
                     $this->usernCheck($username);
 
-                   $sql = "INSERT INTO users (username, email, passwrd, phoneNumber, firstName, surName, address, postalCode, activation, activationCode) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; //query, vraagtekens worden gevuld bij de execute met $params
+                   $sql = "INSERT INTO users (username, email, passwrd, phoneNumber, firstName, surName, address, postalCode, active, activationCode) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; //query, vraagtekens worden gevuld bij de execute met $params
            
                    $stmt = $this->SqlCommands->pdo->prepare($sql);
                         
@@ -129,7 +129,7 @@ class User {
             public function getActivation($username, $passwrd){
                 $this->SqlCommands->connectDB();
 
-                $sql = "SELECT activation FROM users WHERE username = ? AND passwrd = ?;";
+                $sql = "SELECT active FROM users WHERE username = ? AND passwrd = ?;";
                 $stmt = $this->SqlCommands->pdo->prepare($sql);
                     $params = [$username, $passwrd];
                     $stmt->execute($params);
@@ -141,23 +141,25 @@ class User {
             public function activateUser($email, $actCode){
                 $this->SqlCommands->connectDB();
 
-                $sql = "SELECT activationCode FROM users WHERE email = ?;";
-                $stmt = $this->SqlCommands->pdo->prepare($sql);
+                $result = $this->SqlCommands->selectFromWhere('activationCode', 'users', 'email', $email);
 
-                    $params = [$email];
-                    $stmt->execute($params);
-                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-                    var_dump($result);
-
-                    if($actCode == $result['activationCode']){
+                if(count($result)!=0){
+                    if($actCode == $result[0]['activationCode']){
                         $this->SqlCommands->connectDB();
 
-                        $sql = "UPDATE users SET activation = true WHERE email = ?;";
+                        $sql = "UPDATE users SET active = 1 WHERE email = ?;";
                         $stmt = $this->SqlCommands->pdo->prepare($sql);
                             $params = [$email];
                             $stmt->execute($params);
+                            return 1;
+                    }else{
+                        return 2;
                     }
+                }else{
+                    return 3;
+                }
+
+
             }
         
 }           

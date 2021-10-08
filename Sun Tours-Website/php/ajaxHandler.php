@@ -51,9 +51,9 @@ if (isset($_POST['usernLogin']) && isset($_POST['passwdLogin'])) {
 
         $correct = $userClass->userPassCheck($usernameLogin, $passwdLogin);
 
-        if($active["activation"] == 0 && $correct == 0){
+        if($active["active"] == 0 && $correct == 0){
             exit("Gebruikersnaam of wachtwoord klopt niet.");
-        }elseif($active["activation"] == 1){
+        }elseif($active["active"] == 1){
             $userClass->login($correct, $usernameLogin);
             if(isset($_SESSION['loggedIn'])){
                 exit("U bent ingelogd, welkom " . $_SESSION['username']);
@@ -101,10 +101,19 @@ if(isset($_POST['activateCode'])){
     $actCode = $_POST['activateCode'];
     $correct = 1;
 
-                $userClass->activateUser($actCode, $email);
-                $userClass->loginActivate($correct, $email);
-                exit("Uw account is geactiveerd en u bent ingelogd.");
-                
+                $check = $userClass->activateUser($email, $actCode);
+
+                switch($check){
+                    case 1:                     
+                        $userClass->loginActivate($correct, $email);
+                        exit("Uw account is geactiveerd en u bent ingelogd.");
+
+                    case 2:
+                        exit("De code was onjuist.");
+
+                    case 3:
+                        exit("Het email adres was onjuist.");
+                }
 }
 
 
