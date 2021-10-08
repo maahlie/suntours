@@ -47,19 +47,27 @@ if (isset($_POST['usernLogin']) && isset($_POST['passwdLogin'])) {
         $usernameLogin = $_POST['usernLogin'];
         $passwdLogin = $_POST['passwdLogin'];
 
-        $active = $userClass->getActivation($usernameLogin, $passwdLogin);
 
-        $correct = $userClass->userPassCheck($usernameLogin, $passwdLogin);
+        $check = $userClass->userLoginCheck($usernameLogin, $passwdLogin);
 
-        if($active["active"] == 0 && $correct == 0){
-            exit("Gebruikersnaam of wachtwoord klopt niet.");
-        }elseif($active["active"] == 1){
-            $userClass->login($correct, $usernameLogin);
-            if(isset($_SESSION['loggedIn'])){
-                exit("U bent ingelogd, welkom " . $_SESSION['username']);
-            }
-        }else{
-            exit('Uw account is nog niet geactiveerd, voer a.u.b eerst de code in.');
+        switch($check){
+            case 1:                     
+                $userClass->login($usernameLogin);
+                exit("U bent ingelogd.");
+                break;
+
+            case 2:
+                exit("Uw account is nog niet geactiveerd.");
+                break;
+
+            case 3:
+                exit("Uw gebruikersnaam of wachtwoord is onjuist.");
+                break;
+
+            default:
+                exit("Deze actie is niet bij ons bekend (404).");
+                break;
+
         }
     }
 }
@@ -107,12 +115,19 @@ if(isset($_POST['activateCode'])){
                     case 1:                     
                         $userClass->loginActivate($correct, $email);
                         exit("Uw account is geactiveerd en u bent ingelogd.");
+                        break;
 
                     case 2:
                         exit("De code was onjuist.");
+                        break;
 
                     case 3:
                         exit("Het email adres was onjuist.");
+                        break;
+
+                    default:
+                        exit("Deze actie is niet bij ons bekend (404).");
+                        break;
                 }
 }
 

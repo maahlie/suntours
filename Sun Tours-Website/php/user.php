@@ -62,7 +62,7 @@ class User {
                     }                   
             }
 
-            public function userPassCheck($username, $passwrd){
+            public function userLoginCheck($username, $passwrd){
 
                 $this->SqlCommands->connectDB();
 
@@ -72,23 +72,23 @@ class User {
                     $stmt->execute($params);
                     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                    if ($username == $result['username'] && $passwrd == $result['passwrd']){
-                        $correct = true;
-                        return $correct;
+                $active = $this->getActivation($username, $passwrd);
+
+                    if ($username == $result['username'] && $passwrd == $result['passwrd'] && $active['active']==1){
+                        return 1;
+                    }elseif($username == $result['username'] && $passwrd == $result['passwrd'] && $active['active'] != 1){
+                        return 2;
                     }else{
-                        $correct = false;
-                        return $correct;
+                        return 3;
                     }
             }
 
-            public function login($correct, $username){
+            public function login($username){
 
-                if($correct == true){
                         // session_start();
                         $_SESSION['loggedIn']=true;
                         $_SESSION['username']=$username;
                         $this->username = $_SESSION['username'];
-                }
             }
 
             public function loginActivate($correct, $email){
