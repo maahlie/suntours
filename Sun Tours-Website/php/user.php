@@ -3,12 +3,10 @@
 class User {
 
     public $SqlCommands;
-    public $hash;
 
     public function __construct()
     {
         $this->SqlCommands = new SqlCommands();
-        $this->hash;
     }
         //primary key moet auto increment zijn!!!! :)
 
@@ -46,14 +44,13 @@ class User {
                 $mail->email();
             }
 
-            public function enterReg($email, $phoneNumber, $firstName, $surName, $username, $address, $postalCode, $passwd2, $passwd3, $hashed){
+            public function enterReg($email, $phoneNumber, $firstName, $surName, $username, $address, $postalCode, $passwd2, $passwd3){
         
 
                 $passwrd_new1 = $_POST['passwd2'];
                 $passwrd_new2 = $_POST['passwd3'];
 
-                $this->hash = password_hash($passwrd_new1, PASSWORD_DEFAULT);
-                $hashed = $this->hash;
+                $hash = password_hash($passwrd_new1, PASSWORD_DEFAULT);
 
                     $this->emailCheck($email);
                     $this->usernCheck($username);
@@ -63,30 +60,26 @@ class User {
                    $stmt = $this->SqlCommands->pdo->prepare($sql);
                         
                    if ($stmt) {
-                       $params = [$username, $email, $hashed, $phoneNumber, $firstName, $surName, $address, $postalCode];
+                       $params = [$username, $email, $hash, $phoneNumber, $firstName, $surName, $address, $postalCode];
                        $stmt->execute($params);
-                       return $hashed;
                        //$this->confMail($email);
                     }                   
             }
 
             public function login($username, $passwrd){
 
-                $passwdLogin = $_POST['passwdLogin'];
-                $usernLogin = $_POST['usernLogin'];
-
                 $this->SqlCommands->connectDB();
-                $this->hash;
-                $hashed = $this->hash;
+                //$verify = password_verify($hashed, $passwdLogin);
 
-                $sql = "SELECT username, passwrd FROM users WHERE username = ?";
+                $sql = "SELECT username, passwrd FROM users WHERE username = ?;";
                 $stmt = $this->SqlCommands->pdo->prepare($sql);
                     $params = [$username];
                     $stmt->execute($params);
                     $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                    $verify = password_verify($passwrd, $result['passwrd']);
                     
-                    if($usernLogin == $result['username']) {
-                            password_verify($hashed, $passwdLogin);
+                    if($username == $result['username'] && $verify == true) {
                             // session_start();
                             $_SESSION['loggedIn']=true;
                             $_SESSION['username']=$result["username"];
