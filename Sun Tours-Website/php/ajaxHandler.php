@@ -22,7 +22,7 @@ if (
     $passwd = $_POST['passwd2'];
     $passwd2 = $_POST['passwd3'];
 
-    $userClass->enterReg(
+    $hashed = $userClass->enterReg(
         $email,
         $phonenumber,
         $firstName,
@@ -31,7 +31,8 @@ if (
         $address,
         $postalCode,
         $passwd,
-        $passwd2
+        $passwd2,
+        $hashed
     );
     exit("Registreren is gelukt.");
 }
