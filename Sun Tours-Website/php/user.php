@@ -46,12 +46,9 @@ class User {
             }
 
             public function enterReg($email, $phoneNumber, $firstName, $surName, $username, $address, $postalCode, $passwd2, $passwd3){
-        
+    
 
-                $passwrd_new1 = $_POST['passwd2'];
-                $passwrd_new2 = $_POST['passwd3'];
-
-                $hash = password_hash($passwrd_new1, PASSWORD_DEFAULT);
+                $hash = password_hash($passwd2, PASSWORD_DEFAULT);
 
                     $this->emailCheck($email);
                     $this->usernCheck($username);
@@ -79,7 +76,7 @@ class User {
                     $stmt->execute($params);
                     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                $active = $this->getActivation($username, $passwrd);
+                $active = $this->getActivation($username, $result['passwrd']);
                 $verify = password_verify($passwrd, $result['passwrd']);
 
 
@@ -126,6 +123,7 @@ class User {
                 $this->confMail($targetEmail,$completeBody,$mailSubject);
                 exit('Uw Bericht is succelvol verzonden en wordt zo snel mogenlijk in behandeling genomen.');
             }
+
             //enterReview maakt een niewe review aan in de database aan de hand van ingevoerde waardens
             public function enterReview($packageId, $score, $reviewSubject, $review, $reccomendation, $username)
             {
