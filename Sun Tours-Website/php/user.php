@@ -69,13 +69,14 @@ class User {
 
                 $this->SqlCommands->connectDB();
                 //$verify = password_verify($hashed, $passwdLogin);
-
                 $sql = "SELECT username, passwrd FROM users WHERE username = ?;";
                 $stmt = $this->SqlCommands->pdo->prepare($sql);
                     $params = [$username];
                     $stmt->execute($params);
                     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
+                if ($result == false){
+                    return 3;
+                }
                 $active = $this->getActivation($username, $result['passwrd']);
                 $verify = password_verify($passwrd, $result['passwrd']);
 
