@@ -3,7 +3,11 @@
 class User {
 
     public $SqlCommands;
-
+    public $reviewText;
+    public $reviewName;
+    public $reviewRating;
+    public $arrayReview;
+    public $reviewLength;
     public function __construct()
     {
         $this->SqlCommands = new SqlCommands();
@@ -48,12 +52,6 @@ class User {
         
                     $this->emailCheck($email);
                     $this->usernCheck($username);
-                    //    $username = trim(htmlentities($username));
-                    //    $email = trim(htmlentities($email));
-                    //    $passwd2 = trim(htmlentities($passwd2));
-                    //    $firstName = trim(htmlentities($firstName));
-                    //    $surName = trim(htmlentities($_POST['surName']));
-                    //    $phoneNumber = trim(htmlentities($_POST['phonenumber']));
 
                    $sql = "INSERT INTO users (username, email, passwrd, phoneNumber, firstName, surName, address, postalCode) VALUES(?, ?, ?, ?, ?, ?, ?, ?)"; //query, vraagtekens worden gevuld bij de execute met $params
            
@@ -90,14 +88,68 @@ class User {
                 $this->confMail($targetEmail,$completeBody,$mailSubject);
                 exit('Uw Bericht is succelvol verzonden en wordt zo snel mogenlijk in behandeling genomen.');
             }
+//enterReview maakt een niewe review aan in de database aan de hand van ingevoerde waardens
+public function enterReview($packageId, $score, $reviewSubject, $review, $reccomendation, $username)
+{
+    //controleerd of de gebruiker is ingelogd.
+    if (!isset($_SESSION['username'])){
+        exit('log in on een review achter te laten');
+    }
 
-            public function logout(){
+    $this->SqlCommands->connectDB();
+
+    // kijkt of een gebruiker al eens een review heeft geschreven.
+    $sql = 'SELECT username FROM `review` WHERE `username` = ?';
+    $stmt = $this->SqlCommands->pdo->prepare($sql);
+    $params = [$username];
+    $stmt->execute($params);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    if ($result){
+        exit('U kunt maar 1 review achter laten');
+    }
+
+    //nieuwe revieuw wordt toe gevoegd aan de database
+    $sql = "INSERT INTO review (packageId, score, reviewSubject, review, reccomendation, username) VALUES(?, ?, ?, ?, ?, ?)";
+    $stmt = $this->SqlCommands->pdo->prepare($sql);
+            
+       if ($stmt) {
+           $params = [$packageId, $score, $reviewSubject, $review, $reccomendation, $username];
+           $stmt->execute($params);
+           //$this->confMail($email);
+        } 
+
+    $this->showReview();
+    exit("Uw review is ingezonden, bedankt voor uw moeite.");
+}
+
+//showReview laat de laatste 12 reviews zien op de pagina van de website
+public function showReview()
+{
+    $this->SqlCommands->connectDB();
+   
+    $sql = "SELECT * FROM review ORDER BY reviewID DESC LIMIT 12";
+    $stmt = $this->SqlCommands->pdo->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $this->reviewLength = count($result);
+    for ($i = 1; $i < $this->reviewLength+1; $i++)
+    {
+        $this->arrayReview[$i][0] = 'review_' . $i;
+        $this->arrayReview[$i][1] = $result[$i-1]['review'];
+        $this->arrayReview[$i][2] = $result[$i-1]['username'];
+        $this->arrayReview[$i][3] = 'aantal sterren: ' .  $result[$i-1]['score'];
+    }
+}
+
+
+public function logout()
+{
                 
-                $_SESSION[] = array();
+$_SESSION[] = array();
 
-                // destroy de sessie
-                session_destroy();
-            }
+// destroy de sessie
+session_destroy();
+}
         
 }           
 ?>
