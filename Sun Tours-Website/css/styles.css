@@ -716,5 +716,9 @@ textarea:hover {
    background-color:rgb(197, 213, 225, 0.5);
 }
 
- 
- 
+/* .prijzen {
+   background-color: rgb(197, 213, 225);
+} */
+#boekingenTable td,th{
+   border:1px solid black;
+}

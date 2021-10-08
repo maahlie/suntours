@@ -1,10 +1,13 @@
 
 countrys = ['Spanje','Turkije1','Turkije2','Egypte','Frankrijk'];
-country_distanse_km = [1707,  3312, 3312, 3418, 818];
+country_prijzen = ['600','800', '500','450','950'];
 auto_merken = ['Nissan', 'Opel', 'Ford', 'Volkswagen'];
 auto_prijzen = ['45', '69', '36', '84'];
-vlieg_reizen = ['KLM','Ryan air', 'Iberia' ];
-vlieg_prijzen = [500,353,467]
+vlieg_reizen = ['KLM','Ryan air', 'Iberia'];
+vlieg_prijzen = [500,353,467];
+vakantie_prijs = 0;
+vliegticket_prijs = 0;
+
 
 html_scripts = [
   '<div class = "card_header"><b>Hotel Best Tenerife-Spanje</b></div>Vertrek/terug reis datum en tijd opties: <Br>2-11-2021 - 9.45<Br>10-11-2021 - 10.45<Br><Br>16-11-2021 - 8.30<Br>24-11-2021 - 9-30<Br><Br>7-12-2021 - 9.45<Br>15-12-2021 - 11.00<Br><Br><div class="btn-group"><a href="./assortiment.html">Verander Selectie</a></div></div></div></div>',
@@ -34,19 +37,25 @@ $(document).ready(function () {
 });
 
 function show_vervoer(){
-  document.getElementById("vliegen_div").innerHTML='<label>vliegmaatschapij:</label><br> <select name="airlines" id="airlines"  onchange="calculate_plane_price()"> <option value="keuze" disabled selected>-</option> <option value="KLM">KLM <option value="Ryan air">Ryan air</option> <option value="Iberia">Iberia</option> </select><Br><Br> <label>vertrek vliegveld:</label><br> <select name="Vertrek_vliegveld" id="Vertrek_vliegveld"> <option value="keuze" disabled selected>-</option> <option value="KLM">Schiphol</option> <option value="Air spain">Eindhoven</option> <option value="Ryan air">Groningen-Eelde</option> <option value="Iberia">Rotterdam-The Hague</option> </select><Br><Br><label>Vlucht tijden:</label><br> <label>Heenreis:</label> <select name="Vertrek_tijd" id="Vertrek_tijd"> <option value="keuze" disabled selected>-</option> <option value="8.' + html_script_vliegen[country];
+  document.getElementById("vliegen_div").innerHTML='<label>vliegmaatschapij:</label><br> <select name="airlines" id="airlines"  onchange="update_prices()"> <option value="keuze" disabled selected>-</option> <option value="KLM">KLM <option value="Ryan air">Ryan air</option> <option value="Iberia">Iberia</option> </select><Br><Br> <label>vertrek vliegveld:</label><br> <select name="Vertrek_vliegveld" id="Vertrek_vliegveld"> <option value="keuze" disabled selected>-</option> <option value="KLM">Schiphol</option> <option value="Air spain">Eindhoven</option> <option value="Ryan air">Groningen-Eelde</option> <option value="Iberia">Rotterdam-The Hague</option> </select><Br><Br><label>Vlucht tijden:</label><br> <label>Heenreis:</label> <select name="Vertrek_tijd" id="Vertrek_tijd"> <option value="keuze" disabled selected>-</option> <option value="8.' + html_script_vliegen[country];
 }
 function hide_vervoer(){
   document.getElementById("vliegen_div").innerHTML='';
 }
 function show_autoverhuur(){
-  //document.getElementById("autos").innerHTML=html_script_autos;
   document.getElementById("autos").style.display = "block";
 }
 function hide_autoverhuur(){
-  //document.getElementById("autos").innerHTML='';
   document.getElementById("autos").style.display = "none";
 }
+function show_bus_deals(){
+  document.getElementById("bus").style.display = "block";
+}
+
+function hide_bus_deals(){
+  document.getElementById("bus").style.display = "none";
+}
+
 
 function calculate_car_price(){
   var selectedValue = document.getElementById("auto");
@@ -60,24 +69,96 @@ function calculate_car_price(){
     {
       if (rental_time <= 8 && rental_time > 0)
       {
-        document.getElementById("auto_prijs").innerHTML='Prijs: €' + auto_prijzen[i]*rental_time;
+        auto_prijs = auto_prijzen[i]*rental_time;
+        document.getElementById("auto_prijs").innerHTML='Prijs: €' + auto_prijs;
       }else{
         document.getElementById("auto_prijs").innerHTML='Prijs: -';
       }
     }
   }
 }
-function calculate_plane_price(){
-var selectedValue = document.getElementById("airlines").value;
-var value = selectedValue.options[selectedValue.selectedIndex].value;
-console.log(value);
+
+function calculate_Bus_Price()
+{
+  bus_Prijs = 9.75;
+  aantal_dagen = document.getElementById("aantal_Dagen").value;
+  if(aantal_dagen < 1)
+  {
+    document.getElementById("bus_Totaal").innerHTML='Prijs: -';
+  }
+  else
+  {
+    document.getElementById("bus_Totaal").innerHTML = '€' + aantal_dagen * bus_Prijs;
+  }
+  
 }
 
 
+function calculate_plane_price()
+{
+  
+  if(document.getElementById('vervoer').checked){
+  aantal_Volwassenen = document.getElementById("aantal_volwassenen").value;
+  aantal_Kinderen = document.getElementById("aantal_kinderen").value;
+  aantal_Personen = +aantal_Volwassenen + +aantal_Kinderen;
+  vakantie_prijs = aantal_Personen * country_prijzen[country];
+  document.getElementById("totaal_pakket_Prijs").innerHTML ='€' + vakantie_prijs;
 
+airlines = document.getElementById("airlines").selectedIndex;
+  for (i = 1; i < 3; i++)
+  {
+    if (airlines == i)
+    {
+      vliegticket_prijs = aantal_Personen * vlieg_prijzen[i];
+      document.getElementById("totaal_Vliegticket_Prijs").innerHTML ='€' +  vliegticket_prijs;
+    }
+  }
 
- 
+  console.log(airlines);
+}
+else{
+  document.getElementById("totaal_Vliegticket_Prijs").innerHTML='Prijs: -';
+  document.getElementById("totaal_pakket_Prijs").innerHTML='Prijs: -';
+  
+}
+  
+}
 
+function totalPrice()
+{
+  total_price = 0;
+  vars = [vakantie_prijs, vliegticket_prijs, auto_prijs, aantal_dagen * bus_Prijs];
+  for (i = 0; i < 4; i++)
+  {
+    if (vars[i] > 0){
+      total_price += vars[i];
+    }
+  }
+  
+  if (total_price > 0){
+    document.getElementById("totaal__Reis_Prijs").innerHTML = total_price;
+  }else{
+    document.getElementById("totaal__Reis_Prijs").innerHTML = 'Prijs:-';
+  }
+  
+}
+ function calculate_pakket_prijs()
+ {
+  aantal_Volwassenen = document.getElementById("aantal_volwassenen").value;
+  aantal_Kinderen = document.getElementById("aantal_kinderen").value;
+  aantal_Personen = +aantal_Volwassenen + +aantal_Kinderen;
+  vakantie_prijs = aantal_Personen * country_prijzen[country];
+  document.getElementById("totaal_pakket_Prijs").innerHTML ='€' + vakantie_prijs;
+ }
+function update_prices()
+{
+  calculate_pakket_prijs()
+  calculate_car_price()
+  calculate_Bus_Price()
+  calculate_plane_price();
+  totalPrice();
+  
+}
 
 
 
