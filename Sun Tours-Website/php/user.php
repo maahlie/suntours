@@ -3,6 +3,7 @@
 class User {
 
     public $SqlCommands;
+    public $username;
 
     public function __construct()
     {
@@ -55,18 +56,19 @@ class User {
                     $this->emailCheck($email);
                     $this->usernCheck($username);
 
-                   $sql = "INSERT INTO users (username, email, passwrd, phoneNumber, firstName, surName, address, postalCode) VALUES(?, ?, ?, ?, ?, ?, ?, ?)"; //query, vraagtekens worden gevuld bij de execute met $params
+                   $sql = "INSERT INTO users (username, email, passwrd, phoneNumber, firstName, surName, address, postalCode, active, activationCode) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; //query, vraagtekens worden gevuld bij de execute met $params
            
                    $stmt = $this->SqlCommands->pdo->prepare($sql);
                         
                    if ($stmt) {
-                       $params = [$username, $email, $hash, $phoneNumber, $firstName, $surName, $address, $postalCode];
+                        $pass = substr(md5(uniqid(mt_rand(), true)) , 0, 8);
+                       $params = [$username, $email, $hash, $phoneNumber, $firstName, $surName, $address, $postalCode, false, $pass];
                        $stmt->execute($params);
-                       //$this->confMail($email);
+                       $this->confMail($email, "De code voor uw activatie is: $pass.", "Activatie Code Voor uw Sun Tours Account");
                     }                   
             }
 
-            public function login($username, $passwrd){
+            public function userLoginCheck($username, $passwrd){
 
                 $this->SqlCommands->connectDB();
                 //$verify = password_verify($hashed, $passwdLogin);
@@ -77,17 +79,45 @@ class User {
                     $stmt->execute($params);
                     $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                    $verify = password_verify($passwrd, $result['passwrd']);
-                    
-                    if($username == $result['username'] && $verify == true) {
-                            // session_start();
-                            $_SESSION['loggedIn']=true;
-                            $_SESSION['username']=$result["username"];
-                        } else {
-                            $_SESSION = [];
-                            session_destroy();
-                        }
+                $active = $this->getActivation($username, $passwrd);
+                $verify = password_verify($passwrd, $result['passwrd']);
+
+
+                    if ($username == $result['username'] && $verify == true && $active['active']==1){
+                        return 1;
+                    }elseif($username == $result['username'] && $verify == true && $active['active'] != 1){
+                        return 2;
+                    }else{
+                        return 3;
                     }
+            }
+
+            public function login($username){
+
+                        // session_start();
+                        $_SESSION['loggedIn']=true;
+                        $_SESSION['username']=$username;
+                        $this->username = $_SESSION['username'];
+            }
+
+            public function loginActivate($correct, $email){
+
+                $this->SqlCommands->connectDB();
+
+                $sql = "SELECT username FROM users WHERE email = ?;";
+                $stmt = $this->SqlCommands->pdo->prepare($sql);
+                    $params = [$email];
+                    $stmt->execute($params);
+                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                $username = $result['username'];
+                if($correct == true){
+                        // session_start();
+                        $_SESSION['loggedIn']=true;
+                        $_SESSION['username']=$username;
+                        $this->username = $_SESSION['username'];
+                }
+            }
 
             public function contact($email,$mailBody,$mailSubject,$contactName)
             {
@@ -130,34 +160,70 @@ class User {
                 exit("Uw review is ingezonden, bedankt voor uw moeite.");
             }
 
-//showReview laat de laatste 12 reviews zien op de pagina van de website
-public function showReview()
-{
-    $this->SqlCommands->connectDB();
-   
-    $sql = "SELECT * FROM review ORDER BY reviewID DESC LIMIT 12";
-    $stmt = $this->SqlCommands->pdo->prepare($sql);
-    $stmt->execute();
-    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $this->reviewLength = count($result);
-    for ($i = 1; $i < $this->reviewLength+1; $i++)
-    {
-        $this->arrayReview[$i][0] = 'review_' . $i;
-        $this->arrayReview[$i][1] = $result[$i-1]['review'];
-        $this->arrayReview[$i][2] = $result[$i-1]['username'];
-        $this->arrayReview[$i][3] = 'aantal sterren: ' .  $result[$i-1]['score'];
-    }
-}
+            //showReview laat de laatste 12 reviews zien op de pagina van de website
+            public function showReview()
+            {
+                $this->SqlCommands->connectDB();
+            
+                $sql = "SELECT * FROM review ORDER BY reviewID DESC LIMIT 12";
+                $stmt = $this->SqlCommands->pdo->prepare($sql);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $this->reviewLength = count($result);
+                for ($i = 1; $i < $this->reviewLength+1; $i++)
+                {
+                    $this->arrayReview[$i][0] = 'review_' . $i;
+                    $this->arrayReview[$i][1] = $result[$i-1]['review'];
+                    $this->arrayReview[$i][2] = $result[$i-1]['username'];
+                    $this->arrayReview[$i][3] = 'aantal sterren: ' .  $result[$i-1]['score'];
+                }
+            }
 
 
-public function logout()
-{
-                
-$_SESSION[] = array();
+            public function logout()
+            {
+                            
+            $_SESSION[] = array();
 
-// destroy de sessie
-session_destroy();
-}
+            // destroy de sessie
+            session_destroy();
+            }
+
+            public function getActivation($username, $passwrd){
+                $this->SqlCommands->connectDB();
+
+                $sql = "SELECT active FROM users WHERE username = ? AND passwrd = ?;";
+                $stmt = $this->SqlCommands->pdo->prepare($sql);
+                    $params = [$username, $passwrd];
+                    $stmt->execute($params);
+                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                return $result;
+            }
+
+            public function activateUser($email, $actCode){
+                $this->SqlCommands->connectDB();
+
+                $result = $this->SqlCommands->selectFromWhere('activationCode', 'users', 'email', $email);
+
+                if(count($result)!=0){
+                    if($actCode == $result[0]['activationCode']){
+                        $this->SqlCommands->connectDB();
+
+                        $sql = "UPDATE users SET active = 1 WHERE email = ?;";
+                        $stmt = $this->SqlCommands->pdo->prepare($sql);
+                            $params = [$email];
+                            $stmt->execute($params);
+                            return 1;
+                    }else{
+                        return 2;
+                    }
+                }else{
+                    return 3;
+                }
+
+
+            }
         
 }           
 ?>

@@ -45,13 +45,49 @@ document.addEventListener("DOMContentLoaded", function(){
                 method: "POST",
                 data: sData,
             }).done(function (response) {
-                alert(response);
+                alert(response + " U wordt nu herleid naar de activatie pagina.");
+                window.location = "activatie.html";
             }).fail(function (jqXHR, textstatus) {
                 alert(response, textstatus);
             })
         }
     })
 
+    $("#codeVerify").validate({
+        rules:
+        {
+            activateCode: {
+                required: true,
+            },
+            email: {
+                required: true,
+                email: true,
+            },
+        },
+        messages:
+        {
+            activateCode: "please enter code",
+            email: "please enter a valid email address",
+
+        },
+
+        submitHandler: function () {
+
+            var form = $("#codeVerify");
+            var sData = form.serialize();
+
+            $.ajax({
+                url: 'php/ajaxHandler.php',
+                method: "POST",
+                data: sData,
+            }).done(function (response) {
+                alert(response + " U wordt nu herleid naar de homepagina.");
+                window.location = "index.html";
+            }).fail(function (jqXHR, textstatus) {
+                alert(response, textstatus);
+            })
+        }
+    })
 
     $("#loginPage").validate({
         rules:

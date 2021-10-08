@@ -6,6 +6,7 @@ include 'boekingen.php';
 include 'mail.php';
 $userClass = new User(); //functie afhandelen
 session_start();
+
 if (
     isset($_POST['email']) && isset($_POST['phonenumber']) && isset($_POST['firstName'])
     && isset($_POST['surName']) && isset($_POST['usern']) && isset($_POST['passwd2']) && isset($_POST['passwd3'])
@@ -33,6 +34,7 @@ if (
         $passwd,
         $passwd2
     );
+    
     exit("Registreren is gelukt.");
 }
 
@@ -45,22 +47,34 @@ if (isset($_POST['usernLogin']) && isset($_POST['passwdLogin'])) {
         $usernameLogin = $_POST['usernLogin'];
         $passwdLogin = $_POST['passwdLogin'];
 
-        $userClass->login($usernameLogin,$passwdLogin);
 
-        if (isset($_SESSION['loggedIn'])) {
-            exit("U bent ingelogd, welkom " . $_SESSION['username']);
+        $check = $userClass->userLoginCheck($usernameLogin, $passwdLogin);
 
-        } else {
-            exit("Gebruikersnaam of wachtwoord klopt niet.");
+        switch($check){
+            case 1:                     
+                $userClass->login($usernameLogin);
+                exit("U bent ingelogd.");
+                break;
 
+            case 2:
+                exit("Uw account is nog niet geactiveerd.");
+                break;
+
+            case 3:
+                exit("Uw gebruikersnaam of wachtwoord is onjuist.");
+                break;
+
+            default:
+                exit("Deze actie is niet bij ons bekend (404).");
+                break;
         }
     }
 }
 
-if (isset($_POST['reistijden']) && isset($_POST['AantalVolwassenen']) && isset($_POST['AantalKinderen'])) {
+if (isset($_POST['reistijden']) && isset($_POST['AantalVolwassenen']) && isset($_POST['AantalKinderen']) && isset($_POST['packageID'])) {
     if(isset($_SESSION['loggedIn'])){
         if($_SESSION['loggedIn']==true){
-                    $booking = new Booking($_POST['AantalVolwassenen'], $_POST['AantalKinderen'], 'Turkije1', $_POST['reistijden']);
+                    $booking = new Booking($_POST['AantalVolwassenen'], $_POST['AantalKinderen'], $_POST['packageID'], $_POST['reistijden']);
                     $booking->confirmOrder();
                     exit("boeking niet succesvol!!11!");
         }
@@ -107,5 +121,33 @@ if (isset($_POST['holidays']) && isset($_POST['rating']) && isset($_POST['titel'
 
     //$userClass->contact($email,$contactBody,$contactSubject,$contactName);
 }
+
+if(isset($_POST['activateCode'])){
+    $email = $_POST['email'];
+    $actCode = $_POST['activateCode'];
+    $correct = 1;
+
+                $check = $userClass->activateUser($email, $actCode);
+
+                switch($check){
+                    case 1:                     
+                        $userClass->loginActivate($correct, $email);
+                        exit("Uw account is geactiveerd en u bent ingelogd.");
+                        break;
+
+                    case 2:
+                        exit("De code was onjuist.");
+                        break;
+
+                    case 3:
+                        exit("Het email adres was onjuist.");
+                        break;
+
+                    default:
+                        exit("Deze actie is niet bij ons bekend (404).");
+                        break;
+                }
+}
+
 
 exit("Deze actie is niet bij ons bekend (404)"); //Foutafhandelig

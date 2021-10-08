@@ -729,3 +729,8 @@ textarea:hover {
    }
 
 } 
+
+#activatieFooter{
+ position: absolute;
+ bottom: 0;
+}
