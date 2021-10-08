@@ -67,7 +67,6 @@ if (isset($_POST['usernLogin']) && isset($_POST['passwdLogin'])) {
             default:
                 exit("Deze actie is niet bij ons bekend (404).");
                 break;
-
         }
     }
 }
