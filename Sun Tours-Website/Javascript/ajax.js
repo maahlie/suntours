@@ -199,16 +199,29 @@ document.addEventListener("DOMContentLoaded", function(){
             var form = $('#logoutForm');
             var sData = form.serialize();
             console.log(sData);
+            if(window.location.href.indexOf('.php') > -1) 
+            {
+                $.ajax({
+                    url: '../php/ajaxHandler.php',
+                    method: "POST",
+                    data: sData,
+                }).done(function (response) {
+                    alert(response);
+                }).fail(function (jqXHR, textstatus) {
+                    alert(response, textstatus);
+                })
+            }else{
+                $.ajax({
+                    url: 'php/ajaxHandler.php',
+                    method: "POST",
+                    data: sData,
+                }).done(function (response) {
+                    alert(response);
+                }).fail(function (jqXHR, textstatus) {
+                    alert(response, textstatus);
+                })
+            }
 
-            $.ajax({
-                url: 'php/ajaxHandler.php',
-                method: "POST",
-                data: sData,
-            }).done(function (response) {
-                alert(response);
-            }).fail(function (jqXHR, textstatus) {
-                alert(response, textstatus);
-            })
         }
     })
             
