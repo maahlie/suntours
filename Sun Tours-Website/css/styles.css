@@ -729,8 +729,13 @@ textarea:hover {
    }
 
 } 
-
+#boekingenTable td, th{
+   border:1px solid black;
+}
 #activatieFooter{
  position: absolute;
  bottom: 0;
+/* .prijzen {
+   background-color: rgb(197, 213, 225);
+} */
 }
