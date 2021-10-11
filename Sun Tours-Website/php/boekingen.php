@@ -9,11 +9,11 @@ class Booking {
     private $flights;
     private $bus;
     private $car;
-    private $packageCost;
+    private $totalPrice;
     private $id;
     private $commands;
 
-    public function __construct($adults, $kids, $id, $travelTimeChoice)
+    public function __construct($adults, $kids, $id, $travelTimeChoice, $totalPrice)
     {
         $this->adults = $adults;
         $this->kids = $kids;
@@ -24,6 +24,7 @@ class Booking {
         $this->bus;
         $this->car;
         $this->id = $id;
+        $this->totalPrice = $totalPrice;
         $this->userId = $this->getUserID();
     }
 
@@ -35,26 +36,27 @@ class Booking {
         return $userID;
     }
 
-    private function calcPackageCost(){
-        $this->commands = new SqlCommands();
-        $this->commands->connectDB();
-        $this->package = $this->commands->selectFromWhere("price", "packages", "packageID", $this->id);
-        $packageCost = $this->package[0]["price"] * $this->people;
-        return $packageCost;
-    }
+    // private function calcPackageCost(){
+    //     $this->commands = new SqlCommands();
+    //     $this->commands->connectDB();
+    //     $this->package = $this->commands->selectFromWhere("price", "packages", "packageID", $this->id);
+    //     $packageCost = $this->package[0]["price"] * $this->people + $this->flights + $this->bus + $this->car;
+        
+    
+    //     return $packageCost;
+    // }
 
-    private function totalCost(){
-        $totalCost = $this->calcPackageCost($this->id);
-        return $totalCost;
-    }
-// + $this->flights + $this->bus + $this->car
-//$flights, $bus, $car,
-    public function showCost(){
-        echo $this->totalCost();
-    }
+    // private function totalCost(){
+    //     $totalCost = $this->calcPackageCost($this->id);
+    //     return $totalCost;
+    // }
+
+    // public function showCost(){
+    //     echo $this->totalCost();
+    // }
 
     public function confirmOrder(){
-        $totalPrice = $this->totalCost();
+        // $totalPrice = $this->totalCost();
         $package = $this->id;
         $userID = $this->userId[0]['userID'];
         $userIdInt = $userID + 0;
@@ -69,7 +71,7 @@ class Booking {
         $stmt = $this->commands->pdo->prepare($sql);
              
         if ($stmt) {
-            $params = [$package, $userIdInt, $dateID, $this->people, $totalPrice];
+            $params = [$package, $userIdInt, $dateID, $this->people, $this->totalPrice];
             // var_dump($params);
             $stmt->execute($params);
             exit("boeking succesvol");

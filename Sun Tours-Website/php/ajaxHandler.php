@@ -74,7 +74,7 @@ if (isset($_POST['usernLogin']) && isset($_POST['passwdLogin'])) {
 if (isset($_POST['reistijden']) && isset($_POST['AantalVolwassenen']) && isset($_POST['AantalKinderen']) && isset($_POST['packageID'])) {
     if(isset($_SESSION['loggedIn'])){
         if($_SESSION['loggedIn']==true){
-                    $booking = new Booking($_POST['AantalVolwassenen'], $_POST['AantalKinderen'], $_POST['packageID'], $_POST['reistijden']);
+                    $booking = new Booking($_POST['AantalVolwassenen'], $_POST['AantalKinderen'], $_POST['packageID'], $_POST['reistijden'], $_POST['totalPrice']);
                     $booking->confirmOrder();
                     exit("boeking niet succesvol!!11!");
         }

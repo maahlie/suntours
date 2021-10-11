@@ -41,6 +41,9 @@ function show_vervoer(){
 }
 function hide_vervoer(){
   document.getElementById("vliegen_div").innerHTML='';
+  var url = window.location.href;
+  var id  = url.substring(url.lastIndexOf('=') + 1);
+  document.getElementById("packageID").value = id;
 }
 function show_autoverhuur(){
   document.getElementById("autos").style.display = "block";
@@ -137,6 +140,7 @@ function totalPrice()
   
   if (total_price > 0){
     document.getElementById("totaal__Reis_Prijs").innerHTML = '€' + total_price;
+    document.getElementById("totalPrice").value = total_price;
   }else{
     document.getElementById("totaal__Reis_Prijs").innerHTML = 'Prijs: -';
   }
@@ -154,7 +158,10 @@ function totalPrice()
   }else{
     document.getElementById("totaal_pakket_Prijs").innerHTML = 'Prijs: -';
   }
+
+  
  }
+
 function update_prices()
 {
  
