@@ -1,6 +1,7 @@
 <?php
+include "invoiceBackEnd.php";
 class Booking {
-    private $userId;
+    public $userId;
     private $adults;
     private $kids;
     private $travelTimeChoice;
@@ -12,6 +13,8 @@ class Booking {
     private $packageCost;
     private $id;
     private $commands;
+    private $username;
+    public $invoice;
 
     public function __construct($adults, $kids, $id, $travelTimeChoice)
     {
@@ -25,12 +28,13 @@ class Booking {
         $this->car;
         $this->id = $id;
         $this->userId = $this->getUserID();
+        // $this->username = $_SESSION['username'];
     }
 
     private function getUserID(){
         $this->commands = new SqlCommands();
-        $username = $_SESSION['username'];
         $this->commands->connectDB();
+        $username = $_SESSION['username'];
         $userID = $this->commands->selectFromWhere("userID", "users", "username", $username);
         return $userID;
     }
@@ -79,10 +83,15 @@ class Booking {
 
     public function confirmOrder(){
         $totalPrice = $this->totalCost();
-        $package = $this->id;
+        $packageID = $this->id;
         $userID = $this->userId[0]['userID'];
         $userIdInt = $userID + 0;
-        $dateID = $this->travelTimeChoice;
+        $dateID = $this->travelTimeChoice;            
+        $packagePrice = $totalPrice/$this->people;
+
+
+        $this->invoice = new Invoice($this->userId, $packageID, $userIdInt, $packagePrice, $totalPrice, $this->people);
+
 
 
         $this->commands = new SqlCommands();
@@ -93,9 +102,10 @@ class Booking {
         $stmt = $this->commands->pdo->prepare($sql);
              
         if ($stmt) {
-            $params = [$package, $userIdInt, $dateID, $this->people, $totalPrice];
+            $params = [$packageID, $userIdInt, $dateID, $this->people, $totalPrice];
             // var_dump($params);
             $stmt->execute($params);
+            $this->invoice->genInvoice($packageID, $userIdInt, $packagePrice, $totalPrice);
             exit("boeking succesvol");
          }
     }

@@ -4,7 +4,9 @@ include 'user.php';
 include 'dbClass.php';
 include 'boekingen.php';
 include 'mail.php';
-$userClass = new User(); //functie afhandelen
+
+$userClass = new User();
+
 session_start();
 if (
     isset($_POST['email']) && isset($_POST['phonenumber']) && isset($_POST['firstName'])
@@ -62,7 +64,10 @@ if (isset($_POST['reistijden']) && isset($_POST['AantalVolwassenen']) && isset($
         if($_SESSION['loggedIn']==true){
                     $booking = new Booking($_POST['AantalVolwassenen'], $_POST['AantalKinderen'], 'Turkije1', $_POST['reistijden']);
                     $booking->confirmOrder();
-                    exit("boeking niet succesvol!!11!");
+
+                    // $invoice = new Invoice();
+                   
+                    exit("boeking niet succesvol!!!");
         }
     }else{
         exit('U bent nog niet ingelogd.');

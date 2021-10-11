@@ -3,6 +3,7 @@
 class User {
 
     public $SqlCommands;
+    public $userName;
 
     public function __construct()
     {
@@ -38,7 +39,7 @@ class User {
                     }
             }
 
-            private function confMail($targetEmail,$mailBody,$mailSubject)
+            public function confMail($targetEmail,$mailBody,$mailSubject)
             {
                 $mail = new Mail($mailBody, $mailSubject, $targetEmail);
                 $mail->email();
@@ -80,6 +81,7 @@ class User {
                         // session_start();
                         $_SESSION['loggedIn']=true;
                         $_SESSION['username']=$result["username"];
+                        $this->userName = $_SESSION['username'];
                     }
             }
 
