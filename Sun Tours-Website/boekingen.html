@@ -119,6 +119,7 @@
           </select>
           <br><br><label>Aantal dagen:</label><br>
           <input id="rental_time_chooser_id" type=number max=8 min=1 onchange="update_prices()"></input>
+          
 
           <br><br><br>
         </div>
@@ -132,6 +133,8 @@
         <div id="bus">
           <label>Aantal dagen openbaar vervoer:</label><br>
           <input type="number" min="0" onchange="update_prices()" id="aantal_Dagen" name="aantal_Dagen"><Br><Br>
+            <label>geldig vanaf:</label><br>
+            <input id="bus-dates" type='date'></input><br><br>
 
         </div>
         <table id='boekingenTable'>

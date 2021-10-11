@@ -47,9 +47,6 @@ function show_autoverhuur(){
 }
 function hide_autoverhuur(){
   document.getElementById("autos").style.display = "none";
-  var url = window.location.href;
-  var id  = url.substring(url.lastIndexOf('=') + 1);
-  document.getElementById("packageID").value = id;
 }
 function show_bus_deals(){
   document.getElementById("bus").style.display = "block";
@@ -75,7 +72,7 @@ function calculate_car_price(){
         auto_prijs = auto_prijzen[i]*rental_time;
         document.getElementById("auto_prijs").innerHTML='Prijs: €' + auto_prijs;
       }else{
-        document.getElementById("auto_prijs").innerHTML='Prijs: -';
+        document.getElementById("auto_prijs").innerHTML='Prijs:-';
       }
     }
   }
@@ -87,7 +84,7 @@ function calculate_Bus_Price()
   aantal_dagen = document.getElementById("aantal_Dagen").value;
   if(aantal_dagen < 1)
   {
-    document.getElementById("bus_Totaal").innerHTML='Prijs: -';
+    document.getElementById("bus_Totaal").innerHTML='Prijs:-';
   }
   else
   {
@@ -120,8 +117,8 @@ airlines = document.getElementById("airlines").selectedIndex;
   console.log(airlines);
 }
 else{
-  document.getElementById("totaal_Vliegticket_Prijs").innerHTML='Prijs: -';
-  document.getElementById("totaal_pakket_Prijs").innerHTML='Prijs: -';
+  document.getElementById("totaal_Vliegticket_Prijs").innerHTML='Prijs:-';
+  document.getElementById("totaal_pakket_Prijs").innerHTML='Prijs:-';
   
 }
   
@@ -139,9 +136,9 @@ function totalPrice()
   }
   
   if (total_price > 0){
-    document.getElementById("totaal__Reis_Prijs").innerHTML = total_price;
+    document.getElementById("totaal__Reis_Prijs").innerHTML = '€' + total_price;
   }else{
-    document.getElementById("totaal__Reis_Prijs").innerHTML = 'Prijs:-';
+    document.getElementById("totaal__Reis_Prijs").innerHTML = 'Prijs: -';
   }
   
 }
@@ -151,14 +148,20 @@ function totalPrice()
   aantal_Kinderen = document.getElementById("aantal_kinderen").value;
   aantal_Personen = +aantal_Volwassenen + +aantal_Kinderen;
   vakantie_prijs = aantal_Personen * country_prijzen[country];
-  document.getElementById("totaal_pakket_Prijs").innerHTML ='€' + vakantie_prijs;
+  
+  if (vakantie_prijs > 0){
+    document.getElementById("totaal_pakket_Prijs").innerHTML ='€' + vakantie_prijs;
+  }else{
+    document.getElementById("totaal_pakket_Prijs").innerHTML = 'Prijs: -';
+  }
  }
 function update_prices()
 {
-  calculate_pakket_prijs()
+ 
   calculate_car_price()
   calculate_Bus_Price()
   calculate_plane_price();
+  calculate_pakket_prijs()
   totalPrice();
   
 }
