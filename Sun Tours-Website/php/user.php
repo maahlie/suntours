@@ -39,7 +39,7 @@ class User {
                     }
             }
 
-            private function confMail($targetEmail,$mailBody,$mailSubject)
+            public function confMail($targetEmail,$mailBody,$mailSubject)
             {
                 $mail = new Mail($mailBody, $mailSubject, $targetEmail);
                 $mail->email();

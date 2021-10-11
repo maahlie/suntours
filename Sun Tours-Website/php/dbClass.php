@@ -67,6 +67,20 @@ class SqlCommands {
         return $result;
     }
 
+    public function selectOrderDesc($userID){
+		$sql = "SELECT bookingID FROM booked WHERE userID = $userID ORDER BY bookingID DESC LIMIT 1;";
+
+		$stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+
+        if ($stmt) {
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);   
+        }
+
+		return $result;
+	}
+
 
 
 }
