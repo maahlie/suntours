@@ -96,7 +96,6 @@ function calculate_Bus_Price()
   
 }
 
-
 function calculate_plane_price()
 {
   
@@ -124,7 +123,7 @@ else{
   document.getElementById("totaal_pakket_Prijs").innerHTML='Prijs:-';
   
 }
-  
+
 }
 
 function totalPrice()
@@ -146,31 +145,29 @@ function totalPrice()
   }
   
 }
+//hier wordt de pakket prijs uitgerekend
  function calculate_pakket_prijs()
  {
   aantal_Volwassenen = document.getElementById("aantal_volwassenen").value;
   aantal_Kinderen = document.getElementById("aantal_kinderen").value;
   aantal_Personen = +aantal_Volwassenen + +aantal_Kinderen;
   vakantie_prijs = aantal_Personen * country_prijzen[country];
-  
+  //als de vakantie prijs grote is dan 0, dan wordt de prijs op de website zichtbaar.
   if (vakantie_prijs > 0){
     document.getElementById("totaal_pakket_Prijs").innerHTML ='€' + vakantie_prijs;
   }else{
     document.getElementById("totaal_pakket_Prijs").innerHTML = 'Prijs: -';
   }
 
-  
  }
 
 function update_prices()
 {
- 
   calculate_car_price()
   calculate_Bus_Price()
   calculate_plane_price();
   calculate_pakket_prijs()
   totalPrice();
-  
 }
 
 
