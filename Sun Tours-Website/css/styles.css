@@ -269,17 +269,21 @@ h4 {
 .FAQ_Background
 {
    
-   background-image: url("../images/Review123.jpg");
+   background-image: url("../images/beach3.jpg");
    background-repeat: no-repeat;
-   background-position: center;
+   background-position: left;
+   width: 100%;
+   margin: 0px;
+   padding: 0px;
+   overflow-x: hidden; 
    
 }
 
 h7.faq {
    color: black;
-   font-size: 30px;
+   font-size: 28px;
    text-align: center;
-  margin-left: 45%;
+   margin-left: 45%;
    
 }
 
@@ -313,16 +317,20 @@ h7.faq {
 
 .Contact_Background
 {
-   background-image: url("../images/contact1.jpg");
+   background-image: url("../images/beach2.jpg");
    background-repeat: no-repeat;
    background-position: center;
+   width: 100%;
+   margin: 0px;
+   padding: 0px;
+   overflow-x: hidden; 
   
    
 }
 
 .contact_toptext {
    text-align: center;
-   margin-left: -40%;
+   margin-left: -50%;
 }
 
 #bookingForm {
@@ -405,7 +413,7 @@ textarea:hover {
 
 .Review_Background
 {
-   background-image: url("https://4k-uhd.nl/wp-content/uploads/2018/08/4K-3840x2160-Wallpaper-Uitzicht-5.jpg");
+   background-image: url("../images/background_image.png");
    background-repeat: no-repeat;
    background-position: center;
    width: 100%;
@@ -427,9 +435,9 @@ textarea:hover {
   
    width: 40%;
    margin-left: 30%;
-   padding-left: 5%;
-   box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.06);
-   background-color: rgba(216, 132, 5, 0.411);
+ 
+   
+   
    
 }
 
@@ -690,7 +698,7 @@ textarea:hover {
    background-color: rgb(197, 213, 225);
    width: 30%;
    position: relative;
-   margin-left: -60%;
+   margin-left: 10%;
    font-size: 0, 5em;
 
 }
@@ -739,3 +747,9 @@ textarea:hover {
    background-color: rgb(197, 213, 225);
 } */
 }
+
+.Boekingen_Button
+ {
+   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+   border-radius: 10px;
+ }
