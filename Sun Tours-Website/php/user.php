@@ -45,6 +45,19 @@ class User {
                 $mail->email();
             }
 
+            public function codeEmailSend($email){
+                $sql = "UPDATE users SET activationCode = ? WHERE email = ?;"; //query, vraagtekens worden gevuld bij de execute met $params
+
+                $stmt = $this->SqlCommands->pdo->prepare($sql);
+                     
+                if ($stmt) {
+                     $pass = substr(md5(uniqid(mt_rand(), true)) , 0, 8);
+                    $params = [$pass, $email];
+                    $stmt->execute($params);
+                    $this->confMail($email, "De code voor uw wachtwoord herstel is: $pass.", "Code Voor Uw Wachtwoord Herstel");
+                 }                   
+            }
+
             public function enterReg($email, $phoneNumber, $firstName, $surName, $username, $address, $postalCode, $passwd2, $passwd3){
     
 

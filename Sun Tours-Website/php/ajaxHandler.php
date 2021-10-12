@@ -154,5 +154,10 @@ if(isset($_POST['activateCode'])){
                 }
 }
 
+if(isset($_POST['codeEmail'])){
+    $email = $_POST['codeEmail'];
+
+    $userClass->codeEmailSend($email);    
+}
 
 exit("Deze actie is niet bij ons bekend (404)"); //Foutafhandelig
