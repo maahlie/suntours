@@ -40,7 +40,6 @@ class Invoice {
     }
 
 	public function getBookingID(){
-		
 		$userID =  $this->userID[0]['userID'];
 		$bookingID = $this->commands->selectOrderDesc($userID);
 		$bookingID = $bookingID[0]['bookingID'] + 1;
