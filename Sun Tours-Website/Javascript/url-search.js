@@ -47,6 +47,10 @@ function show_autoverhuur(){
 }
 function hide_autoverhuur(){
   document.getElementById("autos").style.display = "none";
+  var url = window.location.href;
+  var id  = url.substring(url.lastIndexOf('=') + 1);
+  document.getElementById("packageID").value = id;
+
 }
 function show_bus_deals(){
   document.getElementById("bus").style.display = "block";

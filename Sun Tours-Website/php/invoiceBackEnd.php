@@ -41,10 +41,9 @@ class Invoice {
 
 	public function getBookingID(){
 		$userID =  $this->userID[0]['userID'];
+		$userID = $userID + 0;
 		$bookingID = $this->commands->selectOrderDesc($userID);
-		$bookingID = $bookingID[0]['bookingID'] + 1;
-		// var_dump($bookingID);
-		return $bookingID;
+		return $bookingID[0]['bookingID'];
 	}
 
     public function getNames(){
@@ -83,7 +82,7 @@ class Invoice {
     }
 
 	public function genInvoiceNr($userIdInt){
-		$invoiceNr = $userIdInt . $this->bookingID;
+		$invoiceNr = $userIdInt . "0" . $this->bookingID;
 		return $invoiceNr;
 	}
 
