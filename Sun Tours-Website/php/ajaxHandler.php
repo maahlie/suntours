@@ -9,10 +9,8 @@ $userClass = new User();
 
 session_start();
 
-if (
-    isset($_POST['email']) && isset($_POST['phonenumber']) && isset($_POST['firstName'])
-    && isset($_POST['surName']) && isset($_POST['usern']) && isset($_POST['passwd2']) && isset($_POST['passwd3'])
-) {
+//registratie
+if (isset($_POST['sendReg'])) {
     //If statement voor elke action (zorgt ervoor dat alle ajax in een file kan)
 
     $email = $_POST['email'];
@@ -40,7 +38,8 @@ if (
     exit("Registreren is gelukt.");
 }
 
-if (isset($_POST['usernLogin']) && isset($_POST['passwdLogin'])) {
+//login
+if (isset($_POST['sendLogin'])) {
     if (isset($_SESSION['loggedIn'])) {
         exit('U bent al ingelogd, ' . $_SESSION['username']);
         
@@ -73,10 +72,23 @@ if (isset($_POST['usernLogin']) && isset($_POST['passwdLogin'])) {
     }
 }
 
-if (isset($_POST['reistijden']) && isset($_POST['AantalVolwassenen']) && isset($_POST['AantalKinderen']) && isset($_POST['packageID'])) {
+//boeking
+if (isset($_POST['sendBoeking'])) {
     if(isset($_SESSION['loggedIn'])){
         if($_SESSION['loggedIn']==true){
-                    $booking = new Booking($_POST['AantalVolwassenen'], $_POST['AantalKinderen'], $_POST['packageID'], $_POST['reistijden'], $_POST['totalPrice'],$_POST['ticketPrice'],$_POST['carAmount'],$_POST['carPrice'],$_POST['busTicketAmount'],$_POST['busPrice']);
+                    $booking = new Booking(
+                        $_POST['AantalVolwassenen'], 
+                        $_POST['AantalKinderen'], 
+                        $_POST['packageID'], 
+                        $_POST['reistijden'], 
+                        $_POST['totalPrice'], 
+                        $_POST['ticketPrice'], 
+                        $_POST['carAmount'], 
+                        $_POST['carPrice'], 
+                        $_POST['busTicketAmount'], 
+                        $_POST['busPrice']
+                    );
+                    
                     $booking->confirmOrder();
 
                     // $invoice = new Invoice();
@@ -88,6 +100,7 @@ if (isset($_POST['reistijden']) && isset($_POST['AantalVolwassenen']) && isset($
     }
 }
 
+//logout
 if(isset($_POST['logout'])){
     if(isset($_SESSION['loggedIn'])){
         if($_SESSION['loggedIn']==true){
@@ -99,16 +112,18 @@ if(isset($_POST['logout'])){
     }
 }
 
-if (isset($_POST['contact_naam']) && isset($_POST['contact_email']) && isset($_POST['contact_onderwerp']) && isset($_POST['contact_text'])) {
+//contactform
+if (isset($_POST['sendContact'])) {
     $email = $_POST['contact_email'];
     $contactSubject = $_POST['contact_onderwerp'];
     $contactBody = $_POST['contact_text'];
     $contactName = $_POST['contact_naam'];
 
-    $userClass->contact($email,$contactBody,$contactSubject,$contactName);
+    $userClass->contact($email, $contactBody, $contactSubject, $contactName);
 }
 
-if (isset($_POST['holidays']) && isset($_POST['rating']) && isset($_POST['titel']) && isset($_POST['review']) && isset($_POST['keuze'])) {
+//review
+if (isset($_POST['sendReview'])) {
     $packageId = $_POST['holidays'];
     $score = $_POST['rating'];
     $reviewSubject = $_POST['titel'];
@@ -126,7 +141,8 @@ if (isset($_POST['holidays']) && isset($_POST['rating']) && isset($_POST['titel'
 
 }
 
-if(isset($_POST['activateCode'])){
+//account activatie
+if(isset($_POST['verifyButtonAct'])) {
     $email = $_POST['email'];
     $actCode = $_POST['activateCode'];
     $correct = 1;
@@ -153,13 +169,15 @@ if(isset($_POST['activateCode'])){
                 }
 }
 
-if(isset($_POST['codeEmail'])){
+//code sturen voor veranderen wachtwoord
+if(isset($_POST['sendCodeButton'])) {
     $email = $_POST['codeEmail'];
     $userClass->codeEmailSend($email);
     exit("Email met code verstuurd.");  
 }
 
-if(isset($_POST['secCode']) && isset($_POST['newPswrd']) && isset($_POST['confPaswrd']) && isset($_POST['pswrdEmail'])){
+//verander wachtwoord
+if(isset($_POST['verifyButton'])) {
     $email = $_POST['pswrdEmail'];
     $newPass = $_POST['newPswrd'];
     $code = $_POST['secCode'];
@@ -167,8 +185,5 @@ if(isset($_POST['secCode']) && isset($_POST['newPswrd']) && isset($_POST['confPa
     $userClass->changePassword($newPass, $email, $code);
     exit('Uw wachtwoord is succesvol veranderd.');
 }
-
-//verander de vele issets met de isset (name) van de knop die ingedrukt is
-
 
 exit("Deze actie is niet bij ons bekend (404)"); //Foutafhandelig
