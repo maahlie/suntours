@@ -10,13 +10,18 @@ class Booking {
     private $flights;
     private $bus;
     private $car;
-    private $packageCost;
+    private $totalPrice;
     private $id;
     private $commands;
     private $username;
     public $invoice;
-
-    public function __construct($adults, $kids, $id, $travelTimeChoice)
+    
+    private $ticketPrice;
+    private $carAmount;
+    private $carPrice;
+    private $busTicketAmount;
+    private $busPrice;
+    public function __construct($adults, $kids, $id, $travelTimeChoice, $totalPrice, $ticketPrice, $carAmount, $carPrice, $busTicketAmount, $busPrice)
     {
         $this->adults = $adults;
         $this->kids = $kids;
@@ -27,6 +32,12 @@ class Booking {
         $this->bus;
         $this->car;
         $this->id = $id;
+        $this->totalPrice = $totalPrice;
+        $this->ticketPrice = $ticketPrice;
+        $this->carAmount = $carAmount;
+        $this->carPrice = $carPrice;
+        $this->busTicketAmount = $busTicketAmount;
+        $this->busPrice = $busPrice;
         $this->userId = $this->getUserID();
         // $this->username = $_SESSION['username'];
     }
@@ -39,27 +50,9 @@ class Booking {
         return $userID;
     }
 
-    private function calcPackageCost(){
-        $this->commands = new SqlCommands();
-        $this->commands->connectDB();
-        $this->package = $this->commands->selectFromWhere("price", "packages", "packageID", $this->id);
-        $packageCost = $this->package[0]["price"] * $this->people;
-        return $packageCost;
-    }
-
-    private function totalCost(){
-        $totalCost = $this->calcPackageCost($this->id);
-        return $totalCost;
-    }
-// + $this->flights + $this->bus + $this->car
-//$flights, $bus, $car,
-    public function showCost(){
-        echo $this->totalCost();
-    }
-
     public function confirmOrder(){
-        $totalPrice = $this->totalCost();
-        $packageID = $this->id;
+        // $totalPrice = $this->totalCost();
+        $package = $this->id;
         $userID = $this->userId[0]['userID'];
         $userIdInt = $userID + 0;
         $dateID = $this->travelTimeChoice;            
@@ -68,12 +61,12 @@ class Booking {
         $this->commands = new SqlCommands();
         $this->commands->connectDB();
 
-        $sql = "INSERT INTO booked (packageID, userID, dateID, aantalPersonen, bedrag) VALUES(?, ?, ?, ?, ?)"; //query, vraagtekens worden gevuld bij de execute met $params
+        $sql = "INSERT INTO booked (packageID, userID, dateID, aantalPersonen, packageCost, ticketPrice, carAmount, carPrice, busTicketAmount, busPrice) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; //query, vraagtekens worden gevuld bij de execute met $params
         
         $stmt = $this->commands->pdo->prepare($sql);
              
         if ($stmt) {
-            $params = [$packageID, $userIdInt, $dateID, $this->people, $totalPrice];
+            $params = [$package, $userIdInt, $dateID, $this->people, $this->totalPrice, $this->ticketPrice, $this->carAmount, $this->carPrice, $this->busTicketAmount, $this->busPrice];
             // var_dump($params);
             $stmt->execute($params);
             $this->invoice = new Invoice($this->userId, $packageID, $userIdInt, $packagePrice, $totalPrice, $this->people);

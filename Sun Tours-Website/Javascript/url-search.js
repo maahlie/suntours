@@ -41,16 +41,18 @@ function show_vervoer(){
 }
 function hide_vervoer(){
   document.getElementById("vliegen_div").innerHTML='';
+  var url = window.location.href;
+  var id  = url.substring(url.lastIndexOf('=') + 1);
+  document.getElementById("packageID").value = id;
 }
 function show_autoverhuur(){
   document.getElementById("autos").style.display = "block";
 }
 function hide_autoverhuur(){
   document.getElementById("autos").style.display = "none";
-  var url = window.location.href;
-  var id  = url.substring(url.lastIndexOf('=') + 1);
-  document.getElementById("packageID").value = id;
-
+  document.getElementById("aantal_autos").value = '';
+  document.getElementById("aantal_tickets_bus").value = '';
+  update_prices();
 }
 function show_bus_deals(){
   document.getElementById("bus").style.display = "block";
@@ -65,8 +67,6 @@ function calculate_car_price(){
   var selectedValue = document.getElementById("auto");
   var rental_time = document.getElementById('rental_time_chooser_id').value
   var value = selectedValue.options[selectedValue.selectedIndex].value;
-  console.log(value);
-  console.log(rental_time);
   for (i=0; i< auto_merken.length; i++)
   {
     if (value == auto_merken[i])
@@ -74,9 +74,12 @@ function calculate_car_price(){
       if (rental_time <= 8 && rental_time > 0)
       {
         auto_prijs = auto_prijzen[i]*rental_time;
-        document.getElementById("auto_prijs").innerHTML='Prijs: €' + auto_prijs;
+        document.getElementById("auto_prijs").innerHTML='Prijs: €' + auto_prijs * document.getElementById("aantal_autos").value;
+        document.getElementById("carPrice").value = auto_prijs;
+        document.getElementById("carAmount").value = document.getElementById("aantal_autos").value;
       }else{
         document.getElementById("auto_prijs").innerHTML='Prijs:-';
+        document.getElementById("carAmount").value = document.getElementById("aantal_autos").value;
       }
     }
   }
@@ -89,14 +92,23 @@ function calculate_Bus_Price()
   if(aantal_dagen < 1)
   {
     document.getElementById("bus_Totaal").innerHTML='Prijs:-';
+    document.getElementById("busTicketAmount").value = aantal_dagen = 0;
   }
   else
   {
-    document.getElementById("bus_Totaal").innerHTML = '€' + aantal_dagen * bus_Prijs;
+    if ((aantal_dagen * bus_Prijs) * document.getElementById("aantal_tickets_bus").value > 0){
+      document.getElementById("bus_Totaal").innerHTML = '€' + (aantal_dagen * bus_Prijs) * document.getElementById("aantal_tickets_bus").value;
+      document.getElementById("busPrice").value = bus_Prijs;
+      document.getElementById("busTicketAmount").value = document.getElementById("aantal_tickets_bus").value;
+    }else
+    {
+      document.getElementById("bus_Totaal").innerHTML='Prijs:-';
+      document.getElementById("busTicketAmount").value = aantal_dagen = 0;
+    }
+
   }
   
 }
-
 
 function calculate_plane_price()
 {
@@ -113,25 +125,28 @@ airlines = document.getElementById("airlines").selectedIndex;
   {
     if (airlines == i)
     {
-      vliegticket_prijs = aantal_Personen * vlieg_prijzen[i];
+      vliegticket_prijs = aantal_Personen * vlieg_prijzen[i-1];
       document.getElementById("totaal_Vliegticket_Prijs").innerHTML ='€' +  vliegticket_prijs;
+      document.getElementById("ticketPrice").value = vlieg_prijzen[i-1];
+      if (vliegticket_prijs <= 0){
+        document.getElementById("totaal_Vliegticket_Prijs").innerHTML='Prijs:-';
+    document.getElementById("totaal_pakket_Prijs").innerHTML='Prijs:-';
+      }
     }
   }
 
-  console.log(airlines);
 }
 else{
   document.getElementById("totaal_Vliegticket_Prijs").innerHTML='Prijs:-';
   document.getElementById("totaal_pakket_Prijs").innerHTML='Prijs:-';
   
 }
-  
 }
 
 function totalPrice()
 {
   total_price = 0;
-  vars = [vakantie_prijs, vliegticket_prijs, auto_prijs, aantal_dagen * bus_Prijs];
+  vars = [vakantie_prijs, vliegticket_prijs, auto_prijs * document.getElementById("aantal_autos").value, (aantal_dagen * bus_Prijs) * document.getElementById("aantal_tickets_bus").value];
   for (i = 0; i < 4; i++)
   {
     if (vars[i] > 0){
@@ -141,35 +156,37 @@ function totalPrice()
   
   if (total_price > 0){
     document.getElementById("totaal__Reis_Prijs").innerHTML = '€' + total_price;
+    document.getElementById("totalPrice").value = country_prijzen[country];
   }else{
     document.getElementById("totaal__Reis_Prijs").innerHTML = 'Prijs: -';
   }
   
 }
+//hier wordt de pakket prijs uitgerekend
  function calculate_pakket_prijs()
  {
   aantal_Volwassenen = document.getElementById("aantal_volwassenen").value;
   aantal_Kinderen = document.getElementById("aantal_kinderen").value;
   aantal_Personen = +aantal_Volwassenen + +aantal_Kinderen;
   vakantie_prijs = aantal_Personen * country_prijzen[country];
-  
+  //als de vakantie prijs grote is dan 0, dan wordt de prijs op de website zichtbaar.
   if (vakantie_prijs > 0){
     document.getElementById("totaal_pakket_Prijs").innerHTML ='€' + vakantie_prijs;
   }else{
     document.getElementById("totaal_pakket_Prijs").innerHTML = 'Prijs: -';
   }
+
  }
+
 function update_prices()
 {
- 
-  calculate_car_price()
-  calculate_Bus_Price()
+  calculate_car_price();
+  calculate_Bus_Price();
   calculate_plane_price();
-  calculate_pakket_prijs()
+  calculate_pakket_prijs();
   totalPrice();
-  
-}
 
+}
 
 
 
