@@ -55,8 +55,8 @@ class Booking {
         $package = $this->id;
         $userID = $this->userId[0]['userID'];
         $userIdInt = $userID + 0;
-        $dateID = $this->travelTimeChoice;            
-        $packagePrice = $totalPrice/$this->people;
+        $dateID = $this->travelTimeChoice;
+
 
         $this->commands = new SqlCommands();
         $this->commands->connectDB();
@@ -69,8 +69,6 @@ class Booking {
             $params = [$package, $userIdInt, $dateID, $this->people, $this->totalPrice, $this->ticketPrice, $this->carAmount, $this->carPrice, $this->busTicketAmount, $this->busPrice];
             // var_dump($params);
             $stmt->execute($params);
-            $this->invoice = new Invoice($this->userId, $packageID, $userIdInt, $packagePrice, $totalPrice, $this->people);
-            $this->invoice->genInvoice($packageID, $userIdInt, $packagePrice, $totalPrice);
             exit("boeking succesvol");
          }
     }
