@@ -26,14 +26,13 @@ $SESSION['userClass']->showReview(false);
     <script src="../Javascript/ajax.js"></script>
     <script src="node_modules/jquery/dist/jquery.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" type="text/css"
         href="https://cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
 </head>
 
 <body class="Review_Background">
@@ -79,7 +78,7 @@ $SESSION['userClass']->showReview(false);
 
             <form method="POST" id="reviewForm">
                 <div class="review-form">
-
+<br>
                     <b> U moet ingelogd zijn om een review te kunnen schrijven.</b><br><br>
                     <label for="Holiday">Welke vakantie wilt u reviewen:</label><br>
                     <select name="holidays" class="select" id="holidays">
@@ -125,7 +124,7 @@ $SESSION['userClass']->showReview(false);
                             </div>
                         </div>
                     </div>
-
+                    <br>
                     <label for="titel">Onderwerp:</label><br>
                     <input type="text" class="input" id="titel" name="titel"><br>
                     <br>
@@ -183,6 +182,7 @@ $SESSION['userClass']->showReview(false);
     </div>
 
 </body>
+
 <!-- footer is ook onderverdeeld in een top footer en voor de copyright een bottom footer -->
 
 <!-- start topfooter -->
