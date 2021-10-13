@@ -190,15 +190,17 @@ class User {
 
                 $this->SqlCommands->connectDB();
 
+
+                $sql = 'SELECT username, packageID FROM `review` WHERE `username` = ?';
                 // kijkt of een gebruiker al eens een review heeft geschreven.
-                $sql = 'SELECT username FROM `review` WHERE `username` = ?';
-                $stmt = $this->SqlCommands->pdo->prepare($sql);
-                $params = [$username];
-                $stmt->execute($params);
-                $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                if ($result){
-                    exit('U kunt maar 1 review achter laten');
-                }
+                // $sql = 'SELECT username, packageID FROM `review` WHERE `username` = ?';
+                // $stmt = $this->SqlCommands->pdo->prepare($sql);
+                // $params = [$username];
+                // $stmt->execute($params);
+                // $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                // if ($result){
+                //     exit('U kunt maar 1 review achter laten');
+                // }
 
                 //nieuwe revieuw wordt toe gevoegd aan de database
                 $sql = "INSERT INTO review (packageId, score, reviewSubject, review, reccomendation, username) VALUES(?, ?, ?, ?, ?, ?)";
