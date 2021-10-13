@@ -349,11 +349,12 @@ document.addEventListener("DOMContentLoaded", function(){
             var sData = form.serialize();
 
             $.ajax({
-                url: '../php/ajaxHandler.php',
+                url: 'php/ajaxHandler.php',
                 method: "POST",
                 data: sData,
             }).done(function (response) {
-                alert(response + " U wordt nu herleid naar de homepagina.");
+                alert(response);
+                console.log('te');
             }).fail(function (jqXHR, textstatus) {
                 alert(response, textstatus);
             })
@@ -380,7 +381,7 @@ document.addEventListener("DOMContentLoaded", function(){
             var sData = form.serialize();
 
             $.ajax({
-                url: '/php/ajaxHandler.php',
+                url: 'php/ajaxHandler.php',
                 method: "POST",
                 data: sData,
             }).done(function (response) {
