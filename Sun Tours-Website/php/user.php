@@ -45,6 +45,51 @@ class User {
                 $mail->email();
             }
 
+            public function codeEmailSend($email){
+                $sql = "UPDATE users SET activationCode = ? WHERE email = ?;"; //query, vraagtekens worden gevuld bij de execute met $params
+
+                $stmt = $this->SqlCommands->pdo->prepare($sql);
+                     
+                if ($stmt) {
+                     $pass = substr(md5(uniqid(mt_rand(), true)) , 0, 8);
+                    $params = [$pass, $email];
+                    $stmt->execute($params);
+                    $this->confMail($email, "De code voor uw wachtwoord herstel is: $pass.", "Code Voor Uw Wachtwoord Herstel");
+                 }                   
+            }
+
+            public function changePassword($newPass, $email, $code){
+
+                $result = $this->SqlCommands->selectFromWhere('activationCode', 'users', 'email', $email);
+                $oldPass = $this->SqlCommands->selectFromWhere('passwrd', 'users', 'email', $email);
+
+                $verify = password_verify($newPass, $oldPass[0]['passwrd']);
+
+                if(count($result)!=0){
+                    if($verify != true){
+                        if($code == $result[0]['activationCode']){
+                            $newPassHash = password_hash($newPass, PASSWORD_DEFAULT);
+
+                            $sql = "UPDATE users SET passwrd = ? WHERE email = ?;"; //query, vraagtekens worden gevuld bij de execute met $params
+            
+                            $stmt = $this->SqlCommands->pdo->prepare($sql);
+                            
+                            if ($stmt) {
+                            $params = [$newPassHash, $email];
+                            $stmt->execute($params);
+                            $this->confMail($email, "Uw wachtwoord voor de Suntours website is veranderd.", "Suntours Wachtwoord Hersteld");
+                            }
+                        }else{
+                            exit('De code was onjuist');
+                        }   
+                    }else{
+                        exit('Het nieuwe wachtwoord is hetzelfde als uw huidige wachtwoord.');
+                    }
+                }else{
+                    exit('Uw code of email was onjuist.');
+                }
+            }
+
             public function enterReg($email, $phoneNumber, $firstName, $surName, $username, $address, $postalCode, $passwd2, $passwd3){
     
 

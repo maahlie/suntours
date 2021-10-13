@@ -153,5 +153,22 @@ if(isset($_POST['activateCode'])){
                 }
 }
 
+if(isset($_POST['codeEmail'])){
+    $email = $_POST['codeEmail'];
+    $userClass->codeEmailSend($email);
+    exit("Email met code verstuurd.");  
+}
+
+if(isset($_POST['secCode']) && isset($_POST['newPswrd']) && isset($_POST['confPaswrd']) && isset($_POST['pswrdEmail'])){
+    $email = $_POST['pswrdEmail'];
+    $newPass = $_POST['newPswrd'];
+    $code = $_POST['secCode'];
+
+    $userClass->changePassword($newPass, $email, $code);
+    exit('Uw wachtwoord is succesvol veranderd.');
+}
+
+//verander de vele issets met de isset (name) van de knop die ingedrukt is
+
 
 exit("Deze actie is niet bij ons bekend (404)"); //Foutafhandelig

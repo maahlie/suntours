@@ -307,5 +307,88 @@ document.addEventListener("DOMContentLoaded", function(){
                 alert(response, textstatus);
             })
         }
-    });
+    })
+
+    $("#changePswrd").validate({
+        rules:
+        {
+            secCode: {
+                required: true,
+            },
+            newPswrd: {
+                required: true,
+                minlength: 4,
+            },
+            confPaswrd: {
+                required: true,
+                equalTo: '#newPswrd',
+            },
+            pswrdEmail: {
+                required: true,
+                email: true,
+            },
+        },
+        messages:
+        {
+            secCode: "Vul a.u.b de code in.",
+            newPswrd: {
+                required: "please provide a password",
+                minlength: "password at least have 8 characters"
+            },
+            confPaswrd: {
+                required: "please retype your password",
+                equalTo: "password doesn't match !"
+            },
+            pswrdEmail: "please enter a valid email address",
+
+        },
+
+        submitHandler: function () {
+
+            var form = $("#changePswrd");
+            var sData = form.serialize();
+
+            $.ajax({
+                url: 'php/ajaxHandler.php',
+                method: "POST",
+                data: sData,
+            }).done(function (response) {
+                alert(response);
+                console.log('te');
+            }).fail(function (jqXHR, textstatus) {
+                alert(response, textstatus);
+            })
+        }
+    })
+
+    $("#pswrdSendCode").validate({
+        rules:
+        {
+            codeEmail: {
+                required: true,
+                email: true,
+            },
+        },
+        messages:
+        {
+            codeEmail: "please enter a valid email address",
+
+        },
+
+        submitHandler: function () {
+
+            var form = $("#pswrdSendCode");
+            var sData = form.serialize();
+
+            $.ajax({
+                url: 'php/ajaxHandler.php',
+                method: "POST",
+                data: sData,
+            }).done(function (response) {
+                alert(response);
+            }).fail(function (jqXHR, textstatus) {
+                alert(response, textstatus);
+            })
+        }
+    })
 });
