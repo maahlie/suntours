@@ -74,7 +74,7 @@ if (isset($_POST['usernLogin']) && isset($_POST['passwdLogin'])) {
 if (isset($_POST['reistijden']) && isset($_POST['AantalVolwassenen']) && isset($_POST['AantalKinderen']) && isset($_POST['packageID'])) {
     if(isset($_SESSION['loggedIn'])){
         if($_SESSION['loggedIn']==true){
-                    $booking = new Booking($_POST['AantalVolwassenen'], $_POST['AantalKinderen'], $_POST['packageID'], $_POST['reistijden'], $_POST['totalPrice']);
+                    $booking = new Booking($_POST['AantalVolwassenen'], $_POST['AantalKinderen'], $_POST['packageID'], $_POST['reistijden'], $_POST['totalPrice'],$_POST['ticketPrice'],$_POST['carAmount'],$_POST['carPrice'],$_POST['busTicketAmount'],$_POST['busPrice']);
                     $booking->confirmOrder();
                     exit("boeking niet succesvol!!11!");
         }
@@ -119,7 +119,6 @@ if (isset($_POST['holidays']) && isset($_POST['rating']) && isset($_POST['titel'
 
     $userClass->enterReview($packageId, $score, $reviewSubject, $review, $reccomendation, $username);
 
-    //$userClass->contact($email,$contactBody,$contactSubject,$contactName);
 }
 
 if(isset($_POST['activateCode'])){

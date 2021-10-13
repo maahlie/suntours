@@ -12,8 +12,13 @@ class Booking {
     private $totalPrice;
     private $id;
     private $commands;
-
-    public function __construct($adults, $kids, $id, $travelTimeChoice, $totalPrice)
+    
+    private $ticketPrice;
+    private $carAmount;
+    private $carPrice;
+    private $busTicketAmount;
+    private $busPrice;
+    public function __construct($adults, $kids, $id, $travelTimeChoice, $totalPrice, $ticketPrice, $carAmount, $carPrice, $busTicketAmount, $busPrice)
     {
         $this->adults = $adults;
         $this->kids = $kids;
@@ -25,6 +30,11 @@ class Booking {
         $this->car;
         $this->id = $id;
         $this->totalPrice = $totalPrice;
+        $this->ticketPrice = $ticketPrice;
+        $this->carAmount = $carAmount;
+        $this->carPrice = $carPrice;
+        $this->busTicketAmount = $busTicketAmount;
+        $this->busPrice = $busPrice;
         $this->userId = $this->getUserID();
     }
 
@@ -35,25 +45,6 @@ class Booking {
         $userID = $this->commands->selectFromWhere("userID", "users", "username", $username);
         return $userID;
     }
-
-    // private function calcPackageCost(){
-    //     $this->commands = new SqlCommands();
-    //     $this->commands->connectDB();
-    //     $this->package = $this->commands->selectFromWhere("price", "packages", "packageID", $this->id);
-    //     $packageCost = $this->package[0]["price"] * $this->people + $this->flights + $this->bus + $this->car;
-        
-    
-    //     return $packageCost;
-    // }
-
-    // private function totalCost(){
-    //     $totalCost = $this->calcPackageCost($this->id);
-    //     return $totalCost;
-    // }
-
-    // public function showCost(){
-    //     echo $this->totalCost();
-    // }
 
     public function confirmOrder(){
         // $totalPrice = $this->totalCost();
@@ -66,12 +57,12 @@ class Booking {
         $this->commands = new SqlCommands();
         $this->commands->connectDB();
 
-        $sql = "INSERT INTO booked (packageID, userID, dateID, aantalPersonen, bedrag) VALUES(?, ?, ?, ?, ?)"; //query, vraagtekens worden gevuld bij de execute met $params
+        $sql = "INSERT INTO booked (packageID, userID, dateID, aantalPersonen, packageCost, ticketPrice, carAmount, carPrice, busTicketAmount, busPrice) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; //query, vraagtekens worden gevuld bij de execute met $params
         
         $stmt = $this->commands->pdo->prepare($sql);
              
         if ($stmt) {
-            $params = [$package, $userIdInt, $dateID, $this->people, $this->totalPrice];
+            $params = [$package, $userIdInt, $dateID, $this->people, $this->totalPrice, $this->ticketPrice, $this->carAmount, $this->carPrice, $this->busTicketAmount, $this->busPrice];
             // var_dump($params);
             $stmt->execute($params);
             exit("boeking succesvol");
