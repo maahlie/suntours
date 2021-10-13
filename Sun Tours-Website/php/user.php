@@ -46,6 +46,16 @@ class User {
             }
 
             public function codeEmailSend($email){
+                $sql = "SELECT * FROM `users` WHERE `email` = ?";
+                $stmt = $this->SqlCommands->pdo->prepare($sql);
+                $params = [$email];
+                $stmt->execute($params);
+                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                if ($result == false){
+                    exit('dit email aderes is bij ons niet bekent.');
+                }
+
+
                 $sql = "UPDATE users SET activationCode = ? WHERE email = ?;"; //query, vraagtekens worden gevuld bij de execute met $params
 
                 $stmt = $this->SqlCommands->pdo->prepare($sql);
