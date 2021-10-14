@@ -33,7 +33,7 @@
 </script>
 </head>
 
-<body onload="hide_autoverhuur();hide_bus_deals();">
+<body onload="onLoad();">
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a href="index.html"><img class="img-fluid" src="images/SunLogo.png" alt="x" style="width: 60px;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -120,7 +120,7 @@
           <label>Aantal auto's:</label><br>
           <input id="aantal_autos" type=number min=1 onchange="update_prices()"></input>
           <br><br><label>Aantal dagen:</label><br>
-          <input id="rental_time_chooser_id" type=number max=8 min=1 onchange="update_prices()"></input>
+          <input id="rental_time_chooser_id" name="rentalCarDays" type=number max=8 min=1 onchange="update_prices()"></input>
           
 
           <br><br><br>
@@ -132,11 +132,9 @@
           <input type="radio" id="hide_bus_deals2" name="busverhuur" onchange="hide_bus_deals()">nee<Br><Br>
         </div>
 
-        <input type="text" id="packageID" name="packageID" hidden>
-
         <div id="bus">
           <label>Aantal dagen openbaar vervoer:</label><br>
-          <input type="number" min="0" onchange="update_prices()" id="aantal_Dagen" name="aantal_Dagen"><Br><Br>
+          <input type="number" min="0" onchange="update_prices()" id="aantal_Dagen" name="busDays"><Br><Br>
             <label>Aantal tickets:</label><br>
             <input type="number" min="0" onchange="update_prices()" id="aantal_tickets_bus" name="aantal_tickets_bus"><Br><Br>
             <label>geldig vanaf:</label><br>

@@ -15,8 +15,13 @@ class Invoice {
 	private $packagePrice;
 	private $totalPrice;
 	private $people;
+	private $ticketPrice;
+    private $carAmount;
+    private $carPrice;
+    private $busTicketAmount;
+    private $busPrice;
 
-    public function __construct($userID, $packageID, $userIdInt, $packagePrice, $totalPrice, $people)
+    public function __construct($userID, $packageID, $userIdInt, $packagePrice, $people, $ticketPrice, $carAmount, $carPrice, $busTicketAmount, $busPrice, $rentalCarDays, $busDays)
     {
         $this->userID = $userID;
         $this->userInvoice = new User();
@@ -29,12 +34,22 @@ class Invoice {
 		$this->packageID = $packageID;
         $this->userIdInt = $userIdInt;
         $this->packagePrice = $packagePrice;
-        $this->totalPrice = $totalPrice;
+		$this->ticketPrice = $ticketPrice; 
+		$this->carAmount = $carAmount; 
+		$this->carPrice = $carPrice;
+		$this->busTicketAmount = $busTicketAmount;
+		$this->busPrice = $busPrice;
+		$this->people = $people;
+		$this->busDays = $busDays;
+        $this->rentalCarDays = $rentalCarDays;
+
+        // $this->totalPrice = $totalPrice;
+		$this->finalPrices = $this->calcFinalPrice();
 
         $this->articles = array(
             array("Pakket prijs","vlucht","Autoverhuur","BusDeal"),
-            array($people,1,2,2),
-            array($this->packagePrice,80,70,125)
+            array($people,$people,$this->carAmount,$this->busTicketAmount),
+            array($this->packagePrice,$this->ticketPrice,$this->carPrice*$this->rentalCarDays,$this->busPrice*$this->busdays)
     );
 
     }
@@ -45,6 +60,22 @@ class Invoice {
 		$bookingID = $this->commands->selectOrderDesc($userID);
 		return $bookingID[0]['bookingID'];
 	}
+
+	private function calcFinalPrice(){
+        $packagePriceFull = $this->people * $this->packagePrice;
+        $ticketPrice =  $this->people * $this->ticketPrice;
+        $carPrice =  $this->carAmount * $this->rentalCarDays * $this->carPrice;
+        $busPrice = $this->busTicketAmount * $this->busPrice * $this->busDays; 
+        
+        $finalPrices = array(
+            $packagePriceFull,
+            $ticketPrice,
+            $carPrice,
+            $busPrice
+        );
+
+        return $finalPrices;
+    }
 
     public function getNames(){
         $firstName = $this->commands->selectFromWhere("firstName", "users", "userID", $this->userID[0]['userID']);
