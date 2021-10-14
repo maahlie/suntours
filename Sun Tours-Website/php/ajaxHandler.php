@@ -88,7 +88,7 @@ if (isset($_POST['sendBoeking'])) {
                         $_POST['busTicketAmount'], 
                         $_POST['busPrice']
                     );
-                    
+
                     $booking->confirmOrder();
 
                     // $invoice = new Invoice();
