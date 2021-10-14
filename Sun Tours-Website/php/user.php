@@ -189,7 +189,7 @@ class User {
                 }
 
                 $this->SqlCommands->connectDB();
-                $packages = ['Spanje', 'Turkije', 'Turkije2', 'Egypte', 'Frankrijk'];
+                $packages = ['Spanje', 'Turkije1', 'Turkije2', 'Egypte', 'Frankrijk'];
                 $WrittenByUser = [0,0,0,0,0];
                 $sql = 'SELECT packageID FROM `review` WHERE `username` = ?';
                 $stmt = $this->SqlCommands->pdo->prepare($sql);
@@ -199,7 +199,7 @@ class User {
              
                 for($i = 0; $i < count($result); $i++){
                     for($j = 0; $j < 5; $j++){
-                        if ($result[$i]['packageID'] == $packages[$j]){
+                        if ($result[$i]['packageID'] == $packages[$j] || ($result[$i]['packageID'] . '1') == $packages[$j]){
                             $WrittenByUser[$j]++;
                         }
                     }
@@ -226,7 +226,12 @@ class User {
                     }
                 }
                     
-                $packageIndex = array_search($packageId, $packages);
+                if ($packageId != 'Turkije'){
+                    $packageIndex = array_search($packageId, $packages);
+                }else{
+                    $packageIndex = array_search('Turkije1', $packages);
+                }
+                $a = 0;
                 if ($bookedByUser[$packageIndex] <=  $WrittenByUser[$packageIndex]){
                     exit('boek een vakantie om deze review te schrijven');
                 }
