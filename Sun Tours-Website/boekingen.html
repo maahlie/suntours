@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 <head>
   <title>Sun Tours</title>
   <meta charset="utf-8">
@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styles.css">
   <!-- <script src="node_modules/jquery/dist/jquery.js"></script>
-  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
   <script src="Javascript/ajax.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -18,7 +18,7 @@
   <script type="text/javascript" src="./Javascript/url-search.js"></script> -->
 
   <script src="node_modules/jquery/dist/jquery.js"></script>
-  <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
   <script src="Javascript/ajax.js"></script>
   <script type="text/javascript" src="./Javascript/url-search.js"></script>
   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
@@ -31,9 +31,11 @@
         api_key: 'wg_e0862d6fccddf79b84908b2ed4ee35a62'
     });
 </script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap" rel="stylesheet"> 
 </head>
 
-<body onload="hide_autoverhuur();hide_bus_deals();">
+<body class="boekingen_Background" onload="hide_autoverhuur();hide_bus_deals();">
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a href="index.html"><img class="img-fluid" src="images/SunLogo.png" alt="x" style="width: 60px;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -65,119 +67,143 @@
       </ul>
     </div>
   </nav>
+  <div class="header2">
+    <h1>Boekingen</h1><br>
+  </div>
   <main class="boekingen">
+    
+    <div class="float-container">
 
-    <div class="header2">
-      <h1>Boekingen</h1><br>
-    </div>
-    <h2 class="contact_toptext">Boeken</h2><br>
-    <div class="c-form__progress"></div>
-    <div class="wrapper Val">
-      <form method="POST" id="bookingForm">
-          <label>Vertrek/terug reis datum en tijd opties:</label><br>
-          <select id="tijden" name="reistijden" class="break">
-            <option value="keuze" disabled selected>-</option>
-            <option value="1">
-              Heen: 2-11-2021 - 10.45
-            Terug: 10-11-2021 - 20.00
-            </option>
-            <option value="2">
-              Heen: 16-11-2021 - 9.45
-            Terug: 24-11-2021 - 15.30
-            </option>
-            <option value="3">
-              Heen: 7-12-2021 - 19.00
-            Terug: 15-12-2021 - 11.00
-            </option>
-          </select><br><br>
-        <label>Aantal volwassenen (18 jaar of ouder):</label><br>
-        <input type="number" min="0" id="aantal_volwassenen" onclick="update_prices()"
-          name="AantalVolwassenen"><Br><Br>
-        <label>Aantal kinderen:</label><br>
-        <input type="number" min="0" id="aantal_kinderen" onclick="update_prices()"
-          name="AantalKinderen"><Br><Br>
-        <label>Vliegen:</label><br>
-        <input type="radio" id="vervoer" name="vervoer" onclick="show_vervoer()">ja
-        <input type="radio" id="geen_vervoer" name="vervoer" onclick="hide_vervoer()">nee<Br><Br>
-        <div id="vliegen_div">
-
-        </div>
-        <div id="autoVerhuur">
-          <label>AutoVerhuur:</label><br>
-          <input type="radio" id="show_autoverhuur1" name="autoverhuur" onclick="show_autoverhuur()">ja
-          <input type="radio" id="hide_autoverhuur2" name="autoverhuur" onclick="hide_autoverhuur()">nee<Br><Br>
-        </div>
-
-        <div id="autos">
-          <label>Merk:</label><br>
-          <select id="auto" onchange="update_prices()">
-            <option value="keuze" disabled selected>-</option>
-            <option value="Nissan">Nissan</option>
-            <option value="Opel">Opel</option>
-            <option value="Ford">Ford</option>
-            <option value="Volkswagen">Volkswagen</option>
-          </select><br><br>
-          <label>Aantal auto's:</label><br>
-          <input id="aantal_autos" type=number min=1 onchange="update_prices()"></input>
-          <br><br><label>Aantal dagen:</label><br>
-          <input id="rental_time_chooser_id" type=number max=8 min=1 onchange="update_prices()"></input>
-          
-
-          <br><br><br>
-        </div>
-
-        <div id="bus_deals" onchange="update_prices()">
-          <label>Bus Deals</label><br>
-          <input type="radio" id="show_bus_deals1" name="busverhuur" onchange="show_bus_deals()">ja
-          <input type="radio" id="hide_bus_deals2" name="busverhuur" onchange="hide_bus_deals()">nee<Br><Br>
-        </div>
-
-        <input type="text" id="packageID" name="packageID" hidden>
-
-        <div id="bus">
-          <label>Aantal dagen openbaar vervoer:</label><br>
-          <input type="number" min="0" onchange="update_prices()" id="aantal_Dagen" name="aantal_Dagen"><Br><Br>
-            <label>Aantal tickets:</label><br>
-            <input type="number" min="0" onchange="update_prices()" id="aantal_tickets_bus" name="aantal_tickets_bus"><Br><Br>
-            <label>geldig vanaf:</label><br>
-            <input id="bus-dates" type='date'></input><br><br>
+      <div class="float-child">
+        <div class="green">
+          <form method="POST" id="bookingForm">
+          <!-- <label>Vertrek Datum:</label><br>
+          <input type="date" id="vertrek-datum" name="VertrekDatum"><Br><Br>
+          <label>Terugreis datum:</label><br>
+          <input type="date" id="terugreis-datum" name="TerugreisDatum"><Br><br> -->
+            <label>Vertrek/terug reis datum en tijd opties:</label><br>
+            <select id="tijden" name="reistijden" class="break">
+              <option value="keuze" disabled selected>-</option>
+              <option value="1">
+                Heen: 2-11-2021 - 10.45
+              Terug: 10-11-2021 - 20.00
+              </option>
+              <option value="2">
+                Heen: 16-11-2021 - 9.45
+              Terug: 24-11-2021 - 15.30
+              </option>
+              <option value="3">
+                Heen: 7-12-2021 - 19.00
+              Terug: 15-12-2021 - 11.00
+              </option>
+            </select><br><br>
+          <label>Aantal volwassenen (18 jaar of ouder):</label><br>
+          <input type="number" min="0" id="aantal_volwassenen" onclick="update_prices()"
+            name="AantalVolwassenen"><Br><Br>
+          <label>Aantal kinderen:</label><br>
+          <input type="number" min="0" id="aantal_kinderen" onclick="update_prices()"
+            name="AantalKinderen"><Br><Br>
+          <label>Vliegen:</label><br>
+          <input type="radio" id="vervoer" name="vervoer" onclick="show_vervoer()">ja
+          <input type="radio" id="geen_vervoer" name="vervoer" onclick="hide_vervoer()">nee<Br><Br>
+          <div id="vliegen_div">
+  
+          </div>
+          <div id="autoVerhuur">
+            <label>AutoVerhuur:</label><br>
+            <input type="radio" id="show_autoverhuur1" name="autoverhuur" onclick="show_autoverhuur()">ja
+            <input type="radio" id="hide_autoverhuur2" name="autoverhuur" onclick="hide_autoverhuur()">nee<Br><Br>
+          </div>
+  
+          <div id="autos">
+            <label>Merk:</label><br>
+            <select id="auto" onchange="update_prices()">
+              <option value="keuze" disabled selected>-</option>
+              <option value="Nissan">Nissan</option>
+              <option value="Opel">Opel</option>
+              <option value="Ford">Ford</option>
+              <option value="Volkswagen">Volkswagen</option>
+            </select>
+            <label>Aantal auto's:</label><br>
+            <input id="aantal_autos" type=number min=1 onchange="update_prices()"></input>
+            <br><br><label>Aantal dagen:</label><br>
+            <input id="rental_time_chooser_id" type=number max=8 min=1 onchange="update_prices()"></input>
             
-
-        </div>
-        <input type="text" id="packageID" name="packageID" hidden>
-        <input type="text" id="totalPrice" name="totalPrice" hidden>
-        <input type="text" id="ticketPrice" name="ticketPrice" hidden>
-        <input type="text" id="carAmount" name="carAmount" hidden>
-        <input type="text" id="carPrice" name="carPrice" hidden>
-        <input type="text" id="busTicketAmount" name="busTicketAmount" hidden>
-        <input type="text" id="busPrice" name="busPrice" hidden>
-
-        <table id='boekingenTable'>
-          <tr>
-            <th><label>Auto Prijs:</label></th>
-            <th><label>Bus Prijs:</label></th>
-            <th><label>Ticket Prijs:</label></th>
-            <th><label>Pakket Prijs:</label></th>
-            <th><label>Totale Reis Prijs:</label></th>
-          </tr>
-          <tr><p class="btw">(exclusief btw)</p>
-            <td><label id="auto_prijs" class="prijzen">Prijs:-</label></td>
-            <td><label id="bus_Totaal" class="prijzen">Prijs:-</label></td>
-            <td><label id="totaal_Vliegticket_Prijs" class="prijzen">Prijs:-</label></td>
-            <td><label id="totaal_pakket_Prijs" class="prijzen">Prijs:-</label></td>
-            <td><label id="totaal__Reis_Prijs" class="prijzen">Prijs:-</label></td>
-          </tr>
-
-
-        </table>
-
-        <input type="submit" value="Volgende" name="sendBoeking" id="contact_button" class="sendKnop">
-      </form>
-      <div class="Cards">
-        <div id="selected">
+  
+            <br><br><br>
+          </div>
+  
+          <div id="bus_deals" onchange="update_prices()">
+            <label>Bus Deals</label><br>
+            <input type="radio" id="show_bus_deals1" name="busverhuur" onchange="show_bus_deals()">ja
+            <input type="radio" id="hide_bus_deals2" name="busverhuur" onchange="hide_bus_deals()">nee<Br><Br>
+          </div>
+  
+          <div id="bus">
+            <label>Aantal dagen openbaar vervoer:</label><br>
+            <input type="number" min="0" onchange="update_prices()" id="aantal_Dagen" name="aantal_Dagen"><Br><Br>
+              <label>Aantal tickets:</label><br>
+              <input type="number" min="0" onchange="update_prices()" id="aantal_tickets_bus" name="aantal_tickets_bus"><Br><Br>
+              <label>geldig vanaf:</label><br>
+              <input id="bus-dates" type='date'></input><br><br>
+  
+          </div>
+          <input type="text" id="packageID" name="packageID" hidden>
+          <input type="text" id="totalPrice" name="totalPrice" hidden>
+          <input type="text" id="ticketPrice" name="ticketPrice" hidden>
+          <input type="text" id="carAmount" name="carAmount" hidden>
+          <input type="text" id="carPrice" name="carPrice" hidden>
+          <input type="text" id="busTicketAmount" name="busTicketAmount" hidden>
+          <input type="text" id="busPrice" name="busPrice" hidden>
+  
+          <table id="boekingenTable">
+            <tr>
+              <th><label>Auto Prijs:</label></th>
+              <th><label>Bus Prijs:</label></th>
+              <th><label>Ticket Prijs:</label></th>
+              <th><label>Pakket Prijs:</label></th>
+              <th><label>Totale Reis Prijs:</label></th>
+            </tr>
+            <tr>
+              <td><label id="auto_prijs" class="prijzen">Prijs:-</label></td>
+              <td><label id="bus_Totaal" class="prijzen">Prijs:-</label></td>
+              <td><label id="totaal_Vliegticket_Prijs" class="prijzen">Prijs:-</label></td>
+              <td><label id="totaal_pakket_Prijs" class="prijzen">Prijs:-</label></td>
+              <td><label id="totaal__Reis_Prijs" class="prijzen">Prijs:-</label></td>
+            </tr>
+  
+            <!-- <label>Auto Prijs:</label><br>
+            <label id="auto_prijs" class="prijzen"></label><br>
+            <label>Bus Prijs:</label><br>
+            <label id="bus_Totaal" class="prijzen"></label><br>
+            <label>Ticket Prijs:</label><br>
+            <label id="totaal_Vliegticket_Prijs" class="prijzen"></label><br>
+            <label>Vakantie Prijs:</label><br>
+            <label id="totaal__Vakantie_Prijs" class="prijzen"></label><br>
+            <label>Totale Reis Prijs:</label><br><br>
+            <label id="totaal__Reis_Prijs" class="prijzen"></label><br> -->
+          </table>
+       
+  <br>
+          <input type="submit" value="Volgende" id="boekingen_button" class="sendKnop boekingen_Button">
+        
+        </form>
+      </div>
+      
+      </div>
+      </div>
+      <div class="float-child">
+        <div class="blue">
+          <div class="boekingen_Info">
+            
+            <div class="Cards">
+              <div id="selected">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+     
   </main>
 </body>
 
