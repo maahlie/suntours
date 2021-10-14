@@ -52,8 +52,7 @@ class Booking {
 
     public function confirmOrder(){
         // $totalPrice = $this->totalCost();
-        $package = $this->id;
-        $userID = $this->userId[0]['userID'];
+                $userID = $this->userId[0]['userID'];
         $userIdInt = $userID + 0;
         $dateID = $this->travelTimeChoice;
 
@@ -64,10 +63,9 @@ class Booking {
         $sql = "INSERT INTO booked (packageID, userID, dateID, aantalPersonen, packageCost, ticketPrice, carAmount, carPrice, busTicketAmount, busPrice) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; //query, vraagtekens worden gevuld bij de execute met $params
         
         $stmt = $this->commands->pdo->prepare($sql);
-             
         if ($stmt) {
-            $params = [$package, $userIdInt, $dateID, $this->people, $this->totalPrice, $this->ticketPrice, $this->carAmount, $this->carPrice, $this->busTicketAmount, $this->busPrice];
-            // var_dump($params);
+            $params = [$this->id, $userIdInt, $dateID, $this->people, $this->totalPrice, $this->ticketPrice, $this->carAmount, $this->carPrice, $this->busTicketAmount, $this->busPrice];
+            
             $stmt->execute($params);
             exit("boeking succesvol");
          }

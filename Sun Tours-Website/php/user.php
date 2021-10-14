@@ -189,29 +189,49 @@ class User {
                 }
 
                 $this->SqlCommands->connectDB();
-                $packages = ['Spanje', 'Turkije1', 'Turkije2', 'Egypte', 'Frankrijk'];
-                $bookedByUser = ['',''];
-                $sql = 'SELECT username, packageID FROM `review` WHERE `username` = ?';
+                $packages = ['Spanje', 'Turkije', 'Turkije2', 'Egypte', 'Frankrijk'];
+                $WrittenByUser = [0,0,0,0,0];
+                $sql = 'SELECT packageID FROM `review` WHERE `username` = ?';
                 $stmt = $this->SqlCommands->pdo->prepare($sql);
                 $params = [$username];
                 $stmt->execute($params);
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
              
-                foreach($result as $boeking){
-                    array_push($bookedByUser,'1');
+                for($i = 0; $i < count($result); $i++){
+                    for($j = 0; $j < 5; $j++){
+                        if ($result[$i]['packageID'] == $packages[$j]){
+                            $WrittenByUser[$j]++;
+                        }
+                    }
                 }
-                $b = 0;
-                // kijkt of een gebruiker al eens een review heeft geschreven.
-                // $sql = 'SELECT username, packageID FROM `review` WHERE `username` = ?';
-                // $stmt = $this->SqlCommands->pdo->prepare($sql);
-                // $params = [$username];
-                // $stmt->execute($params);
-                // $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                // if ($result){
-                //     exit('U kunt maar 1 review achter laten');
-                // }
+                $sql = 'SELECT userID FROM `users` WHERE `username` = ?';
+                $stmt = $this->SqlCommands->pdo->prepare($sql);
+                $params = [$username];
+                $stmt->execute($params);
+                $result2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $result2 = $result2[0]['userID'];
+                $a = 0;
 
-                //nieuwe revieuw wordt toe gevoegd aan de database
+                $bookedByUser = [0,0,0,0,0];
+                $sql = 'SELECT packageID FROM `booked` WHERE `userID` = ?';
+                $stmt = $this->SqlCommands->pdo->prepare($sql);
+                $params = [$result2];
+                $stmt->execute($params);
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                for($i = 0; $i < count($result); $i++){
+                    for($j = 0; $j < 5; $j++){
+                        if ($result[$i]['packageID'] == $packages[$j]){
+                            $bookedByUser[$j]++;
+                        }
+                    }
+                }
+                    
+                $packageIndex = array_search($packageId, $packages);
+                if ($bookedByUser[$packageIndex] <=  $WrittenByUser[$packageIndex]){
+                    exit('boek een vakantie om deze review te schrijven');
+                }
+
+
                 $sql = "INSERT INTO review (packageId, score, reviewSubject, review, reccomendation, username) VALUES(?, ?, ?, ?, ?, ?)";
                 $stmt = $this->SqlCommands->pdo->prepare($sql);
                         

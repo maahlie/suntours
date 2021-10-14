@@ -35,15 +35,19 @@ $(document).ready(function () {
   }
 }
 });
-
+function onLoad(){
+  hide_autoverhuur();
+  hide_bus_deals();
+  var url = window.location.href;
+  var id  = url.substring(url.lastIndexOf('=') + 1);
+  document.getElementById("packageID").value = id;
+}
 function show_vervoer(){
   document.getElementById("vliegen_div").innerHTML='<label>vliegmaatschapij:</label><br> <select name="airlines" id="airlines"  onchange="update_prices()"> <option value="keuze" disabled selected>-</option> <option value="KLM">KLM <option value="Ryan air">Ryan air</option> <option value="Iberia">Iberia</option> </select><Br><Br> <label>vertrek vliegveld:</label><br> <select name="Vertrek_vliegveld" id="Vertrek_vliegveld"> <option value="keuze" disabled selected>-</option> <option value="KLM">Schiphol</option> <option value="Air spain">Eindhoven</option> <option value="Ryan air">Groningen-Eelde</option> <option value="Iberia">Rotterdam-The Hague</option> </select><Br><Br><label>Vlucht tijden:</label><br> <label>Heenreis:</label> <select name="Vertrek_tijd" id="Vertrek_tijd"> <option value="keuze" disabled selected>-</option> <option value="8.' + html_script_vliegen[country];
 }
 function hide_vervoer(){
   document.getElementById("vliegen_div").innerHTML='';
-  var url = window.location.href;
-  var id  = url.substring(url.lastIndexOf('=') + 1);
-  document.getElementById("packageID").value = id;
+
 }
 function show_autoverhuur(){
   document.getElementById("autos").style.display = "block";

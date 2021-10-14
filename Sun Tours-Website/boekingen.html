@@ -33,7 +33,7 @@
 </script>
 </head>
 
-<body onload="hide_autoverhuur();hide_bus_deals();">
+<body onload="onLoad()">
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a href="index.html"><img class="img-fluid" src="images/SunLogo.png" alt="x" style="width: 60px;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
@@ -132,7 +132,7 @@
           <input type="radio" id="hide_bus_deals2" name="busverhuur" onchange="hide_bus_deals()">nee<Br><Br>
         </div>
 
-        <input type="text" id="packageID" name="packageID" hidden>
+        
 
         <div id="bus">
           <label>Aantal dagen openbaar vervoer:</label><br>
@@ -144,7 +144,7 @@
             
 
         </div>
-        <input type="text" id="packageID" name="packageID" hidden>
+        <input type="text" id="packageID" name="packageID">
         <input type="text" id="totalPrice" name="totalPrice" hidden>
         <input type="text" id="ticketPrice" name="ticketPrice" hidden>
         <input type="text" id="carAmount" name="carAmount" hidden>
