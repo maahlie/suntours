@@ -189,9 +189,18 @@ class User {
                 }
 
                 $this->SqlCommands->connectDB();
-
-
+                $packages = ['Spanje', 'Turkije1', 'Turkije2', 'Egypte', 'Frankrijk'];
+                $bookedByUser = ['',''];
                 $sql = 'SELECT username, packageID FROM `review` WHERE `username` = ?';
+                $stmt = $this->SqlCommands->pdo->prepare($sql);
+                $params = [$username];
+                $stmt->execute($params);
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+             
+                foreach($result as $boeking){
+                    array_push($bookedByUser,'1');
+                }
+                $b = 0;
                 // kijkt of een gebruiker al eens een review heeft geschreven.
                 // $sql = 'SELECT username, packageID FROM `review` WHERE `username` = ?';
                 // $stmt = $this->SqlCommands->pdo->prepare($sql);
