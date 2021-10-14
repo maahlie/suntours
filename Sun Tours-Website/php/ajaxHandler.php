@@ -85,13 +85,13 @@ if (isset($_POST['sendBoeking'])) {
                         $_POST['ticketPrice'], 
                         $_POST['carAmount'], 
                         $_POST['carPrice'], 
+                        $_POST['rentalCarDays'], 
                         $_POST['busTicketAmount'], 
-                        $_POST['busPrice']
+                        $_POST['busPrice'],
+                        $_POST['busDays']
                     );
 
                     $booking->confirmOrder();
-
-                    // $invoice = new Invoice();
                    
                     exit("boeking niet succesvol!!!");
         }

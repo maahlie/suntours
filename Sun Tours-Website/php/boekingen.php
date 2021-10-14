@@ -10,7 +10,7 @@ class Booking {
     private $flights;
     private $bus;
     private $car;
-    private $totalPrice;
+    private $packagePrice;
     private $id;
     private $commands;
     private $username;
@@ -21,7 +21,7 @@ class Booking {
     private $carPrice;
     private $busTicketAmount;
     private $busPrice;
-    public function __construct($adults, $kids, $id, $travelTimeChoice, $totalPrice, $ticketPrice, $carAmount, $carPrice, $busTicketAmount, $busPrice)
+    public function __construct($adults, $kids, $id, $travelTimeChoice, $packagePrice, $ticketPrice, $carAmount, $carPrice, $rentalCarDays, $busTicketAmount, $busPrice, $busDays)
     {
         $this->adults = $adults;
         $this->kids = $kids;
@@ -32,13 +32,16 @@ class Booking {
         $this->bus;
         $this->car;
         $this->id = $id;
-        $this->totalPrice = $totalPrice;
+        $this->packagePrice = $packagePrice;
         $this->ticketPrice = $ticketPrice;
+        $this->rentalCarDays = $rentalCarDays;
         $this->carAmount = $carAmount;
         $this->carPrice = $carPrice;
         $this->busTicketAmount = $busTicketAmount;
         $this->busPrice = $busPrice;
+        $this->busDays = $busDays;
         $this->userId = $this->getUserID();
+        // $this->finalPrices = $this->calcFinalPrice();
         // $this->username = $_SESSION['username'];
     }
 
@@ -50,12 +53,11 @@ class Booking {
         return $userID;
     }
 
-    public function confirmOrder(){
-        // $totalPrice = $this->totalCost();
-                $userID = $this->userId[0]['userID'];
-        $userIdInt = $userID + 0;
-        $dateID = $this->travelTimeChoice;
 
+
+    public function confirmOrder(){
+        $userID = $this->userId[0]['userID'];
+        $userIdInt = $userID + 0;
 
         $this->commands = new SqlCommands();
         $this->commands->connectDB();
@@ -64,11 +66,12 @@ class Booking {
         
         $stmt = $this->commands->pdo->prepare($sql);
         if ($stmt) {
-            $params = [$this->id, $userIdInt, $dateID, $this->people, $this->totalPrice, $this->ticketPrice, $this->carAmount, $this->carPrice, $this->busTicketAmount, $this->busPrice];
-            
+            $params = [$this->id, $userIdInt, $this->travelTimeChoice, $this->people, $this->packagePrice, $this->ticketPrice, $this->carAmount, $this->carPrice, $this->busTicketAmount, $this->busPrice];
             $stmt->execute($params);
+            $invoice = new Invoice($userID, $this->id, $userIdInt, $this->packagePrice, $this->people, $this->ticketPrice, $this->carAmount, $this->carPrice, $this->busTicketAmount, $this->busPrice, $this->rentalCarDays, $this->busDays);
+            $invoice->genInvoice();
             exit("boeking succesvol");
-         }
+        }
     }
     
 }
