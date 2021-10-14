@@ -49,13 +49,13 @@ class Invoice {
         $this->articles = array(
             array("Pakket prijs","vlucht","Autoverhuur","BusDeal"),
             array($people,$people,$this->carAmount,$this->busTicketAmount),
-            array($this->packagePrice,$this->ticketPrice,$this->carPrice*$this->rentalCarDays,$this->busPrice*$this->busdays)
+            array($this->packagePrice,$this->ticketPrice,$this->carPrice*$this->rentalCarDays,$this->busPrice*$this->busDays)
     );
 
     }
 
 	public function getBookingID(){
-		$userID =  $this->userID[0]['userID'];
+		$userID =  $this->userID;
 		$userID = $userID + 0;
 		$bookingID = $this->commands->selectOrderDesc($userID);
 		return $bookingID[0]['bookingID'];
@@ -78,8 +78,8 @@ class Invoice {
     }
 
     public function getNames(){
-        $firstName = $this->commands->selectFromWhere("firstName", "users", "userID", $this->userID[0]['userID']);
-        $surName = $this->commands->selectFromWhere("surName", "users", "userID", $this->userID[0]['userID']);
+        $firstName = $this->commands->selectFromWhere("firstName", "users", "userID", $this->userIdInt);
+        $surName = $this->commands->selectFromWhere("surName", "users", "userID", $this->userIdInt);
         $fullName = $firstName[0]['firstName'] . " " . $surName[0]['surName'];
         return $fullName;
     }
@@ -98,12 +98,12 @@ class Invoice {
 	// }
 
 	public function getStreet(){
-		$streetName = $this->commands->selectFromWhere("address", "users", "userID", $this->userID[0]['userID']);
+		$streetName = $this->commands->selectFromWhere("address", "users", "userID", $this->userID);
 		return $streetName[0]['address'];
 	}
 
 	public function getPostal(){
-		$postalCode = $this->commands->selectFromWhere("postalcode", "users", "userID", $this->userID[0]['userID']);
+		$postalCode = $this->commands->selectFromWhere("postalcode", "users", "userID", $this->userID);
 		return $postalCode[0]['postalcode'];
 	}
 

@@ -123,7 +123,7 @@
             <label>Aantal auto's:</label><br>
             <input id="aantal_autos" type=number min=1 onchange="update_prices()"></input>
             <br><br><label>Aantal dagen:</label><br>
-            <input id="rental_time_chooser_id" type=number max=8 min=1 onchange="update_prices()"></input>
+            <input id="rental_time_chooser_id" type=number max=8 min=1 name="rentalCarDays" onchange="update_prices()"></input>
             
   
             <br><br><br>
@@ -134,12 +134,10 @@
             <input type="radio" id="show_bus_deals1" name="busverhuur" onchange="show_bus_deals()">ja
             <input type="radio" id="hide_bus_deals2" name="busverhuur" onchange="hide_bus_deals()">nee<Br><Br>
           </div>
-  
-          <input type="text" id="packageID" name="packageID" hidden>
-  
+    
           <div id="bus">
             <label>Aantal dagen openbaar vervoer:</label><br>
-            <input type="number" min="0" onchange="update_prices()" id="aantal_Dagen" name="aantal_Dagen"><Br><Br>
+            <input type="number" min="0" onchange="update_prices()" id="aantal_Dagen" name="busDays"><Br><Br>
               <label>Aantal tickets:</label><br>
               <input type="number" min="0" onchange="update_prices()" id="aantal_tickets_bus" name="aantal_tickets_bus"><Br><Br>
               <label>geldig vanaf:</label><br>
