@@ -367,13 +367,13 @@ h4 {
 #contact_button {
    background-color: blue;
    color: white;
-   width: 30%;
+   width: 60%;
    margin-left: 5%;
 }
 
 #contact_naam,#contact_onderwerp,#contact_email
 {
-   width: 50%;
+   width: 70%;
 }
 
 .contactArea {
@@ -784,7 +784,10 @@ textarea:hover {
       font-size:xx-small;
    }
    
-  
+   #aantal_Dagen,#aantal_tickets_bus,#aantal_volwassenen,#aantal_kinderen
+   {
+      width: 60%;
+   }
 
 } 
 
@@ -815,7 +818,7 @@ textarea:hover {
    color: #fff;
    font-weight: 600;
    border-radius: 5px;
-   width: 60%;
+   width: 80%;
    margin-bottom: 5%;
    margin-left: 	5%;
    
@@ -877,8 +880,5 @@ textarea:hover {
    
    float: left;
    margin-left: 15%;
-   
-   
-   
-   
-}  
+} 
+
