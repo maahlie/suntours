@@ -279,7 +279,7 @@ class Invoice {
 
 $targetEmail = 'SunTours.devOps@hotmail.com';
 $completeBody = $invoiceBody;
-$mailSubject = "Factuur";
+$mailSubject = "Vactuur";
 
 $this->sendMail($targetEmail,$completeBody,$mailSubject);
     }
