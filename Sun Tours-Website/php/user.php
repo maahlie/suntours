@@ -119,7 +119,7 @@ class User {
                        $this->confMail($email, "De code voor uw activatie is: $pass.", "Activatie Code Voor uw Sun Tours Account");
                     }                   
             }
-            public function enterContact($email, $contactBody, $contactSubject, $contactName){
+            public function enterContact($contactName, $email, $contactSubject, $contactBody){
 
                 $sql = "INSERT INTO contact (name, email, subject, message) VALUES(?, ?, ?, ?)"; //query, vraagtekens worden gevuld bij de execute met $params
            
@@ -127,7 +127,7 @@ class User {
                         
                 if ($stmt) {
                     
-                    $params = [$email, $contactBody, $contactSubject, $contactName];
+                    $params = [$contactName, $email, $contactSubject, $contactBody];
                     $stmt->execute($params);
                     }                   
             }
