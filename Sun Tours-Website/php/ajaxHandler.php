@@ -76,17 +76,18 @@ if (isset($_POST['sendLogin'])) {
 if (isset($_POST['sendBoeking'])) {
     if(isset($_SESSION['loggedIn'])){
         if($_SESSION['loggedIn']==true){
+
                     $booking = new Booking(
-                        $_POST['AantalVolwassenen'], 
-                        $_POST['AantalKinderen'], 
-                        $_POST['packageID'], 
-                        $_POST['reistijden'], 
-                        $_POST['totalPrice'], 
-                        $_POST['ticketPrice'], 
-                        $_POST['carAmount'], 
-                        $_POST['carPrice'], 
-                        $_POST['rentalCarDays'], 
-                        $_POST['busTicketAmount'], 
+                        $_POST['AantalVolwassenen'],
+                        $_POST['AantalKinderen'],
+                        $_POST['packageID'],
+                        $_POST['reistijden'],
+                        $_POST['totalPrice'],
+                        $_POST['ticketPrice'],
+                        $_POST['carAmount'],
+                        $_POST['carPrice'],
+                        $_POST['rentalCarDays'],
+                        $_POST['busTicketAmount'],
                         $_POST['busPrice'],
                         $_POST['busDays']
                     );
