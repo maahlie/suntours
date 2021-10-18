@@ -34,25 +34,33 @@ class Invoice {
 		$this->packageID = $packageID;
         $this->userIdInt = $userIdInt;
         $this->packagePrice = $packagePrice;
-		$this->ticketPrice = $ticketPrice; 
+		$this->ticketPrice = $ticketPrice;
 		$this->carAmount = $carAmount; 
 		$this->carPrice = $carPrice;
 		$this->busTicketAmount = $busTicketAmount;
 		$this->busPrice = $busPrice;
 		$this->people = $people;
+		$this->ticketAmount = $this->zeroChecker($ticketPrice, $people);
 		$this->busDays = $busDays;
         $this->rentalCarDays = $rentalCarDays;
 
-        // $this->totalPrice = $totalPrice;
-		$this->finalPrices = $this->calcFinalPrice();
-
         $this->articles = array(
             array("Pakket prijs","vlucht","Autoverhuur","BusDeal"),
-            array($people,$people,$this->carAmount,$this->busTicketAmount),
-            array($this->packagePrice,$this->ticketPrice,$this->carPrice*$this->rentalCarDays,$this->busPrice*$this->busDays)
-    );
+            array($people, $this->ticketAmount, $this->carAmount, $this->busTicketAmount),
+            array($this->packagePrice, $this->ticketPrice, $this->carPrice*$this->rentalCarDays, $this->busPrice*$this->busDays)
+    		);
 
     }
+
+	private function zeroChecker($ticketPrice, $people){
+		if($ticketPrice == 0){
+			$value = 0;
+		}else{
+			$value = $people;
+		}
+
+		return $value;
+	}
 
 	public function getBookingID(){
 		$userID =  $this->userID;
@@ -61,41 +69,12 @@ class Invoice {
 		return $bookingID[0]['bookingID'];
 	}
 
-	private function calcFinalPrice(){
-        $packagePriceFull = $this->people * $this->packagePrice;
-        $ticketPrice =  $this->people * $this->ticketPrice;
-        $carPrice =  $this->carAmount * $this->rentalCarDays * $this->carPrice;
-        $busPrice = $this->busTicketAmount * $this->busPrice * $this->busDays; 
-        
-        $finalPrices = array(
-            $packagePriceFull,
-            $ticketPrice,
-            $carPrice,
-            $busPrice
-        );
-
-        return $finalPrices;
-    }
-
     public function getNames(){
         $firstName = $this->commands->selectFromWhere("firstName", "users", "userID", $this->userIdInt);
         $surName = $this->commands->selectFromWhere("surName", "users", "userID", $this->userIdInt);
         $fullName = $firstName[0]['firstName'] . " " . $surName[0]['surName'];
         return $fullName;
     }
-
-	// public function getPackPrice(){
-	// 	$packageID = $this->commands->selectFromWhere("packageID", "booked", "bookingID", $this->bookingID);
-	// 	$packetPrice = $this->commands->selectFromWhere("price", "packages", "packageID", $packageID[0]['packageID']);
-	// 	return $packetPrice[0]['price'];
-	// }
-
-	// public function getTotalPackPrice()
-	// {
-	// 	$totalPrice = $this->commands->selectFromWhere("bedrag", "booked", "bookingID", $this->bookingID);
-	// 	var_dump($totalPrice);
-	// 	return $totalPrice[0]['bedrag'];
-	// }
 
 	public function getStreet(){
 		$streetName = $this->commands->selectFromWhere("address", "users", "userID", $this->userID);
@@ -121,6 +100,15 @@ class Invoice {
         $this->userInvoice->confMail($targetEmail,$completeBody,$mailSubject);
     }
 
+	private function nvtMaker($var){
+		if($var==0){
+			$var = "n.v.t";
+		}else{
+			$var = $var;
+		}
+		return $var;
+	}
+
     public function forFill(){
         $printFor = "";
         for($i=0;$i<4;$i++) {
@@ -130,10 +118,21 @@ class Invoice {
             $total_price = $amount * $unit_price;
             $printFor .= "<tr>";
             $printFor .= "<td>$description</td>";
-            $printFor .= "<td class='text-center'>".$amount."</td>";
-            $printFor .= "<td class='text-right'>"."&euro;".number_format($unit_price, 2)."</td>";
-            $printFor .= "<td class='text-right'>"."&euro;".number_format($total_price, 2)."</td>";
-            $printFor .= "</tr>";
+            $printFor .= "<td class='text-center'>".$this->nvtMaker($amount)."</td>";
+
+			if($this->nvtMaker(number_format($unit_price, 2))=="n.v.t"){
+            $printFor .= "<td class='text-right'>".$this->nvtMaker(number_format($unit_price, 2))."</td>";
+			}else{
+				$printFor .= "<td class='text-right'>"."&euro;".number_format($unit_price, 2)."</td>";
+			}
+
+			if($this->nvtMaker(number_format($total_price, 2))=="n.v.t"){
+				$printFor .= "<td class='text-right'>".$this->nvtMaker(number_format($total_price, 2))."</td>";
+			}else{
+				$printFor .= "<td class='text-right'>"."&euro;".number_format($total_price, 2)."</td>";
+			}
+				
+			$printFor .= "</tr>";
 			$this->total += $total_price;
         }
 
@@ -279,7 +278,7 @@ class Invoice {
 
 $targetEmail = 'SunTours.devOps@hotmail.com';
 $completeBody = $invoiceBody;
-$mailSubject = "Vactuur";
+$mailSubject = "Factuur";
 
 $this->sendMail($targetEmail,$completeBody,$mailSubject);
     }
