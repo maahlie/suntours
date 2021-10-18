@@ -118,7 +118,7 @@ if (isset($_POST['sendContact'])) {
     $contactSubject = $_POST['contact_onderwerp'];
     $contactBody = $_POST['contact_text'];
     $contactName = $_POST['contact_naam'];
-
+    $userClass->enterContact($contactName, $email, $contactSubject, $contactBody);
     $userClass->contact($email, $contactBody, $contactSubject, $contactName);
 }
 
