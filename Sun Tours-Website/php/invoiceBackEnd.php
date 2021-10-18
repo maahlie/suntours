@@ -1,5 +1,8 @@
 <?php
 
+require 'composer/vendor/autoload.php';
+use Dompdf\Dompdf;
+
 class Invoice {
     private $commands;
     public $today;
@@ -20,6 +23,8 @@ class Invoice {
     private $carPrice;
     private $busTicketAmount;
     private $busPrice;
+	private $invoiceBody;
+	private $filename;
 
     public function __construct($userID, $packageID, $userIdInt, $packagePrice, $people, $ticketPrice, $carAmount, $carPrice, $busTicketAmount, $busPrice, $rentalCarDays, $busDays)
     {
@@ -142,7 +147,7 @@ class Invoice {
 
     public function genInvoice()
     {
-        $invoiceBody = 
+        $this->invoiceBody = 
 '<html>
 	<head>  
         <title>Simple invoice in PHP</title>
@@ -184,6 +189,7 @@ class Invoice {
 			float:right;
 			margin-bottom:50px;
 			margin-top:100px;
+			margin-right:-268px;
 			width:200pt;
 		}
 		
@@ -226,6 +232,9 @@ class Invoice {
 			Bredeweg 235
 			<br />
 			6042 GE, Roermond
+			<br />
+			<br />
+			NL 25 RABO 1842967093
 			<br />
 		</div>
 	
@@ -276,15 +285,37 @@ class Invoice {
 </html>
 ';
 
+		// $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+		// echo $actual_link;
+		$targetEmail = 'SunTours.devOps@hotmail.com';
+		$completeBody = $this->invoiceBody;
+		$mailSubject = "Factuur";
 
-$targetEmail = 'SunTours.devOps@hotmail.com';
-$completeBody = $invoiceBody;
-$mailSubject = "Factuur";
+		$mailer = new Mail($completeBody, $mailSubject, $targetEmail);
 
-$this->sendMail($targetEmail,$completeBody,$mailSubject);
-    }
+		$mailer->email2($this->pdf(), $this->filename);
+    }//EINDE VAN GENINVOICE();   
 
- 
-    
+	public function pdf()
+	{
+		// instantiate and use the dompdf class
+		$dompdf = new Dompdf();
+		$dompdf->loadHtml($this->invoiceBody);
+
+		$this->filename = "Invoice.pdf";
+
+		// (Optional) Setup the paper size and orientation
+		$dompdf->setPaper('A3', 'portrait');
+
+		// Render the HTML as PDF
+		$dompdf->render();
+
+		// ob_end_clean();
+
+		// Output the generated PDF to Browser
+		// $dompdf->stream($filename);
+		$pdf=$dompdf->output();
+		return $pdf;
+	}
 }
 ?>

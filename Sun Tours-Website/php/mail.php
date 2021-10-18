@@ -61,6 +61,30 @@ class Mail {
             return;
     }
 
+    public function email2($pdf, $fileName){
+        //Recipients
+        $this->mail->addAddress($this->targetEmail);     //Add a recipient
+        // $mail->addAddress('ellen@example.com');               //Name is optional
+        // $mail->addReplyTo('info@example.com', 'Information');
+        // $mail->addCC('cc@example.com');
+        // $mail->addBCC('bcc@example.com');
+    
+        //Attachments
+        // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+        // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+    
+        //Content
+        $this->mail->isHTML(true);                                  //Set email format to HTML
+        $this->mail->Subject = $this->subject;
+        $this->mail->Body    = $this->body;
+        $this->mail->AltBody = strip_tags($this->body);
+        $this->mail->AddStringAttachment($pdf, $fileName);
+
+        $this->mail->send();
+
+        return;
+}
+
 }
 
 
