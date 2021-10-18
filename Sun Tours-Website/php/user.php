@@ -100,7 +100,7 @@ class User {
                 }
             }
 
-            public function enterReg($email, $phoneNumber, $firstName, $surName, $username, $address, $postalCode, $passwd2, $passwd3){
+            public function enterReg($email, $phoneNumber, $firstName, $surName, $username, $address, $postalCode, $passwd2, $passwd3, $city){
     
 
                 $hash = password_hash($passwd2, PASSWORD_DEFAULT);
@@ -108,17 +108,18 @@ class User {
                     $this->emailCheck($email);
                     $this->usernCheck($username);
 
-                   $sql = "INSERT INTO users (username, email, passwrd, phoneNumber, firstName, surName, address, postalCode, active, activationCode) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; //query, vraagtekens worden gevuld bij de execute met $params
+                   $sql = "INSERT INTO users (username, email, passwrd, phoneNumber, firstName, surName, address, postalCode, active, activationCode, City) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; //query, vraagtekens worden gevuld bij de execute met $params
            
                    $stmt = $this->SqlCommands->pdo->prepare($sql);
                         
                    if ($stmt) {
                         $pass = substr(md5(uniqid(mt_rand(), true)) , 0, 8);
-                       $params = [$username, $email, $hash, $phoneNumber, $firstName, $surName, $address, $postalCode, false, $pass];
+                       $params = [$username, $email, $hash, $phoneNumber, $firstName, $surName, $address, $postalCode, false, $pass, $city];
                        $stmt->execute($params);
                        $this->confMail($email, "De code voor uw activatie is: $pass.", "Activatie Code Voor uw Sun Tours Account");
                     }                   
             }
+            
             public function enterContact($contactName, $email, $contactSubject, $contactBody){
 
                 $sql = "INSERT INTO contact (name, email, subject, message) VALUES(?, ?, ?, ?)"; //query, vraagtekens worden gevuld bij de execute met $params

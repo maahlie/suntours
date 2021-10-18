@@ -19,6 +19,9 @@ document.addEventListener("DOMContentLoaded", function(){
                 required: true,
                 email: true
             },
+            City: {
+                required: true
+            },
         },
         messages:
         {

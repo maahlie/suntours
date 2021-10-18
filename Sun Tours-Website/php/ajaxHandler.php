@@ -22,6 +22,7 @@ if (isset($_POST['sendReg'])) {
     $postalCode = $_POST['postalCode'];
     $passwd = $_POST['passwd2'];
     $passwd2 = $_POST['passwd3'];
+    $city = $_POST['City'];
 
     $userClass->enterReg(
         $email,
@@ -32,7 +33,8 @@ if (isset($_POST['sendReg'])) {
         $address,
         $postalCode,
         $passwd,
-        $passwd2
+        $passwd2,
+        $city
     );
     
     exit("Registreren is gelukt.");
