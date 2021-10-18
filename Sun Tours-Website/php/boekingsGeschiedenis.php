@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="../css/styles.css">
   <script src="node_modules/jquery/dist/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
@@ -30,30 +30,30 @@
 <body class="bg_Background">
 
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <a href="index.html"><img class="img-fluid" src="images/SunLogo.png" alt="x" style="width: 60px;"></a>
+    <a href="../index.html"><img class="img-fluid" src="../images/SunLogo.png" alt="x" style="width: 60px;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="assortiment.html">Assortiment</a>
+          <a class="nav-link" href="../assortiment.html">Assortiment</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="contact.html">Contact</a>
+          <a class="nav-link" href="../contact.html">Contact</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="aanmelden.html">Aanmelden</a>
+          <a class="nav-link" href="../aanmelden.html">Aanmelden</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="FAQ.html">FAQ</a>
+          <a class="nav-link" href="../FAQ.html">FAQ</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="php/Review.php">Review</a>
+          <a class="nav-link" href="../php/Review.php">Review</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="boekingsGeschiedenis.html">boekingen overzicht</a>
+          <a class="nav-link" href="../php/boekingsGeschiedenis.php">boekingen overzicht</a>
         </li>
         <li class="nav-item" id='logout_li'>
           <form method="POST" id="logoutForm">
@@ -80,6 +80,7 @@
           <th scope="col">Aantal tickets:</th>
           <th scope="col">Totaal prijs:</th>
           <th scope="col">Cancel vakantie</th>
+          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -92,8 +93,7 @@
           <td>5</td>
           <td>6</td>
           <td>7</td>
-
-
+          <td><button class="tableButton">Verwijder</button></td>
         </tr>
         <tr>
           <th scope="row">2</th>
@@ -104,13 +104,12 @@
           <td>5</td>
           <td>6</td>
           <td>7</td>
-
+          <td><button  class="tableButton">Verwijder</button></td>
         </tr>
       </tbody>
     </table>
   </div>
   </main>
-
 </body>
 <br>
 <br>
@@ -120,7 +119,6 @@
 <br>
 <br>
 <br>
-
 <footer id="bgFooter">
   <div class="topFooter">
       <div class="row">
@@ -132,10 +130,10 @@
           </div>
           <div class="col-3 mx-3 mt-3">
               <div class="row mx-1">
-                  <a href=""><img class="img-fluid" src="../Sun Tours-Website/images/facebook.png" alt="x" style="width: 60px;"></a>
-                  <a href=""><img class="img-fluid" src="../Sun Tours-Website/images/twitter.png" alt="x" style="width: 60px;"></a>
+                  <a href=""><img class="img-fluid" src="../images/facebook.png" alt="x" style="width: 60px;"></a>
+                  <a href=""><img class="img-fluid" src="../images/twitter.png" alt="x" style="width: 60px;"></a>
                   <div class="mt-1 mx-1">
-                      <a href=""><img class="img-fluid" src="../Sun Tours-Website/images/youtube.png" alt="x" style="width: 53px;"></a>
+                      <a href=""><img class="img-fluid" src="../images/youtube.png" alt="x" style="width: 53px;"></a>
                   </div>
               </div>
           </div>
