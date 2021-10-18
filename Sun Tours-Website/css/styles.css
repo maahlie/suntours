@@ -1060,3 +1060,15 @@ textarea:hover {
    }
 
  }
+
+ .tableButton
+ {
+   background-color: rgba(255, 255, 255, 0);
+   color: red;
+   width: 100%;
+   background: transparent;
+    border: none !important;
+   
+  
+
+ }

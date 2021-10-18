@@ -67,6 +67,9 @@ $SESSION['userClass']->showReview(false);
                 <li class="nav-item">
                     <a class="nav-link" href="./Review.php">Review</a>
                 </li>
+                <li class="nav-item">
+          <a class="nav-link" href="boekingsGeschiedenis.php">boekingen overzicht</a>
+        </li>
                 <li class="nav-item" id='logout_li'>
           <form method="POST" id="logoutForm"  >
             <input type="submit" id="logout" name="logout" value="loguit" class="btn btn-sm btn-outline-secondary">
