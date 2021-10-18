@@ -80,7 +80,6 @@
           <th scope="col">Aantal tickets:</th>
           <th scope="col">Totaal prijs:</th>
           <th scope="col">Cancel vakantie</th>
-          <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -92,7 +91,6 @@
           <td>4</td>
           <td>5</td>
           <td>6</td>
-          <td>7</td>
           <td><button class="tableButton">Verwijder</button></td>
         </tr>
         <tr>
@@ -103,7 +101,6 @@
           <td>4</td>
           <td>5</td>
           <td>6</td>
-          <td>7</td>
           <td><button  class="tableButton">Verwijder</button></td>
         </tr>
       </tbody>
