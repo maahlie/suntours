@@ -119,6 +119,18 @@ class User {
                        $this->confMail($email, "De code voor uw activatie is: $pass.", "Activatie Code Voor uw Sun Tours Account");
                     }                   
             }
+            public function enterContact($email, $contactBody, $contactSubject, $contactName){
+
+                $sql = "INSERT INTO contact (name, email, subject, message) VALUES(?, ?, ?, ?)"; //query, vraagtekens worden gevuld bij de execute met $params
+           
+                $stmt = $this->SqlCommands->pdo->prepare($sql);
+                        
+                if ($stmt) {
+                    
+                    $params = [$email, $contactBody, $contactSubject, $contactName];
+                    $stmt->execute($params);
+                    }                   
+            }
 
             public function userLoginCheck($username, $passwrd){
 
@@ -314,6 +326,5 @@ class User {
 
 
             }
-        
 }           
 ?>
