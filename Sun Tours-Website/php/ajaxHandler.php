@@ -84,6 +84,7 @@ if (isset($_POST['sendBoeking'])) {
                         $_POST['reistijden'],
                         $_POST['totalPrice'],
                         $_POST['ticketPrice'],
+                        $_POST['airlines'],
                         $_POST['carAmount'],
                         $_POST['carPrice'],
                         $_POST['rentalCarDays'],

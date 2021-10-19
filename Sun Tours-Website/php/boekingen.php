@@ -21,13 +21,13 @@ class Booking {
     private $carPrice;
     private $busTicketAmount;
     private $busPrice;
-    public function __construct($adults, $kids, $id, $travelTimeChoice, $packagePrice, $ticketPrice, $carAmount, $carPrice, $rentalCarDays, $busTicketAmount, $busPrice, $busDays)
+    public function __construct($adults, $kids, $id, $travelTimeChoice, $packagePrice, $ticketPrice, $vliegM,  $carAmount, $carPrice, $rentalCarDays, $busTicketAmount, $busPrice, $busDays)
     {
         $this->adults = $adults;
         $this->kids = $kids;
         $this->people = $this->kids + $this->adults;
         $this->package;
-        $this->flights;
+        $this->vliegM = $vliegM;
         $this->travelTimeChoice = $travelTimeChoice;
         $this->bus;
         $this->car;
@@ -70,6 +70,32 @@ class Booking {
             $stmt->execute($params);
             $invoice = new Invoice($userID, $this->id, $userIdInt, $this->packagePrice, $this->people, $this->ticketPrice, $this->carAmount, $this->carPrice, $this->busTicketAmount, $this->busPrice, $this->rentalCarDays, $this->busDays);
             $invoice->genInvoice();
+
+            //vliegmaatschappij mail
+            if($this->ticketPrice != 0){
+
+                switch($this->vliegM){
+                    case "KLM":
+                        $targetEmail = "KLMService@yopmail.com";
+                        $body = "Hallo,<br>
+                        We willen graag " . $this->people . " vluchten boeken voor";
+                        break;
+                    case "Ryan air":
+                        $targetEmail = "ryanAirService@yopmail.com";
+                        $body = "";
+                        break;
+                    case "Iberia":
+                        $targetEmail = "iberiaService@yopmail.com";
+                        $body = "";
+                        break;
+
+                $subject = "Vluchten Boeken";
+                $mailer = new Mail($body, $subject, $targetEmail);
+
+                }
+
+            }
+
             exit("boeking succesvol");
         }
     }
