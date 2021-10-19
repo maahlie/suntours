@@ -91,6 +91,11 @@ class Invoice {
 		return $postalCode[0]['postalcode'];
 	}
 
+	public function getCity(){
+		$city = $this->commands->selectFromWhere("City", "users", "userID", $this->userID);
+		return $city[0]['City'];
+	}
+
     public function getDate(){
         $today = date('d-m-y');
         return $today;
@@ -250,7 +255,7 @@ class Invoice {
 			<br />
 			'. $this->getStreet() .'
 			<br />
-			London, '. $this->getPostal() .'
+			'. $this->getCity() .', '. $this->getPostal() .'
 			<br />
 		</div>
 		
