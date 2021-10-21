@@ -81,7 +81,7 @@
         <div class="green">
           <form method="POST" id="bookingForm">
             <label>Vertrek/terug reis datum en tijd opties:</label><br>
-            <select id="tijden" name="reistijden" class="break">
+            <select id="tijden" name="reistijden" class="break" onchange="update_prices()">
               <option value="keuze" disabled selected>-</option>
               <option value="1">
                 Heen: 2-11-2021 - 10.45
@@ -155,7 +155,11 @@
           <input type="text" id="carPrice" name="carPrice" value="0" hidden>
           <input type="text" id="busTicketAmount" name="busTicketAmount" value="0" hidden>
           <input type="text" id="busPrice" name="busPrice" value="0" hidden>
-  
+
+          <input type="text" id="carBrand" name="carBrand" value="0" hidden >
+          <input type="text" id="startingDate" name="startingDate" value="0" hidden>
+          <input type="text" id="returnDate" name="returnDate" value="0" hidden>
+          
           <table id='boekingenTable'>
             <tr>
               <th><label>Auto Prijs:</label></th>

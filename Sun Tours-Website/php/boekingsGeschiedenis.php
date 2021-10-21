@@ -1,3 +1,23 @@
+<?php 
+session_start();
+  include 'user.php';
+  include 'dbClass.php';
+  include 'boekingen.php';
+  include 'mail.php';
+
+  
+  if (isset($_SESSION['username'])){
+  }else{
+    header('Location: ../aanmelden.html');    
+  }
+
+  $userClass = new User;
+  $userClass->getBookingValues($_SESSION['username']);
+  
+
+  
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,10 +27,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/styles.css">
-  <script src="node_modules/jquery/dist/jquery.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="../node_modules/jquery/dist/jquery.js"></script>
   <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
-  <script src="Javascript/ajax.js"></script>
+  <script type="text/javascript" src="../Javascript/ajax.js"></script>
+  <script type="text/javascript" src="../Javascript/url-search.js"></script>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap" rel="stylesheet">
   <style>
@@ -25,9 +45,10 @@
       api_key: 'wg_e0862d6fccddf79b84908b2ed4ee35a62'
     });
   </script>
+
 </head>
 
-<body class="bg_Background">
+<body class="bg_Background" onload=boekingGeschiedenisLoad()>
 
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a href="../index.html"><img class="img-fluid" src="../images/SunLogo.png" alt="x" style="width: 60px;"></a>
@@ -68,41 +89,39 @@
   </div>
   <main>
     <div class="table-responsive">
-    <table class="table table-striped" id="boekingsOverzicht">
+    <table class="table table-striped" id="boekingsOverzicht" style="display:none">
       <thead>
         <tr>
           <th scope="col">#</th>
 
-          <th scope="col">Datum van boeking:</th>
-          <th scope="col">Begin datum:</th>
-          <th scope="col">Eind datum:</th>
           <th scope="col">Vakantie:</th>
-          <th scope="col">Aantal tickets:</th>
-          <th scope="col">Totaal prijs:</th>
-          <th scope="col">Cancel vakantie</th>
+          <th scope="col">Vlieg Tickets:</th>
+          <th scope="col">Aantal auto's:</th>
+          <th scope="col">Auto merk:</th>
+          <th scope="col">Bus Tickets</th>
+          <th scope="col">Begin Datum</th>
+          <th scope="col">Eind Datum</th>
+          <th scope="col">cancel</th>
         </tr>
       </thead>
       <tbody>
+        <?php
+          for ($i = 0; $i < $userClass->BookedVacationCount; $i++){
+        ?>
         <tr>
-          <th scope="row">1</th>
-          <td>1</td>
-          <td>2</td>
-          <td>3</td>
-          <td>4</td>
-          <td>5</td>
-          <td>6</td>
-          <td><button class="tableButton">Verwijder</button></td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>1</td>
-          <td>2</td>
-          <td>3</td>
-          <td>4</td>
-          <td>5</td>
-          <td>6</td>
-          <td><button  class="tableButton">Verwijder</button></td>
-        </tr>
+        <th scope="row"><?php echo $i ?></th>
+        <td><?php echo $userClass->BookedVacations[$i]['packageID'] ?></td>
+        <td><?php echo $userClass->BookedVacations[$i]['aantalPersonen'] ?></td>
+        <td><?php echo $userClass->BookedVacations[$i]['carAmount'] ?></td>
+        <td><?php echo $userClass->BookedVacations[$i]['carBrand'] ?></td>
+        <td><?php echo $userClass->BookedVacations[$i]['busTicketAmount'] ?></td>
+        <td><?php echo $userClass->BookedVacations[$i]['startingDate'] ?></td>
+        <td><?php echo $userClass->BookedVacations[$i]['returnDate'] ?></td>
+        <td><button class="tableButton">Verwijder</button></td>
+      </tr>
+      <?php
+          }
+        ?>
       </tbody>
     </table>
   </div>

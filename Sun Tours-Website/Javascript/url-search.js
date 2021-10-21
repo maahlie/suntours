@@ -8,6 +8,7 @@ vlieg_prijzen = [500,353,467];
 vakantie_prijs = 0;
 vliegticket_prijs = 0;
 
+datums = [['2-11-2021' , '10-11-2021'], ['16-11-2021', '24-11-2021'], ['7-12-2021', '15-12-2021']];
 
 html_scripts = [
   '<div class = "card_header"><b>Hotel Best Tenerife-Spanje</b></div>Vertrek/terug reis datum en tijd opties: <Br>2-11-2021 - 9.45<Br>10-11-2021 - 10.45<Br><Br>16-11-2021 - 8.30<Br>24-11-2021 - 9-30<Br><Br>7-12-2021 - 9.45<Br>15-12-2021 - 11.00<Br><Br><div class="btn-group"><a href="./assortiment.html">Verander Selectie</a></div></div></div></div>',
@@ -75,6 +76,7 @@ function calculate_car_price(){
   {
     if (value == auto_merken[i])
     {
+      document.getElementById("carBrand").value = auto_merken[i]
       if (rental_time <= 8 && rental_time > 0)
       {
         auto_prijs = auto_prijzen[i]*rental_time;
@@ -182,8 +184,22 @@ function totalPrice()
 
  }
 
+ function update_dates(){
+   
+  var selectedValue2 = document.getElementById("tijden");
+  var value = selectedValue2.options[selectedValue2.selectedIndex].value;
+try{
+  document.getElementById("startingDate").value = datums[value-1][0];
+  document.getElementById("returnDate").value = datums[value-1][1];
+}catch{
+//This is fine...
+}
+  }
+  
+
 function update_prices()
 {
+  update_dates()
   calculate_car_price();
   calculate_Bus_Price();
   calculate_plane_price();
@@ -191,6 +207,8 @@ function update_prices()
   totalPrice();
 
 }
-
+function boekingGeschiedenisLoad(){
+  
+}
 
 
