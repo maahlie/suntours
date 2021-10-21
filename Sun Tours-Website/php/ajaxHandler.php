@@ -159,11 +159,11 @@ if(isset($_POST['verifyButtonAct'])) {
                         break;
 
                     case 2:
-                        exit("De code was onjuist.");
+                        exit("De code of email adres was onjuist.");
                         break;
 
                     case 3:
-                        exit("Het email adres was onjuist.");
+                        exit("De code of email adres was onjuist.");
                         break;
 
                     default:

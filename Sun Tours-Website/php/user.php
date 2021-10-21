@@ -52,7 +52,7 @@ class User {
                 $stmt->execute($params);
                 $result = $stmt->fetch(PDO::FETCH_ASSOC);
                 if ($result == false){
-                    exit('dit email aderes is bij ons niet bekent.');
+                    exit('uw actie is helaas niet gelukt, probeer opnieuw.');
                 }
 
 

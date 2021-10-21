@@ -72,7 +72,7 @@ $SESSION['userClass']->showReview(false);
         </li>
                 <li class="nav-item" id='logout_li'>
           <form method="POST" id="logoutForm"  >
-            <input type="submit" id="logout" name="logout" value="loguit" class="btn btn-sm btn-outline-secondary">
+            <input type="submit" id="logout" name="logout" value="Log uit" class="btn btn-sm btn-outline-secondary">
           </form>
         </li>
             </ul>
