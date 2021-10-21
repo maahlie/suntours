@@ -1069,3 +1069,111 @@ textarea:hover {
    background: transparent;
     border: none !important;
  }
+
+ .button_popup {
+   background-color: blue;
+   color: white;
+   padding: 14px 20px;
+   margin: 8px 0;
+   border: none;
+   cursor: pointer;
+   width: 60%;
+   opacity: 0.9;
+   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.658);
+   margin-top: 5%;
+ }
+ 
+ .button_popup,.cancelbtn, .deletebtn:hover {
+   opacity:1;
+ }
+ 
+ 
+ .cancelbtn, .deletebtn {
+   float: left;
+   width: 50%;
+   margin-top: 5%;
+  
+ 
+ }
+ 
+ 
+ .cancelbtn {
+    background-color: blue;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.658);
+    font-size: x-large;
+    border: 1px solid black;
+    
+ }
+ 
+ 
+ .deletebtn {
+   background-color: #f44336;
+   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.658);
+   font-size: x-large;
+   border: 1px solid black;
+ }
+ 
+ 
+ .container {
+   padding: 16px;
+   text-align: center;
+ }
+ 
+ 
+ .modal {
+   display: none; 
+   position: fixed;
+   z-index: 1;
+   left: 0;
+   top: 0;
+   width: 100%; 
+   height: 100%;
+   overflow: auto; 
+   background-color: rgba(221, 220, 220, 0.5);
+   padding-top: 50px;
+   
+ }
+ 
+ 
+ .modal-content {
+   background-color: #fefefe;
+   margin: 5% auto 15% auto; 
+   border: 1px solid #888;
+   width: 80%;
+ }
+ 
+ 
+ hr {
+   border: 1px solid #f1f1f1;
+   margin-bottom: 25px;
+ }
+  
+ 
+ .close {
+   position: absolute;
+   right: 35px;
+   top: 15px;
+   font-size: 40px;
+   font-weight: bold;
+   color: #f1f1f1;
+ }
+ 
+ .close:hover,
+ .close:focus {
+   color: #f44336;
+   cursor: pointer;
+ }
+ 
+ 
+ .clearfix::after {
+   content: "";
+   clear: both;
+   display: table;
+ }
+ 
+ 
+ @media screen and (max-width: 300px) {
+   .cancelbtn, .deletebtn {
+      width: 100%;
+   }
+ }
