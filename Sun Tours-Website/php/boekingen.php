@@ -53,7 +53,28 @@ class Booking {
         return $userID;
     }
 
+    public function maxPersonenVlucht() {
+        $this->commands = new SqlCommands();
+        $this->commands->connectDB();
+        $sql = "SELECT packageID, dateID, aantalPersonen FROM booked";
+        $stmt = $this->commands->pdo->prepare($sql);
 
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        
+
+        if (/*$result['dateID'] == 1&&*/ $result == ['packageID'] /*&& $result['aantalPersonen'] >= 2*/) {
+            //echo("Er zijn al te veel boekingen!");
+        }
+
+        /*if($packageID == 'Spanje' && $personen == 2) {
+            exit("Er zijn al te veel boekingen!");
+        } else if($packageID == 'Turkije1' && $personen == 2) {
+            exit("Er zijn al te veel boekingen!");
+        } else if($packageID == 'Turkije2' && $personen == 2) {
+            exit("Er zijn al te veel boekingen!");
+        }*/
+    }
 
     public function confirmOrder(){
         $userID = $this->userId[0]['userID'];

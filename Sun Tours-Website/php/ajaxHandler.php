@@ -93,7 +93,7 @@ if (isset($_POST['sendBoeking'])) {
                         $_POST['busPrice'],
                         $_POST['busDays']
                     );
-
+                    $booking->maxPersonenVlucht();
                     $booking->confirmOrder();
                    
                     exit("boeking niet succesvol!!!");
