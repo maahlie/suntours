@@ -145,7 +145,7 @@ class Booking {
                     }
                 }
             }
-        } else if ($dateID == 2) {
+        } else if ($dateID == 3) {
             for($i = 0; sizeof($result3); $i++) {
                 $maxPersonen += $result3[$i]['aantalPersonen'];
                 if($maxPersonen >= 24) {
