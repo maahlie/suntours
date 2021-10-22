@@ -23,7 +23,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap" rel="stylesheet"> 
 </head>
 
-<body class="activatie_Background">
+<body class="Account_Background">
 
 
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -57,34 +57,40 @@
       </ul>
     </div>
   </nav>
-  <div class="activatieHeader">
+  <div class="Account_verwijderen_Header">
     <h1>Account Verwijderen</h1><br>
   </div>
   <main>
     <div class="c-form__progress"></div>
-
+    <div class="account_verwijderen">
     <div class="wrapper">
 
-        <button class="button_popup" onclick="document.getElementById('id01').style.display='block'">Verwijder Uw account</button>
-
-        <div id="id01" class="modal">
-          <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
-          <form class="modal-content" action="/action_page.php">
-            <div class="container">
-              <h1>Account verwijderen</h1>
-              <p>Weet u zeker dat u het account wilt verwijderen?</p>
-            
-              <div class="clearfix">
-                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="deletebtn">Delete</button>
-              </div>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+        Verwijder Uw account
+      </button>
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Account verwijderen</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
-          </form>
+            <div class="modal-body">
+              Weet u zeker dat u het account wilt verwijderen?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuleren</button>
+              <button type="button" class="btn btn-primary">Verwijderen</button>
+            </div>
+          </div>
         </div>
+      </div>
         
 
     </div>
-   
+  </div>
 
   </main>
 
