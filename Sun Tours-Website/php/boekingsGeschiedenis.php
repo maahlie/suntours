@@ -117,17 +117,13 @@ session_start();
         <td><?php echo $userClass->BookedVacations[$i]['busTicketAmount'] ?></td>
         <td><?php echo $userClass->BookedVacations[$i]['startingDate'] ?></td>
         <td><?php echo $userClass->BookedVacations[$i]['returnDate'] ?></td>
-          <td><button class="tableButton" id='annuleer' name='annuleer' onclick = 'cancelResurvation()'>annuleer</button></td>
-        <script>
-          function cancelResurvation()
-          {
-            document.write('<?php $userClass->cancelResurvation(); ?>');
-          }
-        </script>
+        <form method="POST" id="annuleer">
+          <td><button class="tableButton" type='submit' id='annuleer' name='annuleer'>annuleer</button></td>
+          </form>
+        
       </tr>
       <?php
           }
-          
         ?>
       </tbody>
     </table>

@@ -339,10 +339,10 @@ class User {
                 $this->BookedVacations = $result;
                 $this->BookedVacationCount = count($result);
             }
-            public function cancelResurvation()
-            {
-                echo 'test';
-            } 
+            // public function cancelResurvation()
+            // {
+            //     return 1;
+            // } 
 }           
 ?>
 
