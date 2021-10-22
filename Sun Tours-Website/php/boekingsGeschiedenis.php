@@ -47,8 +47,8 @@ session_start();
   </script>
 
 </head>
-
-<body class="bg_Background" onload=boekingGeschiedenisLoad()>
+<!-- onload=cancelVacation() -->
+<body class="bg_Background" >
 
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <a href="../index.html"><img class="img-fluid" src="../images/SunLogo.png" alt="x" style="width: 60px;"></a>
@@ -117,10 +117,17 @@ session_start();
         <td><?php echo $userClass->BookedVacations[$i]['busTicketAmount'] ?></td>
         <td><?php echo $userClass->BookedVacations[$i]['startingDate'] ?></td>
         <td><?php echo $userClass->BookedVacations[$i]['returnDate'] ?></td>
-        <td><button class="tableButton">annuleer</button></td>
+          <td><button class="tableButton" id='annuleer' name='annuleer' onclick = 'cancelResurvation()'>annuleer</button></td>
+        <script>
+          function cancelResurvation()
+          {
+            document.write('<?php $userClass->cancelResurvation(); ?>');
+          }
+        </script>
       </tr>
       <?php
           }
+          
         ?>
       </tbody>
     </table>

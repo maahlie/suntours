@@ -338,11 +338,11 @@ class User {
                 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 $this->BookedVacations = $result;
                 $this->BookedVacationCount = count($result);
-
             }
-            public function cancelVacation($username, $packageID)
+            public function cancelResurvation()
             {
-
-            }
+                echo 'test';
+            } 
 }           
 ?>
+
