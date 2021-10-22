@@ -38,6 +38,18 @@ class SqlCommands {
         return $result;
     }
 
+    public function selectFromAssoc($column, $table) {
+        $sql = "SELECT " . $column .  " FROM " . $table . ";";
+        $stmt = $this->pdo->prepare($sql);
+
+        if ($stmt) {
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);      
+        }
+
+        return $result;
+    }
+
     public function selectFromWhere($column, $table, $where, $param) {
         $sql = "SELECT " . $column .  " FROM " . $table . " WHERE " . $where . "= ?";
         $stmt = $this->pdo->prepare($sql);

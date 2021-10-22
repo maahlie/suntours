@@ -76,7 +76,23 @@ if (isset($_POST['sendLogin'])) {
 if (isset($_POST['sendBoeking'])) {
     if(isset($_SESSION['loggedIn'])){
         if($_SESSION['loggedIn']==true){
+            if(!isset($_POST['airlines'])){
+                $airlines = "";
+            }else{
+                $airlines = $_POST['airlines'];
+            }
 
+            if(!isset($_POST['Vertrek_vliegveld'])){
+                $vliegveld = "";
+            }else{
+                $vliegveld = $_POST['Vertrek_vliegveld'];
+            }
+
+            if(!isset($_POST['carBrand'])){
+                $carBrand = "";
+            }else{
+                $carBrand = $_POST['carBrand'];
+            }
                     $booking = new Booking(
                         $_POST['AantalVolwassenen'],
                         $_POST['AantalKinderen'],
@@ -84,13 +100,16 @@ if (isset($_POST['sendBoeking'])) {
                         $_POST['reistijden'],
                         $_POST['totalPrice'],
                         $_POST['ticketPrice'],
-                        $_POST['airlines'],
+                        $airlines,
+                        $vliegveld,
                         $_POST['carAmount'],
                         $_POST['carPrice'],
                         $_POST['rentalCarDays'],
+                        $carBrand,
                         $_POST['busTicketAmount'],
                         $_POST['busPrice'],
-                        $_POST['busDays']
+                        $_POST['busDays'],
+                        $_POST['busStartDate']
                     );
 
                     $booking->confirmOrder();

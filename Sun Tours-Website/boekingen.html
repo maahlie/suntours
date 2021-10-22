@@ -114,7 +114,7 @@
   
           <div id="autos">
             <label>Merk:</label><br>
-            <select id="auto" onchange="update_prices()">
+            <select id="auto" name="carBrand" onchange="update_prices()">
               <option value="keuze" disabled selected>-</option>
               <option value="Nissan">Nissan</option>
               <option value="Opel">Opel</option>
@@ -140,9 +140,9 @@
             <label>Aantal dagen openbaar vervoer:</label><br>
             <input type="number" min="0" onchange="update_prices()" id="aantal_Dagen" value="0" name="busDays"><Br><Br>
               <label>Aantal tickets:</label><br>
-              <input type="number" min="0" onchange="update_prices()" id="aantal_tickets_bus" name="aantal_tickets_bus"><Br><Br>
+              <input type="number" min="0" onchange="update_prices()" id="aantal_tickets_bus" value="0" name="aantal_tickets_bus"><Br><Br>
               <label>geldig vanaf:</label><br>
-              <input id="bus-dates" type='date'></input><br><br>
+              <input id="bus-dates" name="busStartDate" type='date'></input><br><br>
               
   
           </div>
