@@ -117,7 +117,7 @@ session_start();
         <td><?php echo $userClass->BookedVacations[$i]['busTicketAmount'] ?></td>
         <td><?php echo $userClass->BookedVacations[$i]['startingDate'] ?></td>
         <td><?php echo $userClass->BookedVacations[$i]['returnDate'] ?></td>
-        <td><button class="tableButton">Verwijder</button></td>
+        <td><button class="tableButton">annuleer</button></td>
       </tr>
       <?php
           }

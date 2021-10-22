@@ -340,5 +340,9 @@ class User {
                 $this->BookedVacationCount = count($result);
 
             }
+            public function cancelVacation($username, $packageID)
+            {
+
+            }
 }           
 ?>

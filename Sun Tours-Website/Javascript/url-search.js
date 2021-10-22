@@ -207,8 +207,5 @@ function update_prices()
   totalPrice();
 
 }
-function boekingGeschiedenisLoad(){
-  
-}
 
 
