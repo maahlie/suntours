@@ -13,11 +13,8 @@ class Invoice {
     private $vat;
     private $userID;
 	private $bookingID;
-	private $packageID;
 	private $userIdInt;
 	private $packagePrice;
-	private $totalPrice;
-	private $people;
 	private $ticketPrice;
     private $carAmount;
     private $carPrice;

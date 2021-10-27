@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function(){
             },
             passwd2: {
                 required: true,
-                minlength: 1,
+                minlength: 8,
                 maxlength: 15
             },
             passwd3: {
@@ -25,16 +25,19 @@ document.addEventListener("DOMContentLoaded", function(){
         },
         messages:
         {
-            usern: "please enter username",
+            usern: "<span class='opmaakError'>Voer a.u.b een gebruikersnaam in.</span>",
             passwd2: {
-                required: "please provide a password",
-                minlength: "password at least have 8 characters"
+                required: "<span class='opmaakError'>Voer a.u.b een wachtwoord in.</span>",
+                minlength: "<span class='opmaakError'>Wachtwoord moet minstens 8 karakters lang zijn.</span>"
             },
-            email: "please enter a valid email address",
+            email: "<span class='opmaakError'>Voer a.u.b een geldig e-mail adres in in.</span>",
             passwd3: {
-                required: "please retype your password",
-                equalTo: "password doesn't match !"
-            }
+                required: "<span class='opmaakError'>Voer a.u.b een controle wachtwoord in.</span>",
+                equalTo: "<span class='opmaakError'>Wachtwoorden zijn niet hetzelfde.</span>"
+            },
+            City: {
+                required: "<span class='opmaakError'>Voer a.u.b een stad in.</span>"
+            },
         },
 
         submitHandler: function () {
@@ -392,6 +395,37 @@ document.addEventListener("DOMContentLoaded", function(){
             }).fail(function (jqXHR, textstatus) {
                 alert(response, textstatus);
             })
+        }
+    })
+
+    $("#delAcc").validate({
+        rules:
+        {
+            delAcc: {
+                required: true,
+            },
+        },
+        messages:
+        {
+            delAcc: {
+                required: "true",
+            },
+        },
+
+        submitHandler: function () {
+
+            var form = $('#delAcc');
+            var sData = form.serialize();
+            console.log(sData);
+                $.ajax({
+                    url: 'php/ajaxHandler.php',
+                    method: "POST",
+                    data: sData,
+                }).done(function (response) {
+                    alert(response);
+                }).fail(function (jqXHR, textstatus) {
+                    alert(response, textstatus);
+                })
         }
     })
 });

@@ -67,6 +67,10 @@ if (isset($_POST['sendLogin'])) {
                 exit("Uw gebruikersnaam of wachtwoord is onjuist.");
                 break;
 
+            case 4:
+                exit("Het account was gedeactiveerd, ga naar de activatie pagina om te heractiveren.");
+                break;
+
             default:
                 exit("Deze actie is niet bij ons bekend (404).");
                 break;
@@ -207,6 +211,11 @@ if(isset($_POST['verifyButton'])) {
 
     $userClass->changePassword($newPass, $email, $code);
     exit('Uw wachtwoord is succesvol veranderd.');
+}
+
+//acc verwijderen
+if (isset($_POST['delAcc'])) {
+    $userClass->accDelete();
 }
 
 exit("Deze actie is niet bij ons bekend (404)"); //Foutafhandelig

@@ -1113,3 +1113,6 @@ textarea:hover {
    padding-top: 1%;
  }
  
+.opmaakError {
+   color: red;
+}

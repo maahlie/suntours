@@ -19,10 +19,20 @@ class User {
                 //checkt de emails tegen de ingevoerde email
                     for($i = 0; $i < count($result); $i++){
                         if($email == $result[$i][0]){
-                            $text = "email bestaat al!";
-                            exit($text);
+                            $this->SqlCommands->connectDB();
+
+                            $sql = "SELECT deleted FROM users WHERE email = ?;";
+                            $stmt = $this->SqlCommands->pdo->prepare($sql);
+                                $params = [$email];
+                                $stmt->execute($params);
+                                $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                            if($result["deleted"] == 1){
+                                return 1;
+                            }
+                            return 0;
                         } 
                     }
+                    return;
             }
 
             private function usernCheck($username) {
@@ -55,7 +65,6 @@ class User {
                     exit('uw actie is helaas niet gelukt, probeer opnieuw.');
                 }
 
-
                 $sql = "UPDATE users SET activationCode = ? WHERE email = ?;"; //query, vraagtekens worden gevuld bij de execute met $params
 
                 $stmt = $this->SqlCommands->pdo->prepare($sql);
@@ -64,7 +73,7 @@ class User {
                      $pass = substr(md5(uniqid(mt_rand(), true)) , 0, 8);
                     $params = [$pass, $email];
                     $stmt->execute($params);
-                    $this->confMail($email, "De code voor uw wachtwoord herstel is: $pass.", "Code Voor Uw Wachtwoord Herstel");
+                    $this->confMail($email, "De code die u in het gevraagde veld in moet vullen is: $pass.", "Uw aangevraagde code");
                  }                   
             }
 
@@ -105,7 +114,13 @@ class User {
 
                 $hash = password_hash($passwd2, PASSWORD_DEFAULT);
 
-                    $this->emailCheck($email);
+                    $emailCheck = $this->emailCheck($email);
+                    if($emailCheck == 0){
+                        $text = "email bestaat al!";
+                        exit($text);
+                    }elseif($emailCheck == 1){
+                        exit("Account gedeactiveerd, ga naar de activatie pagina om te heractiveren.");
+                    }
                     $this->usernCheck($username);
 
                    $sql = "INSERT INTO users (username, email, passwrd, phoneNumber, firstName, surName, address, postalCode, active, activationCode, City) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; //query, vraagtekens worden gevuld bij de execute met $params
@@ -147,7 +162,12 @@ class User {
                 }
                 $active = $this->getActivation($username, $result['passwrd']);
                 $verify = password_verify($passwrd, $result['passwrd']);
-
+                    
+                    if($username == $result['username'] && $verify == true && $active['deleted']==0){
+                        return 1;
+                    }else{
+                        return 4;
+                    }
 
                     if ($username == $result['username'] && $verify == true && $active['active']==1){
                         return 1;
@@ -283,11 +303,8 @@ class User {
             }
 
 
-            public function logout()
-            {
-                            
+            public function logout(){
             $_SESSION[] = array();
-
             // destroy de sessie
             session_destroy();
             }
@@ -295,7 +312,7 @@ class User {
             public function getActivation($username, $passwrd){
                 $this->SqlCommands->connectDB();
 
-                $sql = "SELECT active FROM users WHERE username = ? AND passwrd = ?;";
+                $sql = "SELECT active, deleted FROM users WHERE username = ? AND passwrd = ?;";
                 $stmt = $this->SqlCommands->pdo->prepare($sql);
                     $params = [$username, $passwrd];
                     $stmt->execute($params);
@@ -313,7 +330,7 @@ class User {
                     if($actCode == $result[0]['activationCode']){
                         $this->SqlCommands->connectDB();
 
-                        $sql = "UPDATE users SET active = 1 WHERE email = ?;";
+                        $sql = "UPDATE users SET active = 1, deleted = 0 WHERE email = ?;";
                         $stmt = $this->SqlCommands->pdo->prepare($sql);
                             $params = [$email];
                             $stmt->execute($params);
@@ -326,6 +343,17 @@ class User {
                 }
 
 
+            }
+
+            public function accDelete(){
+                $this->SqlCommands->connectDB(); 
+                $username = $_SESSION['username'];
+                $sql = "UPDATE users SET deleted = 1, active = 0 WHERE username = ?;";
+                $stmt = $this->SqlCommands->pdo->prepare($sql);
+                $params = [$username];
+                $stmt->execute($params);
+                $this->logout();
+                exit("Account succesvol verwijderd");
             }
 }           
 ?>
