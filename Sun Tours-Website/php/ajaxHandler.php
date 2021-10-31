@@ -190,4 +190,13 @@ if(isset($_POST['verifyButton'])) {
     exit('Uw wachtwoord is succesvol veranderd.');
 }
 
+// roept de cancelResurvation functie aan met een id dat hoort bij de ingedrukte knop.
+for ($i = 0; $i < 50; $i++)
+{
+    if(isset($_POST['annuleer' . $i])){
+        $userClass->cancelResurvation(''.$i);
+        // exit('geannuleerd!');
+    }
+}
+
 exit("Deze actie is niet bij ons bekend (404)"); //Foutafhandelig

@@ -208,7 +208,6 @@ try{
 }
   }
   
-
 function update_prices()
 {
   update_dates()

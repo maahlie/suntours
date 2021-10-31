@@ -21,6 +21,16 @@
 </script>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap" rel="stylesheet"> 
+<script>
+  //waneer de gebruiker via de boekings geschiedenis pagina inlogt wordt de gebruiker terug naar de juiste pagina gestuurt.
+  $(document).ready(function(){
+  $(document).ajaxStop(function(){
+    if (window.location.href.indexOf("boekingenOverzicht") > -1) {
+      location.href = "php/boekingsGeschiedenis.php";
+    }
+  });
+});
+</script>
 </head>
 
 <body class="registreer_body">

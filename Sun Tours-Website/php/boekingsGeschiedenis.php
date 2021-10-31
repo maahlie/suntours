@@ -8,12 +8,11 @@ session_start();
   
   if (isset($_SESSION['username'])){
   }else{
-    header('Location: ../aanmelden.html');    
+    header('Location: ../aanmelden.html?from=boekingenOverzicht');    
   }
 
   $userClass = new User;
   $userClass->getBookingValues($_SESSION['username']);
-  
 
   
 
@@ -46,8 +45,15 @@ session_start();
     });
   </script>
 
+<script>
+  //waneer een ajax actie voltooit is wordt de pagina opnieuw geladen.
+$(document).ready(function(){
+  $(document).ajaxStop(function(){
+    window.location.reload();
+  });
+});
+</script>
 </head>
-<!-- onload=cancelVacation() -->
 <body class="bg_Background" >
 
   <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -79,7 +85,7 @@ session_start();
         <li class="nav-item" id='logout_li'>
           <form method="POST" id="logoutForm">
             <input type="submit" id="logout" name="logout" value="loguit" class="btn btn-sm btn-outline-secondary">
-          </form>
+          </form>  
         </li>
       </ul>
     </div>
@@ -89,6 +95,7 @@ session_start();
   </div>
   <main>
     <div class="table-responsive">
+    <form method="POST" id="annuleerForm"  >
     <table class="table table-striped" id="boekingsOverzicht" style="display:none">
       <thead>
         <tr>
@@ -109,24 +116,22 @@ session_start();
           for ($i = 0; $i < $userClass->BookedVacationCount; $i++){
         ?>
         <tr>
-        <th scope="row"><?php echo $i ?></th>
-        <td><?php echo $userClass->BookedVacations[$i]['packageID'] ?></td>
-        <td><?php echo $userClass->BookedVacations[$i]['aantalPersonen'] ?></td>
-        <td><?php echo $userClass->BookedVacations[$i]['carAmount'] ?></td>
-        <td><?php echo $userClass->BookedVacations[$i]['carBrand'] ?></td>
-        <td><?php echo $userClass->BookedVacations[$i]['busTicketAmount'] ?></td>
-        <td><?php echo $userClass->BookedVacations[$i]['startingDate'] ?></td>
-        <td><?php echo $userClass->BookedVacations[$i]['returnDate'] ?></td>
-        <form method="POST" id="annuleer">
-          <td><button class="tableButton" type='submit' id='annuleer' name='annuleer'>annuleer</button></td>
-          </form>
-        
+        <th scope="row"><?php echo $i+1 ?></th>
+        <td><?php if($userClass->BookedVacations[$i]['packageID'] == 'Turkije1'){echo 'Gold City Turkije';}elseif($userClass->BookedVacations[$i]['packageID'] == 'Turkije2'){echo 'Pine Bay Turkije';}else{echo $userClass->BookedVacations[$i]['packageID'];}  ?></td>
+        <td><?php if ($userClass->BookedVacations[$i]['ticketPrice'] == '0'){echo 'n.v.t';}else{echo $userClass->BookedVacations[$i]['aantalPersonen'];} ?></td>
+        <td><?php if ($userClass->BookedVacations[$i]['carAmount'] < 1){echo 'n.v.t';}else{echo $userClass->BookedVacations[$i]['carAmount'];} ?></td>
+        <td><?php if ($userClass->BookedVacations[$i]['carBrand'] == '0'){echo 'n.v.t';}else{echo $userClass->BookedVacations[$i]['carBrand'];} ?></td>
+        <td><?php if ($userClass->BookedVacations[$i]['busTicketAmount'] == '0'){echo 'n.v.t';}else{echo $userClass->BookedVacations[$i]['busTicketAmount'];} ?></td>
+        <td><?php echo $userClass->BookedVacations[$i]['startingDate']; ?></td>
+        <td><?php echo $userClass->BookedVacations[$i]['returnDate']; ?></td>
+        <td><input type="submit" id="annuleer" name="annuleer<?php echo $i?>" value="annuleer" class="tableButton"></td>
       </tr>
       <?php
           }
         ?>
       </tbody>
     </table>
+    </form>
   </div>
   </main>
 </body>

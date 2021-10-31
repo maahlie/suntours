@@ -391,4 +391,37 @@ document.addEventListener("DOMContentLoaded", function(){
             })
         }
     })
+    
+    $("#annuleerForm").validate({
+        rules:
+        {
+            annuleer: {
+                required: true,
+            },
+        },
+        messages:
+        {
+            annuleer: {
+                required: "true",
+            },
+        },
+
+        submitHandler: function () {
+
+            var form = $('#annuleerForm');
+            var sData = form.serialize();
+            console.log(sData);
+            
+            $.ajax({
+                url: '../php/ajaxHandler.php',
+                method: "POST",
+                data: sData,
+            }).done(function (response) {
+                alert(response);
+            }).fail(function (jqXHR, textstatus) {
+                alert(response, textstatus);
+            })
+            
+        }
+    })
 });
