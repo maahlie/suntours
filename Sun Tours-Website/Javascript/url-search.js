@@ -7,7 +7,9 @@ vlieg_reizen = ['KLM','Ryan air', 'Iberia'];
 vlieg_prijzen = [500,353,467];
 vakantie_prijs = 0;
 vliegticket_prijs = 0;
+aantal_Personen = 0;
 
+datums = [['2-11-2021' , '10-11-2021'], ['16-11-2021', '24-11-2021'], ['7-12-2021', '15-12-2021']];
 
 html_scripts = [
   '<div class = "card_header"><b>Hotel Best Tenerife-Spanje</b></div>Vertrek/terug reis datum en tijd opties: <Br>2-11-2021 - 9.45<Br>10-11-2021 - 10.45<Br><Br>16-11-2021 - 8.30<Br>24-11-2021 - 9-30<Br><Br>7-12-2021 - 9.45<Br>15-12-2021 - 11.00<Br><Br><div class="btn-group"><a href="./assortiment.html">Verander Selectie</a></div></div></div></div>',
@@ -41,29 +43,40 @@ function onLoad(){
   var url = window.location.href;
   var id  = url.substring(url.lastIndexOf('=') + 1);
   document.getElementById("packageID").value = id;
-}
+} 
 function show_vervoer(){
   document.getElementById("vliegen_div").innerHTML='<label>vliegmaatschapij:</label><br> <select name="airlines" id="airlines"  onchange="update_prices()"> <option value="keuze" disabled selected>-</option> <option value="KLM">KLM</option> <option value="Ryan air">Ryan air</option> <option value="Iberia">Iberia</option> </select><Br><Br> <label>vertrek vliegveld:</label><br> <select name="Vertrek_vliegveld" id="Vertrek_vliegveld"> <option value="keuze" disabled selected>-</option> <option value="Schiphol">Schiphol</option> <option value="Eindhoven">Eindhoven</option> <option value="Groningen-Eelde">Groningen-Eelde</option> <option value="Rotterdam-The Hague">Rotterdam-The Hague</option> </select><Br><Br>';
 }
+
 function hide_vervoer(){
   document.getElementById("vliegen_div").innerHTML='';
-
+  document.getElementById("ticketPrice").value = 0;
+  vliegticket_prijs = 0;
+  aantal_Personen = 0;  
+  console.log("working");
+  update_prices();
 }
+
 function show_autoverhuur(){
   document.getElementById("autos").style.display = "block";
 }
+
 function hide_autoverhuur(){
   document.getElementById("autos").style.display = "none";
-  document.getElementById("aantal_autos").value = '';
-  document.getElementById("aantal_tickets_bus").value = '';
+  document.getElementById("aantal_autos").value = 0;
+  document.getElementById("rental_time_chooser_id").value = 0;
   update_prices();
 }
+
 function show_bus_deals(){
   document.getElementById("bus").style.display = "block";
 }
 
 function hide_bus_deals(){
   document.getElementById("bus").style.display = "none";
+  document.getElementById("aantal_Dagen").value = 0;
+  document.getElementById("aantal_tickets_bus").value = 0;
+  document.getElementById("bus-dates").value = 0;
 }
 
 
@@ -75,6 +88,7 @@ function calculate_car_price(){
   {
     if (value == auto_merken[i])
     {
+      document.getElementById("carBrand").value = auto_merken[i]
       if (rental_time <= 8 && rental_time > 0)
       {
         auto_prijs = auto_prijzen[i]*rental_time;
@@ -182,8 +196,21 @@ function totalPrice()
 
  }
 
+ function update_dates(){
+   
+  var selectedValue2 = document.getElementById("tijden");
+  var value = selectedValue2.options[selectedValue2.selectedIndex].value;
+try{
+  document.getElementById("startingDate").value = datums[value-1][0];
+  document.getElementById("returnDate").value = datums[value-1][1];
+}catch{
+//This is fine...
+}
+  }
+  
 function update_prices()
 {
+  update_dates()
   calculate_car_price();
   calculate_Bus_Price();
   calculate_plane_price();
@@ -191,8 +218,5 @@ function update_prices()
   totalPrice();
 
 }
-
-
-
 
 

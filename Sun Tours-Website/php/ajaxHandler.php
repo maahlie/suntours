@@ -116,8 +116,11 @@ if (isset($_POST['sendBoeking'])) {
                         $_POST['busPrice'],
                         $_POST['busDays'],
                         $_POST['busStartDate']
+                        $_POST['carBrand'],
+                        $_POST['startingDate'],
+                        $_POST['returnDate']
                     );
-
+                    
                     $booking->confirmOrder();
                    
                     exit("boeking niet succesvol!!!");
@@ -216,6 +219,14 @@ if(isset($_POST['verifyButton'])) {
 //acc verwijderen
 if (isset($_POST['delAcc'])) {
     $userClass->accDelete();
+}
+// roept de cancelResurvation functie aan met een id dat hoort bij de ingedrukte knop.
+for ($i = 0; $i < 50; $i++)
+{
+    if(isset($_POST['annuleer' . $i])){
+        $userClass->cancelResurvation(''.$i);
+        // exit('geannuleerd!');
+    }
 }
 
 exit("Deze actie is niet bij ons bekend (404)"); //Foutafhandelig

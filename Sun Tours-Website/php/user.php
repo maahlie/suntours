@@ -243,7 +243,6 @@ class User {
                 $stmt->execute($params);
                 $result2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 $result2 = $result2[0]['userID'];
-                $a = 0;
 
                 $bookedByUser = [0,0,0,0,0];
                 $sql = 'SELECT packageID FROM `booked` WHERE `userID` = ?';
@@ -341,8 +340,22 @@ class User {
                 }else{
                     return 3;
                 }
+            }
+            public function getBookingValues($username){
+                $this->SqlCommands->connectDB();
+                $sql = 'SELECT userID FROM `users` WHERE `username` = ?';
+                $stmt = $this->SqlCommands->pdo->prepare($sql);
+                $params = [$username];
+                $stmt->execute($params);
+                $result2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $userID = $result2[0]['userID'];
 
-
+                $sql = "SELECT * FROM booked WHERE userID = $userID";
+                $stmt = $this->SqlCommands->pdo->prepare($sql);
+                $stmt->execute();
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                $this->BookedVacations = $result;
+                $this->BookedVacationCount = count($result);
             }
 
             public function accDelete(){
@@ -355,5 +368,38 @@ class User {
                 $this->logout();
                 exit("Account succesvol verwijderd");
             }
+            //wordt aangeroepen waneer er op een annuleer knop gedrukt is
+            public function cancelResurvation($resurvationNumber)
+            {
+                //haalt de de ingelogde gebruiker op en maakt de datum/tijd variabelen aan.
+                $this->getBookingValues($_SESSION['username']);
+                date_default_timezone_set(@date_default_timezone_get());
+                $todaysDate = strtotime(date("Ymd"));
+                $vacationStartingDate = strtotime(''.$this->BookedVacations[$resurvationNumber]['startingDate']);
+                $secondsInOneWeek = 3600 * 24 * 7;
+
+                //kijkt of de reis geannuleerd mag worden.
+                if ($vacationStartingDate - $todaysDate - $secondsInOneWeek < 0)
+                {
+                    exit("Neem contact met ons op om een reis die over minder dan een week begint te annuleren.");
+                }else if ($vacationStartingDate - $todaysDate <= 0)
+                {
+                    exit ("Een gestarte of afgelopen vakantie kan niet geannuleerd worden.");
+                }else
+                {
+                    //het id van de geannuleerde reis wordt opgehaalt
+                    $bookingID = $this->BookedVacations[$resurvationNumber]['bookingID'];
+
+                    //de geannuleerde reis wordt verwijderd uit de database
+                    $this->SqlCommands->connectDB();
+                    $sql = "DELETE FROM `booked` WHERE `booked`.`bookingID` = $bookingID";
+                    $stmt = $this->SqlCommands->pdo->prepare($sql);
+                    $stmt->execute();
+                    
+                    exit("Uw reis is geannuleerd.");
+                }
+                
+            } 
 }           
 ?>
+
