@@ -23,7 +23,8 @@ session_start();
 <head>
   <title>Sun Tours</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="../css/styles.css">
   <script src="../node_modules/jquery/dist/jquery.js"></script>
@@ -32,6 +33,11 @@ session_start();
   <script type="text/javascript" src="../Javascript/url-search.js"></script>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap" rel="stylesheet">
+  <script src="node_modules/jquery/dist/jquery.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
   <style>
     .fakeimg {
       height: 200px;
@@ -135,39 +141,34 @@ $(document).ready(function(){
   </div>
   </main>
 </body>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<footer id="bgFooter">
+
+<!-- footer is ook onderverdeeld in een top footer en voor de copyright een bottom footer -->
+<footer class="contact_footer">
+  <!-- start topfooter -->
   <div class="topFooter">
-      <div class="row">
-          <div class="col-5 mx-4 mb-1">
-              <a>Suntours</a></br>
-              <a>Bredeweg 235, 6042 GE Roermond</a></br>
-              <a>06-13022010</a></br>
-              <a>088 2365148</a></br>
-          </div>
-          <div class="col-3 mx-3 mt-3">
-              <div class="row mx-1">
-                  <a href=""><img class="img-fluid" src="../images/facebook.png" alt="x" style="width: 60px;"></a>
-                  <a href=""><img class="img-fluid" src="../images/twitter.png" alt="x" style="width: 60px;"></a>
-                  <div class="mt-1 mx-1">
-                      <a href=""><img class="img-fluid" src="../images/youtube.png" alt="x" style="width: 53px;"></a>
-                  </div>
-              </div>
-          </div>
+    <div class="row">
+      <div class="col-5 mx-4 mb-1">
+        <a>Suntours</a></br>
+        <a>Bredeweg 235, 6042 GE Roermond</a></br>
+        <a>06-13022010</a></br>
+        <a>088 2365148</a></br>
       </div>
+      <div class="col-3 mx-3 mt-3">
+        <div class="row mx-1">
+          <a href=""><img class="img-fluid" src="../images/facebook.png" alt="x" style="width: 60px;"></a>
+          <a href=""><img class="img-fluid" src="../images/twitter.png" alt="x" style="width: 60px;"></a>
+          <div class="mt-1 mx-1">
+            <a href=""><img class="img-fluid" src="../images/youtube.png" alt="x" style="width: 53px;"></a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- einde topfooter -->
 
   <!-- start bottom footer -->
   <div class="bottomFooter">
-      copyright &copy; 2021 <i>Ontworpen door: Thomas-Thomas-Stef-Lucas</i>
+    copyright &copy; 2021 <i>Ontworpen door: Thomas-Thomas-Stef-Lucas</i>
   </div>
   <!-- bottom footer -->
 </footer>

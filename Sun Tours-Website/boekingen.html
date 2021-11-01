@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 
 <html lang="en">
- 
+
 <head>
   <title>Sun Tours</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styles.css">
   <!-- <script src="node_modules/jquery/dist/jquery.js"></script>
@@ -28,11 +29,11 @@
   <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
   <script>
     Weglot.initialize({
-        api_key: 'wg_e0862d6fccddf79b84908b2ed4ee35a62'
+      api_key: 'wg_e0862d6fccddf79b84908b2ed4ee35a62'
     });
-</script>
+  </script>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap" rel="stylesheet">
 </head>
 
 <body class="boekingen_Background" onload="onLoad();">
@@ -63,7 +64,7 @@
           <a class="nav-link" href="php/boekingsGeschiedenis.php">boekingen overzicht</a>
         </li>
         <li class="nav-item" id='logout_li'>
-          <form method="POST" id="logoutForm"  >
+          <form method="POST" id="logoutForm">
             <input type="submit" id="logout" name="logout" value="Log uit" class="btn btn-sm btn-outline-secondary">
           </form>
         </li>
@@ -74,26 +75,26 @@
     <h1>Boekingen</h1><br>
   </div>
   <main class="boekingen">
-    
+
     <div class="float-container">
 
       <div class="float-child">
-        <div class="green">
+       
           <form method="POST" id="bookingForm">
             <label>Vertrek/terug reis datum en tijd opties:</label><br>
             <select id="tijden" name="reistijden" class="break" onchange="update_prices()">
               <option value="keuze" disabled selected>-</option>
               <option value="1">
                 Heen: 2-11-2021 - 10.45
-              Terug: 10-11-2021 - 20.00
+                Terug: 10-11-2021 - 20.00
               </option>
               <option value="2">
                 Heen: 16-11-2021 - 9.45
-              Terug: 24-11-2021 - 15.30
+                Terug: 24-11-2021 - 15.30
               </option>
               <option value="3">
                 Heen: 7-12-2021 - 19.00
-              Terug: 15-12-2021 - 11.00
+                Terug: 15-12-2021 - 11.00
               </option>
             </select><br><br>
           <label>Aantal volwassenen (18 jaar of ouder):</label><br>
@@ -186,18 +187,18 @@
       
       </div>
       </div>
-      <div class="float-child">
-        <div class="blue">
-          <div class="boekingen_Info">
-            
-            <div class="Cards">
-              <div id="selected">
-              </div>
+    </div>
+    <div class="float-child">
+    
+        <div class="boekingen_Info">
+
+          <div class="Cards">
+            <div id="selected">
             </div>
           </div>
         </div>
-      </div>
-     
+    </div>
+
   </main>
 </body>
 

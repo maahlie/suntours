@@ -5,6 +5,7 @@
   <title>Sun Tours</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styles.css">
   <script src="node_modules/jquery/dist/jquery.js"></script>
@@ -16,11 +17,11 @@
   <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
   <script>
     Weglot.initialize({
-        api_key: 'wg_e0862d6fccddf79b84908b2ed4ee35a62'
+      api_key: 'wg_e0862d6fccddf79b84908b2ed4ee35a62'
     });
-</script>
+  </script>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap" rel="stylesheet">
 </head>
 
 <body class="Contact_Background">
@@ -53,7 +54,7 @@
           <a class="nav-link" href="php/boekingsGeschiedenis.php">boekingen overzicht</a>
         </li>
         <li class="nav-item" id='logout_li'>
-          <form method="POST" id="logoutForm"  >
+          <form method="POST" id="logoutForm">
             <input type="submit" id="logout" name="logout" value="Log uit" class="btn btn-sm btn-outline-secondary">
           </form>
         </li>
@@ -64,7 +65,7 @@
     <h1>contact</h1><br>
   </div>
   <main>
- 
+
     <div class="c-form__progress"></div>
     <div class="wrapper Val">
       <form method="POST" id="contact">
@@ -78,7 +79,8 @@
         <input type="text" class="contactInput" id="contact_onderwerp" name="contact_onderwerp"
           placeholder="Onderwerp"><br><br>
         <textarea id="contact_text" class="contactArea" name="contact_text" rows="4" cols="50"></textarea><br><br>
-        <input type="submit" class="buttonContact" value="Verstuur" name="sendContact"id="contact_button" class="sendKnop">
+        <input type="submit" class="buttonContact" value="Verstuur" name="sendContact" id="contact_button"
+          class="sendKnop">
       </form>
 
       <div class="info">
@@ -88,7 +90,7 @@
 
       </div>
     </div>
-   
+
 
   </main>
 
@@ -96,7 +98,7 @@
 
 
 <!-- footer is ook onderverdeeld in een top footer en voor de copyright een bottom footer -->
-<footer>
+<footer class="contact_footer">
   <!-- start topfooter -->
   <div class="topFooter">
     <div class="row">
