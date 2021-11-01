@@ -115,12 +115,11 @@ if (isset($_POST['sendBoeking'])) {
                         $_POST['busTicketAmount'],
                         $_POST['busPrice'],
                         $_POST['busDays'],
-                        $_POST['busStartDate']
-                        $_POST['carBrand'],
+                        $_POST['busStartDate'],
                         $_POST['startingDate'],
                         $_POST['returnDate']
                     );
-                    
+
                     $booking->confirmOrder();
                    
                     exit("boeking niet succesvol!!!");
