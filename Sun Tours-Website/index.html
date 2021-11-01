@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <title>Sun Tours</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/styles.css">
   <script src="node_modules/jquery/dist/jquery.js"></script>
@@ -15,175 +17,179 @@
   <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
   <script>
     Weglot.initialize({
-        api_key: 'wg_e0862d6fccddf79b84908b2ed4ee35a62'
+      api_key: 'wg_e0862d6fccddf79b84908b2ed4ee35a62'
     });
-</script>
+  </script>
 </head>
-<body>          
+
+<body>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap" rel="stylesheet"> 
- 
-</head>
-<body class="index_Background">          
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <a href="index.html"><img class="img-fluid" src="images/SunLogo.png" alt="x"
-        style="width: 60px;"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap" rel="stylesheet">
 
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" href="assortiment.html">Assortiment</a>
-      </li>    
-      <li class="nav-item">
-        <a class="nav-link" href="contact.html">Contact</a>
-      </li>
+  </head>
 
-      <li class="nav-item">
-        <a class="nav-link" href="aanmelden.html">Aanmelden</a>
-      </li> 
-      <li class="nav-item">
-        <a class="nav-link" href="FAQ.html">FAQ</a>
-      </li> 
-      <li class="nav-item">
-        <a class="nav-link" href="php/Review.php">Review</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="php/boekingsGeschiedenis.php">boekingen overzicht</a>
-      </li>
-      <li class="nav-item" id='logout_li'>
-        <form method="POST" id="logoutForm"  >
-          <input type="submit" id="logout" name="logout" value="Log uit" class="btn btn-sm btn-outline-secondary">
-        </form>
-      </li>
-      
-    </ul>
-  </div>  
-</nav>
+  <body class="index_Background">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <a href="index.html"><img class="img-fluid" src="images/SunLogo.png" alt="x" style="width: 60px;"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
 
-<main>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="assortiment.html">Assortiment</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
 
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-  <section class="top-block-section">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-lg-6">
-          <h4>
-            Kwaliteit-Gemak-duurzaam
-          </h4>
-          <h1>
-            Het beste touring bedrijf van Nederland
-          </h1>
-          <h5>
-            Hier bij sun tours vinden wij de natuur heel erg belangrijk.
-            wij geven veel om onze carbon footprint. en wij streven naar een groene planeet.
-          </h5>
-        </div>
-        <div class="col-lg-6" class="vacationImage">
-          <img class="img-fluid" src="images/homepage_image.jpg" alt="x">
-        </div>
+          <li class="nav-item">
+            <a class="nav-link" href="aanmelden.html">Aanmelden</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="FAQ.html">FAQ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="php/Review.php">Review</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="php/boekingsGeschiedenis.php">boekingen overzicht</a>
+          </li>
+          <li class="nav-item" id='logout_li'>
+            <form method="POST" id="logoutForm">
+              <input type="submit" id="logout" name="logout" value="Log uit" class="btn btn-sm btn-outline-secondary">
+            </form>
+          </li>
+
+        </ul>
       </div>
-    </div>
-  </section>
-  <!-- einde top section -->
+    </nav>
 
-  <!-- section twee is wat informatie links en opmaak-->
-  <section class="pt-3 pb-4">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <h3 id="indexSection2">
-            Ga opzoek naar uw perfecte vakantie!
-          </h3>
-          <hr>
-        </div>
-      </div>
+    <main>
 
-      <!-- hier volgt twee rows met drie stukken die ider 4 collumns in beslag nemen -->
-      <div class="row">
-
-        <!-- er zijn 3 van deze collumns per row met ieder hun eigen afbeelding en text
-        bij scalen komen ze onder elkaar te staan -->
-        <div class="row">
-
-          <div class="col-md-4 text-center">
-            <img class="img-fluid p-5 indexPics" src="images/car-rental.png" alt="x">
-            <h5>
-             <b>Vervoer</b> 
-            </h5>
-            <p>
-              Niet alleen bieden wij hulp bij het kopen van vliegtickets
-              ook kunt u bij ons terecht voor hulp bij Vervoer.
-            </p>
+      <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+      </script>
+      <section class="top-block-section">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-lg-6">
+              <h4>
+                Kwaliteit-Gemak-duurzaam
+              </h4>
+              <h1>
+                Het beste touring bedrijf van Nederland
+              </h1>
+              <h5>
+                Hier bij sun tours vinden wij de natuur heel erg belangrijk.
+                wij geven veel om onze carbon footprint. en wij streven naar een groene planeet.
+              </h5>
+            </div>
+            <div class="col-lg-6" class="vacationImage">
+              <img class="img-fluid" src="images/homepage_image.jpg" alt="x">
+            </div>
           </div>
-        <!-- einde col 1 -->
-
-        <div class="col-md-4 text-center">
-          <a href="../Sun Tours-Website/php/Review.php"><img class="img-fluid p-5 indexPics" src="images/revieuw.jpg" alt="x"></a>
-          <h5>
-           <b>Review</b> 
-          </h5>
-          <p>
-            Wij vinden uw mening belangrijk. Laat bij ons een review achter. Alvast bedankt!
-          </p>
         </div>
+      </section>
+      <!-- einde top section -->
 
-        <div class="col-md-4 text-center">
-          <a href="assortiment.html"><img class="img-fluid p-5 indexPics" src="images/plane-ticket.png" alt="x"></a>
-          <h5>
-          <b>Boekingen</b>
-          </h5>
-          <p>
-            Bij ons kunt u ook gemakkelijk uw reis boeken.
-          </p>
+      <!-- section twee is wat informatie links en opmaak-->
+      <section class="pt-3 pb-4">
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h3 id="indexSection2">
+                Ga opzoek naar uw perfecte vakantie!
+              </h3>
+              <hr>
+            </div>
+          </div>
+
+          <!-- hier volgt twee rows met drie stukken die ider 4 collumns in beslag nemen -->
+          <div class="row">
+
+            <!-- er zijn 3 van deze collumns per row met ieder hun eigen afbeelding en text
+        bij scalen komen ze onder elkaar te staan -->
+            <div class="row">
+
+              <div class="col-md-4 text-center">
+                <img class="img-fluid p-5 indexPics" src="images/car-rental.png" alt="x">
+                <h5>
+                  <b>Vervoer</b>
+                </h5>
+                <p>
+                  Niet alleen bieden wij hulp bij het kopen van vliegtickets
+                  ook kunt u bij ons terecht voor hulp bij Vervoer.
+                </p>
+              </div>
+              <!-- einde col 1 -->
+
+              <div class="col-md-4 text-center">
+                <a href="../Sun Tours-Website/php/Review.php"><img class="img-fluid p-5 indexPics"
+                    src="images/review_icon.png" alt="x"></a>
+                <h5>
+                  <b>Review</b>
+                </h5>
+                <p>
+                  Wij vinden uw mening belangrijk. Laat bij ons een review achter. Alvast bedankt!
+                </p>
+              </div>
+
+              <div class="col-md-4 text-center">
+                <a href="assortiment.html"><img class="img-fluid p-5 indexPics" src="images/plane-ticket.png"
+                    alt="x"></a>
+                <h5>
+                  <b>Boekingen</b>
+                </h5>
+                <p>
+                  Bij ons kunt u ook gemakkelijk uw reis boeken.
+                </p>
+              </div>
+            </div>
+            <!-- einde row 1 -->
+            <div class="col-md-4 text-center">
+              <a href="FAQ.html"><img class="img-fluid p-5 indexPics" src="images/faq_icon.png" alt="x"></a>
+              <h5>
+                <b>FAQ</b>
+              </h5>
+              <p>
+                Heeft u een vraag? misschien heeft iemand deze vraag al beantwoord.
+              </p>
+            </div>
+
+
+            <div class="col-md-4 text-center">
+              <a href="aanmelden.html"><img class="img-fluid p-5 indexPics" src="images/login_icon.png" alt="x"></a>
+              <h5>
+                <b>Aanmelden</b>
+              </h5>
+              <p>
+                Meld u hier aan. Heeft u nog geen account?
+                Hier kunt u ook een nieuw account aanmaken.
+              </p>
+            </div>
+
+            <div class="col-md-4 text-center">
+              <a href="contact.html"><img class="img-fluid p-5 indexPics" src="images/support_icon.png" alt="x"></a>
+              <h5>
+                <b>Contact</b>
+              </h5>
+              <p>
+                Heeft u vragen of zorgen kunt u online contact met ons opnemen.
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-      <!-- einde row 1 -->
-      <div class="col-md-4 text-center">
-        <a href="FAQ.html"><img class="img-fluid p-5 indexPics" src="images/faq.png" alt="x"></a>
-        <h5>
-          <b>FAQ</b>
-        </h5>
-        <p>
-          Heeft u een vraag? misschien heeft iemand deze vraag al beantwoord.
-        </p>
-      </div>
-      
-
-        <div class="col-md-4 text-center">
-          <a href="aanmelden.html"><img class="img-fluid p-5 indexPics" src="images/guests-book.png" alt="x"></a>
-          <h5>
-           <b>Aanmelden</b>
-          </h5>
-          <p>
-            Meld u hier aan. Heeft u nog geen account?
-            Hier kunt u ook een nieuw account aanmaken. 
-          </p>
-        </div>
-
-        <div class="col-md-4 text-center">
-          <a href="contact.html"><img class="img-fluid p-5 indexPics" src="images/contact-form.png" alt="x"></a>
-          <h5>
-            <b>Contact</b>
-          </h5>
-          <p>
-            Heeft u vragen of zorgen kunt u online contact met ons opnemen.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-</main>
+      </section>
+    </main>
 
 
-</body>
+  </body>
 
- <!-- footer is ook onderverdeeld in een top footer en voor de copyright een bottom footer -->
- <footer>
+  <!-- footer is ook onderverdeeld in een top footer en voor de copyright een bottom footer -->
+  <footer>
     <!-- start topfooter -->
     <div class="topFooter">
       <div class="row">
@@ -195,15 +201,12 @@
         </div>
         <div class="col-3 mx-3 mt-3">
           <div class="row mx-1">
-            <a href=""><img class="img-fluid" src="images/facebook.png" alt="x"
-              style="width: 60px;"></a>
-              <a href=""><img class="img-fluid" src="images/twitter.png" alt="x"
-                style="width: 60px;"></a>
-        <div class="mt-1 mx-1">      
-            <a href=""><img class="img-fluid" src="images/youtube.png" alt="x"
-              style="width: 53px;"></a>
+            <a href=""><img class="img-fluid" src="images/facebook.png" alt="x" style="width: 60px;"></a>
+            <a href=""><img class="img-fluid" src="images/twitter.png" alt="x" style="width: 60px;"></a>
+            <div class="mt-1 mx-1">
+              <a href=""><img class="img-fluid" src="images/youtube.png" alt="x" style="width: 53px;"></a>
+            </div>
           </div>
-        </div>
         </div>
       </div>
     </div>
@@ -215,4 +218,5 @@
     </div>
     <!-- bottom footer -->
   </footer>
+
 </html>
