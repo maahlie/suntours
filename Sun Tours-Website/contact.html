@@ -22,6 +22,15 @@
   </script>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap" rel="stylesheet">
+
+  <script>
+    //waneer een ajax actie voltooit is wordt de pagina opnieuw geladen.
+    $(document).ready(function () {
+      $(document).ajaxStop(function () {
+        window.location.reload();
+      });
+    });
+  </script>
 </head>
 
 <body class="Contact_Background">
