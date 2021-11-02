@@ -32,7 +32,7 @@ class User {
                             return 0;
                         } 
                     }
-                    return;
+                    return 2;
             }
 
             private function usernCheck($username) {
@@ -132,7 +132,7 @@ class User {
                        $params = [$username, $email, $hash, $phoneNumber, $firstName, $surName, $address, $postalCode, false, $pass, $city];
                        $stmt->execute($params);
                        $this->confMail($email, "De code voor uw activatie is: $pass.", "Activatie Code Voor uw Sun Tours Account");
-                    }                   
+                    }              
             }
             
             public function enterContact($contactName, $email, $contactSubject, $contactBody){
