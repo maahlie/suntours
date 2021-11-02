@@ -118,9 +118,10 @@ $(document).ready(function(){
     <h1>Boekingen overzicht</h1><br>
   </div>
   <main>
+  
     <div class="table-responsive">
-    <form method="POST" id="annuleerForm"  >
-    <table class="table table-striped" id="boekingsOverzicht" style="display:none">
+      <form method="POST" id="annuleerForm"  >
+     <table class="table table-striped" id="boekingsOverzicht" style="display:none">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -154,14 +155,14 @@ $(document).ready(function(){
           }
         ?>
       </tbody>
-    </table>
-    </form>
-  </div>
+     </table>
+     </form>
+     </div>
   </main>
 </body>
 
 <!-- footer is ook onderverdeeld in een top footer en voor de copyright een bottom footer -->
-<footer class="contact_footer">
+<footer class="bgFooter">
   <!-- start topfooter -->
   <div class="topFooter">
     <div class="row">

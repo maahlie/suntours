@@ -22,6 +22,12 @@ document.addEventListener("DOMContentLoaded", function(){
             City: {
                 required: true
             },
+            address: {
+                required: true
+            },
+            postalCode: {
+                required: true
+            }
         },
         messages:
         {
@@ -37,6 +43,12 @@ document.addEventListener("DOMContentLoaded", function(){
             },
             City: {
                 required: "<span class='opmaakError'>Voer a.u.b een stad in.</span>"
+            },
+            address:  {
+                required: "<span class='opmaakError'>Voer a.u.b een adres in.</span>"
+            },
+            postalCode: {
+                required: "<span class='opmaakError'>Voer a.u.b een postcode in.</span>"
             },
         },
 
