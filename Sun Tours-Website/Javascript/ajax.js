@@ -86,8 +86,16 @@ document.addEventListener("DOMContentLoaded", function(){
                 method: "POST",
                 data: sData,
             }).done(function (response) {
-                alert(response + " U wordt nu herleid naar de homepagina.");
-                window.location = "index.html";
+                console.log(response);
+                if (response != "\r\nDe code of email adres was onjuist.")
+                {
+                    alert(response + " U wordt nu herleid naar de homepagina.");
+                    window.location = "index.html";
+                }else
+                {
+                    alert(response);
+                }
+                
             }).fail(function (jqXHR, textstatus) {
                 alert(response, textstatus);
             })
