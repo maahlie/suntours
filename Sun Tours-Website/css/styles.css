@@ -878,11 +878,6 @@ textarea:hover {
  margin-top: 0;
 }
 
-.registreer_fix
-{
-   
-}
-
 .registreer_input
 {
    width: min-content;
@@ -1122,7 +1117,7 @@ textarea:hover {
 
 .bg_Background
 {
-   background-image: url("../images/beach10.jpg");
+   background-image: url("../images/beach6.jpg");
    background-position: center;
    background-attachment:fixed;
    background-repeat: no-repeat;
