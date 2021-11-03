@@ -129,9 +129,9 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         messages:
         {
-            usernLogin: "<span class='opmaakError'>voer een username in a.u.b.</span>",
+            usernLogin: "<span class='opmaakError'>Voer een username in a.u.b.</span>",
             passwdLogin: {
-                required: "<span class='opmaakError'>voer een wachtwoord in a.u.b.</span>",
+                required: "<span class='opmaakError'>Voer een wachtwoord in a.u.b.</span>",
             },
         },
 
