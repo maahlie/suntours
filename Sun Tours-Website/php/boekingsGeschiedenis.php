@@ -111,7 +111,7 @@ $(document).ready(function(){
     <h1>Boekingen overzicht</h1><br>
   </div>
   <main>
-  
+   
     <div class="table-responsive">
       <form method="POST" id="annuleerForm"  >
      <table class="table table-striped" id="boekingsOverzicht" style="display:none">

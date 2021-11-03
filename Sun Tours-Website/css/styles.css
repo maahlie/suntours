@@ -1,7 +1,7 @@
 html {
    width: 100%;
    height: 100%;
-   
+
 }
 
 body {
@@ -14,20 +14,16 @@ body {
 #bodyWintersport,
 #bodyGastenPagina {
    background-image: url("../images/background_image.png");
-
    background-attachment: fixed;
    background-position: center;
    background-repeat: no-repeat;
    background-size: 90% 100%;
-
-
    font-size: 1.5em;
    font-family: Times;
 }
 
 #bodyContacPagina {
    background-image: url("../images/background.png");
-
    background-attachment: fixed;
    background-position: top;
    background-repeat: no-repeat;
@@ -39,7 +35,6 @@ body {
 
 #bodyAuto {
    background-image: url("../images/background.png");
-
    background-attachment: fixed;
    background-position: top;
    background-repeat: no-repeat;
@@ -67,8 +62,7 @@ body {
    width: 200px;
 }
 
-.index_Background
-{
+.index_Background {
    background-color: rgba(221, 220, 220, 0.938);
 }
 
@@ -85,7 +79,7 @@ footer {
    background: rgb(53, 58, 64);
    padding-top: 1.2em;
    padding-bottom: 0.6em;
-   
+
 }
 
 .bottomFooter {
@@ -272,30 +266,27 @@ h4 {
    margin-right: 15px
 }
 
-.FAQ_Background
-{
-   
+.FAQ_Background {
+
    background-image: url("../images/beach3.jpg");
    background-repeat: no-repeat;
    background-position: left;
    width: 100%;
    margin: 0px;
    padding: 0px;
-   overflow-x: hidden; 
-   
+   overflow-x: hidden;
+
 }
 
-#faqFooterFix {
+.faqFooterFix {
    position: absolute;
    bottom: -70%;
    width: 100%;
-   height: 2.5rem;  
-   
+   height: 2.5rem;
 }
 
-.card-body
-{
-  font-size: 0.9rem;
+.card-body {
+   font-size: 0.9rem;
 }
 
 .header2 {
@@ -311,8 +302,7 @@ h4 {
    color: white;
 }
 
-.header_faq
-{
+.header_faq {
    text-align: center;
    width: 100%;
    height: 30%;
@@ -320,17 +310,15 @@ h4 {
    display: flex;
 }
 
-.header_faq h1
-{
+.header_faq h1 {
    margin: 0 auto;
    font-size: 4em;
    color: white;
-   
+
 }
 
-.faq_height
-{
-  margin-top: 5%;
+.faq_height {
+   margin-top: 5%;
 }
 
 .form {
@@ -340,15 +328,14 @@ h4 {
    position: relative;
 }
 
-.Contact_Background
-{
+.Contact_Background {
    background-image: url("../images/beach2.jpg");
    background-repeat: no-repeat;
    background-position: center;
    width: 100%;
    margin: 0px;
    padding: 0px;
-   overflow-x: hidden;  
+   overflow-x: hidden;
 }
 
 .contact_toptext {
@@ -370,31 +357,30 @@ h4 {
    margin-left: 5%;
 }
 
-@media only screen and (min-width: 360px) 
-{
-  
-.boekingen_Button {
-   background-color: blue;
-   color: white;
-   width: 140%;
-   margin-left: 5%;
-}
-}
+@media only screen and (min-width: 360px) {
 
-
-.contact_footer
-{
-   position:absolute;
-  padding-top: 100px;
-   bottom:0;
-   width:100%;
-   height:60px;
- 
+   .boekingen_Button {
+      background-color: blue;
+      color: white;
+      width: 140%;
+      margin-left: 5%;
+   }
 }
 
-#contact_naam,#contact_onderwerp,#contact_email
-{
-   width: 70%;
+
+.contact_footer {
+   position: absolute;
+   padding-top: 100px;
+   bottom: 0;
+   width: 100%;
+   height: 60px;
+
+}
+
+#contact_naam,
+#contact_onderwerp,
+#contact_email {
+   width: 60%;
 }
 
 .contactArea {
@@ -465,8 +451,7 @@ textarea:hover {
    background-image: linear-gradient(to bottom, hsl(0, 80%, 50%), #bada55);
 }
 
-.Review_Background
-{
+.Review_Background {
    background-image: url("../images/background_image.png");
    background-repeat: no-repeat;
    background-position: center;
@@ -484,19 +469,18 @@ textarea:hover {
    background-color: rgb(197, 213, 225);
 }
 
-.Reviewheader h1 
-{
+.Reviewheader h1 {
    margin: 0 auto;
    font-size: 4em;
    color: white;
 }
 
 .review-form {
-  
+
    margin-top: 3%;
    height: min-content;
    width: 40%;
-   margin-left: 30%;  
+   margin-left: 30%;
    background-color: rgba(255, 255, 255, 0.575);
    padding-left: 5%;
    padding-right: 5%;
@@ -504,10 +488,9 @@ textarea:hover {
 }
 
 
-.ReviewFooter
-{
-   width:100%;
-   position:relative;
+.ReviewFooter {
+   width: 100%;
+   position: relative;
 }
 
 
@@ -516,7 +499,7 @@ textarea:hover {
    border-radius: 10px;
    font-family: Verdana, Geneva, Tahoma, sans-serif;
    width: 80%;
-   
+
 }
 
 .textarea {
@@ -552,8 +535,8 @@ textarea:hover {
    border-radius: 5px;
    width: 30%;
    margin-bottom: 5%;
-   margin-left: 	5%;
-   
+   margin-left: 5%;
+
 }
 
 .assortiment-first-image {
@@ -766,6 +749,7 @@ textarea:hover {
 
 
 }
+
 .assortiment body {
    background-image: url("../images/background_image.png");
    background-attachment: fixed;
@@ -773,62 +757,71 @@ textarea:hover {
    background-repeat: no-repeat;
 
 }
-.assortiment-first-text,.assortiment-second-text{
+
+.assortiment-first-text,
+.assortiment-second-text {
    background-color: rgb(197, 213, 225, 0.5);
 }
-.jumbotron{
-   background-color:rgb(197, 213, 225, 0.5);
+
+.jumbotron {
+   background-color: rgb(197, 213, 225, 0.5);
 }
 
- 
-#logout_li{
-   margin-left:85%;
-   position:absolute
+
+#logout_li {
+   margin-left: 85%;
+   position: absolute
 }
+
 @media only screen and (max-width: 930px) {
-  
-   #logout_li{
-      margin-left:80%;
-      position:absolute
+
+   #logout_li {
+      margin-left: 80%;
+      position: absolute
    }
 
-} 
+}
 
 @media only screen and (max-width: 916px) {
-   
-   #boekingenTable, td, th {
-      border:1px solid black;
+
+   #boekingenTable,
+   td,
+   th {
+      border: 1px solid black;
       background-color: rgba(255, 255, 255, 0.575);
       width: 100%;
-      font-size:xx-small;
+      font-size: xx-small;
    }
-   
-   #aantal_Dagen,#aantal_tickets_bus,#aantal_volwassenen,#aantal_kinderen
-   {
+
+   #aantal_Dagen,
+   #aantal_tickets_bus,
+   #aantal_volwassenen,
+   #aantal_kinderen {
       width: 60%;
    }
-   
-} 
+
+}
 
 
-#boekingenTable, td, th {
-   border:1px solid black;
+#boekingenTable,
+td,
+th {
+   border: 1px solid black;
    background-color: rgba(255, 255, 255, 0.575);
    width: 100%;
 }
 
 
 
-#activatieFooter{
- position: absolute;
- bottom: 0;
-/* .prijzen {
+#activatieFooter {
+   position: absolute;
+   bottom: 0;
+   /* .prijzen {
    background-color: rgb(197, 213, 225);
 } */
 }
 
-.boekingen_Button
- {
+.boekingen_Button {
    appearance: none;
    -webkit-appearance: none;
    padding: 10px;
@@ -839,35 +832,53 @@ textarea:hover {
    border-radius: 5px;
    width: 80%;
    margin-bottom: 5%;
-   margin-left: 	5%;
-   
- }
+   margin-left: 5%;
 
- #tijden,#aantal_volwassenen,#aantal_kinderen,#Vertrek_vliegveld
- {
-    width: 100%;
- }
+}
 
- .boekingen_Background
- {
+#tijden,
+#aantal_volwassenen,
+#aantal_kinderen,
+#Vertrek_vliegveld {
+   width: 100%;
+}
+
+.boekingen_Background {
    background-image: url("../images/beach6.jpg");
    background-position: left;
-   background-attachment:fixed;
+   background-attachment: fixed;
    background-repeat: no-repeat;
-   background-size:100% 100%;
+   background-size: 100% 100%;
    margin-right: -5%;
- }
+}
 
- 
-#bookingForm
-{
+
+#bookingForm {
    position: relative;
    font-family: 'Montserrat', sans-serif;
 }
 
 
-.col-lg-6, h1,h2,#col-12,p,h5,a,h3,h4,#contact,.header_faq h2,#reviewForm,#logout,.assortiment-first-text,.assortiment-second-text,.info,#selected,#faqExample,#collapseSeven,#myTabContent
-{
+.col-lg-6,
+h1,
+h2,
+#col-12,
+p,
+h5,
+a,
+h3,
+h4,
+#contact,
+.header_faq h2,
+#reviewForm,
+#logout,
+.assortiment-first-text,
+.assortiment-second-text,
+.info,
+#selected,
+#faqExample,
+#collapseSeven,
+#myTabContent {
    font-family: 'Montserrat', sans-serif;
 }
 
@@ -884,81 +895,79 @@ textarea:hover {
 }
 
 
-#register
-{
+#register {
    width: 40%;
    padding-left: 15%;
    border: 1px solid black;
    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
    margin-top: 5%;
    height: fit-content;
+   border-radius: 10px;
+   background-color: rgba(128, 128, 128, 0.336);
    
+
 }
 
 
-@media only screen and (max-width: 900px) 
-{
-   #register
-   {
+@media only screen and (max-width: 900px) {
+   #register {
       border: 1px solid black;
       width: 60%;
       margin-top: 5%;
-      padding-left: 15%; 
+      padding-left: 15%;
       font-size: small;
    }
 
 }
 
-#login
-{
-  border: 1px solid black;
-  width: max-content;
-  margin-top: 5%;
-  margin-left: 45%;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
-}
-
-@media only screen and (max-width: 900px) 
-{
-   #login
-{
+#login {
    border: 1px solid black;
-  width: 60%;
-  margin-top: 5%;
-  margin-left: 20%;
-  font-size: small;
-  padding-right: 10%;
-  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
-}
+   width: max-content;
+   margin-top: 5%;
+   margin-left: 45%;
+   box-shadow: 4px 4px 10px rgba(0.5, 0.5, 0.5, 0.5);
+   border-radius: 10px;
+   background-color: rgba(128, 128, 128, 0.336);
+   
 }
 
-#loginKnop
-{
+@media only screen and (max-width: 900px) {
+   #login {
+      border: 1px solid black;
+      width: 60%;
+      margin-top: 5%;
+      margin-left: 20%;
+      font-size: small;
+      padding-right: 10%;
+      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+   }
+}
+
+#loginKnop {
    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-#registratieknop
-{
+#registratieknop {
    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
    margin-left: -5%;
 }
 
-.tab-content
-{
+.tab-content {
    margin-left: -25%;
 }
 
-#aanmelden_footer
-{
-   position:absolute;
-   bottom:0;
-   width:100%;
-   height:160px;
+#aanmelden_footer {
+   position: absolute;
+   bottom: 0;
+   width: 100%;
+   height: 160px;
 }
-.aanmelden_tekst
-{
+
+.aanmelden_tekst {
    margin-top: 5%;
 }
+
+
 
 .float-container {
    display: inline-block;
@@ -976,13 +985,12 @@ textarea:hover {
 }
 
 .float-child {
-   
+
    float: left;
    margin-left: 15%;
-} 
+}
 
-#codeVerify
-{
+#codeVerify {
    background-color: rgba(255, 255, 255, 0.575);
    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
    width: 20%;
@@ -990,50 +998,51 @@ textarea:hover {
    margin-top: 3%;
 }
 
-@media only screen and (min-width: 550px) {
-   
-   #changePswrd
-{
-   background-color: rgba(255, 255, 255, 0.575);
-   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
-   padding-left: 1%;
-   margin-top: 5%;
-   width: fit-content;
-   font-size: small;
+@media only screen and (min-width: 800px) {
 
- }
- #secCode,#newPswrd,#confPaswrd,#pswrdEmail
- {
-    width: 40%;  
-    font-size: small;
- }
+   #changePswrd {
+      background-color: rgba(255, 255, 255, 0.575);
+      box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+      padding-left: 1%;
+      margin-top: 5%;
+      font-size: small;
+      
 
- .size
- {
-    font-size: small;
- }
- .Passwordheader
-{
-   text-align: center;
-   width: 100%;
-   background-color: rgb(197, 213, 225);
-   font-size: small;
+   }
+
+   #secCode,
+   #newPswrd,
+   #confPaswrd,
+   #pswrdEmail {
+      width: 40%;
+      font-size: small;
+   }
+
+   .size {
+      font-size: small;
+   }
+
+   .Passwordheader {
+      text-align: center;
+      width: 100%;
+      background-color: rgb(197, 213, 225);
+      font-size: small;
+   }
+
 }
-  
- }
 
+.size {
+   font-size: medium;
+}
 
- .size
- {
-    font-size: medium;
- }
- #secCode,#newPswrd,#confPaswrd,#pswrdEmail
- {
-    width: 70%;
- }
+#secCode,
+#newPswrd,
+#confPaswrd,
+#pswrdEmail {
+   width: 70%;
+}
 
-#changePswrd
-{
+#changePswrd {
    background-color: rgba(255, 255, 255, 0.575);
    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
    padding-left: 1%;
@@ -1042,8 +1051,7 @@ textarea:hover {
    font-size: medium;
 }
 
-#pswrdSendCode
-{
+#pswrdSendCode {
    background-color: rgba(255, 255, 255, 0.575);
    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
    height: min-content;
@@ -1053,79 +1061,70 @@ textarea:hover {
    width: 20%;
 }
 
-#contact
-{
+#contact {
    background-color: rgba(255, 255, 255, 0.575);
    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
    padding-left: 3%;
 }
 
-.password_Background
-{
+.password_Background {
    background-image: url("../images/beach8.jpg");
    background-position: center;
-   background-attachment:fixed;
+   background-attachment: fixed;
    background-repeat: no-repeat;
 }
 
-.Passwordheader
-{
+.Passwordheader {
    text-align: center;
    width: 100%;
    background-color: rgb(197, 213, 225);
 }
 
-.Passwordheader h1
-{
+.Passwordheader h1 {
    color: white;
 }
 
-.activatieHeader
-{
+.activatieHeader {
    text-align: center;
    width: 100%;
    background-color: rgb(197, 213, 225);
 }
 
-.activatieHeader h1
-{
+.activatieHeader h1 {
    color: white;
 }
 
-.activatie_Background
-{
+.activatie_Background {
    background-image: url("../images/beach9.jpg");
    background-position: center;
-   background-attachment:fixed;
+   background-attachment: fixed;
    background-repeat: no-repeat;
 }
 
-.header_bg
-{
+.header_bg {
    text-align: center;
    width: 100%;
    background-color: rgb(197, 213, 225);
+   
 }
 
-.header_bg h1
-{
+.header_bg h1 {
    color: white;
    padding-top: 1%;
-   
-   
+
+
 }
 
 .bg_Background
 {
    background-image: url("../images/beach6.jpg");
    background-position: center;
-   background-attachment:fixed;
+   background-attachment: fixed;
    background-repeat: no-repeat;
    background-size: 100% 100%;
 }
 
-.table-striped
-{
+.table-striped {
    margin-top: 5%;
    margin-left: 25%;
    margin-bottom: 5%;
@@ -1134,7 +1133,6 @@ textarea:hover {
    display: block !important;
    overflow-x: auto !important;
    width: min-content !important;
-   
 }
 
 .bgFooter
@@ -1152,85 +1150,80 @@ textarea:hover {
 
 
 @media only screen and (max-width: 600px) {
-   
-   .table-striped
-   {
-    
+
+   .table-striped {
+
       margin-top: 5%;
       margin-left: 15%;
       box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
       border: 2px solid black;
       display: block !important;
       overflow-x: auto !important;
-    width: min-content !important; 
+      width: min-content !important;
    }
 
- }
+}
 
- .tableButton
- {
+.tableButton {
    background-color: rgba(255, 255, 255, 0);
    color: red;
    width: 100%;
    background: transparent;
-    border: none !important;
- }
+   border: none !important;
+}
 
- .bevestigings_Background
- {
+.bevestigings_Background {
    background-image: url("../images/beach10.jpg");
    background-position: left;
-   background-attachment:fixed;
+   background-attachment: fixed;
    background-repeat: no-repeat;
    background-size: 100% 100%;
- }
+}
 
- .table-borderless
- {
-    border: 1px solid black;
- }
+.table-borderless {
+   border: 1px solid black;
+}
 
- .btn-primary,.btn-secondary
- {
-    margin-top: 5%;
- }
+.btn-primary {
+   margin-top: 5%;
+}
 
- .account_verwijderen
- {
-    background-color: rgba(255, 255, 255, 0.76);
-    margin-top: 10%;
-    margin-left: 40%;
-    width: 20%;
-    border: 1px solid black;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
-    padding-bottom: 1%;
-    
- }
+.btn-secondary {
+   margin-top: 2%;
+}
 
- .Account_Background
- {
+.account_verwijderen {
+   background-color: rgba(255, 255, 255, 0.76);
+   margin-top: 10%;
+   margin-left: 40%;
+   width: 20%;
+   border: 1px solid black;
+   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+   padding-bottom: 1%;
+
+}
+
+.Account_Background {
    background-image: url("../images/beach11.jpeg");
    background-position: center;
-   background-attachment:fixed;
+   background-attachment: fixed;
    background-repeat: no-repeat;
    background-size: 100% 100%;
- }
+}
 
- .Account_verwijderen_Header
- {
+.Account_verwijderen_Header {
    text-align: center;
    width: 100%;
    background-color: rgb(197, 213, 225);
- }
+}
 
- .Account_verwijderen_Header h1
- {
+.Account_verwijderen_Header h1 {
    margin: 0 auto;
    font-size: 4em;
    color: white;
    padding-top: 1%;
- }
- 
+}
+
 .opmaakError {
    color: red;
 }
