@@ -32,7 +32,7 @@ class User {
                             return 0;
                         } 
                     }
-                    return;
+                    return 2;
             }
 
             private function usernCheck($username) {
@@ -399,7 +399,22 @@ class User {
                     exit("Uw reis is geannuleerd.");
                 }
                 
-            } 
+            }
+
+            public function orderID(){
+                
+                $userID = $this->SqlCommands->selectFromWhere('userID', 'users', 'username', $_SESSION['username']);
+                $this->SqlCommands->connectDB();
+                $sql = "SELECT bookingID FROM booked ORDER BY bookingID DESC LIMIT 1;";
+                $stmt = $this->SqlCommands->pdo->prepare($sql);
+                $stmt->execute();
+                $lastBooking = $stmt->fetch(PDO::FETCH_ASSOC);
+
+                $lastBookIdNum = $lastBooking["bookingID"] + 1;
+                $orderID = $userID[0]["userID"] . "0" . $lastBookIdNum;
+
+                return $orderID;
+            }
 }           
 ?>
 

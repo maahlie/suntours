@@ -92,7 +92,7 @@ function calculate_car_price(){
       if (rental_time <= 8 && rental_time > 0)
       {
         auto_prijs = auto_prijzen[i]*rental_time;
-        document.getElementById("auto_prijs").innerHTML='Prijs: €' + auto_prijs * document.getElementById("aantal_autos").value;
+        document.getElementById("auto_prijs").innerHTML='€' + auto_prijs * document.getElementById("aantal_autos").value;
         document.getElementById("carPrice").value = auto_prijs;
         document.getElementById("carAmount").value = document.getElementById("aantal_autos").value;
       }else{
@@ -216,7 +216,85 @@ function update_prices()
   calculate_plane_price();
   calculate_pakket_prijs();
   totalPrice();
+  document.getElementById('errorMsg').style.display = "none";
 
 }
 
+function getDate(){
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, '0');
+  var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+  var yyyy = today.getFullYear();
 
+  today = mm + '/' + dd + '/' + yyyy;
+  return today;
+}
+
+function showConfirmForm(){
+  if(
+    document.getElementById("aantal_volwassenen").value != 0 &&
+    document.getElementById("aantal_kinderen").value != 0 &&
+    document.getElementById("totaal_pakket_Prijs").innerHTML != "" &&
+    document.getElementById("totaal_pakket_Prijs").innerHTML != "" &&
+    document.getElementById("vervoer").checked || document.getElementById("geen_vervoer").checked &&
+    document.getElementById("show_autoverhuur1").checked || document.getElementById("hide_autoverhuur2").checked &&
+    document.getElementById("show_bus_deals1").checked || document.getElementById("hide_bus_deals2").checked
+  ){
+      var oReq = new XMLHttpRequest(); // New request object
+      oReq.onload = function() {
+        var str = this.responseText;
+        document.getElementById("orderNr").innerHTML = "#" + str.substring(3,str.length-1);
+      };
+      oReq.open("get", "php/genOrderNr.php", true);
+            //                               ^ Don't block the rest of the execution.
+            //                                 Don't wait until the request finishes to
+            //                                 continue.
+      oReq.send();
+
+
+    var strTotalPrijs = document.getElementById("totaal__Reis_Prijs").innerHTML.substring(1);
+    var annuleerKost = parseFloat(strTotalPrijs) * 0.25;
+
+    var btw = parseFloat(strTotalPrijs) * 0.21;
+
+    document.getElementById("currentDate").innerHTML = getDate();
+    document.getElementById("aantalV").innerHTML = document.getElementById("aantal_volwassenen").value;
+    document.getElementById("aantalK").innerHTML = document.getElementById("aantal_kinderen").value;
+    document.getElementById("pakketP").innerHTML = document.getElementById("totaal_pakket_Prijs").innerHTML;
+    document.getElementById("vlucht").innerHTML = document.getElementById("totaal_Vliegticket_Prijs").innerHTML;
+    document.getElementById("autoVhuur").innerHTML = document.getElementById("auto_prijs").innerHTML;
+    document.getElementById("busDeal").innerHTML = document.getElementById("bus_Totaal").innerHTML;
+    document.getElementById("annuleringsKosten").innerHTML = "€" + Math.round((annuleerKost + Number.EPSILON) * 100) / 100;
+    document.getElementById("btw").innerHTML = "€" + Math.round((btw + Number.EPSILON) * 100) / 100;
+    document.getElementById("totaalP").innerHTML = "€" + Math.round((parseFloat(strTotalPrijs) * 1.21 + Number.EPSILON) * 100) / 100;
+
+    
+    const VAB = ["vlucht", "autoVhuur", "busDeal"];
+
+    for(i = 0; i<3; i++){
+      if(document.getElementById(VAB[i]).innerHTML == "Prijs:-"){
+        document.getElementById(VAB[i]).innerHTML = "n.v.t";
+      }
+    }
+
+    document.getElementById("bookingOpties").style.display = 'none';
+    document.getElementById("bevestigForm").style.display = 'inline-block';
+  }else{
+    document.getElementById('errorMsg').innerHTML = "Laat a.u.b geen velden leeg.";
+    document.getElementById('errorMsg').style.display = "inline-block";
+  }
+}
+
+
+// $.ajax({
+
+//   url: 'boekingen.html', 
+//   success: function() {
+//     var form = $('#bookingForm');
+//     var sData = form.serialize(); 
+//     console.log(sData['AantalVolwassenen']);
+
+//     $('#aantalV').html(sData['AantalVolwassenen']);
+//     alert('Load was performed.');
+//   }
+// });

@@ -75,12 +75,13 @@
     <h1>Boekingen</h1><br>
   </div>
   <main class="boekingen">
+    <form method="POST" id="bookingForm">
 
-    <div class="float-container" style="display: inline-block;">
+    <div class="float-container" id="bookingOpties" style="display: inline-block;">
 
       <div class="float-child">
-       
-          <form method="POST" id="bookingForm">
+
+
             <label>Vertrek/terug reis datum en tijd opties:</label><br>
             <select id="tijden" name="reistijden" class="break" onchange="update_prices()">
               <option value="keuze" disabled selected>-</option>
@@ -148,7 +149,6 @@
               <label>geldig vanaf:</label><br>
               <input id="bus-dates" name="busStartDate" type='date'></input><br><br>
               
-  
           </div>
           <input type="text" id="packageID" name="packageID" hidden>
           <input type="text" id="totalPrice" name="totalPrice" value="0" hidden>
@@ -177,12 +177,13 @@
               <td><label id="totaal_pakket_Prijs" class="prijzen">Prijs:-</label></td>
               <td><label id="totaal__Reis_Prijs" class="prijzen">Prijs:-</label></td>
             </tr>
-  
-  
           </table>
-  <br>
-          <input type="submit" value="Volgende" name="sendBoeking" id="contact_button" class="sendKnop boekingen_Button">
-        </form>
+          <br>
+
+          <button type="button" class="boekingen_Button" onclick="showConfirmForm();">Volgende</button>
+          <br>
+          <div id="errorMsg"></div>
+
       </div>
       
       </div>
@@ -198,7 +199,8 @@
           </div>
         </div>
     </div>
-    <div class="container mt-5 mb-5" style="display: none;">
+
+    <div class="container mt-5 mb-5" id="bevestigForm" style="display: none;">
       <div class="row d-flex justify-content-center">
         <div class="col-md-8">
           <div class="card">
@@ -210,54 +212,63 @@
                 <table class="table table-borderless">
                   <tbody>
                     <tr>
-                      <div class="py-2 boekingenDatum"> <span class="d-block text-muted"><b class="boekingen_Text">Bestel Datum:</b></span> <span>18-10-2021</span>
+                      <div class="py-2 boekingenDatum"> <span class="d-block text-muted"><b class="boekingen_Text">Bestel Datum:</b></span> <div id="currentDate"></div>
                         </div>
                     </tr>
                     <tr>
-                      <div class="py-2 orderID"> <span class="d-block text-muted"><b class="boekingen_Text">Order ID</b></span> <span>#123</span>
+                      <div class="py-2 orderID"> <span class="d-block text-muted"><b class="boekingen_Text">Order ID</b></span> <div id="orderNr"></div>
                       </div>
                     </tr>
                     <tr>
                       <td>
                         <div class="text-left aantal_Volwassenen"> <span class="text-muted"><b class="boekingen_Text">aantal Volwassenen:</b></span> </div>
+                        <div id="aantalV"></div>
                       </td>
                       <tr>
                       <td>
                         <div class="text-left aantal_Kinderen"> <span class="text-muted"><b class="boekingen_Text">aantal Kinderen:</b></span> </div>
+                        <div id="aantalK"></div>
                       </td>
                       <tr>
                         <td>
                           <div class="text-left pakket_prijs"> <span class="text-muted"><b class="boekingen_Text">Pakket prijs:</b></span> </div>
+                          <div id="pakketP"></div>
                         </td>
                       </tr>
                       <tr>
                         <td>
                           <div class="text-left vlucht_prijs"> <span class="text-muted"><b class="boekingen_Text">Vlucht:</b></span> </div>
+                          <div id="vlucht"></div>
                         </td>
                       </tr>
                       <tr>
                         <td>
                           <div class="text-left autoverhuur_prijs"> <span class="text-muted"><b class="boekingen_Text">Autoverhuur:</b></span> </div>
+                          <div id="autoVhuur"></div>
                         </td>
                       </tr>
                       <tr>
                         <td>
                           <div class="text-left busdeal_prijs"> <span class="text-muted"><b class="boekingen_Text">Busdeal:</b></span> </div>
+                          <div id="busDeal"></div>
                         </td>
                       </tr>
                       <tr>
                         <td>
-                          <div class="text-left annuleringscode"> <span class="text-muted"><b class="boekingen_Text">annulerings kosten:</b></span> </div>
+                          <div class="text-left annuleringscode"> <span class="text-muted"><b class="boekingen_Text">Annulerings kosten:</b></span> </div>
+                          <div id="annuleringsKosten"></div>
                         </td>
                       </tr>
                       <tr>
                         <td>
                           <div class="text-left btw"> <span class="text-muted"><b class="boekingen_Text">BTW:</b></span> </div>
+                          <div id="btw"></div>
                         </td>
                       </tr>
                       <tr>
                         <td>
                           <div class="text-left Totaal_prijs"> <span class="text-muted"><b class="boekingen_Text">Totaal prijs:</b></span> </div>
+                          <div id="totaalP"></div>
                         </td>
                       </tr>
                     </tr>
@@ -269,7 +280,7 @@
               <div class="row d-flex justify-content-end">
                 <div class="col-md-5">
                   <table class="table table-borderless">
-                    <button class="boekingen_Button">Bevestigen</button>
+                    <input type="submit" value="Bevestig" name="sendBoeking" id="contact_button" class="sendKnop boekingen_Button">
                     <tbody class="totals">
                      
                      
@@ -289,6 +300,7 @@
       </div>
      
     </div>
+  </form>
   </main>
 </body>
 
