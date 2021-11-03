@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
+
+    //registratie
     $("#registreerpage").validate({
         rules:
         {
@@ -58,6 +60,7 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     })
 
+    //wachtwoord verificatie voor account activatie
     $("#codeVerify").validate({
         rules:
         {
@@ -71,8 +74,8 @@ document.addEventListener("DOMContentLoaded", function(){
         },
         messages:
         {
-            activateCode: "please enter code",
-            email: "please enter a valid email address",
+            activateCode: "<span class='opmaakError'>please enter code</span>",
+            email: "<span class='opmaakError'>please enter a valid email address</span>",
 
         },
 
@@ -87,36 +90,36 @@ document.addEventListener("DOMContentLoaded", function(){
                 data: sData,
             }).done(function (response) {
                 console.log(response);
-                if (response != "\r\nDe code of email adres was onjuist.")
-                {
+                //dit zorgt ervoor dat je niet herleid word na een mislukte verificatie.
+                if (response != "\r\nDe code of email adres was onjuist.") {
                     alert(response + " U wordt nu herleid naar de homepagina.");
                     window.location = "index.html";
-                }else
-                {
+                } else {
                     alert(response);
                 }
-                
+
             }).fail(function (jqXHR, textstatus) {
                 alert(response, textstatus);
             })
         }
     })
 
+    //login pagina
     $("#loginPage").validate({
         rules:
         {
-            usern: {
+            usernLogin: {
                 required: true,
             },
-            passwd: {
+            passwdLogin: {
                 required: true,
             },
         },
         messages:
         {
-            usern: "geef username",
-            passwd: {
-                required: "geef wachtwoord",
+            usernLogin: "<span class='opmaakError'>voer een username in a.u.b.</span>",
+            passwdLogin: {
+                required: "<span class='opmaakError'>voer een wachtwoord in a.u.b.</span>",
             },
         },
 
@@ -137,6 +140,7 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     })
 
+    //boekings form
     $("#bookingForm").validate({
         rules:
         {
@@ -159,19 +163,19 @@ document.addEventListener("DOMContentLoaded", function(){
         messages:
         {
             reistijden: {
-                required: "<span class='test'>Vul dit in a.u.b</span>",
+                required: "<span class='opmaakError'>Vul de reistijden in a.u.b</span>",
             },
             AantalVolwassenen: {
-                required: "<span class='test'>Vul dit in a.u.b</span>",
+                required: "<span class='opmaakError'>Vul het aantal volwassenen in a.u.b</span>",
             },
             AantalKinderen: {
-                required: "<span class='test'>Vul dit in a.u.b</span>",
+                required: "<span class='opmaakError'>Vul het aantal kinderen in a.u.b</span>",
             },
             vervoer: {
-                required: "<span class='test'>Vul dit in a.u.b</span>",
+                required: "<span class='opmaakError'>Maak uw keuze voor vervoer a.u.b</span>",
             },
             autoverhuur: {
-                required: "<span class='test'>Vul dit in a.u.b</span>",
+                required: "<span class='opmaakError'>selecteer uw voorkeur voor autoverhuur a.u.b</span>",
             },
         },
 
@@ -193,6 +197,7 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     })
 
+    //log uit form
     $("#logoutForm").validate({
         rules:
         {
@@ -212,8 +217,7 @@ document.addEventListener("DOMContentLoaded", function(){
             var form = $('#logoutForm');
             var sData = form.serialize();
             console.log(sData);
-            if(window.location.href.indexOf('.php') > -1) 
-            {
+            if (window.location.href.indexOf('.php') > -1) {
                 $.ajax({
                     url: '../php/ajaxHandler.php',
                     method: "POST",
@@ -223,7 +227,7 @@ document.addEventListener("DOMContentLoaded", function(){
                 }).fail(function (jqXHR, textstatus) {
                     alert(response, textstatus);
                 })
-            }else{
+            } else {
                 $.ajax({
                     url: 'php/ajaxHandler.php',
                     method: "POST",
@@ -237,7 +241,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
         }
     })
-            
+
+    //contact form
     $("#contact").validate({
         rules:
         {
@@ -256,10 +261,10 @@ document.addEventListener("DOMContentLoaded", function(){
         },
         messages:
         {
-            contact_naam: "Uw naam is vereist",
-            contact_email:"Uw email is vereist",
-            contact_onderwerp: "Een onderwerp is vereist",
-            contact_text: "Input is vereist"
+            contact_naam: "<span class='opmaakError'>Uw naam is vereist</span>",
+            contact_email: "<span class='opmaakError'>Uw email is vereist</span>",
+            contact_onderwerp: "<span class='opmaakError'>Een onderwerp is vereist</span>",
+            contact_text: "<span class='opmaakError'>Input is vereist</span>"
         },
 
         submitHandler: function () {
@@ -279,6 +284,7 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     })
 
+    //review form
     $("#reviewForm").validate({
         rules:
         {
@@ -300,11 +306,11 @@ document.addEventListener("DOMContentLoaded", function(){
         },
         messages:
         {
-            holidays: "Gekozen vakantie is vereist",
-            Waardering:"Waardering is vereist",
-            titel: "Een onderwerp is vereist",
-            review: "Review is vereist",
-            keuze: "Keuze is vereist"
+            holidays: "<span class='opmaakError'>Gekozen vakantie is vereist</span>",
+            Waardering: "<span class='opmaakError'>Waardering is vereist</span>",
+            titel: "<span class='opmaakError'>Een onderwerp is vereist</span>",
+            review: "<span class='opmaakError'>Review is vereist</span>",
+            keuze: "<span class='opmaakError'>Keuze is vereist</span>"
         },
 
         submitHandler: function () {
@@ -323,6 +329,7 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     })
 
+    //form voor wachtwoord veranderen.
     $("#changePswrd").validate({
         rules:
         {
@@ -331,7 +338,7 @@ document.addEventListener("DOMContentLoaded", function(){
             },
             newPswrd: {
                 required: true,
-                minlength: 4,
+                minlength: 8,
             },
             confPaswrd: {
                 required: true,
@@ -344,16 +351,16 @@ document.addEventListener("DOMContentLoaded", function(){
         },
         messages:
         {
-            secCode: "Vul a.u.b de code in.",
+            secCode: "<span class='opmaakError'>Vul a.u.b de code in.</span>",
             newPswrd: {
-                required: "please provide a password",
-                minlength: "password at least have 8 characters"
+                required: "<span class='opmaakError'>Vul a.u.b. een wachtwoord in</span>",
+                minlength: "<span class='opmaakError'>Het wachtwoord moet minimaal uit 8 karakters bestaan.</span>"
             },
             confPaswrd: {
-                required: "please retype your password",
-                equalTo: "password doesn't match !"
+                required: "<span class='opmaakError'>Herhaal uw wachtwoord.</span>",
+                equalTo: "<span class='opmaakError'>Wachtwoord komt niet overeen.</span>"
             },
-            pswrdEmail: "please enter a valid email address",
+            pswrdEmail: "<span class='opmaakError'>Vul een geldig email adres in.</span>",
 
         },
 
@@ -375,6 +382,7 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     })
 
+    //form voor het sturen van een code.
     $("#pswrdSendCode").validate({
         rules:
         {
@@ -385,7 +393,7 @@ document.addEventListener("DOMContentLoaded", function(){
         },
         messages:
         {
-            codeEmail: "please enter a valid email address",
+            codeEmail: "<span class='opmaakError'>Vul een geldig email adres in.</span>",
 
         },
 
@@ -406,6 +414,7 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     })
 
+    //account verwijderen
     $("#delAcc").validate({
         rules:
         {
@@ -425,18 +434,19 @@ document.addEventListener("DOMContentLoaded", function(){
             var form = $('#delAcc');
             var sData = form.serialize();
             console.log(sData);
-                $.ajax({
-                    url: 'php/ajaxHandler.php',
-                    method: "POST",
-                    data: sData,
-                }).done(function (response) {
-                    alert(response);
-                }).fail(function (jqXHR, textstatus) {
-                    alert(response, textstatus);
-                })
+            $.ajax({
+                url: 'php/ajaxHandler.php',
+                method: "POST",
+                data: sData,
+            }).done(function (response) {
+                alert(response);
+            }).fail(function (jqXHR, textstatus) {
+                alert(response, textstatus);
+            })
         }
     })
 
+    //annuleren (boekingGeschiedenis)
     $("#annuleerForm").validate({
         rules:
         {
@@ -456,7 +466,7 @@ document.addEventListener("DOMContentLoaded", function(){
             var form = $('#annuleerForm');
             var sData = form.serialize();
             console.log(sData);
-            
+
             $.ajax({
                 url: '../php/ajaxHandler.php',
                 method: "POST",

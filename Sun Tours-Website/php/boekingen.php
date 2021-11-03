@@ -21,6 +21,7 @@ class Booking {
     private $busPrice;
     private $startingDate;
     private $returnDate;
+
     public function __construct($adults, $kids, $id, $travelTimeChoice, $packagePrice, $ticketPrice, $vliegM, $vliegveld, $carAmount, $carPrice, $rentalCarDays, $carBrand, $busTicketAmount, $busPrice, $busDays,$busStartDate, $startingDate, $returnDate)    
     {
         $this->adults = $adults;
@@ -46,10 +47,9 @@ class Booking {
         $this->carBrand = $carBrand;
         $this->startingDate = $startingDate;
         $this->returnDate = $returnDate;
-        // $this->finalPrices = $this->calcFinalPrice();
-        // $this->username = $_SESSION['username'];
     }
 
+    //haalt de user id op aan de hand van de ingelogde username.
     private function getUserID(){
         $this->commands = new SqlCommands();
         $this->commands->connectDB();
@@ -255,4 +255,3 @@ class Booking {
     }
     
 }
-?>
