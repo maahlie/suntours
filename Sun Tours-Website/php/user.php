@@ -166,39 +166,46 @@ class User
     //checks if the login should be succesfull or not.
     public function userLoginCheck($username, $passwrd)
     {
-
+        //haalt de gebruikersnaam en wachtwoord uit de users tabel van de ingelogde gebruiker op 
         $this->SqlCommands->connectDB();
-        //$verify = password_verify($hashed, $passwdLogin);
         $sql = "SELECT username, passwrd FROM users WHERE username = ?;";
         $stmt = $this->SqlCommands->pdo->prepare($sql);
         $params = [$username];
         $stmt->execute($params);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        //als er niks opgehaalt kan worden dan exit met een return 3 (wachtwoord of gebruikersnaam is onjuist)
         if ($result == false) {
             return 3;
         }
+        //haalt de activatie status op 
         $active = $this->getActivation($username, $result['passwrd']);
+    
+        //controleert het wachtwoord en slaat het resultaat op in verify
         $verify = password_verify($passwrd, $result['passwrd']);
 
+        // als het wachtwoord en gebruikersnaam klopt en het een actief account is, dan is het inloggen gelukt.
+        if ($username == $result['username'] && $verify == true && $active['active'] == 1) {
+            return 1;
+        // als het wachtwoord en gebruikersnaam klopt maar het account is niet actief, dan krijg je daar een melding van
+        } elseif ($username == $result['username'] && $verify == true && $active['active'] != 1) {
+            return 2;
+        //als de gebruikersnaam of wachtwoord verkeerd is en het account is wel geactiveert dan krijg je de bijbehorende melding
+        }elseif($username == $result['username'] && $verify != true && $active['active'] == 1){
+            return 3;
+        }
+        //als de gebruikersnaam en wachtwoord kloppen en het account was inet verwijderd dan wordt je ingelogd.
         if ($username == $result['username'] && $verify == true && $active['deleted'] == 0) {
             return 1;
         } else {
             return 4;
         }
 
-        if ($username == $result['username'] && $verify == true && $active['active'] == 1) {
-            return 1;
-        } elseif ($username == $result['username'] && $verify == true && $active['active'] != 1) {
-            return 2;
-        } else {
-            return 3;
-        }
     }
 
-    //actually logs the person in.
+    //logd de gebruiker in.
     public function login($username)
     {
-        // session_start();
         $_SESSION['loggedIn'] = true;
         $_SESSION['username'] = $username;
         $this->username = $_SESSION['username'];
@@ -207,7 +214,7 @@ class User
     public function loginActivate($correct, $email)
     {
         $this->SqlCommands->connectDB();
-
+        //haalt de gebruikersnaam van de gebruiker met de gespecifiseerde email op.
         $sql = "SELECT username FROM users WHERE email = ?;";
         $stmt = $this->SqlCommands->pdo->prepare($sql);
         $params = [$email];
@@ -215,11 +222,10 @@ class User
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         $username = $result['username'];
+
+        //als correct is meegegeven wordt de gebruiker ingelogd
         if ($correct == true) {
-            // session_start();
-            $_SESSION['loggedIn'] = true;
-            $_SESSION['username'] = $username;
-            $this->username = $_SESSION['username'];
+            $this->login($username);
         }
     }
 
@@ -240,6 +246,7 @@ class User
             exit('log in on een review achter te laten');
         }
 
+        //haalt de packageID van de ingelogde gebruiker uit de review tabel
         $this->SqlCommands->connectDB();
         $packages = ['Spanje', 'Turkije1', 'Turkije2', 'Egypte', 'Frankrijk'];
         $WrittenByUser = [0, 0, 0, 0, 0];
@@ -249,6 +256,7 @@ class User
         $stmt->execute($params);
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+        //telt hoeveel reviews de gebruiker geschreven heeft voor elke vakantie appart.
         for ($i = 0; $i < count($result); $i++) {
             for ($j = 0; $j < 5; $j++) {
                 if ($result[$i]['packageID'] == $packages[$j] || ($result[$i]['packageID'] . '1') == $packages[$j]) {
@@ -256,6 +264,8 @@ class User
                 }
             }
         }
+
+        //haalt het userID  van de gebruiker op uit de tabel users
         $sql = 'SELECT userID FROM `users` WHERE `username` = ?';
         $stmt = $this->SqlCommands->pdo->prepare($sql);
         $params = [$username];
@@ -264,11 +274,15 @@ class User
         $result2 = $result2[0]['userID'];
 
         $bookedByUser = [0, 0, 0, 0, 0];
+
+        //haalt de packageID op uit de tabel booked
         $sql = 'SELECT packageID FROM `booked` WHERE `userID` = ?';
         $stmt = $this->SqlCommands->pdo->prepare($sql);
         $params = [$result2];
         $stmt->execute($params);
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        //telt hoeveel boekingen een user gemaakt heeft van elke vakantie appart.
         for ($i = 0; $i < count($result); $i++) {
             for ($j = 0; $j < 5; $j++) {
                 if ($result[$i]['packageID'] == $packages[$j]) {
@@ -276,27 +290,26 @@ class User
                 }
             }
         }
-
+        //zoekt naar de juiste index van het land
         if ($packageId != 'Turkije') {
             $packageIndex = array_search($packageId, $packages);
         } else {
             $packageIndex = array_search('Turkije1', $packages);
         }
-        $a = 0;
+
+        //als er van de reis niet genoeg boekingen gedaan zijn om een review te schrijven krijg je het volgende bericht.
         if ($bookedByUser[$packageIndex] <=  $WrittenByUser[$packageIndex]) {
             exit('boek een vakantie om deze review te schrijven');
         }
 
-
+        // voegt een nieuwe review toe aan de review tabel
         $sql = "INSERT INTO review (packageId, score, reviewSubject, review, reccomendation, username) VALUES(?, ?, ?, ?, ?, ?)";
         $stmt = $this->SqlCommands->pdo->prepare($sql);
-
         if ($stmt) {
             $params = [$packageId, $score, $reviewSubject, $review, $reccomendation, $username];
             $stmt->execute($params);
-            //$this->confMail($email);
         }
-
+        //roept de functie aan om de review te laten zien.
         $this->showReview();
         exit("Uw review is ingezonden, bedankt voor uw moeite.");
     }
@@ -306,6 +319,7 @@ class User
     {
         $this->SqlCommands->connectDB();
 
+        //haalt de laatste 12 reviews op uit de database en slaat de juiste waardens op in arrayReview
         $sql = "SELECT * FROM review ORDER BY reviewID DESC LIMIT 12";
         $stmt = $this->SqlCommands->pdo->prepare($sql);
         $stmt->execute();
@@ -332,6 +346,7 @@ class User
     {
         $this->SqlCommands->connectDB();
 
+        //haalt active en deleted op uit de users tabel
         $sql = "SELECT active, deleted FROM users WHERE username = ? AND passwrd = ?;";
         $stmt = $this->SqlCommands->pdo->prepare($sql);
         $params = [$username, $passwrd];
@@ -369,7 +384,10 @@ class User
 
     public function getBookingValues($username)
     {
+    
         $this->SqlCommands->connectDB();
+
+        //haalt het user id op uit de users tabel
         $sql = 'SELECT userID FROM `users` WHERE `username` = ?';
         $stmt = $this->SqlCommands->pdo->prepare($sql);
         $params = [$username];
@@ -377,6 +395,7 @@ class User
         $result2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $userID = $result2[0]['userID'];
 
+        //haalt alles op uit booked van de ingelogde user
         $sql = "SELECT * FROM booked WHERE userID = $userID";
         $stmt = $this->SqlCommands->pdo->prepare($sql);
         $stmt->execute();
