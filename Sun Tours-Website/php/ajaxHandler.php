@@ -12,6 +12,7 @@ session_start();
 //registratie
 if (isset($_POST['sendReg'])) {
     //If statement voor elke action (zorgt ervoor dat alle ajax in een file kan)
+    //het kijk als het waren om welke file het gaat.
 
     $email = $_POST['email'];
     $phonenumber = $_POST['phonenumber'];
@@ -36,7 +37,7 @@ if (isset($_POST['sendReg'])) {
         $passwd2,
         $city
     );
-    
+
     exit("Registreren is gelukt.");
 }
 
@@ -44,7 +45,6 @@ if (isset($_POST['sendReg'])) {
 if (isset($_POST['sendLogin'])) {
     if (isset($_SESSION['loggedIn'])) {
         exit('U bent al ingelogd, ' . $_SESSION['username']);
-        
     } else {
 
         $usernameLogin = $_POST['usernLogin'];
@@ -53,8 +53,9 @@ if (isset($_POST['sendLogin'])) {
 
         $check = $userClass->userLoginCheck($usernameLogin, $passwdLogin);
 
-        switch($check){
-            case 1:                     
+        //deze switch case bepaald welke tekst en actie teruggegeven word.
+        switch ($check) {
+            case 1:
                 $userClass->login($usernameLogin);
                 exit("U bent ingelogd.");
                 break;
@@ -80,63 +81,66 @@ if (isset($_POST['sendLogin'])) {
 
 //boeking
 if (isset($_POST['sendBoeking'])) {
-    if(isset($_SESSION['loggedIn'])){
-        if($_SESSION['loggedIn']==true){
-            if(!isset($_POST['airlines'])){
+    if (isset($_SESSION['loggedIn'])) {
+        if ($_SESSION['loggedIn'] == true) {
+            //zorgt ervoor dat de optionele velden geen errors geven wanneer ze niet ingevuld zijn.
+            if (!isset($_POST['airlines'])) {
                 $airlines = "";
-            }else{
+            } else {
                 $airlines = $_POST['airlines'];
             }
 
-            if(!isset($_POST['Vertrek_vliegveld'])){
+            if (!isset($_POST['Vertrek_vliegveld'])) {
                 $vliegveld = "";
-            }else{
+            } else {
                 $vliegveld = $_POST['Vertrek_vliegveld'];
             }
 
-            if(!isset($_POST['carBrand'])){
+            if (!isset($_POST['carBrand'])) {
                 $carBrand = "";
-            }else{
+            } else {
                 $carBrand = $_POST['carBrand'];
             }
-                    $booking = new Booking(
-                        $_POST['AantalVolwassenen'],
-                        $_POST['AantalKinderen'],
-                        $_POST['packageID'],
-                        $_POST['reistijden'],
-                        $_POST['totalPrice'],
-                        $_POST['ticketPrice'],
-                        $airlines,
-                        $vliegveld,
-                        $_POST['carAmount'],
-                        $_POST['carPrice'],
-                        $_POST['rentalCarDays'],
-                        $carBrand,
-                        $_POST['busTicketAmount'],
-                        $_POST['busPrice'],
-                        $_POST['busDays'],
-                        $_POST['busStartDate'],
-                        $_POST['startingDate'],
-                        $_POST['returnDate']
-                    );
+            //aanmaken instantie boeken classe.
+            $booking = new Booking(
+                $_POST['AantalVolwassenen'],
+                $_POST['AantalKinderen'],
+                $_POST['packageID'],
+                $_POST['reistijden'],
+                $_POST['totalPrice'],
+                $_POST['ticketPrice'],
+                $airlines,
+                $vliegveld,
+                $_POST['carAmount'],
+                $_POST['carPrice'],
+                $_POST['rentalCarDays'],
+                $carBrand,
+                $_POST['busTicketAmount'],
+                $_POST['busPrice'],
+                $_POST['busDays'],
+                $_POST['busStartDate'],
+                $_POST['startingDate'],
+                $_POST['returnDate']
+            );
 
-                    $booking->confirmOrder();
-                   
-                    exit("boeking niet succesvol!!!");
+            //bevestigd de order en stuurd deze naar de db. 
+            $booking->confirmOrder();
+
+            exit("boeking niet succesvol!!!");
         }
-    }else{
+    } else {
         exit('U bent nog niet ingelogd.');
     }
 }
 
 //logout
-if(isset($_POST['logout'])){
-    if(isset($_SESSION['loggedIn'])){
-        if($_SESSION['loggedIn']==true){
-                $userClass->logout();
-                exit("U bent uitgelogd.");
+if (isset($_POST['logout'])) {
+    if (isset($_SESSION['loggedIn'])) {
+        if ($_SESSION['loggedIn'] == true) {
+            $userClass->logout();
+            exit("U bent uitgelogd.");
         }
-    }else{
+    } else {
         exit('U bent nog niet ingelogd.');
     }
 }
@@ -158,55 +162,53 @@ if (isset($_POST['sendReview'])) {
     $reviewSubject = $_POST['titel'];
     $review = $_POST['review'];
     $reccomendation = $_POST['keuze'];
-    if (isset($_SESSION['username']))
-    {
+    if (isset($_SESSION['username'])) {
         $username = $_SESSION['username'];
-    }else{
+    } else {
         $username = '-';
     }
-    
+
 
     $userClass->enterReview($packageId, $score, $reviewSubject, $review, $reccomendation, $username);
-
 }
 
 //account activatie
-if(isset($_POST['verifyButtonAct'])) {
+if (isset($_POST['verifyButtonAct'])) {
     $email = $_POST['email'];
     $actCode = $_POST['activateCode'];
     $correct = 1;
 
-                $check = $userClass->activateUser($email, $actCode);
+    $check = $userClass->activateUser($email, $actCode);
+    //zorgt ervoor dat de correcte actie en tekst teruggegeven word.
+    switch ($check) {
+        case 1:
+            $userClass->loginActivate($correct, $email);
+            exit("Uw account is geactiveerd en u bent ingelogd.");
+            break;
 
-                switch($check){
-                    case 1:                     
-                        $userClass->loginActivate($correct, $email);
-                        exit("Uw account is geactiveerd en u bent ingelogd.");
-                        break;
+        case 2:
+            exit("De code of email adres was onjuist.");
+            break;
 
-                    case 2:
-                        exit("De code of email adres was onjuist.");
-                        break;
+        case 3:
+            exit("De code of email adres was onjuist.");
+            break;
 
-                    case 3:
-                        exit("De code of email adres was onjuist.");
-                        break;
-
-                    default:
-                        exit("Deze actie is niet bij ons bekend (404).");
-                        break;
-                }
+        default:
+            exit("Deze actie is niet bij ons bekend (404).");
+            break;
+    }
 }
 
 //code sturen voor veranderen wachtwoord
-if(isset($_POST['sendCodeButton'])) {
+if (isset($_POST['sendCodeButton'])) {
     $email = $_POST['codeEmail'];
     $userClass->codeEmailSend($email);
-    exit("Email met code verstuurd.");  
+    exit("Email met code verstuurd.");
 }
 
 //verander wachtwoord
-if(isset($_POST['verifyButton'])) {
+if (isset($_POST['verifyButton'])) {
     $email = $_POST['pswrdEmail'];
     $newPass = $_POST['newPswrd'];
     $code = $_POST['secCode'];
@@ -220,10 +222,9 @@ if (isset($_POST['delAcc'])) {
     $userClass->accDelete();
 }
 // roept de cancelResurvation functie aan met een id dat hoort bij de ingedrukte knop.
-for ($i = 0; $i < 50; $i++)
-{
-    if(isset($_POST['annuleer' . $i])){
-        $userClass->cancelResurvation(''.$i);
+for ($i = 0; $i < 50; $i++) {
+    if (isset($_POST['annuleer' . $i])) {
+        $userClass->cancelResurvation('' . $i);
         // exit('geannuleerd!');
     }
 }

@@ -1,5 +1,5 @@
 <?php
-
+//including the dompdf library for creating pdf 
 require 'composer/vendor/autoload.php';
 use Dompdf\Dompdf;
 
@@ -46,6 +46,7 @@ class Invoice {
 		$this->busDays = $busDays;
         $this->rentalCarDays = $rentalCarDays;
 
+		//this array is for the data in the invoice.
         $this->articles = array(
             array("Pakket prijs","vlucht","Autoverhuur","BusDeal"),
             array($people, $this->ticketAmount, $this->carAmount, $this->busTicketAmount),
@@ -54,6 +55,7 @@ class Invoice {
 
     }
 
+	//this function returns 0 if no tickets were ordered else it returns the amount of people that bought tickets.
 	private function zeroChecker($ticketPrice, $people){
 		if($ticketPrice == 0){
 			$value = 0;
@@ -64,49 +66,62 @@ class Invoice {
 		return $value;
 	}
 
+	//return the id of the booked vacation in question.
 	public function getBookingID(){
 		$userID =  $this->userID;
 		$userID = $userID + 0;
+		//the query in the function underneath selects the most recent booking from this user.
 		$bookingID = $this->commands->selectOrderDesc($userID);
 		return $bookingID[0]['bookingID'];
 	}
 
+	//returns first and lastname of the person that booked.
     public function getNames(){
+		//this function uses a query to select this users firstname.
         $firstName = $this->commands->selectFromWhere("firstName", "users", "userID", $this->userIdInt);
+		//this function uses a query to select this users firstname.
         $surName = $this->commands->selectFromWhere("surName", "users", "userID", $this->userIdInt);
+		//here we add the lastname to the firstname with a space in between.
         $fullName = $firstName[0]['firstName'] . " " . $surName[0]['surName'];
         return $fullName;
     }
 
+	//returns streetname of the person that booked.
 	public function getStreet(){
 		$streetName = $this->commands->selectFromWhere("address", "users", "userID", $this->userID);
 		return $streetName[0]['address'];
 	}
 
+	//returns postalcode of the person that booked.
 	public function getPostal(){
 		$postalCode = $this->commands->selectFromWhere("postalcode", "users", "userID", $this->userID);
 		return $postalCode[0]['postalcode'];
 	}
 
+	//returns city of the person that booked.
 	public function getCity(){
 		$city = $this->commands->selectFromWhere("City", "users", "userID", $this->userID);
 		return $city[0]['City'];
 	}
 
+	//returns the current date.
     public function getDate(){
         $today = date('d-m-y');
         return $today;
     }
 
+	//generates a invoice number based on userid and booking id
 	public function genInvoiceNr($userIdInt){
 		$invoiceNr = $userIdInt . "0" . $this->bookingID;
 		return $invoiceNr;
 	}
 
+	//this calls a function that will send a mail.
     public function sendMail($targetEmail,$completeBody,$mailSubject){
         $this->userInvoice->confMail($targetEmail,$completeBody,$mailSubject);
     }
 
+	//this function will convert zeros to "n.v.t"
 	private function nvtMaker($var){
 		if($var==0){
 			$var = "n.v.t";
@@ -116,23 +131,29 @@ class Invoice {
 		return $var;
 	}
 
+	//this function is responsible for filling the invoice with the correct data.
     public function forFill(){
         $printFor = "";
         for($i=0;$i<4;$i++) {
+			//the next four rows are simply printing values into the table.
             $description = $this->articles[0][$i];
             $amount = $this->articles[1][$i];
             $unit_price = $this->articles[2][$i];
             $total_price = $amount * $unit_price;
+
+			//here rows are created and filled with the correct values.
             $printFor .= "<tr>";
             $printFor .= "<td>$description</td>";
             $printFor .= "<td class='text-center'>".$this->nvtMaker($amount)."</td>";
 
+			//checking for 0/"n.v.t" values based on that printing the valeu into the correct place.
 			if($this->nvtMaker(number_format($unit_price, 2))=="n.v.t"){
             $printFor .= "<td class='text-right'>".$this->nvtMaker(number_format($unit_price, 2))."</td>";
 			}else{
 				$printFor .= "<td class='text-right'>"."&euro;".number_format($unit_price, 2)."</td>";
 			}
 
+			//checking for 0/"n.v.t" values based on that printing the valeu into the correct place.
 			if($this->nvtMaker(number_format($total_price, 2))=="n.v.t"){
 				$printFor .= "<td class='text-right'>".$this->nvtMaker(number_format($total_price, 2))."</td>";
 			}else{
@@ -140,14 +161,19 @@ class Invoice {
 			}
 				
 			$printFor .= "</tr>";
+			//placing and calculating the total price.
 			$this->total += $total_price;
         }
 
         return $printFor;
     }
 
+	//here we generate the invoice itself using html/css and our php function/variables.
     public function genInvoice()
     {
+		//this variable will be send using the mailer class.
+		//we cant put comments in there but that isn't to bad for the simple reason that it is mostly design.
+		//the variables and functions u see are mostly obtained/calculated in this class and are being printed in the correct places. 
         $this->invoiceBody = 
 '<html>
 	<head>  
@@ -286,32 +312,37 @@ class Invoice {
 </html>
 ';
 
-		// $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-		// echo $actual_link;
+		//the target mail is the mail that is going to recieve the email.
+		//completebody is the content of the email itself.
+		//mailsubject is the subject of the mail.
 		$targetEmail = 'SunTours.devOps@hotmail.com';
 		$completeBody = $this->invoiceBody;
 		$mailSubject = "Factuur";
 
+		//here we create the mail class giving the needed parameters.
 		$mailer = new Mail($completeBody, $mailSubject, $targetEmail);
 
+		//actually sending the mail including a pdf
 		$mailer->email2($this->pdf(), $this->filename);
     }//EINDE VAN GENINVOICE();   
 
+	//here we make the pdf using dompdf
 	public function pdf()
 	{
-		// instantiate and use the dompdf class
+		// creating a dompdf class
 		$dompdf = new Dompdf();
+
+		//loading the invoice html
 		$dompdf->loadHtml($this->invoiceBody);
 
+		//setting a filename
 		$this->filename = "Invoice.pdf";
 
-		// (Optional) Setup the paper size and orientation
+		//Setup the paper size and orientation
 		$dompdf->setPaper('A3', 'portrait');
 
 		// Render the HTML as PDF
 		$dompdf->render();
-
-		// ob_end_clean();
 
 		// Output the generated PDF to Browser
 		// $dompdf->stream($filename);

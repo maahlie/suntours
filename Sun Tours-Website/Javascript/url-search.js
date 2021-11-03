@@ -1,4 +1,4 @@
-
+//standaard waardens worden in arrays en varriabelen gestopt.
 countrys = ['Spanje','Turkije1','Turkije2','Egypte','Frankrijk'];
 country_prijzen = ['600','800', '500','450','950'];
 auto_merken = ['Nissan', 'Opel', 'Ford', 'Volkswagen'];

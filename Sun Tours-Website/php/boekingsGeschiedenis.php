@@ -4,8 +4,8 @@ session_start();
   include 'dbClass.php';
   include 'boekingen.php';
   include 'mail.php';
-
   
+  //als de gebruiker niet is ingelogd dan wrdt de gebruiker naar de boekingenoverzicht pagina geleid.
   if (isset($_SESSION['username'])){
   }else{
     header('Location: ../aanmelden.html?from=boekingenOverzicht');    
@@ -13,9 +13,6 @@ session_start();
 
   $userClass = new User;
   $userClass->getBookingValues($_SESSION['username']);
-
-  
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -51,10 +48,6 @@ session_start();
   <script src="Javascript/ajax.js"></script>
   <script src="Javascript/url-search.js"></script>
   <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
-
-
-
-
 
   <style>
     .fakeimg {
@@ -138,10 +131,12 @@ $(document).ready(function(){
       </thead>
       <tbody>
         <?php
+        //loopt door alle boekingen heen en laat de info van die boekingen zien in de tabel
           for ($i = 0; $i < $userClass->BookedVacationCount; $i++){
         ?>
         <tr>
         <th scope="row"><?php echo $i+1 ?></th>
+        <!-- laat de juiste waardens zien in de tabel -->
         <td><?php if($userClass->BookedVacations[$i]['packageID'] == 'Turkije1'){echo 'Gold City Turkije';}elseif($userClass->BookedVacations[$i]['packageID'] == 'Turkije2'){echo 'Pine Bay Turkije';}else{echo $userClass->BookedVacations[$i]['packageID'];}  ?></td>
         <td><?php if ($userClass->BookedVacations[$i]['ticketPrice'] == '0'){echo 'n.v.t';}else{echo $userClass->BookedVacations[$i]['aantalPersonen'];} ?></td>
         <td><?php if ($userClass->BookedVacations[$i]['carAmount'] < 1){echo 'n.v.t';}else{echo $userClass->BookedVacations[$i]['carAmount'];} ?></td>
