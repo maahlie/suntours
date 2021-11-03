@@ -85,171 +85,89 @@ class Booking {
             $emails = $this->commands->selectFromAssoc("email", "mailinglist");
             
             //vliegmaatschappij mail
-            if($this->vliegM != ""){
-                switch($this->vliegM){
-                    case "KLM":
-                        $targetEmail = $emails[0]['email'];
+            $airlines = ["KLM", "Ryan air", "Iberia"];
+            $destinations = ["Egypte", "Frankrijk", "Spanje", "Turkije1", "Turkije2", ];
+
+            
+
+            if($this->vliegM != "")
+            {
+                for ($i = 0; $i < 3; $i++)
+                {
+                    if ($this->vliegM == $airlines[$i])
+                    {
+                        $targetEmail = $emails[$i]['email'];
                         $body = "Hallo,<br>
                         We willen graag " . $this->people . " vluchten boeken voor " . $dateTimeFlight[0]['startDate'] . " om " . substr($dateTimeFlight[0]['startTime'], 0, -10) . ". De retour is op ". $dateTimeFlight[0]['endDate'] . " om " . substr($dateTimeFlight[0]['endTime'], 0, -10) . " vanaf " . $this->vliegveld . ".<br>" .
                         "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'];
                         $subject = "Vluchten Boeken Sun Tours";
                         $mailer = new Mail($body, $subject, $targetEmail);
                         $mailer->email();
-                        break;
-                    case "Ryan air":
-                        $targetEmail = $emails[1]['email'];
-                        $body = "Hallo,<br>
-                        We willen graag " . $this->people . " vluchten boeken voor " . $dateTimeFlight[0]['startDate'] . " om " . substr($dateTimeFlight[0]['startTime'], 0, -10) . ". De retour is op ". $dateTimeFlight[0]['endDate'] . " om " . substr($dateTimeFlight[0]['endTime'], 0, -10) . " vanaf " . $this->vliegveld . ".<br>" . 
-                        "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'];
-                        $subject = "Vluchten Boeken Sun Tours";
-                        $mailer = new Mail($body, $subject, $targetEmail);
-                        $mailer->email();
-                        break;
-                    case "Iberia":
-                        $targetEmail = $emails[2]['email'];
-                        $body = "Hallo,<br>
-                        We willen graag " . $this->people . " vluchten boeken voor " . $dateTimeFlight[0]['startDate'] . " om " . substr($dateTimeFlight[0]['startTime'], 0, -10) . ". De retour is op ". $dateTimeFlight[0]['endDate'] . " om " . substr($dateTimeFlight[0]['endTime'], 0, -10) . " vanaf " . $this->vliegveld . ".<br>" . 
-                        "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'];
-                        $subject = "Vluchten Boeken Sun Tours";
-                        $mailer = new Mail($body, $subject, $targetEmail);
-                        $mailer->email();
-                        break;
+                    }
                 }
             }
 
-                switch($this->id){
-                    case "Egypte":
-                        $targetEmail = $emails[3]['email'];
-                        $body = "Hello,<br>
-                        We would like to book rooms for " . $this->people . " people, from " . $dateTimeFlight[0]['startDate'] . " to ". $dateTimeFlight[0]['endDate'] . ".<br>" . 
-                        "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'];
-                        $subject = "Booking Stay Sun Tours";
-                        $mailer = new Mail($body, $subject, $targetEmail);
-                        $mailer->email();
-                        break;
-                    case "Frankrijk":
-                        $targetEmail = $emails[4]['email'];
-                        $body = "Hello,<br>
-                        We would like to book rooms for " . $this->people . " people, from " . $dateTimeFlight[0]['startDate'] . " to ". $dateTimeFlight[0]['endDate'] . ".<br>" .
-                        "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'];
-                        $subject = "Booking Stay Sun Tours";
-                        $mailer = new Mail($body, $subject, $targetEmail);
-                        $mailer->email();
-                        break;
-                    case "Spanje":
-                        $targetEmail = $emails[5]['email'];
-                        $body = "Hello,<br>
-                        We would like to book rooms for " . $this->people . " people, from " . $dateTimeFlight[0]['startDate'] . " to ". $dateTimeFlight[0]['endDate'] . ".<br>" .
-                        "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'];
-                        $subject = "Booking Stay Sun Tours";
-                        $mailer = new Mail($body, $subject, $targetEmail);
-                        $mailer->email();
-                        break;
-                    case "Turkije1":
-                        $targetEmail = $emails[6]['email'];
-                        $body = "Hello,<br>
-                        We would like to book rooms for " . $this->people . " people, from " . $dateTimeFlight[0]['startDate'] . " to ". $dateTimeFlight[0]['endDate'] . ".<br>" . 
-                        "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'];
-                        $subject = "Booking Stay Sun Tours";
-                        $mailer = new Mail($body, $subject, $targetEmail);
-                        $mailer->email();
-                        break;
-                    case "Turkije2":
-                        $targetEmail = $emails[7]['email'];
-                        $body = "Hello,<br>
-                        We would like to book rooms for " . $this->people . " people, from " . $dateTimeFlight[0]['startDate'] . " to ". $dateTimeFlight[0]['endDate'] . ".<br>".
-                        "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'];
-                        $subject = "Booking Stay Sun Tours";
-                        $mailer = new Mail($body, $subject, $targetEmail);
-                        $mailer->email();
-                        break;
+            for ($i = 0; $i < 5; $i++)
+            {
+                if ($this->id == $destinations[$i])
+                {
+                    $targetEmail = $emails[$i+3]['email'];
+                    $body = "Hello,<br>
+                    We would like to book rooms for " . $this->people . " people, from " . $dateTimeFlight[0]['startDate'] . " to ". $dateTimeFlight[0]['endDate'] . ".<br>" . 
+                    "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'];
+                    $subject = "Booking Stay Sun Tours";
+                    $mailer = new Mail($body, $subject, $targetEmail);
+                    $mailer->email();
                 }
-
-                if($this->busPrice != 0){
-                    switch($this->id){
-                        case "Egypte":
-                            $targetEmail = $emails[8]['email'];
-                            $body = "Hello,<br>
-                            We would like to book " . $this->busTicketAmount . " tickets for " . $this->busDays . " days, " . "that are active from: " . $this->busStartDate . ".<br>".
-                            "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'];
-                            $subject = "Public transport booking Sun Tours";
-                            $mailer = new Mail($body, $subject, $targetEmail);
-                            $mailer->email();
-                            break;
-                        case "Frankrijk":
-                            $targetEmail = $emails[9]['email'];
-                            $body = "Hello,<br>
-                            We would like to book " . $this->busTicketAmount . " tickets for " . $this->busDays . " days, " . "that are active from: " . $this->busStartDate . ".<br>".
-                            "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'];
-                            $subject = "Public transport booking Sun Tours";
-                            $mailer = new Mail($body, $subject, $targetEmail);
-                            $mailer->email();
-                            break;
-                        case "Spanje":
-                            $targetEmail = $emails[10]['email'];
-                            $body = "Hello,<br>
-                            We would like to book " . $this->busTicketAmount . " tickets for " . $this->busDays . " days, " . "that are active from: " . $this->busStartDate . ".<br>".
-                            "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'];
-                            $subject = "Public transport booking Sun Tours";
-                            $mailer = new Mail($body, $subject, $targetEmail);
-                            $mailer->email();
-                            break;
-                        case "Turkije1":
-                        case "Turkije2":
-                            $targetEmail = $emails[11]['email'];
-                            $body = "Hello,<br>
-                            We would like to book " . $this->busTicketAmount . " tickets for " . $this->busDays . " days, " . "that are active from: " . $this->busStartDate . ".<br>".
-                            "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'];
-                            $subject = "Public transport booking Sun Tours";
-                            $mailer = new Mail($body, $subject, $targetEmail);
-                            $mailer->email();
-                            break;
+                if($this->busPrice != 0)
+                {
+                    if (($this->id == "Turkije1" || $this->id == "Turkije2") && $i+8 == 11)
+                    {
+                        $targetEmail = $emails[$i+8]['email'];
+                        $body = "Hello,<br>
+                        We would like to book " . $this->busTicketAmount . " tickets for " . $this->busDays . " days, " . "that are active from: " . $this->busStartDate . ".<br>".
+                        "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'];
+                        $subject = "Public transport booking Sun Tours";
+                        $mailer = new Mail($body, $subject, $targetEmail);
+                        $mailer->email();
+                    }
+                    if ($this->id == $destinations[$i] && $i+8 < 11)
+                    {
+                        $targetEmail = $emails[$i+8]['email'];
+                        $body = "Hello,<br>
+                        We would like to book " . $this->busTicketAmount . " tickets for " . $this->busDays . " days, " . "that are active from: " . $this->busStartDate . ".<br>".
+                        "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'];
+                        $subject = "Public transport booking Sun Tours";
+                        $mailer = new Mail($body, $subject, $targetEmail);
+                        $mailer->email();
                     }
                 }
 
-                if($this->carBrand != ""){
-                    switch($this->id){
-                        case "Egypte":
-                            $targetEmail = $emails[12]['email'];
-                            $body = "Hello,<br>
-                            We would like to book " . $this->carAmount . " cars for " . $this->rentalCarDays . " days, " . "of the brand: " . $this->carBrand . ".<br>".
-                            "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'];
-                            $subject = "Public transport booking Sun Tours";
-                            $mailer = new Mail($body, $subject, $targetEmail);
-                            $mailer->email();
-                            break;
-                        case "Frankrijk":
-                            $targetEmail = $emails[13]['email'];
-                            $body = "Hello,<br>
-                            We would like to book " . $this->carAmount . " cars for " . $this->rentalCarDays . " days, " . "of the brand: " . $this->carBrand . ".<br>".
-                            "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'];
-                            $subject = "Public transport booking Sun Tours";
-                            $mailer = new Mail($body, $subject, $targetEmail);
-                            $mailer->email();
-                            break;
-                        case "Spanje":
-                            $targetEmail = $emails[14]['email'];
-                            $body = "Hello,<br>
-                            We would like to book " . $this->carAmount . " cars for " . $this->rentalCarDays . " days, " . "of the brand: " . $this->carBrand . ".<br>".
-                            "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'];
-                            $subject = "Public transport booking Sun Tours";
-                            $mailer = new Mail($body, $subject, $targetEmail);
-                            $mailer->email();
-                            break;
-                        case "Turkije1":
-                        case "Turkije2":
-                            $targetEmail = $emails[15]['email'];
-                            $body = "Hello,<br>
-                            We would like to book " . $this->carAmount . " cars for " . $this->rentalCarDays . " days, " . "of the brand: " . $this->carBrand . ".<br>".
-                            "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'];
-                            $subject = "Public transport booking Sun Tours";
-                            $mailer = new Mail($body, $subject, $targetEmail);
-                            $mailer->email();
-                            break;
+                if($this->carBrand != "0")
+                {
+                    if (($this->id == "Turkije1" || $this->id == "Turkije2") && $i+12 == 15)
+                    {
+                        $targetEmail = $emails[$i+12]['email'];
+                        $body = "Hello,<br>
+                        We would like to book " . $this->carAmount . " cars for " . $this->rentalCarDays . " days, " . "of the brand: " . $this->carBrand . ".<br>".
+                        "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'];
+                        $subject = "Public transport booking Sun Tours";
+                        $mailer = new Mail($body, $subject, $targetEmail);
+                        $mailer->email();
+                    }
+                    if($this->id == $destinations[$i] && $i+12 < 15)
+                    {
+                        $targetEmail = $emails[$i+12]['email'];
+                        $body = "Hello,<br>
+                        We would like to book " . $this->carAmount . " cars for " . $this->rentalCarDays . " days, " . "of the brand: " . $this->carBrand . ".<br>".
+                        "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'];
+                        $subject = "Public transport booking Sun Tours";
+                        $mailer = new Mail($body, $subject, $targetEmail);
+                        $mailer->email();
                     }
                 }
-
-
+            }
+            
             exit("boeking succesvol");
         }
     }
