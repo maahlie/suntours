@@ -14,20 +14,16 @@ body {
 #bodyWintersport,
 #bodyGastenPagina {
    background-image: url("../images/background_image.png");
-
    background-attachment: fixed;
    background-position: center;
    background-repeat: no-repeat;
    background-size: 90% 100%;
-
-
    font-size: 1.5em;
    font-family: Times;
 }
 
 #bodyContacPagina {
    background-image: url("../images/background.png");
-
    background-attachment: fixed;
    background-position: top;
    background-repeat: no-repeat;
@@ -39,7 +35,6 @@ body {
 
 #bodyAuto {
    background-image: url("../images/background.png");
-
    background-attachment: fixed;
    background-position: top;
    background-repeat: no-repeat;
@@ -892,6 +887,7 @@ h4,
    border: 1px solid black;
    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
    margin-top: 0;
+   
 }
 
 .registreer_input {
@@ -921,12 +917,17 @@ h4,
 
 }
 
+
+
 #login {
    border: 1px solid black;
    width: max-content;
    margin-top: 5%;
    margin-left: 45%;
-   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+   box-shadow: 4px 4px 10px rgba(0.5, 0.5, 0.5, 0.5);
+   border-radius: 10px;
+   background-color: rgba(128, 128, 128, 0.336);
+   
 }
 
 @media only screen and (max-width: 900px) {
@@ -964,6 +965,8 @@ h4,
 .aanmelden_tekst {
    margin-top: 5%;
 }
+
+
 
 .float-container {
    display: inline-block;
@@ -1101,6 +1104,7 @@ h4,
    text-align: center;
    width: 100%;
    background-color: rgb(197, 213, 225);
+   
 }
 
 .header_bg h1 {
