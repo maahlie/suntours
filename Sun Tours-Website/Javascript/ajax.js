@@ -195,17 +195,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
             var form = $('#bookingForm');
             var sData = form.serialize();
-            console.log(sData);
-
+    
             $.ajax({
                 url: 'php/ajaxHandler.php',
                 method: "POST",
                 data: sData,
-            }).done(function (response) {
-                alert(response);
-            }).fail(function (jqXHR, textstatus) {
-                alert(response, textstatus);
-            })
+                }).done(function (response) {
+                    alert(response);
+                }).fail(function (jqXHR, textstatus) {
+                    alert(response, textstatus);
+                })
         }
     })
 

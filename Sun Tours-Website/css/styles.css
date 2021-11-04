@@ -346,7 +346,7 @@ h4 {
 
 
 #bookingForm {
-   margin-right: 60%;
+   margin-right: 30%;
    margin-left: 0%;
 }
 
@@ -808,9 +808,16 @@ td,
 th {
    border: 1px solid black;
    background-color: rgba(255, 255, 255, 0.575);
+}
+
+#boekingenTable{
    width: 100%;
 }
 
+#errorMsg{
+   color: red;
+   text-align: center;
+}
 
 
 #activatieFooter {
@@ -974,7 +981,7 @@ h4,
    width: 40%;
    height: 50%;
    margin-top: 3%;
-   margin-left: 20%;
+   margin-left: 5%;
    margin-bottom: 3%;
    padding-left: 1%;
    padding-top: 3%;
@@ -985,7 +992,6 @@ h4,
 }
 
 .float-child {
-
    float: left;
    margin-left: 15%;
 }
