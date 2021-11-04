@@ -416,18 +416,23 @@ class User
 
     public function orderID()
     {
-        $username = $_SESSION['username'];
-        $userID = $this->SqlCommands->selectFromWhere('userID', 'users', 'username', $username);
-        $this->SqlCommands->connectDB();
-        $sql = "SELECT bookingID FROM booked ORDER BY bookingID DESC LIMIT 1;";
-        $stmt = $this->SqlCommands->pdo->prepare($sql);
-        $stmt->execute();
-        $lastBooking = $stmt->fetch(PDO::FETCH_ASSOC);
+        if(isset($_SESSION['username'])){
+            $username = $_SESSION['username'];
+            $userID = $this->SqlCommands->selectFromWhere('userID', 'users', 'username', $username);
+            $this->SqlCommands->connectDB();
+            $sql = "SELECT bookingID FROM booked ORDER BY bookingID DESC LIMIT 1;";
+            $stmt = $this->SqlCommands->pdo->prepare($sql);
+            $stmt->execute();
+            $lastBooking = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+            $lastBookIdNum = $lastBooking["bookingID"] + 1;
+            $orderID = $userID[0]["userID"] . "0" . $lastBookIdNum;
+            echo $lastBookIdNum;
+            return $orderID;
+        }else{
+            return 'nietIngelogd';
+        }
 
-        $lastBookIdNum = $lastBooking["bookingID"] + 1;
-        $orderID = $userID[0]["userID"] . "0" . $lastBookIdNum;
-        echo $lastBookIdNum;
-        return $orderID;
     }
   
 
