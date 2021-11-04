@@ -208,7 +208,7 @@ class Booking {
                 for($i = 0; $i < sizeof($dateID1); $i++) {
                     $maxPersonen += $dateID1[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
-                        exit("Er zijn al te veel boekingen!");
+                        exit("Er zijn al te veel boekingen");
                     } 
                 }
                 return $this->confirmOrder();
@@ -216,7 +216,7 @@ class Booking {
                 for($i = 0; $i < sizeof($dateID2); $i++) {
                     $maxPersonen += $dateID2[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
-                        exit("Er zijn al te veel boekingen!");
+                        exit("Er zijn al te veel boekingen");
                     } 
                 }
                 return $this->confirmOrder();
@@ -224,7 +224,7 @@ class Booking {
                 for($i = 0; $i < sizeof($dateID3); $i++) {
                     $maxPersonen += $dateID3[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
-                        exit("Er zijn al te veel boekingen!");
+                        exit("Er zijn al te veel boekingen");
                     } 
                 }
                 return $this->confirmOrder();
@@ -234,7 +234,7 @@ class Booking {
                 for($i = 0; $i < sizeof($dateID1); $i++) {
                     $maxPersonen += $dateID1[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
-                        exit("Er zijn al te veel boekingen!");
+                        exit("Er zijn al te veel boekingen");
                     } 
                 }
                 return $this->confirmOrder();
@@ -242,7 +242,7 @@ class Booking {
                 for($i = 0; $i < sizeof($dateID2); $i++) {
                     $maxPersonen += $dateID2[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
-                        exit("Er zijn al te veel boekingen!");
+                        exit("Er zijn al te veel boekingen");
                     } 
                 }
                 return $this->confirmOrder();
@@ -250,7 +250,7 @@ class Booking {
                 for($i = 0; $i < sizeof($dateID3); $i++) {
                     $maxPersonen += $dateID3[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
-                        exit("Er zijn al te veel boekingen!");
+                        exit("Er zijn al te veel boekingen");
                     } 
                 }
                 return $this->confirmOrder();
@@ -260,7 +260,7 @@ class Booking {
                 for($i = 0; $i < sizeof($dateID1); $i++) {
                     $maxPersonen += $dateID1[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
-                        exit("Er zijn al te veel boekingen!");
+                        exit("Er zijn al te veel boekingen");
                     } 
                 }
                 return $this->confirmOrder();
@@ -268,7 +268,7 @@ class Booking {
                 for($i = 0; $i < sizeof($dateID2); $i++) {
                     $maxPersonen += $dateID2[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
-                        exit("Er zijn al te veel boekingen!");
+                        exit("Er zijn al te veel boekingen");
                     } 
                 }
                 return $this->confirmOrder();
@@ -276,7 +276,7 @@ class Booking {
                 for($i = 0; $i < sizeof($dateID3); $i++) {
                     $maxPersonen += $dateID3[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
-                        exit("Er zijn al te veel boekingen!");
+                        exit("Er zijn al te veel boekingen");
                     } 
                 }
                 return $this->confirmOrder();
@@ -286,7 +286,7 @@ class Booking {
                 for($i = 0; $i < sizeof($dateID1); $i++) {
                     $maxPersonen += $dateID1[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
-                        exit("Er zijn al te veel boekingen!");
+                        exit("Er zijn al te veel boekingen");
                     } 
                 }
                 return $this->confirmOrder();
@@ -294,7 +294,7 @@ class Booking {
                 for($i = 0; $i < sizeof($dateID2); $i++) {
                     $maxPersonen += $dateID2[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
-                        exit("Er zijn al te veel boekingen!");
+                        exit("Er zijn al te veel boekingen");
                     } 
                 }
                 return $this->confirmOrder();
@@ -302,7 +302,7 @@ class Booking {
                 for($i = 0; $i < sizeof($dateID3); $i++) {
                     $maxPersonen += $dateID3[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
-                        exit("Er zijn al te veel boekingen!");
+                        exit("Er zijn al te veel boekingen");
                     } 
                 }
                 return $this->confirmOrder();
@@ -312,7 +312,7 @@ class Booking {
                 for($i = 0; $i < sizeof($dateID1); $i++) {
                     $maxPersonen += $dateID1[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
-                        exit("Er zijn al te veel boekingen!");
+                        exit("Er zijn al te veel boekingen");
                     } 
                 }
                 return $this->confirmOrder();
@@ -320,7 +320,7 @@ class Booking {
                 for($i = 0; $i < sizeof($dateID2); $i++) {
                     $maxPersonen += $dateID2[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
-                        exit("Er zijn al te veel boekingen!");
+                        exit("Er zijn al te veel boekingen");
                     } 
                 }
                 return $this->confirmOrder();
@@ -328,7 +328,7 @@ class Booking {
                 for($i = 0; $i < sizeof($dateID3); $i++) {
                     $maxPersonen += $dateID3[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
-                        exit("Er zijn al te veel boekingen!");
+                        exit("Er zijn al te veel boekingen");
                     } 
                 }
                 return $this->confirmOrder();
