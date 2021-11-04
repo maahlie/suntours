@@ -207,7 +207,7 @@ class Booking {
             if ($dateId == '1') {
                 for($i = 0; $i < sizeof($dateID1); $i++) {
                     $maxPersonen += $dateID1[$i]['aantalPersonen'];
-                    if($maxPersonen >= 24) {
+                    if($maxPersonen >= 200) {
                         exit("Er zijn al te veel boekingen");
                     } 
                 }
@@ -215,7 +215,7 @@ class Booking {
             } else if ($dateId == '2') {
                 for($i = 0; $i < sizeof($dateID2); $i++) {
                     $maxPersonen += $dateID2[$i]['aantalPersonen'];
-                    if($maxPersonen >= 24) {
+                    if($maxPersonen >= 200) {
                         exit("Er zijn al te veel boekingen");
                     } 
                 }
@@ -223,7 +223,7 @@ class Booking {
             } else if ($dateId == '3') {
                 for($i = 0; $i < sizeof($dateID3); $i++) {
                     $maxPersonen += $dateID3[$i]['aantalPersonen'];
-                    if($maxPersonen >= 24) {
+                    if($maxPersonen >= 200) {
                         exit("Er zijn al te veel boekingen");
                     } 
                 }
@@ -233,7 +233,7 @@ class Booking {
             if ($dateId == '1') {
                 for($i = 0; $i < sizeof($dateID1); $i++) {
                     $maxPersonen += $dateID1[$i]['aantalPersonen'];
-                    if($maxPersonen >= 24) {
+                    if($maxPersonen >= 200) {
                         exit("Er zijn al te veel boekingen");
                     } 
                 }
@@ -241,7 +241,7 @@ class Booking {
             } else if ($dateId == '2') {
                 for($i = 0; $i < sizeof($dateID2); $i++) {
                     $maxPersonen += $dateID2[$i]['aantalPersonen'];
-                    if($maxPersonen >= 24) {
+                    if($maxPersonen >= 200) {
                         exit("Er zijn al te veel boekingen");
                     } 
                 }
@@ -249,7 +249,7 @@ class Booking {
             } else if ($dateId == '3') {
                 for($i = 0; $i < sizeof($dateID3); $i++) {
                     $maxPersonen += $dateID3[$i]['aantalPersonen'];
-                    if($maxPersonen >= 24) {
+                    if($maxPersonen >= 200) {
                         exit("Er zijn al te veel boekingen");
                     } 
                 }
@@ -259,7 +259,7 @@ class Booking {
             if ($dateId == '1') {
                 for($i = 0; $i < sizeof($dateID1); $i++) {
                     $maxPersonen += $dateID1[$i]['aantalPersonen'];
-                    if($maxPersonen >= 24) {
+                    if($maxPersonen >= 200) {
                         exit("Er zijn al te veel boekingen");
                     } 
                 }
@@ -267,7 +267,7 @@ class Booking {
             } else if ($dateId == '2') {
                 for($i = 0; $i < sizeof($dateID2); $i++) {
                     $maxPersonen += $dateID2[$i]['aantalPersonen'];
-                    if($maxPersonen >= 24) {
+                    if($maxPersonen >= 200) {
                         exit("Er zijn al te veel boekingen");
                     } 
                 }
@@ -275,7 +275,7 @@ class Booking {
             } else if ($dateId == '3') {
                 for($i = 0; $i < sizeof($dateID3); $i++) {
                     $maxPersonen += $dateID3[$i]['aantalPersonen'];
-                    if($maxPersonen >= 24) {
+                    if($maxPersonen >= 200) {
                         exit("Er zijn al te veel boekingen");
                     } 
                 }
@@ -285,7 +285,7 @@ class Booking {
             if ($dateId == '1') {
                 for($i = 0; $i < sizeof($dateID1); $i++) {
                     $maxPersonen += $dateID1[$i]['aantalPersonen'];
-                    if($maxPersonen >= 24) {
+                    if($maxPersonen >= 200) {
                         exit("Er zijn al te veel boekingen");
                     } 
                 }
@@ -293,7 +293,7 @@ class Booking {
             } else if ($dateId == '2') {
                 for($i = 0; $i < sizeof($dateID2); $i++) {
                     $maxPersonen += $dateID2[$i]['aantalPersonen'];
-                    if($maxPersonen >= 24) {
+                    if($maxPersonen >= 200) {
                         exit("Er zijn al te veel boekingen");
                     } 
                 }
@@ -301,7 +301,7 @@ class Booking {
             } else if ($dateId == '3') {
                 for($i = 0; $i < sizeof($dateID3); $i++) {
                     $maxPersonen += $dateID3[$i]['aantalPersonen'];
-                    if($maxPersonen >= 24) {
+                    if($maxPersonen >= 200) {
                         exit("Er zijn al te veel boekingen");
                     } 
                 }
@@ -311,7 +311,7 @@ class Booking {
             if ($dateId == '1') {
                 for($i = 0; $i < sizeof($dateID1); $i++) {
                     $maxPersonen += $dateID1[$i]['aantalPersonen'];
-                    if($maxPersonen >= 24) {
+                    if($maxPersonen >= 200) {
                         exit("Er zijn al te veel boekingen");
                     } 
                 }
@@ -319,7 +319,7 @@ class Booking {
             } else if ($dateId == '2') {
                 for($i = 0; $i < sizeof($dateID2); $i++) {
                     $maxPersonen += $dateID2[$i]['aantalPersonen'];
-                    if($maxPersonen >= 24) {
+                    if($maxPersonen >= 200) {
                         exit("Er zijn al te veel boekingen");
                     } 
                 }
@@ -327,7 +327,7 @@ class Booking {
             } else if ($dateId == '3') {
                 for($i = 0; $i < sizeof($dateID3); $i++) {
                     $maxPersonen += $dateID3[$i]['aantalPersonen'];
-                    if($maxPersonen >= 24) {
+                    if($maxPersonen >= 200) {
                         exit("Er zijn al te veel boekingen");
                     } 
                 }
