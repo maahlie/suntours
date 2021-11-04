@@ -1,5 +1,4 @@
 <?php
-
 class User
 {
 
@@ -438,12 +437,151 @@ class User
             $bookingID = $this->BookedVacations[$resurvationNumber]['bookingID'];
 
             //de geannuleerde reis wordt verwijderd uit de database
+            $this->cancelMail($resurvationNumber);
             $this->SqlCommands->connectDB();
             $sql = "DELETE FROM `booked` WHERE `booked`.`bookingID` = $bookingID";
             $stmt = $this->SqlCommands->pdo->prepare($sql);
             $stmt->execute();
-
             exit("Uw reis is geannuleerd.");
         }
+    }
+    public function selectFromWhere($column, $table, $where, $param) {
+        $sql = "SELECT " . $column .  " FROM " . $table . " WHERE " . $where . "= ?";
+        $stmt = $this->pdo->prepare($sql);
+        $params = [$param];
+
+        $stmt->execute($params);
+
+        if ($stmt) {
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);   
+        }
+
+        return $result;
+    }
+
+    public function cancelMail($indexNumber)
+    {
+        $userData = $this->BookedVacations[$indexNumber];
+        $userName = $_SESSION['username'];
+        $numberOfPeople = $userData["aantalPersonen"];
+        $packageId = $userData["packageID"];
+        $busPrice = $userData["busPrice"];
+        $busTicketAmount = $userData["busTicketAmount"];
+        $busDays = $userData["busDays"];
+        $carBrand = $userData["carBrand"];
+        $carDays = $userData["carDays"];
+        $dateID = $userData["dateID"];
+        $vliegmaatschapij = "KLM";
+        $busStartDate = $userData['startingDate'];
+        $carAmount = $userData['carAmount'];
+        // $"startDate, endDate, startTime, endTime"-- traveldates
+        // $firstName, surName", "users", "userID"-- user 
+        //"email",-- "mailinglist");
+
+        //dateTimeFlight
+        //nameOfUser
+        //emails
+        $this->SqlCommands = new SqlCommands();
+
+        $this->SqlCommands->connectDB();
+        $sql = "SELECT userID FROM users WHERE userName = ?";
+        $stmt = $this->SqlCommands->pdo->prepare($sql);
+        $param = [$userName];
+        $stmt->execute($param);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $userId = $result[0]['userID'];
+        // $userIdInt = $userID + 0;
+
+
+        //$this->SqlCommands->connectDB();
+        $this->commands = new SqlCommands();
+        $this->commands->connectDB();
+        $dateTimeFlight = $this->commands->selectFromWhere("startDate, endDate, startTime, endTime", "traveldates", "dateID", $dateID);
+        $nameOfUser = $this->commands->selectFromWhere("firstName, surName", "users", "userID", $userId);
+        $emails = $this->commands->selectFromAssoc("email", "mailinglist");
+        $a = 0;
+
+        $airlines = ["KLM", "Ryan air", "Iberia"];
+        $destinations = ["Egypte", "Frankrijk", "Spanje", "Turkije1", "Turkije2", ];
+        
+        
+        if($userData['ticketPrice'] != "0.00")
+            {
+                for ($i = 0; $i < 3; $i++)
+                {
+                    if ($vliegmaatschapij == $airlines[$i])
+                    {
+                        $targetEmail = $emails[$i]['email'];
+                        $body = "Hallo,<br>
+                        Wij hebben bij u geboek voor " . $numberOfPeople . " vluchten " . $dateTimeFlight[0]['startDate'] . " om " . substr($dateTimeFlight[0]['startTime'], 0, -10) . ". De retour is op ". $dateTimeFlight[0]['endDate'] . " om " . substr($dateTimeFlight[0]['endTime'], 0, -10) . ".<br>" .
+                        "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'] . " Helaas moeten we deze boeking afzeggen.";
+                        $subject = "Vluchten annuleren Sun Tours";
+                        $mailer = new Mail($body, $subject, $targetEmail);
+                        $mailer->email();
+                    }
+                }
+            }
+
+            for ($i = 0; $i < 5; $i++)
+            {
+                if ($packageId == $destinations[$i])
+                {
+                    $targetEmail = $emails[$i+3]['email'];
+                    $body = "Hello,<br>
+                    We have recently orderd rooms for " . $numberOfPeople . " people, from " . $dateTimeFlight[0]['startDate'] . " to ". $dateTimeFlight[0]['endDate'] . ".<br>" . 
+                    "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'] . ", We are sorry to say we will be cancelling this resurvation.";
+                    $subject = "Canceling Stay Sun Tours";
+                    $mailer = new Mail($body, $subject, $targetEmail);
+                    $mailer->email();
+                }
+                if($busPrice != 0)
+                {
+                    if (($packageId== "Turkije1" || $packageId == "Turkije2") && $i+8 == 11)
+                    {
+                        $targetEmail = $emails[$i+8]['email'];
+                        $body = "Hello,<br>
+                        We would like to inform you that our booking of " . $busTicketAmount . " tickets for " . $busDays . " days, " . "that are active from: " . $busStartDate . ".<br>".
+                        "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'] . " Will have to be canceled.";
+                        $subject = "Public transport canceling Sun Tours";
+                        $mailer = new Mail($body, $subject, $targetEmail);
+                        $mailer->email();
+                    }
+                    if ($packageId == $destinations[$i] && $i+8 < 11)
+                    {
+                        $targetEmail = $emails[$i+8]['email'];
+                        $body = "Hello,<br>
+                        We would like to inform you that our booking of " . $busTicketAmount . " tickets for " . $busDays . " days, " . "that are active from: " . $busStartDate . ".<br>".
+                        "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'] . " Will have to be canceled.";
+                        $subject = "Public transport canceling Sun Tours";
+                        $mailer = new Mail($body, $subject, $targetEmail);
+                        $mailer->email();
+                    }
+                }
+
+                if($carBrand != "0")
+                {
+                    if (($packageId == "Turkije1" || $packageId == "Turkije2") && $i+12 == 15)
+                    {
+                        $targetEmail = $emails[$i+12]['email'];
+                        $body = "Hello,<br>
+                        We would like to inform you that our order of " . $carAmount . " cars for " . $carDays . " days, " . "of the brand: " . $carBrand . ".<br>".
+                        "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'] . "will have to be canceled.";
+                        $subject = "Public transport canceling Sun Tours";
+                        $mailer = new Mail($body, $subject, $targetEmail);
+                        $mailer->email();
+                    }
+                    if($packageId == $destinations[$i] && $i+12 < 15)
+                    {
+                        $targetEmail = $emails[$i+12]['email'];
+                        $body = "Hello,<br>
+                        We would like to inform you that our order of " . $carAmount . " cars for " . $carDays . " days, " . "of the brand: " . $carBrand . ".<br>".
+                        "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'] . "will have to be canceled.";
+                        $subject = "Public transport canceling Sun Tours";
+                        $mailer = new Mail($body, $subject, $targetEmail);
+                        $mailer->email();
+                    }
+                }
+            }
     }
 }
