@@ -394,7 +394,8 @@ h4 {
 
 #contact_naam,#contact_onderwerp,#contact_email,#contact_text
 {
-   width: 40%;
+   
+   margin-left: 1%;
 }
 
 
@@ -1053,8 +1054,6 @@ textarea:hover {
    background-color: rgba(255, 255, 255, 0.575);
    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
    padding-left: 3%;
-   
-  
 }
 
 .password_Background
