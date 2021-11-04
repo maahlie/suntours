@@ -140,7 +140,7 @@ $SESSION['userClass']->showReview(false);
 
                     <input type="radio" id="keuze" name="keuze" value="ja">
                     <label for="ja">Ja</label><br>
-                    <input type="radio" id="keuze2" name="keuze" value="nee">
+                    <input type="radio" id="keuze2" name="keuze" value="nee" checked>
                     <label for="nee">Nee</label><br>
                     <br>
                     <input type="submit" class="buttonReview" name="sendReview" value="verstuur">

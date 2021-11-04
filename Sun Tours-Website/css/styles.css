@@ -157,9 +157,9 @@ h2.actief {
    margin-left: 0%;
 }
 
-/* #registreerpage{
+ #registreerpage{
    margin-right:0%;
-} */
+} 
 
 
 .accordion_one .panel-group {
@@ -377,11 +377,11 @@ h4 {
 
 }
 
-#contact_naam,
-#contact_onderwerp,
-#contact_email {
-   width: 60%;
+#contact_naam,#contact_onderwerp,#contact_email,#contact_text
+{
+   margin-left: 1%;
 }
+
 
 .contactArea {
    width: 80%;
@@ -410,7 +410,7 @@ h4 {
    color: #fff;
    font-weight: 600;
    border-radius: 5px;
-   width: 60%;
+   width: 40%;
    margin-bottom: 5%;
 }
 
@@ -904,38 +904,34 @@ h4,
 
 #register {
    width: 40%;
-   padding-left: 15%;
+   padding-left: 4%;
    border: 1px solid black;
    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
    margin-top: 5%;
    height: fit-content;
-   border-radius: 10px;
-   background-color: rgba(128, 128, 128, 0.336);
-   
-
 }
 
 
-@media only screen and (max-width: 900px) {
-   #register {
-      border: 1px solid black;
-      width: 60%;
-      margin-top: 5%;
-      padding-left: 15%;
-      font-size: small;
-   }
-
+#login
+{
+  border: 1px solid black;
+  width: 40%;
+  margin-top: 5%;
+  margin-left: 40%;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-#login {
+@media only screen and (max-width: 900px) 
+{
+   #login
+{
    border: 1px solid black;
-   width: max-content;
-   margin-top: 5%;
-   margin-left: 45%;
-   box-shadow: 4px 4px 10px rgba(0.5, 0.5, 0.5, 0.5);
-   border-radius: 10px;
-   background-color: rgba(128, 128, 128, 0.336);
-   
+  width: 80%;
+  margin-top: 5%;
+  margin-left: 20%;
+  font-size: small;
+  padding-right: 10%;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 @media only screen and (max-width: 900px) {
@@ -973,8 +969,6 @@ h4,
 .aanmelden_tekst {
    margin-top: 5%;
 }
-
-
 
 .float-container {
    display: inline-block;
@@ -1228,8 +1222,8 @@ h4,
    font-size: 4em;
    color: white;
    padding-top: 1%;
-}
-
-.opmaakError {
+ }
+ 
+.opmaakError{
    color: red;
 }

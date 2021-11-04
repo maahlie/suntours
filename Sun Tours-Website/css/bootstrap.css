@@ -106,7 +106,8 @@
 
 #usernLogin,#passwdLogin
 {
-    width: 25%;
+    width: 50%;
+    margin-right: 50%;
 }
 
 
@@ -123,16 +124,33 @@
    bottom: 0px;
 }
 
-#usern, #firstName,#surName,#postalCode,#phonenumber,#address,#passwd2,#passwd3,#email
+
+
+.registreer_input
 {
-   width: 30%;
+    width: 50%
 }
 
 #register 
 {
     margin-left: 40%;
-    
+    padding-left: 14%;
 }
+
+@media only screen and (max-width: 900px) 
+{
+   #register
+   {
+      border: 1px solid black;
+      width: 60%;
+      margin-top: 5%;
+      padding-left: 6%; 
+      font-size: small;
+      margin-right: 0%;
+   }
+
+}
+
 
 #registratieknop
 {
