@@ -1,5 +1,4 @@
 <?php
-
 class User
 {
 
@@ -129,7 +128,7 @@ class User
         if ($emailCheck == 0) {
             $text = "email bestaat al!";
             exit($text);
-        //kijkt of de het account bestaat maar gedactiveerd is.
+            //kijkt of de het account bestaat maar gedactiveerd is.
         } elseif ($emailCheck == 1) {
             exit("Account gedeactiveerd, ga naar de activatie pagina om te heractiveren.");
         }
@@ -180,18 +179,18 @@ class User
         }
         //haalt de activatie status op 
         $active = $this->getActivation($username, $result['passwrd']);
-    
+
         //controleert het wachtwoord en slaat het resultaat op in verify
         $verify = password_verify($passwrd, $result['passwrd']);
 
         // als het wachtwoord en gebruikersnaam klopt en het een actief account is, dan is het inloggen gelukt.
         if ($username == $result['username'] && $verify == true && $active['active'] == 1) {
             return 1;
-        // als het wachtwoord en gebruikersnaam klopt maar het account is niet actief, dan krijg je daar een melding van
+            // als het wachtwoord en gebruikersnaam klopt maar het account is niet actief, dan krijg je daar een melding van
         } elseif ($username == $result['username'] && $verify == true && $active['active'] != 1) {
             return 2;
-        //als de gebruikersnaam of wachtwoord verkeerd is en het account is wel geactiveert dan krijg je de bijbehorende melding
-        }elseif($username == $result['username'] && $verify != true && $active['active'] == 1){
+            //als de gebruikersnaam of wachtwoord verkeerd is en het account is wel geactiveert dan krijg je de bijbehorende melding
+        } elseif ($username == $result['username'] && $verify != true && $active['active'] == 1) {
             return 3;
         }
         //als de gebruikersnaam en wachtwoord kloppen en het account was inet verwijderd dan wordt je ingelogd.
@@ -200,7 +199,6 @@ class User
         } else {
             return 4;
         }
-
     }
 
     //logd de gebruiker in.
@@ -384,7 +382,7 @@ class User
 
     public function getBookingValues($username)
     {
-    
+
         $this->SqlCommands->connectDB();
 
         //haalt het user id op uit de users tabel
@@ -403,62 +401,229 @@ class User
         $this->BookedVacations = $result;
         $this->BookedVacationCount = count($result);
     }
-            public function accDelete(){
-                $this->SqlCommands->connectDB(); 
-                $username = $_SESSION['username'];
-                $sql = "UPDATE users SET deleted = 1, active = 0 WHERE username = ?;";
-                $stmt = $this->SqlCommands->pdo->prepare($sql);
-                $params = [$username];
-                $stmt->execute($params);
-                $this->logout();
-                exit("Account succesvol verwijderd");
-            }
-            //wordt aangeroepen waneer er op een annuleer knop gedrukt is
-            public function cancelResurvation($resurvationNumber)
-            {
-                //haalt de de ingelogde gebruiker op en maakt de datum/tijd variabelen aan.
-                $this->getBookingValues($_SESSION['username']);
-                date_default_timezone_set(@date_default_timezone_get());
-                $todaysDate = strtotime(date("Ymd"));
-                $vacationStartingDate = strtotime(''.$this->BookedVacations[$resurvationNumber]['startingDate']);
-                $secondsInOneWeek = 3600 * 24 * 7;
+    public function accDelete()
+    {
+        $this->SqlCommands->connectDB();
+        $username = $_SESSION['username'];
+        $sql = "UPDATE users SET deleted = 1, active = 0 WHERE username = ?;";
+        $stmt = $this->SqlCommands->pdo->prepare($sql);
+        $params = [$username];
+        $stmt->execute($params);
+        $this->logout();
+        exit("Account succesvol verwijderd");
+    }
+    //wordt aangeroepen waneer er op een annuleer knop gedrukt is
+    public function cancelResurvation($resurvationNumber)
+    {
+        //haalt de de ingelogde gebruiker op en maakt de datum/tijd variabelen aan.
+        $this->getBookingValues($_SESSION['username']);
+        date_default_timezone_set(@date_default_timezone_get());
+        $todaysDate = strtotime(date("Ymd"));
+        $vacationStartingDate = strtotime('' . $this->BookedVacations[$resurvationNumber]['startingDate']);
+        $secondsInOneWeek = 3600 * 24 * 7;
 
-                //kijkt of de reis geannuleerd mag worden.
-                if ($vacationStartingDate - $todaysDate - $secondsInOneWeek < 0)
-                {
-                    exit("Neem contact met ons op om een reis die over minder dan een week begint te annuleren.");
-                }else if ($vacationStartingDate - $todaysDate <= 0)
-                {
-                    exit ("Een gestarte of afgelopen vakantie kan niet geannuleerd worden.");
-                }else
-                {
-                    //het id van de geannuleerde reis wordt opgehaalt
-                    $bookingID = $this->BookedVacations[$resurvationNumber]['bookingID'];
+        //kijkt of de reis geannuleerd mag worden.
+        if ($vacationStartingDate - $todaysDate - $secondsInOneWeek < 0) {
+            exit("Neem contact met ons op om een reis die over minder dan een week begint te annuleren.");
+        } else if ($vacationStartingDate - $todaysDate <= 0) {
+            exit("Een gestarte of afgelopen vakantie kan niet geannuleerd worden.");
+        } else {
+            //het id van de geannuleerde reis wordt opgehaalt
+            $bookingID = $this->BookedVacations[$resurvationNumber]['bookingID'];
 
-                    //de geannuleerde reis wordt verwijderd uit de database
-                    $this->SqlCommands->connectDB();
-                    $sql = "DELETE FROM `booked` WHERE `booked`.`bookingID` = $bookingID";
-                    $stmt = $this->SqlCommands->pdo->prepare($sql);
-                    $stmt->execute();
-                    
-                    exit("Uw reis is geannuleerd.");
+            //de geannuleerde reis wordt verwijderd uit de database
+            $this->SqlCommands->connectDB();
+            $sql = "DELETE FROM `booked` WHERE `booked`.`bookingID` = $bookingID";
+            $stmt = $this->SqlCommands->pdo->prepare($sql);
+            $stmt->execute();
+
+            exit("Uw reis is geannuleerd.");
+        }
+    }
+
+    public function orderID()
+    {
+        $username = $_SESSION['username'];
+        $userID = $this->SqlCommands->selectFromWhere('userID', 'users', 'username', $username);
+        $this->SqlCommands->connectDB();
+        $sql = "SELECT bookingID FROM booked ORDER BY bookingID DESC LIMIT 1;";
+        $stmt = $this->SqlCommands->pdo->prepare($sql);
+        $stmt->execute();
+        $lastBooking = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $lastBookIdNum = $lastBooking["bookingID"] + 1;
+        $orderID = $userID[0]["userID"] . "0" . $lastBookIdNum;
+        echo $lastBookIdNum;
+        return $orderID;
+    }
+    public function accDelete()
+    {
+        $this->SqlCommands->connectDB();
+        $username = $_SESSION['username'];
+        //zet account status op deleted en active op false.
+        $sql = "UPDATE users SET deleted = 1, active = 0 WHERE username = ?;";
+        $stmt = $this->SqlCommands->pdo->prepare($sql);
+        $params = [$username];
+        $stmt->execute($params);
+        $this->logout();
+        exit("Account succesvol verwijderd");
+    }
+
+    //wordt aangeroepen waneer er op een annuleer knop gedrukt is
+    public function cancelResurvation($resurvationNumber)
+    {
+        //haalt de de ingelogde gebruiker op en maakt de datum/tijd variabelen aan.
+        $this->getBookingValues($_SESSION['username']);
+        date_default_timezone_set(@date_default_timezone_get());
+        $todaysDate = strtotime(date("Ymd"));
+        $vacationStartingDate = strtotime('' . $this->BookedVacations[$resurvationNumber]['startingDate']);
+        $secondsInOneWeek = 3600 * 24 * 7;
+
+        //kijkt of de reis geannuleerd mag worden.
+        if ($vacationStartingDate - $todaysDate - $secondsInOneWeek < 0) {
+            exit("Neem contact met ons op om een reis die over minder dan een week begint te annuleren.");
+        } else if ($vacationStartingDate - $todaysDate <= 0) {
+            exit("Een gestarte of afgelopen vakantie kan niet geannuleerd worden.");
+        } else {
+            //het id van de geannuleerde reis wordt opgehaalt
+            $bookingID = $this->BookedVacations[$resurvationNumber]['bookingID'];
+
+            //de geannuleerde reis wordt verwijderd uit de database
+            $this->cancelMail($resurvationNumber);
+            $this->SqlCommands->connectDB();
+            $sql = "DELETE FROM `booked` WHERE `booked`.`bookingID` = $bookingID";
+            $stmt = $this->SqlCommands->pdo->prepare($sql);
+            $stmt->execute();
+            exit("Uw reis is geannuleerd.");
+        }
+    }
+    public function selectFromWhere($column, $table, $where, $param)
+    {
+        $sql = "SELECT " . $column .  " FROM " . $table . " WHERE " . $where . "= ?";
+        $stmt = $this->pdo->prepare($sql);
+        $params = [$param];
+
+        $stmt->execute($params);
+
+        if ($stmt) {
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        return $result;
+    }
+
+    public function cancelMail($indexNumber)
+    {
+        $userData = $this->BookedVacations[$indexNumber];
+        $userName = $_SESSION['username'];
+        $numberOfPeople = $userData["aantalPersonen"];
+        $packageId = $userData["packageID"];
+        $busPrice = $userData["busPrice"];
+        $busTicketAmount = $userData["busTicketAmount"];
+        $busDays = $userData["busDays"];
+        $carBrand = $userData["carBrand"];
+        $carDays = $userData["carDays"];
+        $dateID = $userData["dateID"];
+        $vliegmaatschapij = "KLM";
+        $busStartDate = $userData['startingDate'];
+        $carAmount = $userData['carAmount'];
+        // $"startDate, endDate, startTime, endTime"-- traveldates
+        // $firstName, surName", "users", "userID"-- user 
+        //"email",-- "mailinglist");
+
+        //dateTimeFlight
+        //nameOfUser
+        //emails
+        $this->SqlCommands = new SqlCommands();
+
+        $this->SqlCommands->connectDB();
+        $sql = "SELECT userID FROM users WHERE userName = ?";
+        $stmt = $this->SqlCommands->pdo->prepare($sql);
+        $param = [$userName];
+        $stmt->execute($param);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $userId = $result[0]['userID'];
+        // $userIdInt = $userID + 0;
+
+
+        //$this->SqlCommands->connectDB();
+        $this->commands = new SqlCommands();
+        $this->commands->connectDB();
+        $dateTimeFlight = $this->commands->selectFromWhere("startDate, endDate, startTime, endTime", "traveldates", "dateID", $dateID);
+        $nameOfUser = $this->commands->selectFromWhere("firstName, surName", "users", "userID", $userId);
+        $emails = $this->commands->selectFromAssoc("email", "mailinglist");
+        $a = 0;
+
+        $airlines = ["KLM", "Ryan air", "Iberia"];
+        $destinations = ["Egypte", "Frankrijk", "Spanje", "Turkije1", "Turkije2",];
+
+
+        if ($userData['ticketPrice'] != "0.00") {
+            for ($i = 0; $i < 3; $i++) {
+                if ($vliegmaatschapij == $airlines[$i]) {
+                    $targetEmail = $emails[$i]['email'];
+                    $body = "Hallo,<br>
+                        Wij hebben bij u geboek voor " . $numberOfPeople . " vluchten " . $dateTimeFlight[0]['startDate'] . " om " . substr($dateTimeFlight[0]['startTime'], 0, -10) . ". De retour is op " . $dateTimeFlight[0]['endDate'] . " om " . substr($dateTimeFlight[0]['endTime'], 0, -10) . ".<br>" .
+                        "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'] . " Helaas moeten we deze boeking afzeggen.";
+                    $subject = "Vluchten annuleren Sun Tours";
+                    $mailer = new Mail($body, $subject, $targetEmail);
+                    $mailer->email();
                 }
-                
+            }
+        }
+
+        for ($i = 0; $i < 5; $i++) {
+            if ($packageId == $destinations[$i]) {
+                $targetEmail = $emails[$i + 3]['email'];
+                $body = "Hello,<br>
+                    We have recently orderd rooms for " . $numberOfPeople . " people, from " . $dateTimeFlight[0]['startDate'] . " to " . $dateTimeFlight[0]['endDate'] . ".<br>" .
+                    "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'] . ", We are sorry to say we will be cancelling this resurvation.";
+                $subject = "Canceling Stay Sun Tours";
+                $mailer = new Mail($body, $subject, $targetEmail);
+                $mailer->email();
+            }
+            if ($busPrice != 0) {
+                if (($packageId == "Turkije1" || $packageId == "Turkije2") && $i + 8 == 11) {
+                    $targetEmail = $emails[$i + 8]['email'];
+                    $body = "Hello,<br>
+                        We would like to inform you that our booking of " . $busTicketAmount . " tickets for " . $busDays . " days, " . "that are active from: " . $busStartDate . ".<br>" .
+                        "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'] . " Will have to be canceled.";
+                    $subject = "Public transport canceling Sun Tours";
+                    $mailer = new Mail($body, $subject, $targetEmail);
+                    $mailer->email();
+                }
+                if ($packageId == $destinations[$i] && $i + 8 < 11) {
+                    $targetEmail = $emails[$i + 8]['email'];
+                    $body = "Hello,<br>
+                        We would like to inform you that our booking of " . $busTicketAmount . " tickets for " . $busDays . " days, " . "that are active from: " . $busStartDate . ".<br>" .
+                        "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'] . " Will have to be canceled.";
+                    $subject = "Public transport canceling Sun Tours";
+                    $mailer = new Mail($body, $subject, $targetEmail);
+                    $mailer->email();
+                }
             }
 
-            public function orderID(){
-                $username = $_SESSION['username'];
-                $userID = $this->SqlCommands->selectFromWhere('userID', 'users', 'username', $username);
-                $this->SqlCommands->connectDB();
-                $sql = "SELECT bookingID FROM booked ORDER BY bookingID DESC LIMIT 1;";
-                $stmt = $this->SqlCommands->pdo->prepare($sql);
-                $stmt->execute();
-                $lastBooking = $stmt->fetch(PDO::FETCH_ASSOC);
-
-                $lastBookIdNum = $lastBooking["bookingID"] + 1;
-                $orderID = $userID[0]["userID"] . "0" . $lastBookIdNum;
-                echo $lastBookIdNum;
-                return $orderID;
+            if ($carBrand != "0") {
+                if (($packageId == "Turkije1" || $packageId == "Turkije2") && $i + 12 == 15) {
+                    $targetEmail = $emails[$i + 12]['email'];
+                    $body = "Hello,<br>
+                        We would like to inform you that our order of " . $carAmount . " cars for " . $carDays . " days, " . "of the brand: " . $carBrand . ".<br>" .
+                        "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'] . "will have to be canceled.";
+                    $subject = "Public transport canceling Sun Tours";
+                    $mailer = new Mail($body, $subject, $targetEmail);
+                    $mailer->email();
+                }
+                if ($packageId == $destinations[$i] && $i + 12 < 15) {
+                    $targetEmail = $emails[$i + 12]['email'];
+                    $body = "Hello,<br>
+                        We would like to inform you that our order of " . $carAmount . " cars for " . $carDays . " days, " . "of the brand: " . $carBrand . ".<br>" .
+                        "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'] . "will have to be canceled.";
+                    $subject = "Public transport canceling Sun Tours";
+                    $mailer = new Mail($body, $subject, $targetEmail);
+                    $mailer->email();
+                }
             }
-}           
-?>
+        }
+    }
+}

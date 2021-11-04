@@ -171,5 +171,4 @@ class Booking {
             exit("boeking succesvol");
         }
     }
-    
 }
