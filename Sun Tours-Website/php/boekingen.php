@@ -180,19 +180,19 @@ class Booking {
         $stmt->execute();
         $result3 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $sql = "SELECT dateID FROM booked WHERE dateID = 1";
+        $sql = "SELECT aantalPersonen FROM booked WHERE dateID = 1";
         $stmt = $this->commands->pdo->prepare($sql);
 
         $stmt->execute();
         $dateID1 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $sql = "SELECT dateID FROM booked WHERE dateID = 2";
+        $sql = "SELECT aantalPersonen FROM booked WHERE dateID = 2";
         $stmt = $this->commands->pdo->prepare($sql);
 
         $stmt->execute();
         $dateID2 = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $sql = "SELECT dateID FROM booked WHERE dateID = 3";
+        $sql = "SELECT aantalPersonen FROM booked WHERE dateID = 3";
         $stmt = $this->commands->pdo->prepare($sql);
 
         $stmt->execute();
@@ -206,7 +206,7 @@ class Booking {
         if ($country == 'Spanje')           {
             if ($dateId == '1') {
                 for($i = 0; $i < sizeof($dateID1); $i++) {
-                    $maxPersonen += $dateID1[$i]['dateID'];
+                    $maxPersonen += $dateID1[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
                         exit("Er zijn al te veel boekingen!");
                     } 
@@ -214,7 +214,7 @@ class Booking {
                 return $this->confirmOrder();
             } else if ($dateId == '2') {
                 for($i = 0; $i < sizeof($dateID2); $i++) {
-                    $maxPersonen += $dateID2[$i]['dateID'];
+                    $maxPersonen += $dateID2[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
                         exit("Er zijn al te veel boekingen!");
                     } 
@@ -222,7 +222,7 @@ class Booking {
                 return $this->confirmOrder();
             } else if ($dateId == '3') {
                 for($i = 0; $i < sizeof($dateID3); $i++) {
-                    $maxPersonen += $dateID3[$i]['dateID'];
+                    $maxPersonen += $dateID3[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
                         exit("Er zijn al te veel boekingen!");
                     } 
@@ -232,7 +232,7 @@ class Booking {
         } else if ($country == 'Turkije1')  {
             if ($dateId == '1') {
                 for($i = 0; $i < sizeof($dateID1); $i++) {
-                    $maxPersonen += $dateID1[$i]['dateID'];
+                    $maxPersonen += $dateID1[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
                         exit("Er zijn al te veel boekingen!");
                     } 
@@ -240,7 +240,7 @@ class Booking {
                 return $this->confirmOrder();
             } else if ($dateId == '2') {
                 for($i = 0; $i < sizeof($dateID2); $i++) {
-                    $maxPersonen += $dateID2[$i]['dateID'];
+                    $maxPersonen += $dateID2[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
                         exit("Er zijn al te veel boekingen!");
                     } 
@@ -248,7 +248,7 @@ class Booking {
                 return $this->confirmOrder();
             } else if ($dateId == '3') {
                 for($i = 0; $i < sizeof($dateID3); $i++) {
-                    $maxPersonen += $dateID3[$i]['dateID'];
+                    $maxPersonen += $dateID3[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
                         exit("Er zijn al te veel boekingen!");
                     } 
@@ -258,7 +258,7 @@ class Booking {
         } else if ($country == 'Turkije2')  {
             if ($dateId == '1') {
                 for($i = 0; $i < sizeof($dateID1); $i++) {
-                    $maxPersonen += $dateID1[$i]['dateID'];
+                    $maxPersonen += $dateID1[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
                         exit("Er zijn al te veel boekingen!");
                     } 
@@ -266,7 +266,7 @@ class Booking {
                 return $this->confirmOrder();
             } else if ($dateId == '2') {
                 for($i = 0; $i < sizeof($dateID2); $i++) {
-                    $maxPersonen += $dateID2[$i]['dateID'];
+                    $maxPersonen += $dateID2[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
                         exit("Er zijn al te veel boekingen!");
                     } 
@@ -274,7 +274,7 @@ class Booking {
                 return $this->confirmOrder();
             } else if ($dateId == '3') {
                 for($i = 0; $i < sizeof($dateID3); $i++) {
-                    $maxPersonen += $dateID3[$i]['dateID'];
+                    $maxPersonen += $dateID3[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
                         exit("Er zijn al te veel boekingen!");
                     } 
@@ -284,7 +284,7 @@ class Booking {
         } else if ($country == 'Egypte')    {
             if ($dateId == '1') {
                 for($i = 0; $i < sizeof($dateID1); $i++) {
-                    $maxPersonen += $dateID1[$i]['dateID'];
+                    $maxPersonen += $dateID1[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
                         exit("Er zijn al te veel boekingen!");
                     } 
@@ -292,7 +292,7 @@ class Booking {
                 return $this->confirmOrder();
             } else if ($dateId == '2') {
                 for($i = 0; $i < sizeof($dateID2); $i++) {
-                    $maxPersonen += $dateID2[$i]['dateID'];
+                    $maxPersonen += $dateID2[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
                         exit("Er zijn al te veel boekingen!");
                     } 
@@ -300,7 +300,7 @@ class Booking {
                 return $this->confirmOrder();
             } else if ($dateId == '3') {
                 for($i = 0; $i < sizeof($dateID3); $i++) {
-                    $maxPersonen += $dateID3[$i]['dateID'];
+                    $maxPersonen += $dateID3[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
                         exit("Er zijn al te veel boekingen!");
                     } 
@@ -310,7 +310,7 @@ class Booking {
         } else if ($country == 'Frankrijk') {
             if ($dateId == '1') {
                 for($i = 0; $i < sizeof($dateID1); $i++) {
-                    $maxPersonen += $dateID1[$i]['dateID'];
+                    $maxPersonen += $dateID1[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
                         exit("Er zijn al te veel boekingen!");
                     } 
@@ -318,7 +318,7 @@ class Booking {
                 return $this->confirmOrder();
             } else if ($dateId == '2') {
                 for($i = 0; $i < sizeof($dateID2); $i++) {
-                    $maxPersonen += $dateID2[$i]['dateID'];
+                    $maxPersonen += $dateID2[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
                         exit("Er zijn al te veel boekingen!");
                     } 
@@ -326,7 +326,7 @@ class Booking {
                 return $this->confirmOrder();
             } else if ($dateId == '3') {
                 for($i = 0; $i < sizeof($dateID3); $i++) {
-                    $maxPersonen += $dateID3[$i]['dateID'];
+                    $maxPersonen += $dateID3[$i]['aantalPersonen'];
                     if($maxPersonen >= 24) {
                         exit("Er zijn al te veel boekingen!");
                     } 

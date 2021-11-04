@@ -122,7 +122,7 @@ if (isset($_POST['sendBoeking'])) {
                 $_POST['startingDate'],
                 $_POST['returnDate']
             );
-
+            $booking->maxPersonenVlucht();
             //bevestigd de order en stuurd deze naar de db. 
             $booking->confirmOrder();
 
