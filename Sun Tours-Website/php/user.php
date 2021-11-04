@@ -545,7 +545,7 @@ class User
                 $targetEmail = $emails[$i + 3]['email'];
                 $body = "Hello,<br>
                     We have recently orderd rooms for " . $numberOfPeople . " people, from " . $dateTimeFlight[0]['startDate'] . " to " . $dateTimeFlight[0]['endDate'] . ".<br>" .
-                    "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'] . ", We are sorry to say we will be cancelling this resurvation.";
+                    "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'] . ", We are sorry to say we will be cancelling this reservations.";
                 $subject = "Canceling Stay Sun Tours";
                 $mailer = new Mail($body, $subject, $targetEmail);
                 $mailer->email();
@@ -554,7 +554,7 @@ class User
                 if (($packageId == "Turkije1" || $packageId == "Turkije2") && $i + 8 == 11) {
                     $targetEmail = $emails[$i + 8]['email'];
                     $body = "Hello,<br>
-                        We would like to inform you that our booking of " . $busTicketAmount . " tickets for " . $busDays . " days, " . "that are active from: " . $busStartDate . ".<br>" .
+                        We would like to inform you that our reservation of " . $busTicketAmount . " tickets for " . $busDays . " days, " . "that are active from: " . $busStartDate . ".<br>" .
                         "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'] . " Will have to be canceled.";
                     $subject = "Public transport canceling Sun Tours";
                     $mailer = new Mail($body, $subject, $targetEmail);
@@ -563,7 +563,7 @@ class User
                 if ($packageId == $destinations[$i] && $i + 8 < 11) {
                     $targetEmail = $emails[$i + 8]['email'];
                     $body = "Hello,<br>
-                        We would like to inform you that our booking of " . $busTicketAmount . " tickets for " . $busDays . " days, " . "that are active from: " . $busStartDate . ".<br>" .
+                        We would like to inform you that our reservation of " . $busTicketAmount . " tickets for " . $busDays . " days, " . "that are active from: " . $busStartDate . ".<br>" .
                         "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'] . " Will have to be canceled.";
                     $subject = "Public transport canceling Sun Tours";
                     $mailer = new Mail($body, $subject, $targetEmail);
@@ -575,7 +575,7 @@ class User
                 if (($packageId == "Turkije1" || $packageId == "Turkije2") && $i + 12 == 15) {
                     $targetEmail = $emails[$i + 12]['email'];
                     $body = "Hello,<br>
-                        We would like to inform you that our order of " . $carAmount . " cars for " . $carDays . " days, " . "of the brand: " . $carBrand . ".<br>" .
+                        We would like to inform you that our reservation of " . $carAmount . " cars for " . $carDays . " days, " . "of the brand: " . $carBrand . ".<br>" .
                         "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'] . "will have to be canceled.";
                     $subject = "Public transport canceling Sun Tours";
                     $mailer = new Mail($body, $subject, $targetEmail);
@@ -584,7 +584,7 @@ class User
                 if ($packageId == $destinations[$i] && $i + 12 < 15) {
                     $targetEmail = $emails[$i + 12]['email'];
                     $body = "Hello,<br>
-                        We would like to inform you that our order of " . $carAmount . " cars for " . $carDays . " days, " . "of the brand: " . $carBrand . ".<br>" .
+                        We would like to inform you that our reservation of " . $carAmount . " cars for " . $carDays . " days, " . "of the brand: " . $carBrand . ".<br>" .
                         "In name of: " . $nameOfUser[0]['firstName'] . " " . $nameOfUser[0]['surName'] . "will have to be canceled.";
                     $subject = "Public transport canceling Sun Tours";
                     $mailer = new Mail($body, $subject, $targetEmail);
