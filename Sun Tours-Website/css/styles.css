@@ -924,6 +924,7 @@ h4,
 @media only screen and (max-width: 900px) 
 {
    #login
+
 {
    border: 1px solid black;
   width: 80%;
@@ -934,6 +935,7 @@ h4,
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
 }
 
+}
 @media only screen and (max-width: 900px) {
    #login {
       border: 1px solid black;
