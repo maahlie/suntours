@@ -235,10 +235,7 @@ function showConfirmForm(){
     document.getElementById("aantal_volwassenen").value != 0 &&
     document.getElementById("aantal_kinderen").value != 0 &&
     document.getElementById("totaal_pakket_Prijs").innerHTML != "" &&
-    document.getElementById("totaal_pakket_Prijs").innerHTML != "" &&
-    document.getElementById("vervoer").checked || document.getElementById("geen_vervoer").checked &&
-    document.getElementById("show_autoverhuur1").checked || document.getElementById("hide_autoverhuur2").checked &&
-    document.getElementById("show_bus_deals1").checked || document.getElementById("hide_bus_deals2").checked
+    document.getElementById("totaal_pakket_Prijs").innerHTML != ""
   ){
       var oReq = new XMLHttpRequest(); // New request object
       oReq.onload = function() {
