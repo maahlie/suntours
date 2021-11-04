@@ -240,7 +240,7 @@ function showConfirmForm(){
       var oReq = new XMLHttpRequest(); // New request object
       oReq.onload = function() {
         var str = this.responseText;
-        document.getElementById("orderNr").innerHTML = "#" + str.substring(3,str.length-1);
+        document.getElementById("orderNr").innerHTML = "#" + str.substring(4,str.length-1);
       };
       oReq.open("get", "php/genOrderNr.php", true);
             //                               ^ Don't block the rest of the execution.

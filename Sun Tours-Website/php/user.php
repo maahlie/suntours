@@ -447,8 +447,8 @@ class User
             }
 
             public function orderID(){
-                
-                $userID = $this->SqlCommands->selectFromWhere('userID', 'users', 'username', $_SESSION['username']);
+                $username = $_SESSION['username'];
+                $userID = $this->SqlCommands->selectFromWhere('userID', 'users', 'username', $username);
                 $this->SqlCommands->connectDB();
                 $sql = "SELECT bookingID FROM booked ORDER BY bookingID DESC LIMIT 1;";
                 $stmt = $this->SqlCommands->pdo->prepare($sql);
@@ -457,7 +457,7 @@ class User
 
                 $lastBookIdNum = $lastBooking["bookingID"] + 1;
                 $orderID = $userID[0]["userID"] . "0" . $lastBookIdNum;
-
+                echo $lastBookIdNum;
                 return $orderID;
             }
 }           
