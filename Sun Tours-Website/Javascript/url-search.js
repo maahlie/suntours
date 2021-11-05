@@ -234,11 +234,10 @@ function showConfirmForm(){
 
   if(
     document.getElementById("aantal_volwassenen").value != 0 &&
-    document.getElementById("aantal_kinderen").value != 0 &&
     document.getElementById("totaal_pakket_Prijs").innerHTML != "" &&
     document.getElementById("totaal_pakket_Prijs").innerHTML != ""
   ){
-
+    update_prices()
     var oReq = new XMLHttpRequest(); // New request object
     oReq.onload = function() {
       var str = this.responseText;
@@ -255,7 +254,11 @@ function showConfirmForm(){
 
         document.getElementById("currentDate").innerHTML = getDate();
         document.getElementById("aantalV").innerHTML = document.getElementById("aantal_volwassenen").value;
-        document.getElementById("aantalK").innerHTML = document.getElementById("aantal_kinderen").value;
+        if(document.getElementById("aantal_kinderen").value == "" || document.getElementById("aantal_kinderen").value == 0){
+          document.getElementById("aantalK").innerHTML = "n.v.t";
+        }else{
+          document.getElementById("aantalK").innerHTML = document.getElementById("aantal_kinderen").value;
+        }
         document.getElementById("pakketP").innerHTML = document.getElementById("totaal_pakket_Prijs").innerHTML;
         document.getElementById("vlucht").innerHTML = document.getElementById("totaal_Vliegticket_Prijs").innerHTML;
         document.getElementById("autoVhuur").innerHTML = document.getElementById("auto_prijs").innerHTML;
@@ -272,6 +275,8 @@ function showConfirmForm(){
             document.getElementById(VAB[i]).innerHTML = "n.v.t";
           }
         }
+
+
 
         document.getElementById("bookingOpties").style.display = 'none';
         document.getElementById("bevestigForm").style.display = 'inline-block';
