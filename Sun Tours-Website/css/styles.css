@@ -369,7 +369,7 @@ h4 {
 
 
 .contact_footer {
-   position: absolute;
+   position: relative;
    padding-top: 100px;
    bottom: 0;
    width: 100%;
@@ -796,8 +796,8 @@ textarea:hover {
    #aantal_Dagen,
    #aantal_tickets_bus,
    #aantal_volwassenen,
-   #aantal_kinderen {
-      width: 60%;
+   #aantal_kinderen,#tijden,#Vertrek_vliegveld {
+      width: 50%;
    }
 
 }
@@ -847,7 +847,7 @@ th {
 #aantal_volwassenen,
 #aantal_kinderen,
 #Vertrek_vliegveld {
-   width: 100%;
+   width: 60%;
 }
 
 .boekingen_Background {
