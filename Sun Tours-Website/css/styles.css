@@ -909,6 +909,20 @@ h4,
    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
    margin-top: 5%;
    height: fit-content;
+   border-radius: 10px;
+   background-color: rgba(128, 128, 128, 0.336);
+}
+
+@media only screen and (max-width: 900px)
+{
+   #register
+   {
+      border: 1px asolid black;
+      width: 	60%;
+      margin-top: 5%;
+      padding-left: 15%;
+      font-size: small;
+   }
 }
 
 
@@ -919,6 +933,7 @@ h4,
   margin-top: 5%;
   margin-left: 40%;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+  background-color: rgba(128, 128, 128, 0.336);
 }
 
 @media only screen and (max-width: 900px) 
@@ -933,6 +948,7 @@ h4,
   font-size: small;
   padding-right: 10%;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+  
 }
 
 }
