@@ -29,6 +29,15 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             postalCode: {
                 required: true
+            },
+            firstName:{
+                required: true
+            },
+            surName:{
+                required: true
+            },
+            phonenumber:{
+                required: true
             }
         },
         messages:
@@ -52,6 +61,15 @@ document.addEventListener("DOMContentLoaded", function () {
             postalCode: {
                 required: "<span class='opmaakError'>Voer a.u.b een postcode in.</span>"
             },
+            firstName:{
+                required: "<span class='opmaakError'>Vul a.u.b uw voornaam in.</span>"
+            },
+            surName:{
+                required: "<span class='opmaakError'>Vul a.u.b uw achternaam in.</span>"
+            },
+            phonenumber:{
+                required: "<span class='opmaakError'>Vul a.u.b uw telefoon nummer in. in</span>"
+            }
         },
 
         submitHandler: function () {
