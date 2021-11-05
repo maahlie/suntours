@@ -64,8 +64,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 method: "POST",
                 data: sData,
             }).done(function (response) {
-                alert(response + " U wordt nu herleid naar de activatie pagina.");
-                window.location = "activatie.html";
+                if (response == "Email bestaat al!" || response == "Username bestaat al!") {
+                    alert(response);
+                } else {
+                    alert(response + " U wordt nu herleid naar de activatie pagina.");
+                    window.location = "activatie.html";                }
+
             }).fail(function (jqXHR, textstatus) {
                 alert(response, textstatus);
             })
