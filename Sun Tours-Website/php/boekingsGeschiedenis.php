@@ -55,12 +55,12 @@ session_start();
       background: #aaa;
     }
   </style>
-  <script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
-  <script>
+<script type="text/javascript" src="https://cdn.weglot.com/weglot.min.js"></script>
+<script>
     Weglot.initialize({
-      api_key: 'wg_e0862d6fccddf79b84908b2ed4ee35a62'
+        api_key: 'wg_19d33e4b5e1657c0932ced2531b06ace3'
     });
-  </script>
+</script>
 
 <script>
   //waneer een ajax actie voltooit is wordt de pagina opnieuw geladen.
