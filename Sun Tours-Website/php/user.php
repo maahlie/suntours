@@ -46,7 +46,7 @@ class User
         //checkt de usernames tegen de ingevoerde username
         for ($i = 0; $i < count($result); $i++) {
             if ($username == $result[$i][0]) {
-                $text = "username bestaat al!";
+                $text = "Username bestaat al!";
                 exit($text);
             }
         }
@@ -126,7 +126,7 @@ class User
         //controleerd of je email al in de db staat.
         $emailCheck = $this->emailCheck($email);
         if ($emailCheck == 0) {
-            $text = "email bestaat al!";
+            $text = "Email bestaat al!";
             exit($text);
             //kijkt of de het account bestaat maar gedactiveerd is.
         } elseif ($emailCheck == 1) {
