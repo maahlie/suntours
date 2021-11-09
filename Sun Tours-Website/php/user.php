@@ -87,16 +87,24 @@ class User
     public function changePassword($newPass, $email, $code)
     {
 
+        //haalt het oude wachtwoord en de code voor het veranderen van het wachtwoord op uit de db.
         $result = $this->SqlCommands->selectFromWhere('activationCode', 'users', 'email', $email);
         $oldPass = $this->SqlCommands->selectFromWhere('passwrd', 'users', 'email', $email);
 
+        //verifierd de hash, als die true is is het nieuwe wachtwoord hetzelfde als het oude en kan je hem niet veranderen.
         $verify = password_verify($newPass, $oldPass[0]['passwrd']);
 
+        //als de query niks returned was het email onjuist en die error wordt dan ook weergegeven.
         if (count($result) != 0) {
+            //checkt of het nieuwe wachtwoord hetzelfde is als het oude.
             if ($verify != true) {
+                //checkt of de code juist is.
                 if ($code == $result[0]['activationCode']) {
+
+                    //het nieuwe wachtwoord wordt gehashed
                     $newPassHash = password_hash($newPass, PASSWORD_DEFAULT);
 
+                    //het nieuwe wachtwoord wordt geinsert aan de hand van de email.
                     $sql = "UPDATE users SET passwrd = ? WHERE email = ?;"; //query, vraagtekens worden gevuld bij de execute met $params
 
                     $stmt = $this->SqlCommands->pdo->prepare($sql);
@@ -227,7 +235,7 @@ class User
         }
     }
 
-    //stuurd een mail naar ons met alle data en tekst uit het contact form.
+    //stuurt een mail naar ons met alle data en tekst uit het contact form.
     public function contact($email, $mailBody, $mailSubject, $contactName)
     {
         $targetEmail = 'SunTours.devOps@hotmail.com';
@@ -334,6 +342,7 @@ class User
     //simpele log uit functie
     public function logout()
     {
+        //maakt de sessie leeg
         $_SESSION[] = array();
         // destroy de sessie
         session_destroy();
@@ -401,8 +410,11 @@ class User
         $this->BookedVacations = $result;
         $this->BookedVacationCount = count($result);
     }
+
+        //wordt aangeroepen waneer er op een annuleer knop gedrukt is
     public function accDelete()
     {
+        //zet de deleted waarde naar 1 en active naar 0 voor het huidig ingelogde account.
         $this->SqlCommands->connectDB();
         $username = $_SESSION['username'];
         $sql = "UPDATE users SET deleted = 1, active = 0 WHERE username = ?;";
@@ -412,10 +424,11 @@ class User
         $this->logout();
         exit("Account succesvol verwijderd");
     }
-    //wordt aangeroepen waneer er op een annuleer knop gedrukt is
 
+    //deze functie is voor het tonen van het oderID op het confirmblad in de boekingpagina. de functie wordt aangeroepen in genOrderNr.php.
     public function orderID()
     {
+        //in deze if wordt aan de hand van de ingelogde username het userID opgehaald en het laatst geboekte bookingID.
         if(isset($_SESSION['username'])){
             $username = $_SESSION['username'];
             $userID = $this->SqlCommands->selectFromWhere('userID', 'users', 'username', $username);
@@ -424,12 +437,14 @@ class User
             $stmt = $this->SqlCommands->pdo->prepare($sql);
             $stmt->execute();
             $lastBooking = $stmt->fetch(PDO::FETCH_ASSOC);
-    
+            
+            //het orderID bestaat uit userID + 0 + bookingID.
             $lastBookIdNum = $lastBooking["bookingID"] + 1;
             $orderID = $userID[0]["userID"] . "0" . $lastBookIdNum;
             echo $lastBookIdNum;
             return $orderID;
         }else{
+            //wanneer de user niet is ingelogd (dus wanneer er geen username is geset in de sessie) wordt dit gereturnd
             return 'nietIngelogd';
         }
 
@@ -464,6 +479,7 @@ class User
             exit("Uw reis is geannuleerd.");
         }
     }
+
     public function selectFromWhere($column, $table, $where, $param)
     {
         $sql = "SELECT " . $column .  " FROM " . $table . " WHERE " . $where . "= ?";

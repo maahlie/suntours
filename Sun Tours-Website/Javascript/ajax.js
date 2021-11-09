@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    //registratie
+    //valideert elke input van een form aan de hand van het form id, in dit geval #registreerpage. als iets niet voldoet aan de eisen gaat hij niet naar de submithandler
     $("#registreerpage").validate({
         rules:
         {
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     })
 
-    //wachtwoord verificatie voor account activatie
+    //wachtwoord verificatie voor account activatie, zelfde idee als bij de vorige. Dit hebben we gedaan voor elke form op de website.
     $("#codeVerify").validate({
         rules:
         {

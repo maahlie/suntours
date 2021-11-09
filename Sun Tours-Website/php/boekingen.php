@@ -58,6 +58,7 @@ class Booking {
         return $userID;
     }
 
+    //insert de boeking in de db.
     public function confirmOrder(){
         $userID = $this->userId[0]['userID'];
         $userIdInt = $userID + 0;

@@ -216,6 +216,8 @@ function update_prices()
   calculate_plane_price();
   calculate_pakket_prijs();
   totalPrice();
+
+  //wanneer de prijs geupdate wordt verdwijnt de error message dat je iets vergeten bent in te vullen
   document.getElementById('errorMsg').style.display = "none";
 
 }
@@ -232,26 +234,36 @@ function getDate(){
 
 function showConfirmForm(){
 
+  
   if(
+    //check of de inputs niet leeg zijn
     document.getElementById("aantal_volwassenen").value != 0 &&
     document.getElementById("totaal_pakket_Prijs").innerHTML != "" &&
     document.getElementById("totaal_pakket_Prijs").innerHTML != ""
   ){
     update_prices()
+
+    //met een XMLHttp request heb ik een variabele uit php gehaald en naar javascript gestuurd zodat ik kon checken of de user is ingelogd.
     var oReq = new XMLHttpRequest(); // New request object
+
+    //de functie die wordt uitgevoerd als de request wordt gemaakt
     oReq.onload = function() {
-      var str = this.responseText;
-      if(str == '"nietIngelogd"'){
+      //de responsetext is de waarde uit de php die ik wil hebben, als de user is ingelogd is dit het order nummer, zo niet is het de string nietIngelogd.
+      var str = this.responseText;  
+      if(str == '"nietIngelogd"'){  
+        //deze if checkt of de user is ingelogd, zo niet dan wordt er een error getoond, als het wel zo is gaat het script door.
         document.getElementById('errorMsg').innerHTML = "U bent nog niet ingelogd.";
         document.getElementById('errorMsg').style.display = "inline-block";
       }else{
+         //hier wordt het ordernummer op de pagina gezet, er moest wel nog wat vanaf vanwege de manier waarop ik hem meekreeg uit de php, daar is de substring() functie voor
         document.getElementById("orderNr").innerHTML = "#" + str.substring(4,str.length-1);
             
+        //rekent de prijs, annuleer kosten en btw uit.
         var strTotalPrijs = document.getElementById("totaal__Reis_Prijs").innerHTML.substring(1);
         var annuleerKost = parseFloat(strTotalPrijs) * 0.25;
-
         var btw = parseFloat(strTotalPrijs) * 0.21;
 
+        //dit blok zet de waardes op de pagina.
         document.getElementById("currentDate").innerHTML = getDate();
         document.getElementById("aantalV").innerHTML = document.getElementById("aantal_volwassenen").value;
         if(document.getElementById("aantal_kinderen").value == "" || document.getElementById("aantal_kinderen").value == 0){
@@ -268,6 +280,7 @@ function showConfirmForm(){
         document.getElementById("totaalP").innerHTML = "€" + Math.round((parseFloat(strTotalPrijs) * 1.21 + Number.EPSILON) * 100) / 100;
 
         
+        //voor deze drie divs moest precies hetzelfde gebeuren dus ze staan in een array zodat ik ze in een for loop kan doen.
         const VAB = ["vlucht", "autoVhuur", "busDeal"];
 
         for(i = 0; i<3; i++){
@@ -277,18 +290,21 @@ function showConfirmForm(){
         }
 
 
-
+        //maakt het bevestigingsform zichtbaar en het boeking form niet meer zichtbaar.
         document.getElementById("bookingOpties").style.display = 'none';
         document.getElementById("bevestigForm").style.display = 'inline-block';
       }
     };
+
+    //hier wordt de request gemaakt en de functie uitgevoerd.
     oReq.open("get", "php/genOrderNr.php", true);
-    //                                     ^ Don't block the rest of the execution.
-    //                                      Don't wait until the request finishes to
-    //                                      continue.
+      //                                    ^ Don't block the rest of the execution.
+      //                                      Don't wait until the request finishes to
+      //                                      continue.
     oReq.send();
 
   }else{
+    //foutafhandeling
     document.getElementById('errorMsg').innerHTML = "Laat a.u.b geen velden leeg.";
     document.getElementById('errorMsg').style.display = "inline-block";
   }

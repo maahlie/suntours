@@ -7,5 +7,6 @@
 
     $orderID = $user->orderID();
 
+    //hier wordt de orderID die we nodig hebben geechoed zodat de XMLHttp request hem op kan halen.
     echo json_encode($orderID);
 ?>

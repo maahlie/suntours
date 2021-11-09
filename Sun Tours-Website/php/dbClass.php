@@ -10,22 +10,25 @@ class SqlCommands {
 
     public function __construct()
     {
-        $this->dbConnAddress = 'mysql:host=localhost;dbname=suntours';
+        $this->dbConnAddress = 'mysql:host=localhost;dbname=id17750146_suntours';
         // $this->dbConnAddress = 'mysql:sql11.freemysqlhosting.net;dbname=sql11439693';
-        $this->name = 'suntoursroot';
+        $this->name = 'id17750146_suntoursroot';
         // $this->name = 'sql11439693';
-        $this->password = 'root';
+        $this->password = '&sHFjgE=RSL2[8xd';
         // $this->password = 'G7Gpwc79fj';
         $this->pdo = new PDO($this->dbConnAddress, $this->name, $this->password); //login op db
 
     } 
 
+    //database connectie
     public function connectDB()
     {
+        //zet de instellingen voor de pdo.
         $this->pdo->exec('SET CHARACTER SET UTF8');
         $this->pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     }
     
+    //simpele select query die een genumerde array returnd
     public function selectFrom($column, $table) {
         $sql = "SELECT " . $column .  " FROM " . $table . ";";
         $stmt = $this->pdo->prepare($sql);
@@ -38,6 +41,7 @@ class SqlCommands {
         return $result;
     }
 
+    //simpele select query die een associatieve array returnd.
     public function selectFromAssoc($column, $table) {
         $sql = "SELECT " . $column .  " FROM " . $table . ";";
         $stmt = $this->pdo->prepare($sql);
@@ -50,6 +54,7 @@ class SqlCommands {
         return $result;
     }
 
+    //select met een where clause.
     public function selectFromWhere($column, $table, $where, $param) {
         $sql = "SELECT " . $column .  " FROM " . $table . " WHERE " . $where . "= ?";
         $stmt = $this->pdo->prepare($sql);
@@ -65,6 +70,7 @@ class SqlCommands {
         return $result;
     }
 
+    //specifieke select query die we maar 1 keer nodig hadden
     public function selectWithWhere($column, $column2) {
         $sql = "SELECT username, passwrd FROM users WHERE username = ? AND passwrd = ?;";
         $stmt = $this->pdo->prepare($sql);
@@ -79,6 +85,7 @@ class SqlCommands {
         return $result;
     }
 
+    //selecteerd het laatste uit booked.
     public function selectOrderDesc($userID){
 		$sql = "SELECT bookingID FROM booked WHERE userID = $userID ORDER BY bookingID DESC LIMIT 1;";
 
