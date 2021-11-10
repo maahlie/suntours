@@ -19,8 +19,6 @@ $SESSION['userClass']->showReview(false);
     <link rel="stylesheet" href="../css/Review_Cards.css">
     <link rel="stylesheet" href="../css/Review_page.css">
     <script src="../node_modules/jquery/dist/jquery.js"></script>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../Javascript/Review_Cards.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
@@ -136,7 +134,6 @@ $SESSION['userClass']->showReview(false);
                     <br>
                     <label>Zou u deze website aanbevelen?</label>
                     <br>
-                    <!-- <form class="RadioButton"> -->
 
                     <input type="radio" id="keuze" name="keuze" value="ja">
                     <label for="ja">Ja</label><br>
@@ -145,7 +142,6 @@ $SESSION['userClass']->showReview(false);
                     <br>
                     <input type="submit" class="buttonReview" name="sendReview" value="verstuur">
 
-                    <!-- </form> -->
                 </div>
 
             </form>

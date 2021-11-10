@@ -36,9 +36,6 @@ session_start();
   <script type="text/javascript" src="../Javascript/url-search.js"></script>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,200&display=swap" rel="stylesheet">
-  <!-- <script src="node_modules/jquery/dist/jquery.js"></script> -->
-  
-
 
   <script src="node_modules/jquery/dist/jquery.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

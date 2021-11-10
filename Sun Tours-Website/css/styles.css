@@ -544,7 +544,6 @@ textarea:hover {
    position: relative;
    width: 40%;
    padding-bottom: 25%;
-   /* = width for a 1:1 aspect ratio */
    margin: 1.66%;
    background-position: center center;
    background-repeat: no-repeat;
@@ -823,9 +822,6 @@ th {
 #activatieFooter {
    position: absolute;
    bottom: 0;
-   /* .prijzen {
-   background-color: rgb(197, 213, 225);
-} */
 }
 
 .boekingen_Button {

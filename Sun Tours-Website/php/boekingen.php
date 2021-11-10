@@ -88,7 +88,7 @@ class Booking {
             $destinations = ["Egypte", "Frankrijk", "Spanje", "Turkije1", "Turkije2", ];
 
             
-
+            //verstuurt indien nodig de mail voor de vleigtickets
             if($this->vliegM != "")
             {
                 for ($i = 0; $i < 3; $i++)
@@ -105,7 +105,7 @@ class Booking {
                     }
                 }
             }
-
+            //verstuurt de mail voor het hotel
             for ($i = 0; $i < 5; $i++)
             {
                 if ($this->id == $destinations[$i])
@@ -118,6 +118,7 @@ class Booking {
                     $mailer = new Mail($body, $subject, $targetEmail);
                     $mailer->email();
                 }
+                //verstuurt in dien nodig de mail voor de bustickets
                 if($this->busPrice != 0)
                 {
                     if (($this->id == "Turkije1" || $this->id == "Turkije2") && $i+8 == 11)
@@ -141,7 +142,7 @@ class Booking {
                         $mailer->email();
                     }
                 }
-
+                //verstuurt indien nodig de mail voor de autoverhuur
                 if($this->carBrand != "0")
                 {
                     if (($this->id == "Turkije1" || $this->id == "Turkije2") && $i+12 == 15)

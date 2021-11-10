@@ -1,7 +1,5 @@
 <?php
 
-
-//$invoice = new Invoice($adults, $kids, $id, $travelTimeChoice);
 $targetEmail;
 $invoiceNmbr = 420;
 $getDate = $invoice->getDate();
@@ -164,5 +162,4 @@ $targetEmail = 'SunTours.devOps@hotmail.com';
 $completeBody = $test;
 $mailSubject = "test";
 
-//$invoice->sendMail($targetEmail,$completeBody,$mailSubject);
 ?>

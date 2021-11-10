@@ -479,7 +479,7 @@ class User
             exit("Uw reis is geannuleerd.");
         }
     }
-
+    //voert select querys uit
     public function selectFromWhere($column, $table, $where, $param)
     {
         $sql = "SELECT " . $column .  " FROM " . $table . " WHERE " . $where . "= ?";
@@ -498,6 +498,7 @@ class User
 
     public function cancelMail($indexNumber)
     {
+        //haalt booked data op
         $userData = $this->BookedVacations[$indexNumber];
         $userName = $_SESSION['username'];
         $numberOfPeople = $userData["aantalPersonen"];
@@ -511,13 +512,7 @@ class User
         $vliegmaatschapij = "KLM";
         $busStartDate = $userData['startingDate'];
         $carAmount = $userData['carAmount'];
-        // $"startDate, endDate, startTime, endTime"-- traveldates
-        // $firstName, surName", "users", "userID"-- user 
-        //"email",-- "mailinglist");
 
-        //dateTimeFlight
-        //nameOfUser
-        //emails
         $this->SqlCommands = new SqlCommands();
 
         $this->SqlCommands->connectDB();
@@ -527,10 +522,7 @@ class User
         $stmt->execute($param);
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         $userId = $result[0]['userID'];
-        // $userIdInt = $userID + 0;
 
-
-        //$this->SqlCommands->connectDB();
         $this->commands = new SqlCommands();
         $this->commands->connectDB();
         $dateTimeFlight = $this->commands->selectFromWhere("startDate, endDate, startTime, endTime", "traveldates", "dateID", $dateID);
@@ -541,7 +533,7 @@ class User
         $airlines = ["KLM", "Ryan air", "Iberia"];
         $destinations = ["Egypte", "Frankrijk", "Spanje", "Turkije1", "Turkije2",];
 
-
+        //stuurt de annulerings mail voor de vlucht
         if ($userData['ticketPrice'] != "0.00") {
             for ($i = 0; $i < 3; $i++) {
                 if ($vliegmaatschapij == $airlines[$i]) {
@@ -555,7 +547,7 @@ class User
                 }
             }
         }
-
+        //stuurt de annulerings mail voor het hotel
         for ($i = 0; $i < 5; $i++) {
             if ($packageId == $destinations[$i]) {
                 $targetEmail = $emails[$i + 3]['email'];
@@ -586,7 +578,7 @@ class User
                     $mailer->email();
                 }
             }
-
+            //stuurt de annulerings mail voor de auto's
             if ($carBrand != "0") {
                 if (($packageId == "Turkije1" || $packageId == "Turkije2") && $i + 12 == 15) {
                     $targetEmail = $emails[$i + 12]['email'];

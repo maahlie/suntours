@@ -11,6 +11,7 @@ aantal_Personen = 0;
 
 datums = [['2-11-2021' , '10-11-2021'], ['16-11-2021', '24-11-2021'], ['7-12-2021', '15-12-2021']];
 
+// html scripts van de verschillende reizen met de juiste waardens
 html_scripts = [
   '<div class = "card_header"><b>Hotel Best Tenerife-Spanje</b></div>Vertrek/terug reis datum en tijd opties: <Br>2-11-2021 - 9.45<Br>10-11-2021 - 10.45<Br><Br>16-11-2021 - 8.30<Br>24-11-2021 - 9-30<Br><Br>7-12-2021 - 9.45<Br>15-12-2021 - 11.00<Br><Br><div class="btn-group"><a href="./assortiment.html">Verander Selectie</a></div></div></div></div>',
   '<div class = "card_header"><b>Hotel Gold City -Turkije</b></div>Vertrek/terug reis datum en tijd opties: <Br>2-11-2021 - 10.45<br>10-11-2021 - 20.00<br><br>16-11-2021 - 9.45<br>24-11-2021 - 15.30<br><br>7-12-2021 - 19.00<br>15-12-2021 - 11.00<br><br><div class="btn-group"><a href="./assortiment.html">Verander Selectie</a></div></div></div></div>',
@@ -19,6 +20,7 @@ html_scripts = [
   '<div class = "card_header"><b>Disneyland Parijs Frankrijk</b></div> Vertrek/terug reis datum en tijd opties: <Br>2-11-2021 - 9.00<br>10-11-2021 - 8.30<br><br>16-11-2021 - 16.00<br>24-11-2021 - 12.45<br><br>7-12-2021 - 17.30<br>15-12-2021 - 8.45<br><br><div class="btn-group"><a href="./assortiment.html">Verander Selectie</a></div></div></div></div>'
 ];
 country = 0;
+// html scripts van de verschillende reizen met de juiste waardens
 html_script_vliegen = [
   '30">8.30</option> <option value="9.45">9.45</option> <option value="12.45">12.45</option> <option value="16.30">16.30</option> </select><br><label>Terugreis:</label> <select name="terug_tijd" id="terug_tijd"> <option value="keuze" disabled selected>-</option> <option value="8.30">8.30</option> <option value="9.45">9.15</option> <option value="12.45">12.45</option> <option value="15.30">15.30</option> </select><Br><Br>',
   '15">8.15</option> <option value="9.50">9.50</option> <option value="12.15">12.15</option> <option value="16.00">16.00</option> </select><br><label>Terugreis:</label> <select name="terug_tijd" id="terug_tijd"> <option value="keuze" disabled selected>-</option> <option value="8.15">8.15</option> <option value="9.00">9.00</option> <option value="12.30">12.30</option> <option value="16.45">16.45</option> </select><Br><Br>',
@@ -27,6 +29,7 @@ html_script_vliegen = [
   '00">8.00</option> <option value="9.00">9.00</option> <option value="12.00">12.00</option> <option value="16.45">16.45</option> </select><br><label>Terugreis:</label> <select name="terug_tijd" id="terug_tijd"> <option value="keuze" disabled selected>-</option> <option value="8.00">8.00</option> <option value="9.00">9.00</option> <option value="12.00">12,00</option> <option value="15.45">15.45</option> </select><Br><Br>'
 ];
 
+//loopt door alle vakanties heen en kijkt welke geselecteerd is.
 $(document).ready(function () {
   for(i=0; i < 5; i++)
 {
@@ -37,6 +40,7 @@ $(document).ready(function () {
   }
 }
 });
+//waneer de pagina laat wordt het element et de id packageID gezet naar de gekozen package 
 function onLoad(){
   hide_autoverhuur();
   hide_bus_deals();
@@ -44,34 +48,34 @@ function onLoad(){
   var id  = url.substring(url.lastIndexOf('=') + 1);
   document.getElementById("packageID").value = id;
 } 
+//laat de html van vervoer op het scherm zien
 function show_vervoer(){
   document.getElementById("vliegen_div").innerHTML='<label>vliegmaatschapij:</label><br> <select name="airlines" id="airlines"  onchange="update_prices()"> <option value="keuze" disabled selected>-</option> <option value="KLM">KLM</option> <option value="Ryan air">Ryan air</option> <option value="Iberia">Iberia</option> </select><Br><Br> <label>vertrek vliegveld:</label><br> <select name="Vertrek_vliegveld" id="Vertrek_vliegveld"> <option value="keuze" disabled selected>-</option> <option value="Schiphol">Schiphol</option> <option value="Eindhoven">Eindhoven</option> <option value="Groningen-Eelde">Groningen-Eelde</option> <option value="Rotterdam-The Hague">Rotterdam-The Hague</option> </select><Br><Br>';
 }
-
+//zorgt ervoor dat de vervoers opties niet meer zigtbaar zijn.
 function hide_vervoer(){
   document.getElementById("vliegen_div").innerHTML='';
   document.getElementById("ticketPrice").value = 0;
   vliegticket_prijs = 0;
   aantal_Personen = 0;  
-  console.log("working");
   update_prices();
 }
-
+//laat de opties voor autoverhuur zien.
 function show_autoverhuur(){
   document.getElementById("autos").style.display = "block";
 }
-
+//laat de opties voor autoverhuur verdwijnen
 function hide_autoverhuur(){
   document.getElementById("autos").style.display = "none";
   document.getElementById("aantal_autos").value = 0;
   document.getElementById("rental_time_chooser_id").value = 0;
   update_prices();
 }
-
+//laat de busdeals opties zien
 function show_bus_deals(){
   document.getElementById("bus").style.display = "block";
 }
-
+//busdeals opties wordt niet meer zichtbaar
 function hide_bus_deals(){
   document.getElementById("bus").style.display = "none";
   document.getElementById("aantal_Dagen").value = 0;
@@ -79,7 +83,7 @@ function hide_bus_deals(){
   document.getElementById("bus-dates").value = 0;
 }
 
-
+//berekent de autoprijs
 function calculate_car_price(){
   var selectedValue = document.getElementById("auto");
   var rental_time = document.getElementById('rental_time_chooser_id').value
@@ -102,7 +106,7 @@ function calculate_car_price(){
     }
   }
 }
-
+//berekent de bus prijs
 function calculate_Bus_Price()
 {
   bus_Prijs = 9.75;
@@ -127,7 +131,7 @@ function calculate_Bus_Price()
   }
   
 }
-
+//berekent de vliegticketprijs
 function calculate_plane_price()
 {
   
@@ -160,7 +164,7 @@ else{
   
 }
 }
-
+//berekent de totale prijs
 function totalPrice()
 {
   total_price = 0;
@@ -195,7 +199,7 @@ function totalPrice()
   }
 
  }
-
+//update de datums indien dat nodig is.
  function update_dates(){
    
   var selectedValue2 = document.getElementById("tijden");
@@ -204,10 +208,10 @@ try{
   document.getElementById("startingDate").value = datums[value-1][0];
   document.getElementById("returnDate").value = datums[value-1][1];
 }catch{
-//This is fine...
+
 }
   }
-  
+  //berekent alle prijzen van alle geselecteerde opties
 function update_prices()
 {
   update_dates()
@@ -221,7 +225,7 @@ function update_prices()
   document.getElementById('errorMsg').style.display = "none";
 
 }
-
+//haalt de datum van vandaag op
 function getDate(){
   var today = new Date();
   var dd = String(today.getDate()).padStart(2, '0');
