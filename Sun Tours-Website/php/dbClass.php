@@ -10,11 +10,11 @@ class SqlCommands {
 
     public function __construct()
     {
-        $this->dbConnAddress = 'mysql:host=localhost;dbname=id17750146_suntours';
+        $this->dbConnAddress = 'mysql:host=localhost;dbname=suntours';
         // $this->dbConnAddress = 'mysql:sql11.freemysqlhosting.net;dbname=sql11439693';
-        $this->name = 'id17750146_suntoursroot';
+        $this->name = 'suntoursroot';
         // $this->name = 'sql11439693';
-        $this->password = '&sHFjgE=RSL2[8xd';
+        $this->password = 'root';
         // $this->password = 'G7Gpwc79fj';
         $this->pdo = new PDO($this->dbConnAddress, $this->name, $this->password); //login op db
 
