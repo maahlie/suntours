@@ -984,6 +984,13 @@ h4,
    margin-top: 5%;
 }
 
+#passwordFooter {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+ }
+
 .float-container {
    display: inline-block;
    width: 40%;
